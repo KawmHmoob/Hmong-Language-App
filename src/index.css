@@ -1,3 +1,42 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #1c1917;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Fraunces', 'Lora', Georgia, serif;
+    letter-spacing: -0.015em;
+    font-weight: 600;
+  }
+}
+
+@layer components {
+  /* Resting surface = border only. Hover adds the lift. Avoids stacking
+     shadows + borders everywhere, which was making lists feel crowded. */
+  .surface {
+    @apply rounded-md bg-cream-50 border border-cream-200;
+  }
+  .surface-hover {
+    @apply hover:shadow-warm hover:border-cream-300 transition-all duration-200;
+  }
+  /* Use on hero / focal panels that should clearly stand out. */
+  .surface-elevated {
+    @apply rounded-md bg-cream-50 border border-cream-200 shadow-warm;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded bg-clay-600 text-cream-50 font-medium text-sm shadow-warm hover:bg-clay-700 transition;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded bg-stone-900 text-cream-50 font-medium text-sm hover:bg-stone-800 transition;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded border border-cream-300 text-stone-800 font-medium text-sm hover:bg-cream-100 transition;
+  }
+}

@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(npm create *)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(kill %1)",
+      "Bash(taskkill //F //IM node.exe)",
+      "Bash(rm src/components/LessonCard.jsx src/data/lessons.js)",
+      "Read(//c/c/Users/Devan Chuyen Lee/Documents/KawmHmoob/**)",
+      "Bash(npx vite *)"
     ]
   }
 }
