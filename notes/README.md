@@ -26,6 +26,8 @@ This folder is the audit trail for everything in the app. Each note explains **w
 13. [13-lesson-system-walkthrough.md](13-lesson-system-walkthrough.md) — Line-by-line teaching walkthrough of the lesson system code
 14. [14-paywall-and-supabase.md](14-paywall-and-supabase.md) — Paywall scaffold + path to real Supabase + Stripe
 15. [15-paywall-walkthrough.md](15-paywall-walkthrough.md) — Line-by-line teaching walkthrough of the paywall code
+16. [16-sync-to-async-migration.md](16-sync-to-async-migration.md) — The three bugs that show up every time you migrate state from localStorage to Supabase
+17. [17-usestate-and-async.md](17-usestate-and-async.md) — Why `useState(() => loadProgress(...))` breaks the moment `loadProgress` becomes async
 
 ## Conventions used across features
 

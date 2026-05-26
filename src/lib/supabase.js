@@ -1,17 +1,15 @@
-// Placeholder Supabase client.
+// Real Supabase client when env vars are present; stub otherwise.
 //
-// Today: no real client. Every call goes through this module so when we wire
-// the real SDK later, only this file changes.
+// The stub returns the same { data, error } shape so calling code is written
+// once and works in either mode. This lets contributors who haven't filled in
+// .env.local still run the app — every Supabase call just errors gracefully.
 //
-// To activate:
-//   1. npm install @supabase/supabase-js
-//   2. fill in .env.local from .env.example
-//   3. uncomment the real client below and delete the stub
-//
-// See instructions/supabase-integration.md for the full migration plan and
-// notes/14-paywall-and-supabase.md for how the subscription layer plugs in.
+// See:
+//   - instructions/supabase-first-time-setup.md (account + project + RLS)
+//   - instructions/supabase-integration.md (code migration)
+//   - notes/14-paywall-and-supabase.md (subscription layer)
 
-// import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js'
 
 const url = import.meta.env.VITE_SUPABASE_URL
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
@@ -20,8 +18,6 @@ export function isSupabaseConfigured() {
   return Boolean(url && anonKey)
 }
 
-// Stub client. Real client returns Promises of { data, error }; this one
-// returns the same shape so callers can be written today and Just Work later.
 function stubResult(message) {
   return Promise.resolve({
     data: null,
@@ -48,7 +44,6 @@ const stubClient = {
   }),
 }
 
-// export const supabase = isSupabaseConfigured()
-//   ? createClient(url, anonKey)
-//   : stubClient
-export const supabase = stubClient
+export const supabase = isSupabaseConfigured()
+  ? createClient(url, anonKey)
+  : stubClient

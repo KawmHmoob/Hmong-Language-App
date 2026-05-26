@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react'
 import { useAuth } from './AuthContext.jsx'
+import { supabase } from '../lib/supabase.js'
 
 const ProgressContext = createContext(null)
 const KEY_PREFIX = 'kawmhmoob.progress.'
@@ -18,20 +19,41 @@ const initialState = {
   xp: 0,
 }
 
-function loadProgress(userId) {
-  try {
-    const raw = localStorage.getItem(KEY_PREFIX + userId)
-    if (!raw) return { ...initialState }
-    const parsed = JSON.parse(raw)
-    return { ...initialState, ...parsed }
-  } catch {
-    return { ...initialState }
-  }
+
+
+
+// function loadProgress(userId) {
+//   try {
+//     const raw = localStorage.getItem(KEY_PREFIX + userId)
+//     if (!raw) return { ...initialState }
+//     const parsed = JSON.parse(raw)
+//     return { ...initialState, ...parsed }
+//   } catch {
+//     return { ...initialState }
+//   }
+// }
+
+// function saveProgress(userId, state) {
+//   localStorage.setItem(KEY_PREFIX + userId, JSON.stringify(state))
+// }
+
+
+
+
+async function loadProgress(userId) {
+  if (userId === 'guest') return JSON.parse(localStorage.getItem('kawmhmoob.progress.guest') || 'null') || initialState
+  const { data } = await supabase.from('progress').select('data').eq('user_id', userId).single()
+  return data?.data || initialState
 }
 
-function saveProgress(userId, state) {
-  localStorage.setItem(KEY_PREFIX + userId, JSON.stringify(state))
+async function saveProgress(userId, state) {
+  if (userId === 'guest') {
+    localStorage.setItem('kawmhmoob.progress.guest', JSON.stringify(state))
+    return
+  }
+  await supabase.from('progress').upsert({ user_id: userId, data: state, updated_at: new Date().toISOString() })
 }
+
 
 function todayISO() {
   return new Date().toISOString().slice(0, 10)
@@ -57,15 +79,28 @@ function nextSchedule(prev, success) {
 export function ProgressProvider({ children }) {
   const { user } = useAuth()
   const userId = user?.id || 'guest'
-  const [state, setState] = useState(() => loadProgress(userId))
+  // Start with empty state; replaced by the load effect below.
+  // `hydrated` gates the save effect so we don't overwrite real saved state
+  // with the empty default before load completes.
+  const [state, setState] = useState(initialState)
+  const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
-    setState(loadProgress(userId))
+    let active = true
+    setHydrated(false)
+    loadProgress(userId).then((next) => {
+      if (!active) return
+      setState(next)
+      setHydrated(true)
+    })
+    return () => { active = false }
   }, [userId])
 
   useEffect(() => {
-    saveProgress(userId, state)
-  }, [userId, state])
+    if (!hydrated) return
+    const t = setTimeout(() => saveProgress(userId, state), 500)
+    return () => clearTimeout(t)
+  }, [userId, state, hydrated])
 
   const markLessonComplete = useCallback((lessonId) => {
     setState((s) => {

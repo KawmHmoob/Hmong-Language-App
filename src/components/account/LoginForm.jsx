@@ -1,25 +1,35 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext.jsx'
 
 export default function LoginForm() {
   const navigate = useNavigate()
   const { login } = useAuth()
-  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
-    if (!username || !password) return
-    login({ username })
-    navigate('/account')
+    if (!email || !password || submitting) return
+    setSubmitting(true)
+    setError(null)
+    try {
+      await login({ email, password })
+      navigate('/account')
+    } catch (err) {
+      setError(err?.message || 'Login failed.')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   return (
     <div className="max-w-md mx-auto">
       <h2 className="font-serif text-4xl text-stone-900 mb-6 text-center">Welcome back</h2>
       <form onSubmit={submit} className="surface p-8 space-y-4">
-        <Input label="Username" value={username} onChange={setUsername} required />
+        <Input label="Email" type="email" value={email} onChange={setEmail} required />
         <Input
           label="Password"
           type="password"
@@ -27,7 +37,12 @@ export default function LoginForm() {
           onChange={setPassword}
           required
         />
-        <button className="btn-primary w-full">Log In</button>
+        {error && (
+          <p className="text-sm rounded bg-red-100 text-red-900 px-3 py-2">{error}</p>
+        )}
+        <button className="btn-primary w-full" disabled={submitting}>
+          {submitting ? 'Logging in…' : 'Log In'}
+        </button>
         <p className="text-sm text-stone-600 text-center">
           No account?{' '}
           <Link to="/register" className="text-clay-700 underline">

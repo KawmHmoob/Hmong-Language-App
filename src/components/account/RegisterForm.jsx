@@ -1,4 +1,4 @@
-﻿import { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext.jsx'
 
@@ -12,13 +12,44 @@ export default function RegisterForm() {
     password: '',
     dialectPreference: 'white',
   })
+  const [submitting, setSubmitting] = useState(false)
+  const [error, setError] = useState(null)
+  const [pendingEmail, setPendingEmail] = useState(null)
 
   const update = (k, v) => setForm((f) => ({ ...f, [k]: v }))
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault()
-    register(form)
-    navigate('/account')
+    if (submitting) return
+    setSubmitting(true)
+    setError(null)
+    try {
+      const result = await register(form)
+      if (result?.pendingConfirmation) {
+        setPendingEmail(result.email)
+      } else {
+        navigate('/account')
+      }
+    } catch (err) {
+      setError(err?.message || 'Registration failed.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
+  if (pendingEmail) {
+    return (
+      <div className="max-w-md mx-auto surface p-8 text-center">
+        <h2 className="font-serif text-3xl text-stone-900 mb-3">Check your email</h2>
+        <p className="text-stone-700">
+          We sent a confirmation link to <strong>{pendingEmail}</strong>. Click it,
+          then come back and log in.
+        </p>
+        <Link to="/login" className="btn-primary mt-6 inline-block">
+          Go to login
+        </Link>
+      </div>
+    )
   }
 
   return (
@@ -57,7 +88,12 @@ export default function RegisterForm() {
             <option value="green">Green Hmong (Moob Leeg)</option>
           </select>
         </label>
-        <button className="btn-primary w-full">Create Account</button>
+        {error && (
+          <p className="text-sm rounded bg-red-100 text-red-900 px-3 py-2">{error}</p>
+        )}
+        <button className="btn-primary w-full" disabled={submitting}>
+          {submitting ? 'Creating account…' : 'Create Account'}
+        </button>
         <p className="text-sm text-stone-600 text-center">
           Already have an account?{' '}
           <Link to="/login" className="text-clay-700 underline">

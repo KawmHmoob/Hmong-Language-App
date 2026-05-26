@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar.jsx'
+import Footer from './Footer.jsx'
 import GuestBanner from './account/GuestBanner.jsx'
 import SkeletonCard from './common/SkeletonCard.jsx'
 
@@ -28,11 +29,7 @@ export default function Layout() {
           <Outlet />
         )}
       </main>
-      <footer className="mt-24">
-        <div className="mx-auto max-w-5xl px-6 py-8 text-sm text-stone-700/80 text-center border-t border-cream-300/40">
-          Kawm Hmoob · made with care
-        </div>
-      </footer>
+      <Footer />
     </div>
   )
 }
