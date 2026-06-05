@@ -166,9 +166,9 @@ export default function QuizEngine() {
           Question {state.currentIndex + 1} / {state.questions.length}
         </div>
         <div className="flex gap-2 text-xs font-semibold">
-          <span className="rounded-full bg-cream-200 px-3 py-1 text-clay-700">â± {elapsed}s</span>
-          <span className="rounded-full bg-orange-200 px-3 py-1 text-orange-900">ðŸ”¥ {state.streak}</span>
-          <span className="rounded-full bg-cream-100 px-3 py-1 text-stone-800">â˜… {state.score}</span>
+          <span className="rounded-full bg-cream-200 px-3 py-1 text-clay-700">⏱ {elapsed}s</span>
+          <span className="rounded-full bg-orange-200 px-3 py-1 text-orange-900">🔥 {state.streak}</span>
+          <span className="rounded-full bg-cream-100 px-3 py-1 text-stone-800">★ {state.score}</span>
         </div>
       </div>
 

@@ -41,6 +41,31 @@ export const consonants = [
   { letter: 'z', sound: 'zh' },
 ]
 
+export const doubleConsonants = [
+  { letter: 'Ch', audio: '/assets/audio/double-consonant-ch.mp3', exampleWord: 'Chiaj' },
+  { letter: 'Dh', audio: '/assets/audio/double-consonant-dh.mp3', exampleWord: '' },
+  { letter: 'Dl', audio: '/assets/audio/double-consonant-dl.mp3', exampleWord: '' },
+  { letter: 'Hl', audio: '/assets/audio/double-consonant-hl.mp3', exampleWord: '' },
+  { letter: 'Hm', audio: '/assets/audio/double-consonant-hm.mp3', exampleWord: '' },
+  { letter: 'Hn', audio: '/assets/audio/double-consonant-hn.mp3', exampleWord: '' },
+  { letter: 'Kh', audio: '/assets/audio/double-consonant-kh.mp3', exampleWord: '' },
+  { letter: 'Ml', audio: '/assets/audio/double-consonant-ml.mp3', exampleWord: '' },
+  { letter: 'Nc', audio: '/assets/audio/double-consonant-nc.mp3', exampleWord: '' },
+  { letter: 'Nk', audio: '/assets/audio/double-consonant-nk.mp3', exampleWord: '' },
+  { letter: 'Np', audio: '/assets/audio/double-consonant-np.mp3', exampleWord: '' },
+  { letter: 'Nq', audio: '/assets/audio/double-consonant-nq.mp3', exampleWord: '' },
+  { letter: 'Nt', audio: '/assets/audio/double-consonant-nt.mp3', exampleWord: '' },
+  { letter: 'Ny', audio: '/assets/audio/double-consonant-ny.mp3', exampleWord: '' },
+  { letter: 'Ph', audio: '/assets/audio/double-consonant-ph.mp3', exampleWord: '' },
+  { letter: 'Pl', audio: '/assets/audio/double-consonant-pl.mp3', exampleWord: '' },
+  { letter: 'Qh', audio: '/assets/audio/double-consonant-qh.mp3', exampleWord: '' },
+  { letter: 'Rh', audio: '/assets/audio/double-consonant-rh.mp3', exampleWord: '' },
+  { letter: 'Th', audio: '/assets/audio/double-consonant-th.mp3', exampleWord: '' },
+  { letter: 'Ts', audio: '/assets/audio/double-consonant-ts.mp3', exampleWord: '' },
+  { letter: 'Tx', audio: '/assets/audio/double-consonant-tx.mp3', exampleWord: '' },
+  { letter: 'Xy', audio: '/assets/audio/double-consonant-xy.mp3', exampleWord: '' },
+]
+
 export const vowels = [
   { letter: 'a', sound: 'ah' },
   { letter: 'e', sound: 'eh' },

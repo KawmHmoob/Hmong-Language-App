@@ -1,4 +1,4 @@
-import { consonants, vowels, tones } from './alphabet.js'
+import { consonants, doubleConsonants, vowels, tones } from './alphabet.js'
 import { grammar, everyday } from './course.js'
 import { toneDrillWords } from './toneDrill.js'
 
@@ -31,6 +31,15 @@ export const quizzes = [
     questionTypes: ['multiple-choice'],
     category: 'Alphabet',
   },
+  {
+    id: 'alphabet-double-consonants',
+    title: "Double Consonants",
+    description: "Match Hmong consonant to their sounds",
+    questioncount: 10,
+    questionsTypes:['multiple-choice'],
+    category: 'Alphabet'
+  },
+
   {
     id: 'alphabet-vowels',
     title: 'Vowels',

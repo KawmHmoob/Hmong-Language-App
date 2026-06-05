@@ -1,3 +1,5 @@
+import { singularConsonants } from "./lessonsIndependent.js/singularConsonantsLesson"
+
 // Structured lesson model: Units → Lessons → Steps.
 //
 // Step kinds (v1):
@@ -68,54 +70,8 @@ export const units = [
       },
 
       // Lesson 2
+      singularConsonants
 
-      {
-
-        id: 'foundations-consonants',
-        title: 'Singular Consonants - Cov Tsiaj Ntawv Niam | Pronounciation',
-        summary: 'Main singular consonants of Hmong & Pronounceiation',
-        steps: [
-          {
-            id: 'foundations--singular-consontants-intro',
-            kind: 'intro',
-            title: 'How Singular Hmong consonants work',
-            body: [
-              'Hmong has 18 consonants in the language that are used to '
-            ],
-          },
-          {
-            id: 'foundations-pronouns-examples',
-            kind: 'examples',
-            title: 'The seven core pronouns',
-            intro: 'Read each row aloud. Notice how dual forms (wb, neb) sit between singular and plural.',
-            items: [
-              { hmong: 'Kuv', english: 'I / me / my', note: 'Singular' },
-              { hmong: 'Koj', english: 'You', note: 'Singular' },
-              { hmong: 'Nws', english: 'He / she / it', note: 'Singular, no gender' },
-              { hmong: 'Wb', english: 'We two', note: 'Dual — exactly two people including the speaker' },
-              { hmong: 'Neb', english: 'You two', note: 'Dual — exactly two listeners' },
-              { hmong: 'Peb', english: 'We (3+)', note: 'Plural' },
-              { hmong: 'Nej', english: 'You (3+)', note: 'Plural' },
-              { hmong: 'Lawv', english: 'They', note: 'Plural' },
-            ],
-          },
-          {
-            id: 'foundations-pronouns-practice',
-            kind: 'practice',
-            title: 'Quick check',
-            prompt: 'You and one friend are walking together. Which pronoun would you use for "we"?',
-            options: ['Kuv', 'Wb', 'Peb', 'Lawv'],
-            answer: 'Wb',
-          },
-          {
-            id: 'foundations-pronouns-quiz',
-            kind: 'mini-quiz',
-            title: 'Pronouns mini-quiz',
-            quizId: 'grammar-pronouns',
-          },
-        ],
-
-      }
     ],
   },
 ]

@@ -1,5 +1,7 @@
 import { Link, NavLink } from 'react-router-dom'
-import KawmHmoobLogo from '/assets/KawmHmoobSvg1svgexport.svg'
+
+// Served statically from public/assets — referenced by URL, not imported.
+const KawmHmoobLogo = '/assets/KawmHmoobSvg1svgexport.svg'
 
 const links = [
   { to: '/', label: 'Home', end: true },

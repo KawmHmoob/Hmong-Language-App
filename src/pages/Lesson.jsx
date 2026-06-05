@@ -147,6 +147,15 @@ function ExamplesStep({ step }) {
             <div className="flex justify-between items-baseline gap-3">
               <span className="font-medium text-clay-700 text-lg">{it.hmong}</span>
               <span className="text-stone-700 text-sm">{it.english}</span>
+              <span>
+
+                <button
+                  onClick={() => new Audio(it.audio).play}
+                >
+                  🔊
+                </button>
+
+              </span>
             </div>
             {it.note && <p className="text-xs text-stone-500 mt-1 italic">{it.note}</p>}
           </li>
