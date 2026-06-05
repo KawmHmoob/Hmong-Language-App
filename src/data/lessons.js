@@ -1,95 +1,124 @@
-import { singularConsonants } from "./lessonsIndependent.js/singularConsonantsLesson"
+// Import each Lesson from its own file. Each of these files exports ONE Lesson
+// — not a Unit. The Unit is composed below.
+import { pronouns } from './lessons/pronouns'
+import { singularConsonants } from './lessons/singular-consonants'
+import { dualConsonants } from './lessons/dual-consonants'
+import { tripleConsonants } from './lessons/triple-consonants'
+import { quadrupleConsonants } from './lessons/quadruple-consonants'
+import { sibReciprocals } from './lessons/sib-reciprocals'
+import { greetingsFarewells } from './lessons/greetings-farewells'
+import { actionVerbs } from './lessons/action-verbs'
+import { nounClassifiers } from './lessons/noun-classifiers'
+import { pronounsDemonstratives } from './lessons/pronouns-demonstratives'
+import { possessivePronouns } from './lessons/possessive-pronouns'
+import { yogToBe } from './lessons/yog-to-be'
+import { numbers } from './lessons/numbers'
+import { howMuch } from './lessons/how-much'
+import { time } from './lessons/time'
 
 // Structured lesson model: Units → Lessons → Steps.
 //
+// A Unit is a chapter (e.g. "Foundations"). It contains many Lessons.
+// A Lesson is one learnable thing (e.g. "Pronouns"). It contains many Steps.
+// A Step is one screen the user sees (intro, examples, practice, mini-quiz).
+//
 // Step kinds (v1):
-//   - 'intro'      { title, body: string[] }                       // explanation paragraphs
-//   - 'examples'   { title, intro?, items: [{ hmong, english, note? }] }
-//   - 'practice'   { title, prompt, options: string[], answer }    // single self-check MCQ
-//   - 'mini-quiz'  { title, quizId }                               // hands off to /quiz/:quizId
+//   - 'intro'      { title, body: string[] }
+//   - 'examples'   { title, intro?, items: [{ hmong, english, note?, audio? }] }
+//   - 'practice'   { title, prompt, options: string[], answer }
+//   - 'mini-quiz'  { title, quizId }
 //
-// Optional `tier: 'free' | 'pro'` on a Unit or Lesson gates it behind the paywall.
-// Lesson tier overrides unit tier. Both default to 'free' when omitted.
-// See notes/14-paywall-and-supabase.md.
+// Optional `tier: 'free' | 'pro'` on a Unit or Lesson gates content behind the
+// paywall. Lesson tier overrides unit tier. Both default to 'free'.
 //
-// IDs must be globally unique across the app (used as progress keys).
-// To add a new unit: copy the Foundations entry below, change ids, and append to `units`.
+// IDs must be globally unique across the app — they're used as progress keys.
+//
+// ──────────────────────────────────────────────────────────────────────────
+// To add a new lesson:
+//   1. Create src/data/lessons/<slug>.js exporting one Lesson object.
+//   2. Import it at the top of this file.
+//   3. Add it to the unit's `lessons` array below.
+// ──────────────────────────────────────────────────────────────────────────
 
-export const units = [
-  {
-    id: 'foundations',
-    title: 'Foundations',
-    description: 'Start here. Pronouns, basic verbs, and how Hmong sentences hold together.',
-    lessons: [
-      {
-        id: 'foundations-pronouns',
-        title: 'Pronouns',
-        summary: 'Singular, dual, and plural — Hmong marks all three.',
-        steps: [
-          {
-            id: 'foundations-pronouns-intro',
-            kind: 'intro',
-            title: 'How Hmong pronouns work',
-            body: [
-              'Hmong pronouns mark three numbers: singular (one person), dual (exactly two people), and plural (three or more). English collapses dual into plural — Hmong does not.',
-              'Pronouns do not change for case. The same word is used whether the pronoun is the subject, object, or possessor. "Kuv" means "I", "me", and "my" depending on position in the sentence.',
-              'In this lesson you will see all seven core pronouns and learn the distinction between "wb" (we two) and "peb" (we, three or more). Getting this distinction right is one of the first things native speakers notice.',
-            ],
-          },
-          {
-            id: 'foundations-pronouns-examples',
-            kind: 'examples',
-            title: 'The seven core pronouns',
-            intro: 'Read each row aloud. Notice how dual forms (wb, neb) sit between singular and plural.',
-            items: [
-              { hmong: 'Kuv', english: 'I / me / my', note: 'Singular' },
-              { hmong: 'Koj', english: 'You', note: 'Singular' },
-              { hmong: 'Nws', english: 'He / she / it', note: 'Singular, no gender' },
-              { hmong: 'Wb', english: 'We two', note: 'Dual — exactly two people including the speaker' },
-              { hmong: 'Neb', english: 'You two', note: 'Dual — exactly two listeners' },
-              { hmong: 'Peb', english: 'We (3+)', note: 'Plural' },
-              { hmong: 'Nej', english: 'You (3+)', note: 'Plural' },
-              { hmong: 'Lawv', english: 'They', note: 'Plural' },
-            ],
-          },
-          {
-            id: 'foundations-pronouns-practice',
-            kind: 'practice',
-            title: 'Quick check',
-            prompt: 'You and one friend are walking together. Which pronoun would you use for "we"?',
-            options: ['Kuv', 'Wb', 'Peb', 'Lawv'],
-            answer: 'Wb',
-          },
-          {
-            id: 'foundations-pronouns-quiz',
-            kind: 'mini-quiz',
-            title: 'Pronouns mini-quiz',
-            quizId: 'grammar-pronouns',
-          },
-        ],
-      },
+// The Foundations unit. The Unit declares its own metadata (id, title,
+// description) and then lists which Lessons belong to it, in display order.
+const foundations = {
+  id: 'foundations',
+  title: 'Foundations',
+  description: 'Start here. Pronouns, basic verbs, and how Hmong sentences hold together.',
+  lessons: [
+    pronouns,
+    singularConsonants,
+    dualConsonants,
+    tripleConsonants,
+    quadrupleConsonants,
+    actionVerbs,
+    nounClassifiers,
+    pronounsDemonstratives,
+    possessivePronouns,
+    yogToBe,
+    // Drop new Foundations lessons here, in the order you want them shown.
+  ],
+}
 
-      // Lesson 2
-      singularConsonants
+// The Conversational unit. Everyday vocabulary and phrases.
+const conversational = {
+  id: 'conversational',
+  title: 'Conversational',
+  description: 'Everyday words and phrases — greetings, reciprocals, and more.',
+  lessons: [
+    greetingsFarewells,
+    sibReciprocals,
+    // Drop new Conversational lessons here, in the order you want them shown.
+  ],
+}
 
-    ],
-  },
-]
+// The Numbers & Time unit. Counting, prices, and telling time.
+const numbersAndTime = {
+  id: 'numbers-and-time',
+  title: 'Numbers & Time',
+  description: 'Counting, asking how much, and telling time in Hmong.',
+  lessons: [
+    numbers,
+    howMuch,
+    time,
+    // Drop new Numbers & Time lessons here, in the order you want them shown.
+  ],
+}
 
+// `units` is the top-level export consumed by the Learn page and the lesson
+// player. Add additional units here as you build them — same pattern: import
+// the lessons, declare the unit, list it.
+export const units = [foundations, conversational, numbersAndTime]
+
+// ──────────────────────────────────────────────────────────────────────────
+// Helpers — pure read-only functions over the data above.
+// Consumers (Lesson.jsx, Learn.jsx) call these instead of poking the data
+// directly. That way, the data shape can change without touching every page.
+// ──────────────────────────────────────────────────────────────────────────
+
+// Resolve a Unit by its id. Returns null if not found.
 export function getUnit(unitId) {
   return units.find((u) => u.id === unitId) || null
 }
 
+// Resolve a Lesson by its (unitId, lessonId) pair. Two-step lookup because
+// lessons live inside units.
 export function getLesson(unitId, lessonId) {
   const unit = getUnit(unitId)
   if (!unit) return null
   return unit.lessons.find((l) => l.id === lessonId) || null
 }
 
+// Return just the array of step ids for a lesson. Used to compare against the
+// user's completedSteps when computing per-lesson progress.
 export function allStepIds(lesson) {
   return lesson.steps.map((s) => s.id)
 }
 
+// Compute progress numbers for a single lesson, given the user's completedSteps.
+// Returns { done, total, ratio, complete } — used to render the progress bar
+// and "✓ Done" badge on the Learn page.
 export function lessonProgress(lesson, completedSteps) {
   const ids = allStepIds(lesson)
   if (ids.length === 0) return { done: 0, total: 0, ratio: 0, complete: true }
