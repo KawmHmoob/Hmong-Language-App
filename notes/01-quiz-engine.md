@@ -1,5 +1,9 @@
 # Quiz Engine
 
+> **Scope:** this is **regular (text) testing** — recognition/recall with a known correct
+> answer. Testing *spoken pronunciation* (scoring mic audio) is a different problem and
+> lives in [19-speech-testing.md](19-speech-testing.md).
+
 ## What
 A generic quiz runner that accepts a quiz config + a normalized dataset and produces a multi-question session with scoring, streaks, a timer, immediate feedback, and a results screen with mistake review.
 

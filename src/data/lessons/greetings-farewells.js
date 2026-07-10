@@ -24,7 +24,7 @@ export const greetingsFarewells = {
       items: [
         { hmong: 'Nyob zoo', english: 'Hello', note: 'PLACEHOLDER' },
         { hmong: 'Koj puas nyob zoo?', english: 'How are you?', note: 'PLACEHOLDER' },
-        { hmong: 'Kuv nyob zoo', english: 'I am well', no  te: 'PLACEHOLDER' },
+        { hmong: 'Kuv nyob zoo', english: 'I am well', note: 'PLACEHOLDER' },
         { hmong: 'Ua tsaug', english: 'Thank you', note: 'PLACEHOLDER' },
         { hmong: 'Sib ntsib dua', english: 'See you again / Goodbye', note: 'PLACEHOLDER' },
         { hmong: 'Mus zoo', english: 'Go well (farewell to the one leaving)', note: 'PLACEHOLDER' },

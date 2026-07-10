@@ -28,6 +28,8 @@ This folder is the audit trail for everything in the app. Each note explains **w
 15. [15-paywall-walkthrough.md](15-paywall-walkthrough.md) — Line-by-line teaching walkthrough of the paywall code
 16. [16-sync-to-async-migration.md](16-sync-to-async-migration.md) — The three bugs that show up every time you migrate state from localStorage to Supabase
 17. [17-usestate-and-async.md](17-usestate-and-async.md) — Why `useState(() => loadProgress(...))` breaks the moment `loadProgress` becomes async
+18. [18-pronunciation-practice.md](18-pronunciation-practice.md) — **(Scope/planned)** Record-and-compare pronunciation ("Natulang for Hmong"), DSP tone scoring
+19. [19-speech-testing.md](19-speech-testing.md) — **(Speech, not text)** Evaluating/calibrating the pronunciation scorer vs. human labels — distinct from the text quizzes in note 01
 
 ## Conventions used across features
 

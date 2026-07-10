@@ -35,8 +35,8 @@ export const quizzes = [
     id: 'alphabet-double-consonants',
     title: "Double Consonants",
     description: "Match Hmong consonant to their sounds",
-    questioncount: 10,
-    questionsTypes:['multiple-choice'],
+    questionCount: 10,
+    questionTypes: ['multiple-choice'],
     category: 'Alphabet'
   },
 
