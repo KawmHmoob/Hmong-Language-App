@@ -2,12 +2,164 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ──────────────────────────────────────────────────────────────────────────
+   Theme tokens. Light = the app's original palette, hex-for-hex.
+   Dark = warm charcoal surfaces, inverted text scale, brightened terracotta.
+   tailwind.config.js maps color classes onto these, so components never
+   write `dark:` variants — flipping .dark on <html> restyles everything.
+   Values are RGB triplets (not hex) so Tailwind's /opacity modifier works.
+   ────────────────────────────────────────────────────────────────────────── */
 @layer base {
+  :root {
+    --c-cream-50: 251 246 236;
+    --c-cream-100: 245 235 217;
+    --c-cream-200: 236 220 192;
+    --c-cream-300: 224 200 160;
+    --c-cream-400: 217 179 140;
+    --c-cream-500: 201 154 111;
+    --c-cream-600: 168 122 82;
+
+    --c-clay-500: 178 94 61;
+    --c-clay-600: 156 79 51;
+    --c-clay-700: 126 63 40;
+
+    --c-blush-50: 252 238 235;
+    --c-blush-100: 248 219 213;
+    --c-blush-200: 242 196 189;
+    --c-blush-300: 232 163 155;
+    --c-blush-400: 216 130 120;
+    --c-blush-500: 194 99 88;
+
+    --c-seafoam-50: 234 244 245;
+    --c-seafoam-100: 219 235 236;
+    --c-seafoam-200: 199 222 224;
+    --c-seafoam-300: 176 224 230;
+    --c-seafoam-400: 156 191 194;
+    --c-seafoam-500: 127 166 170;
+
+    --c-stone-50: 250 250 249;
+    --c-stone-100: 245 245 244;
+    --c-stone-200: 231 229 228;
+    --c-stone-300: 214 211 209;
+    --c-stone-400: 168 162 158;
+    --c-stone-500: 120 113 108;
+    --c-stone-600: 87 83 78;
+    --c-stone-700: 68 64 60;
+    --c-stone-800: 41 37 36;
+    --c-stone-900: 28 25 23;
+
+    --shadow-warm: 0 4px 14px -2px rgba(120, 80, 40, 0.12), 0 2px 4px -2px rgba(120, 80, 40, 0.08);
+    --shadow-warm-lg: 0 12px 28px -8px rgba(120, 80, 40, 0.18), 0 4px 8px -4px rgba(120, 80, 40, 0.1);
+  }
+
+  /* Dark: cream surfaces become warm charcoal, the stone text scale INVERTS
+     (900 stays "ink" — near-black in light, warm white in dark), clay
+     brightens so dark button text keeps contrast, seafoam deepens into the
+     page background. Shadows go black — brown shadows look muddy on dark. */
+  .dark {
+    --c-cream-50: 33 29 26;
+    --c-cream-100: 41 36 32;
+    --c-cream-200: 58 51 44;
+    --c-cream-300: 74 65 56;
+    --c-cream-400: 92 80 68;
+    --c-cream-500: 122 106 86;
+    --c-cream-600: 155 137 112;
+
+    --c-clay-500: 217 131 92;
+    --c-clay-600: 200 106 69;
+    --c-clay-700: 178 94 61;
+
+    --c-blush-50: 45 32 30;
+    --c-blush-100: 58 39 36;
+    --c-blush-200: 92 54 49;
+    --c-blush-300: 176 106 97;
+    --c-blush-400: 216 130 120;
+    --c-blush-500: 226 118 104;
+
+    --c-seafoam-50: 26 35 37;
+    --c-seafoam-100: 22 30 32;
+    --c-seafoam-200: 22 30 32;
+    --c-seafoam-300: 15 21 23;
+    --c-seafoam-400: 52 68 71;
+    --c-seafoam-500: 96 122 126;
+
+    --c-stone-50: 33 30 26;
+    --c-stone-100: 44 40 35;
+    --c-stone-200: 58 53 47;
+    --c-stone-300: 74 68 61;
+    --c-stone-400: 110 104 95;
+    --c-stone-500: 138 131 121;
+    --c-stone-600: 162 155 144;
+    --c-stone-700: 196 189 178;
+    --c-stone-800: 226 220 210;
+    --c-stone-900: 243 238 230;
+
+    --shadow-warm: 0 4px 14px -2px rgba(0, 0, 0, 0.4), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+    --shadow-warm-lg: 0 12px 28px -8px rgba(0, 0, 0, 0.55), 0 4px 8px -4px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Neon — the third theme: dark-based, cyber-mystic. Deep violet surfaces,
+     coral accent, electric teal secondary, and shadows that carry a soft
+     purple glow. Applied as data-theme on <html> ALONGSIDE .dark (so
+     color-scheme etc. stay correct); this block sits after .dark so its
+     variables win the cascade. The warm palette remains the brand default —
+     Neon is an opt-in skin, cycled via the header toggle. */
+  [data-theme='neon'] {
+    --c-cream-50: 23 21 38;
+    --c-cream-100: 31 28 50;
+    --c-cream-200: 46 42 72;
+    --c-cream-300: 62 56 94;
+    --c-cream-400: 82 75 120;
+    --c-cream-500: 114 106 158;
+    --c-cream-600: 150 142 196;
+
+    --c-clay-500: 255 122 102;
+    --c-clay-600: 255 99 72;
+    --c-clay-700: 226 82 58;
+
+    --c-blush-50: 45 27 43;
+    --c-blush-100: 62 33 58;
+    --c-blush-200: 98 46 88;
+    --c-blush-300: 198 102 162;
+    --c-blush-400: 234 122 172;
+    --c-blush-500: 255 112 162;
+
+    --c-seafoam-50: 28 26 48;
+    --c-seafoam-100: 24 22 42;
+    --c-seafoam-200: 20 18 34;
+    --c-seafoam-300: 11 10 20;
+    --c-seafoam-400: 46 42 78;
+    --c-seafoam-500: 64 224 208;
+
+    --c-stone-50: 28 26 46;
+    --c-stone-100: 40 37 62;
+    --c-stone-200: 54 50 78;
+    --c-stone-300: 72 68 98;
+    --c-stone-400: 102 98 130;
+    --c-stone-500: 130 126 158;
+    --c-stone-600: 158 154 186;
+    --c-stone-700: 194 190 218;
+    --c-stone-800: 224 221 242;
+    --c-stone-900: 242 240 252;
+
+    --shadow-warm: 0 4px 14px -2px rgba(0, 0, 0, 0.5), 0 0 12px -2px rgba(167, 139, 250, 0.18);
+    --shadow-warm-lg: 0 12px 28px -8px rgba(0, 0, 0, 0.6), 0 0 24px -4px rgba(167, 139, 250, 0.3);
+  }
+
+  html {
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+
   body {
     font-family: 'Inter', system-ui, sans-serif;
-    color: #1c1917;
+    color: rgb(var(--c-stone-900));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11'; /* Inter: open digits/legible alternates */
   }
 
   h1, h2, h3, h4 {
@@ -15,28 +167,66 @@
     letter-spacing: -0.015em;
     font-weight: 600;
   }
+
+  /* One focus language everywhere. Only shows for keyboard focus. */
+  a:focus-visible,
+  button:focus-visible,
+  [role='button']:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid rgb(var(--c-clay-600));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Users who ask for less motion get less motion — app-wide. */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 @layer components {
-  /* Resting surface = border only. Hover adds the lift. Avoids stacking
-     shadows + borders everywhere, which was making lists feel crowded. */
+  /* Resting surface = border only. Hover adds the lift. 12px radius per the
+     2026 pass; buttons sit at 8px — cards rounder than controls. */
   .surface {
-    @apply rounded-md bg-cream-50 border border-cream-200;
+    @apply rounded-xl bg-cream-50 border border-cream-200;
   }
   .surface-hover {
-    @apply hover:shadow-warm hover:border-cream-300 transition-all duration-200;
+    @apply hover:shadow-warm hover:border-cream-300 hover:-translate-y-0.5 transition-all duration-200;
   }
   /* Use on hero / focal panels that should clearly stand out. */
   .surface-elevated {
-    @apply rounded-md bg-cream-50 border border-cream-200 shadow-warm;
+    @apply rounded-xl bg-cream-50 border border-cream-200 shadow-warm;
+  }
+  /* Frosted panel for floating chrome (tab bar, sheets, sticky headers). */
+  .glass {
+    @apply bg-cream-50/85 backdrop-blur-md border border-cream-200/70;
+  }
+  /* Display gradient for hero text — accent → teal. Warm themes render it
+     terracotta→sea-glass (subtle); Neon renders coral→electric teal (vivid).
+     Same class, theme decides the drama. */
+  .text-gradient {
+    background-image: linear-gradient(
+      100deg,
+      rgb(var(--c-clay-500)),
+      rgb(var(--c-seafoam-500))
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
   .btn-primary {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded bg-clay-600 text-cream-50 font-medium text-sm shadow-warm hover:bg-clay-700 transition;
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-clay-600 text-cream-50 font-medium text-sm shadow-warm hover:bg-clay-700 active:scale-[0.98] transition;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded bg-stone-900 text-cream-50 font-medium text-sm hover:bg-stone-800 transition;
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-stone-900 text-cream-50 font-medium text-sm hover:bg-stone-800 active:scale-[0.98] transition;
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded border border-cream-300 text-stone-800 font-medium text-sm hover:bg-cream-100 transition;
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg border border-cream-300 text-stone-800 font-medium text-sm hover:bg-cream-100 active:scale-[0.98] transition;
   }
 }

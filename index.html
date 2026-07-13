@@ -12,6 +12,19 @@
     />
   </head>
   <body>
+    <!-- Set the theme BEFORE React mounts so there's no flash of the wrong
+         theme. Dark is the primary theme; a saved choice wins. Themes:
+         light | dark | neon (neon = dark class + data-theme attribute). -->
+    <script>
+      ;(function () {
+        var theme = 'dark'
+        try {
+          theme = localStorage.getItem('kawmhmoob.theme') || 'dark'
+        } catch (e) { /* private mode etc. — fall through to dark */ }
+        if (theme !== 'light') document.documentElement.classList.add('dark')
+        if (theme === 'neon') document.documentElement.setAttribute('data-theme', 'neon')
+      })()
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

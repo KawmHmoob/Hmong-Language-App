@@ -21,7 +21,7 @@ export default function TodayCard() {
     suggestions.push({
       label: `Review ${dueCount} word${dueCount === 1 ? '' : 's'} due`,
       cta: 'Review',
-      to: '/review',
+      to: '/words/session',
     })
   }
   if (suggestedQuiz) {

@@ -1,38 +1,29 @@
-import { useEffect, useState } from 'react'
-import { NavLink, Link, useLocation } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import XPBadge from './progress/XPBadge.jsx'
 import StreakBadge from './progress/StreakBadge.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
+import { useTheme } from '../hooks/useTheme.js'
 
 // Served statically from public/assets — referenced by URL, not imported.
 const KawmHmoobLogo = '/assets/KawmHmoobSvg1svgexport.svg'
 
-const links = [
-  { to: '/', label: 'Home', end: true },
-  { to: '/learn', label: 'Learn' },
-  { to: '/alphabet', label: 'Alphabet' },
-  { to: '/course', label: 'Course' },
-  { to: '/vocabulary', label: 'Vocabulary' },
-  { to: '/notebook', label: 'Notebook' },
-  { to: '/quiz', label: 'Quiz' },
-]
+// Slim identity/status header. Primary navigation (Speak / Words / More)
+// lives in PrimaryNav.jsx — bottom tab bar on mobile, left rail on desktop.
+
+const THEME_META = {
+  light: { label: 'Light', next: 'dark' },
+  dark: { label: 'Dark', next: 'neon' },
+  neon: { label: 'Neon', next: 'light' },
+}
 
 export default function Navbar() {
   const { user } = useAuth()
-  const [menuOpen, setMenuOpen] = useState(false)
-  const location = useLocation()
-  const closeMenu = () => setMenuOpen(false)
-
-  // Auto-close the mobile menu whenever the route changes.
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [location.pathname])
+  const { theme, cycle } = useTheme()
 
   return (
-    <header className="sticky top-0 z-20 bg-[#C7DEE0] backdrop-blur-md border-b border-[#9CBFC2]/40">
-      {/* Row 1: brand + identity bar */}
-      <div className="mx-auto max-w-5xl px-3 sm:px-6 pt-2 sm:pt-4 pb-2 sm:pb-3 flex items-center justify-between gap-2 sm:gap-4">
-        <Link to="/" onClick={closeMenu} className="group flex items-center gap-2 min-w-0">
+    <header className="sticky top-0 z-20 bg-seafoam-200/85 backdrop-blur-md border-b border-seafoam-400/40">
+      <div className="mx-auto max-w-6xl px-3 sm:px-6 py-2 sm:py-3 flex items-center justify-between gap-2 sm:gap-4">
+        <Link to="/" className="group flex items-center gap-2 min-w-0">
           <img
             src={KawmHmoobLogo}
             alt="Kawm Hmoob"
@@ -47,130 +38,55 @@ export default function Navbar() {
           <XPBadge />
           <StreakBadge />
 
-          {/* Desktop-only icon group */}
-          <span className="hidden sm:inline-block w-px h-5 bg-stone-800/20 mx-1" aria-hidden="true" />
-          <div className="hidden sm:flex items-center gap-1">
-            <IconLink to="/search" title="Search"><SearchIcon /></IconLink>
-            <IconLink to="/settings" title="Settings"><SettingsIcon /></IconLink>
-            <IconLink to="/account" title="Account">
-              <span className="flex items-center gap-1.5">
-                <PersonIcon />
-                <span className="hidden md:inline text-sm">
-                  {user.isGuest ? 'Guest' : `@${user.username}`}
-                </span>
-              </span>
-            </IconLink>
-          </div>
-
-          {/* Mobile-only hamburger */}
+          <span className="inline-block w-px h-5 bg-stone-800/20 mx-1" aria-hidden="true" />
           <button
             type="button"
-            onClick={() => setMenuOpen((o) => !o)}
-            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={menuOpen}
-            className="sm:hidden p-2 rounded-sm text-stone-800 hover:bg-white/30 transition"
+            onClick={cycle}
+            title={`Theme: ${THEME_META[theme].label} — switch to ${THEME_META[THEME_META[theme].next].label}`}
+            aria-label={`Theme: ${THEME_META[theme].label}. Switch to ${THEME_META[THEME_META[theme].next].label} theme`}
+            className="px-2 sm:px-2.5 py-1.5 rounded-sm text-sm text-stone-800 hover:bg-white/30 transition"
           >
-            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+            {theme === 'light' && <SunIcon />}
+            {theme === 'dark' && <MoonIcon />}
+            {theme === 'neon' && <SparkIcon />}
           </button>
+          <IconLink to="/search" title="Search"><SearchIcon /></IconLink>
+          <IconLink to="/settings" title="Settings"><SettingsIcon /></IconLink>
+          <IconLink to="/account" title="Account">
+            <span className="flex items-center gap-1.5">
+              <PersonIcon />
+              <span className="hidden md:inline text-sm">
+                {user.isGuest ? 'Guest' : `@${user.username}`}
+              </span>
+            </span>
+          </IconLink>
         </div>
       </div>
-
-      {/* Desktop nav row */}
-      <nav className="hidden sm:block mx-auto max-w-5xl px-4 pb-2">
-        <div className="flex flex-wrap gap-1 text-sm">
-          {links.map(({ to, label, end }) => (
-            <NavLink
-              key={to}
-              to={to}
-              end={end}
-              className={({ isActive }) =>
-                `px-3 py-1.5 rounded-sm transition font-medium ${
-                  isActive
-                    ? 'bg-stone-800 text-[#C7DEE0]'
-                    : 'text-stone-800 hover:bg-white/30'
-                }`
-              }
-            >
-              {label}
-            </NavLink>
-          ))}
-        </div>
-      </nav>
-
-      {/* Mobile menu panel */}
-      {menuOpen && (
-        <div className="sm:hidden border-t border-[#9CBFC2]/40 bg-[#C7DEE0] shadow-lg">
-          <nav className="px-3 py-3 flex flex-col gap-1 text-sm">
-            {links.map(({ to, label, end }) => (
-              <NavLink
-                key={to}
-                to={to}
-                end={end}
-                onClick={closeMenu}
-                className={({ isActive }) =>
-                  `px-3 py-2.5 rounded-sm transition font-medium ${
-                    isActive
-                      ? 'bg-stone-800 text-[#C7DEE0]'
-                      : 'text-stone-800 hover:bg-white/30'
-                  }`
-                }
-              >
-                {label}
-              </NavLink>
-            ))}
-
-            <div className="my-2 h-px bg-stone-800/15" />
-
-            <MobileMenuLink to="/search" onClick={closeMenu} icon={<SearchIcon />}>
-              Search
-            </MobileMenuLink>
-            <MobileMenuLink to="/settings" onClick={closeMenu} icon={<SettingsIcon />}>
-              Settings
-            </MobileMenuLink>
-            <MobileMenuLink to="/account" onClick={closeMenu} icon={<PersonIcon />}>
-              {user.isGuest ? 'Guest' : `@${user.username}`}
-            </MobileMenuLink>
-          </nav>
-        </div>
-      )}
     </header>
   )
 }
 
-function MobileMenuLink({ to, onClick, icon, children }) {
+function SunIcon() {
   return (
-    <NavLink
-      to={to}
-      onClick={onClick}
-      className={({ isActive }) =>
-        `flex items-center gap-2.5 px-3 py-2.5 rounded-sm transition font-medium ${
-          isActive
-            ? 'bg-stone-800 text-[#C7DEE0]'
-            : 'text-stone-800 hover:bg-white/30'
-        }`
-      }
-    >
-      {icon}
-      <span>{children}</span>
-    </NavLink>
-  )
-}
-
-function MenuIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <line x1="3" y1="6" x2="21" y2="6" />
-      <line x1="3" y1="12" x2="21" y2="12" />
-      <line x1="3" y1="18" x2="21" y2="18" />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
     </svg>
   )
 }
 
-function CloseIcon() {
+function MoonIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <line x1="18" y1="6" x2="6" y2="18" />
-      <line x1="6" y1="6" x2="18" y2="18" />
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+    </svg>
+  )
+}
+
+function SparkIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M12 2l1.9 5.7L20 9.6l-5.4 3.2L15.8 19 12 15.4 8.2 19l1.2-6.2L4 9.6l6.1-1.9L12 2z" />
     </svg>
   )
 }
@@ -210,7 +126,7 @@ function IconLink({ to, title, children }) {
       className={({ isActive }) =>
         `px-2 sm:px-2.5 py-1.5 rounded-sm text-sm transition ${
           isActive
-            ? 'bg-stone-800 text-[#C7DEE0]'
+            ? 'bg-stone-800 text-seafoam-200'
             : 'text-stone-800 hover:bg-white/30'
         }`
       }

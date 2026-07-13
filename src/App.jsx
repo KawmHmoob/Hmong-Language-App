@@ -12,8 +12,11 @@ import Lesson from './pages/Lesson.jsx'
 import Settings from './pages/Settings.jsx'
 import NotFound from './pages/NotFound.jsx'
 import Notebook from './pages/Notebook.jsx'
-import Review from './pages/Review.jsx'
 import Search from './pages/Search.jsx'
+import Speak from './pages/Speak.jsx'
+import SpeakPhrase from './pages/SpeakPhrase.jsx'
+import Words from './pages/Words.jsx'
+import WordsSession from './pages/WordsSession.jsx'
 import QuizMenu from './components/quiz/QuizMenu.jsx'
 import QuizEngine from './components/quiz/QuizEngine.jsx'
 import VocabCategoryGrid from './components/vocabulary/VocabCategoryGrid.jsx'
@@ -33,6 +36,10 @@ export default function App() {
               <Routes>
                 <Route element={<Layout />}>
                   <Route path="/" element={<Home />} />
+                  <Route path="/speak" element={<Speak />} />
+                  <Route path="/speak/:phraseId" element={<SpeakPhrase />} />
+                  <Route path="/words" element={<Words />} />
+                  <Route path="/words/session" element={<WordsSession />} />
                   <Route path="/alphabet" element={<Navigate to="/alphabet/consonants" replace />} />
                   <Route path="/alphabet/:tab" element={<Alphabet />} />
                   <Route path="/course" element={<Navigate to="/course/grammar" replace />} />
@@ -44,7 +51,8 @@ export default function App() {
                   <Route path="/vocabulary/:categoryId/:wordId" element={<WordDetail />} />
                   <Route path="/notebook" element={<Navigate to="/notebook/saved" replace />} />
                   <Route path="/notebook/:tab" element={<Notebook />} />
-                  <Route path="/review" element={<Review />} />
+                  {/* Review moved into the Words section; old URL keeps working. */}
+                  <Route path="/review" element={<Navigate to="/words/session" replace />} />
                   <Route path="/search" element={<Search />} />
                   <Route path="/quiz" element={<QuizMenu />} />
                   <Route path="/quiz/:topicId" element={<QuizEngine />} />

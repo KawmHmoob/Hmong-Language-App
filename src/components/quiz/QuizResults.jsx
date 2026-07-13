@@ -68,12 +68,14 @@ function CircularProgress({ percent }) {
   const offset = c - (percent / 100) * c
   return (
     <svg width="96" height="96" viewBox="0 0 96 96" className="-rotate-90">
-      <circle cx="48" cy="48" r={r} stroke="#ECDCC0" strokeWidth="10" fill="none" />
+      {/* stroke via CSS color tokens so the ring follows light/dark theme */}
+      <circle cx="48" cy="48" r={r} className="text-cream-200" stroke="currentColor" strokeWidth="10" fill="none" />
       <circle
         cx="48"
         cy="48"
         r={r}
-        stroke="#9C4F33"
+        className="text-clay-600"
+        stroke="currentColor"
         strokeWidth="10"
         fill="none"
         strokeDasharray={c}

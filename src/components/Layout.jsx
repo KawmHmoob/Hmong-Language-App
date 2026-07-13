@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import Navbar from './Navbar.jsx'
 import Footer from './Footer.jsx'
 import GuestBanner from './account/GuestBanner.jsx'
+import PrimaryNav from './PrimaryNav.jsx'
 import SkeletonCard from './common/SkeletonCard.jsx'
 
 export default function Layout() {
@@ -16,19 +17,24 @@ export default function Layout() {
   }, [location.pathname])
 
   return (
-    <div className="min-h-screen bg-blush-200">
+    <div className="min-h-screen bg-seafoam-300">
       <Navbar />
       <GuestBanner />
-      <main className="mx-auto max-w-5xl px-6 sm:px-8 py-16">
-        {loading ? (
-          <div className="space-y-3">
-            <SkeletonCard className="h-24" />
-            <SkeletonCard className="h-24" />
-          </div>
-        ) : (
-          <Outlet />
-        )}
-      </main>
+      {/* Desktop: rail + content side by side. Mobile: the rail hides itself
+          and PrimaryNav's fixed bottom tab bar takes over (hence pb-24). */}
+      <div className="mx-auto max-w-6xl flex gap-6">
+        <PrimaryNav />
+        <main className="flex-1 min-w-0 px-5 sm:px-8 py-12 sm:py-16 pb-28 md:pb-16">
+          {loading ? (
+            <div className="space-y-3">
+              <SkeletonCard className="h-24" />
+              <SkeletonCard className="h-24" />
+            </div>
+          ) : (
+            <Outlet />
+          )}
+        </main>
+      </div>
       <Footer />
     </div>
   )

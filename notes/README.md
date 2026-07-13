@@ -30,6 +30,12 @@ This folder is the audit trail for everything in the app. Each note explains **w
 17. [17-usestate-and-async.md](17-usestate-and-async.md) — Why `useState(() => loadProgress(...))` breaks the moment `loadProgress` becomes async
 18. [18-pronunciation-practice.md](18-pronunciation-practice.md) — **(Scope/planned)** Record-and-compare pronunciation ("Natulang for Hmong"), DSP tone scoring
 19. [19-speech-testing.md](19-speech-testing.md) — **(Speech, not text)** Evaluating/calibrating the pronunciation scorer vs. human labels — distinct from the text quizzes in note 01
+20. [20-modernization-prompt.md](20-modernization-prompt.md) — **(Prompt)** Paste-ready prompt to modernize the UI + split the app into two sections: **Speak** (natulang) and **Words** (Duolingo)
+21. [21-two-section-nav.md](21-two-section-nav.md) — Two front doors (Speak/Words): PrimaryNav rail + bottom tab bar, slim header, seafoam/blush palette fix, focus rings
+22. [22-speak-section.md](22-speak-section.md) — Speak section: record & compare loop, `usePronunciation` hook, level meter, `src/data/speak.js` (Phase 1 of note 18)
+23. [23-words-section.md](23-words-section.md) — Words section: unified vocab hub, derived daily goal, SRS session flow (supersedes `/review`)
+24. [24-theming-and-polish.md](24-theming-and-polish.md) — Dark/light theming via semantic CSS-variable tokens, glass chrome, radii/press polish, RN migration mapping
+25. [25-neon-theme-and-bento-home.md](25-neon-theme-and-bento-home.md) — Third "Neon" theme (violet/coral/teal, glow shadows), 3-way theme cycle, bento Home dashboard with phrase of the day
 
 ## Conventions used across features
 

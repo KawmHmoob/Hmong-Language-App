@@ -23,7 +23,7 @@ export default function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="mt-24 bg-[#C7DEE0] backdrop-blur-md border-t border-[#9CBFC2]/40">
+    <footer className="mt-24 bg-seafoam-200 backdrop-blur-md border-t border-seafoam-400/40">
       <div className="mx-auto max-w-5xl px-6 sm:px-8 py-10 grid gap-8 sm:grid-cols-3">
         <div>
           <Link to="/" className="inline-block group">
@@ -75,7 +75,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="border-t border-[#9CBFC2]/40">
+      <div className="border-t border-seafoam-400/40">
         <div className="mx-auto max-w-5xl px-6 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-stone-700/80">
           <p>© {year} Kawm Hmoob · made with care</p>
           <p>Ua tsaug rau koj txoj kev kawm.</p>

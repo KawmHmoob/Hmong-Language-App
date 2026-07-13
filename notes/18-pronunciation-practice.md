@@ -1,9 +1,11 @@
 # Pronunciation Practice — "Natulang for Hmong" (SCOPE / NOT BUILT YET)
 
-Status: **planned, not implemented.** This note is the scope + implementation plan
-for a record-your-voice / compare-to-native pronunciation feature, the way Natulang
-works. Read it before starting; update it as the feature lands (per the rules in
-[README.md](README.md)).
+Status: **Phase 1 SHIPPED** as the Speak section — see
+[22-speak-section.md](22-speak-section.md) for what was actually built (standalone
+`/speak` routes + `src/data/speak.js`, rather than a `'pronounce'` lesson step; the
+hook is `usePronunciation` as planned). Phases 2–3 below remain the plan. This note
+stays as the scope + scoring roadmap; update it as later phases land (per the rules
+in [README.md](README.md)).
 
 **What:** the learner hears a native recording, records themselves saying the same
 Hmong word/phrase, hears the two back-to-back, and gets feedback on how close they
