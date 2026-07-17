@@ -1,3 +1,12 @@
+// Reference data — the things you LOOK UP, not the things you're taught.
+//
+// Job split (see notes/34): a table here STATES a fact ("txoj = long, winding
+// things"); a lesson in src/data/lessons/ EXPLAINS it. Same content, different
+// moment — cross-linked, not duplicated. Keep tables terse: no teaching prose.
+//
+// Exports: consonants, doubleConsonants, vowels, tones, grammar
+// (grammar arrived here when the old /course page dissolved.)
+
 export const consonants = [
   { letter: 'c', sound: 'j (English)' },
   { letter: 'ch', sound: 'ch' },
@@ -92,4 +101,100 @@ export const tones = [
   { marker: 'g', name: 'Mid-low breathy', description: 'Breathy mid-low', example: 'pog (grandma)' },
   { marker: 'm', name: 'Low-falling glottalized', description: 'Creaky low-falling', example: 'pom (see)' },
   { marker: 'd', name: 'Low-rising', description: 'Rises from low (rare)', example: 'pod (?)' },
+]
+
+// ── Grammar cheat sheets ────────────────────────────────────────────────────
+// Came from the dissolved /course page. These are LOOKUP tables — the "what",
+// stripped of teaching. `lesson` points at the Learn lesson that explains the
+// "why", and the Reference page renders it as a "Learn this →" link. Omit
+// `lesson` when no lesson covers the table yet.
+
+export const grammar = [
+  {
+    title: 'Pronouns',
+    note: 'Hmong marks singular, dual (exactly two), and plural.',
+    lesson: { unitId: 'foundations', lessonId: 'foundations-pronouns' },
+    items: [
+      { hmong: 'Kuv', english: 'I' },
+      { hmong: 'Koj', english: 'You (singular)' },
+      { hmong: 'Nws', english: 'He / she / it' },
+      { hmong: 'Wb', english: 'We two' },
+      { hmong: 'Neb', english: 'You two' },
+      { hmong: 'Nkawd', english: 'They two' },
+      { hmong: 'Peb', english: 'We (plural)' },
+      { hmong: 'Nej', english: 'You (plural)' },
+      { hmong: 'Lawv', english: 'They' },
+    ],
+  },
+  {
+    title: 'Common Verbs',
+    note: 'Verbs never conjugate — tense comes from the markers below.',
+    lesson: { unitId: 'foundations', lessonId: 'foundations-action-verbs' },
+    items: [
+      { hmong: 'Mus', english: 'To go' },
+      { hmong: 'Los', english: 'To come' },
+      { hmong: 'Noj', english: 'To eat' },
+      { hmong: 'Haus', english: 'To drink' },
+      { hmong: 'Hais', english: 'To say / speak' },
+      { hmong: 'Pom', english: 'To see' },
+      { hmong: 'Paub', english: 'To know' },
+      { hmong: 'Ua', english: 'To do / make' },
+    ],
+  },
+  {
+    title: 'Tense Markers',
+    note: 'Small words placed around the verb to place it in time.',
+    lesson: { unitId: 'foundations', lessonId: 'foundations-tense-markers' },
+    items: [
+      { hmong: 'tab tom', english: 'Currently (-ing)' },
+      { hmong: 'yuav', english: 'Will (future)' },
+      { hmong: 'tau', english: 'Already (past completed)' },
+      { hmong: 'tseem', english: 'Still' },
+      { hmong: 'lawm', english: 'Sentence-final completed marker' },
+    ],
+  },
+  {
+    title: 'Question Words',
+    note: 'These usually sit at the END of the sentence in Hmong.',
+    lesson: { unitId: 'numbers-and-time', lessonId: 'numbers-how-much' },
+    items: [
+      { hmong: 'Dab tsi?', english: 'What?' },
+      { hmong: 'Leej twg?', english: 'Who?' },
+      { hmong: 'Qhov twg?', english: 'Where?' },
+      { hmong: 'Thaum twg?', english: 'When?' },
+      { hmong: 'Vim li cas?', english: 'Why?' },
+      { hmong: 'Li cas?', english: 'How?' },
+      { hmong: 'Pes tsawg?', english: 'How much / how many?' },
+    ],
+  },
+  {
+    title: 'Noun Classifiers',
+    note: 'Pattern: number + classifier + noun — "ib tug dev" (one dog).',
+    lesson: { unitId: 'foundations', lessonId: 'foundations-noun-classifiers' },
+    items: [
+      { hmong: 'Tus', english: 'People and animals' },
+      { hmong: 'Lub', english: 'Round / 3-D objects' },
+      { hmong: 'Daim', english: 'Flat objects' },
+      { hmong: 'Txoj', english: 'Long, winding things' },
+      { hmong: 'Rab', english: 'Tools / weapons' },
+      { hmong: 'Phau', english: 'Books' },
+    ],
+  },
+  {
+    title: 'Numbers 1–10',
+    note: 'Teens stack on kaum: "kaum ib" = eleven.',
+    lesson: { unitId: 'numbers-and-time', lessonId: 'numbers-counting' },
+    items: [
+      { hmong: 'Ib', english: 'One' },
+      { hmong: 'Ob', english: 'Two' },
+      { hmong: 'Peb', english: 'Three' },
+      { hmong: 'Plaub', english: 'Four' },
+      { hmong: 'Tsib', english: 'Five' },
+      { hmong: 'Rau', english: 'Six' },
+      { hmong: 'Xya', english: 'Seven' },
+      { hmong: 'Yim', english: 'Eight' },
+      { hmong: 'Cuaj', english: 'Nine' },
+      { hmong: 'Kaum', english: 'Ten' },
+    ],
+  },
 ]

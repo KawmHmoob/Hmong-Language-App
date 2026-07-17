@@ -1,11 +1,12 @@
 // Standalone lesson: Hmong numbers.
-// PLACEHOLDER — examples and notes need real content.
-// Follows the lesson model in ../lessons.js.
+// Content filled 2026-07-16 (Slice A pass) — audio still pending, see
+// instructions/audio-files.md. Follows the lesson model in ../lessons.js.
 
 export const numbers = {
   id: 'numbers-counting',
   title: 'Numbers',
   summary: 'Counting in Hmong, from one upward.',
+  reference: 'grammar',
   steps: [
     {
       id: 'numbers-counting-intro',
@@ -13,7 +14,7 @@ export const numbers = {
       title: 'Counting in Hmong',
       body: [
         'Hmong numbers are regular and quick to learn. Once you know one through ten, larger numbers build on the same words.',
-        'PLACEHOLDER intro text — update with the real explanation.',
+        'Teens stack ten plus the unit: "kaum ib" (ten-one) = eleven, "kaum ob" = twelve. Watch the tones closely — several numbers differ from other everyday words only by their tone letter, so saying them aloud matters more than reading them.',
       ],
     },
     {
@@ -22,25 +23,25 @@ export const numbers = {
       title: 'One through ten',
       intro: 'Read each number aloud.',
       items: [
-        { hmong: 'Ib', english: 'one', note: 'PLACEHOLDER' },
-        { hmong: 'Ob', english: 'two', note: 'PLACEHOLDER' },
-        { hmong: 'Peb', english: 'three', note: 'PLACEHOLDER' },
-        { hmong: 'Plaub', english: 'four', note: 'PLACEHOLDER' },
-        { hmong: 'Tsib', english: 'five', note: 'PLACEHOLDER' },
-        { hmong: 'Rau', english: 'six', note: 'PLACEHOLDER' },
-        { hmong: 'Xya', english: 'seven', note: 'PLACEHOLDER' },
-        { hmong: 'Yim', english: 'eight', note: 'PLACEHOLDER' },
-        { hmong: 'Cuaj', english: 'nine', note: 'PLACEHOLDER' },
-        { hmong: 'Kaum', english: 'ten', note: 'PLACEHOLDER' },
+        { hmong: 'Ib', english: 'one', note: 'Final -b marks the high tone.' },
+        { hmong: 'Ob', english: 'two', note: 'Also a high tone (-b).' },
+        { hmong: 'Peb', english: 'three', note: 'The same word as "we / us" — context tells them apart.' },
+        { hmong: 'Plaub', english: 'four', note: 'Also means "hair / fur" — another reason tones and context matter.' },
+        { hmong: 'Tsib', english: 'five', note: 'The "ts" is one consonant sound.' },
+        { hmong: 'Rau', english: 'six', note: 'Also appears as "to / for" in other sentences — context separates them.' },
+        { hmong: 'Xya', english: 'seven', note: 'RPA "x" sounds like English "s" in "see".' }, // TODO-VERIFY: best plain-English hint for RPA x
+        { hmong: 'Yim', english: 'eight', note: 'Bare final (no tone letter) = the mid tone.' },
+        { hmong: 'Cuaj', english: 'nine', note: 'Final -j marks the high-falling tone.' },
+        { hmong: 'Kaum', english: 'ten', note: 'Builds the teens: "kaum ib" = eleven.' },
       ],
     },
     {
       id: 'numbers-counting-practice',
       kind: 'practice',
       title: 'Quick check',
-      prompt: 'PLACEHOLDER practice question — replace with a real prompt.',
-      options: ['Option A', 'Option B', 'Option C', 'Option D'],
-      answer: 'Option A',
+      prompt: 'What is the Hmong word for "five"?',
+      options: ['Tsib', 'Plaub', 'Rau', 'Cuaj'],
+      answer: 'Tsib',
     },
   ],
 }

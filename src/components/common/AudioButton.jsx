@@ -1,9 +1,10 @@
 import { useAudio } from '../../hooks/useAudio.js'
+import { VolumeIcon } from '../icons/index.jsx'
 
 export default function AudioButton({ audioSrc, wordId, size = 'sm' }) {
   const { play } = useAudio()
   const enabled = Boolean(audioSrc)
-  const dim = size === 'lg' ? 'h-10 w-10 text-base' : 'h-7 w-7 text-xs'
+  const dim = size === 'lg' ? 'h-10 w-10' : 'h-7 w-7'
   return (
     <button
       type="button"
@@ -19,7 +20,7 @@ export default function AudioButton({ audioSrc, wordId, size = 'sm' }) {
       }`}
       disabled={!enabled}
     >
-      <span aria-hidden="true">♪</span>
+      <VolumeIcon size={size === 'lg' ? 18 : 14} />
       <span className="sr-only">{enabled ? 'Play audio' : 'No audio'}</span>
     </button>
   )

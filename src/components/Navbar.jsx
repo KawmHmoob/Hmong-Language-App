@@ -29,9 +29,9 @@ export default function Navbar() {
             alt="Kawm Hmoob"
             className="h-8 sm:h-10 w-auto flex-shrink-0"
           />
-          <p className="hidden sm:block text-xs text-stone-800/80 italic truncate">
-            Learn the Hmong language
-          </p>
+          <span className="hidden sm:block text-[11px] uppercase tracking-[0.22em] text-stone-800/70 font-medium truncate">
+            Learn Hmong
+          </span>
         </Link>
 
         <div className="flex items-center gap-1 sm:gap-2">
@@ -44,7 +44,7 @@ export default function Navbar() {
             onClick={cycle}
             title={`Theme: ${THEME_META[theme].label} — switch to ${THEME_META[THEME_META[theme].next].label}`}
             aria-label={`Theme: ${THEME_META[theme].label}. Switch to ${THEME_META[THEME_META[theme].next].label} theme`}
-            className="px-2 sm:px-2.5 py-1.5 rounded-sm text-sm text-stone-800 hover:bg-white/30 transition"
+            className="px-2 sm:px-2.5 py-1.5 rounded-md text-sm text-stone-800 hover:bg-stone-900/10 transition-colors"
           >
             {theme === 'light' && <SunIcon />}
             {theme === 'dark' && <MoonIcon />}
@@ -124,10 +124,10 @@ function IconLink({ to, title, children }) {
       to={to}
       title={title}
       className={({ isActive }) =>
-        `px-2 sm:px-2.5 py-1.5 rounded-sm text-sm transition ${
+        `px-2 sm:px-2.5 py-1.5 rounded-md text-sm transition-colors ${
           isActive
             ? 'bg-stone-800 text-seafoam-200'
-            : 'text-stone-800 hover:bg-white/30'
+            : 'text-stone-800 hover:bg-stone-900/10'
         }`
       }
     >

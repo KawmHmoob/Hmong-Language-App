@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import TodayCard from '../components/home/TodayCard.jsx'
+import { FlameIcon, StarIcon, MicIcon, CardsIcon } from '../components/icons/index.jsx'
 import { allPhrases } from '../data/speak.js'
 import { categories } from '../data/vocabulary.js'
 import { useProgress } from '../hooks/useProgress.js'
@@ -13,8 +14,8 @@ import { useAuth } from '../context/AuthContext.jsx'
 
 const explore = [
   { to: '/learn', label: 'Learn' },
-  { to: '/alphabet', label: 'Alphabet' },
-  { to: '/course', label: 'Course' },
+  { to: '/reference', label: 'Reference' },
+  { to: '/learn/readings', label: 'Readings' },
   { to: '/vocabulary', label: 'Vocabulary' },
   { to: '/notebook', label: 'Notebook' },
   { to: '/quiz', label: 'Quizzes' },
@@ -45,9 +46,7 @@ export default function Home() {
         <p className="text-sm uppercase tracking-[0.25em] text-clay-600 mb-3 font-semibold">
           {user.isGuest ? 'Welcome' : `Welcome back, ${user.username}`}
         </p>
-        <h2 className="font-serif text-5xl sm:text-6xl mb-4">
-          <span className="text-gradient">Nyob zoo.</span>
-        </h2>
+        <h2 className="font-serif text-5xl sm:text-6xl text-stone-900 mb-4">Nyob zoo.</h2>
         <p className="text-lg text-stone-700 max-w-xl leading-relaxed">
           A quiet place to learn Hmong — one phrase, one word, one tone at a time.
         </p>
@@ -75,15 +74,15 @@ export default function Home() {
         </Link>
 
         {/* Stats */}
-        <div className="surface p-5 text-center flex flex-col justify-center">
-          <p className="text-2xl mb-1" aria-hidden="true">🔥</p>
+        <div className="surface p-5 text-center flex flex-col items-center justify-center">
+          <FlameIcon size={22} className="text-clay-600 mb-1.5" />
           <p className="font-serif text-3xl text-stone-900 leading-none">
             {streakData.currentStreak}
           </p>
           <p className="text-xs text-stone-600 mt-1.5">day streak</p>
         </div>
-        <div className="surface p-5 text-center flex flex-col justify-center">
-          <p className="text-2xl mb-1" aria-hidden="true">✨</p>
+        <div className="surface p-5 text-center flex flex-col items-center justify-center">
+          <StarIcon size={22} className="text-clay-600 mb-1.5" />
           <p className="font-serif text-3xl text-stone-900 leading-none">{xp}</p>
           <p className="text-xs text-stone-600 mt-1.5">total XP</p>
         </div>
@@ -93,7 +92,7 @@ export default function Home() {
           to="/speak"
           className="surface surface-hover col-span-2 sm:col-span-1 lg:col-span-1 p-5 group"
         >
-          <p className="text-2xl mb-2" aria-hidden="true">🎙️</p>
+          <MicIcon size={22} className="text-clay-600 mb-2" />
           <p className="font-serif text-lg text-stone-900 group-hover:text-clay-700 transition">
             Speak
           </p>
@@ -103,7 +102,7 @@ export default function Home() {
           to={dueCount > 0 ? '/words/session' : '/words'}
           className="surface surface-hover col-span-2 sm:col-span-1 lg:col-span-1 p-5 group"
         >
-          <p className="text-2xl mb-2" aria-hidden="true">🃏</p>
+          <CardsIcon size={22} className="text-blush-500 mb-2" />
           <p className="font-serif text-lg text-stone-900 group-hover:text-clay-700 transition">
             Words
           </p>

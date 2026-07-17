@@ -55,7 +55,7 @@ export default function WordDetail() {
                 : 'inline-flex items-center gap-1 px-3 py-1.5 rounded bg-cream-100 text-stone-700 text-xs font-medium border border-cream-300 hover:border-clay-500'
             }
           >
-            {isSaved ? 'âœ“ Saved' : '+ Save to Notebook'}
+            {isSaved ? '✓ Saved' : '+ Save to Notebook'}
           </button>
         </div>
 
@@ -63,9 +63,9 @@ export default function WordDetail() {
           {word.whiteHmong && <Field label="White Hmong">{word.whiteHmong}</Field>}
           {word.greenHmong && <Field label="Green Hmong">{word.greenHmong}</Field>}
           <Field label="Category">{cat.title}</Field>
-          <Field label="Tags">{word.tags?.join(', ') || 'â€”'}</Field>
+          <Field label="Tags">{word.tags?.join(', ') || '—'}</Field>
           <Field label="Status">{status}</Field>
-          <Field label="Audio file">{word.audioFile || 'â€”'}</Field>
+          <Field label="Audio file">{word.audioFile || '—'}</Field>
         </dl>
 
         {word.exampleSentence && (

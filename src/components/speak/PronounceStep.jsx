@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { usePronunciation } from '../../hooks/usePronunciation.js'
 import LevelMeter from './LevelMeter.jsx'
+import { VolumeIcon, PlayIcon, SwapIcon, RefreshIcon, CheckIcon } from '../icons/index.jsx'
 
 // The Speak practice loop for one phrase:
 //   Listen (native MP3) → Record → Hear your take → A/B compare → self-rate.
@@ -78,10 +79,11 @@ export default function PronounceStep({ phrase, done, onDone }) {
           <button
             type="button"
             onClick={() => playOne(phrase.audio, 'ref')}
-            className="btn-secondary"
+            className="btn-secondary gap-2"
             aria-label={`Play native recording of ${phrase.hmong}`}
           >
-            {playing === 'ref' ? '♪ Playing…' : '🔊 Listen to a native speaker'}
+            <VolumeIcon size={16} />
+            {playing === 'ref' ? 'Playing…' : 'Listen to a native speaker'}
           </button>
         ) : (
           <p className="inline-block text-xs text-stone-600 bg-cream-100 border border-cream-200 rounded-full px-3 py-1.5">
@@ -142,13 +144,15 @@ export default function PronounceStep({ phrase, done, onDone }) {
             <button
               type="button"
               onClick={() => playOne(clip.url, 'take')}
-              className="btn-secondary"
+              className="btn-secondary gap-2"
             >
-              {playing === 'take' ? '♪ Playing…' : '▶ Your take'}
+              <PlayIcon size={16} />
+              {playing === 'take' ? 'Playing…' : 'Your take'}
             </button>
             {hasReference && (
-              <button type="button" onClick={playAB} className="btn-secondary">
-                {playing === 'ab' ? '♪ A/B…' : '⇄ A/B compare'}
+              <button type="button" onClick={playAB} className="btn-secondary gap-2">
+                <SwapIcon size={16} />
+                {playing === 'ab' ? 'A/B…' : 'A/B compare'}
               </button>
             )}
           </div>
@@ -160,12 +164,14 @@ export default function PronounceStep({ phrase, done, onDone }) {
                 stopPlayback()
                 start()
               }}
-              className="btn-ghost"
+              className="btn-ghost gap-2"
             >
-              🔁 Try again
+              <RefreshIcon size={16} />
+              Try again
             </button>
-            <button type="button" onClick={onDone} className="btn-primary">
-              {done ? '✓ Practiced — mark again' : '👍 Sounds close'}
+            <button type="button" onClick={onDone} className="btn-primary gap-2">
+              <CheckIcon size={16} />
+              {done ? 'Practiced — mark again' : 'Sounds close'}
             </button>
           </div>
           <p className="text-xs text-stone-600">

@@ -4,6 +4,7 @@ import { getLesson, getUnit, allStepIds } from '../data/lessons.js'
 import { useProgress } from '../hooks/useProgress.js'
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
 import PaywallGate from '../components/common/PaywallGate.jsx'
+import AudioButton from '../components/common/AudioButton.jsx'
 
 export default function Lesson() {
   const { unitId, lessonId } = useParams()
@@ -57,7 +58,9 @@ export default function Lesson() {
       })
     }
     if (isLast) {
-      navigate('/learn')
+      // Finishing returns to the unit, not the hub — you're likely doing the
+      // next lesson in the same unit.
+      navigate(`/learn/${unit.id}`)
     } else {
       setIndex((i) => i + 1)
     }
@@ -70,7 +73,7 @@ export default function Lesson() {
         items={[
           { label: 'Home', to: '/' },
           { label: 'Learn', to: '/learn' },
-          { label: unit.title, to: '/learn' },
+          { label: unit.title, to: `/learn/${unit.id}` },
           { label: lesson.title },
         ]}
       />
@@ -80,6 +83,7 @@ export default function Lesson() {
       <div className="surface p-6 sm:p-8">
         {step.kind === 'intro' && <IntroStep step={step} />}
         {step.kind === 'examples' && <ExamplesStep step={step} />}
+        {step.kind === 'reading' && <ReadingStep key={step.id} step={step} />}
         {step.kind === 'practice' && (
           <PracticeStep step={step} onAdvance={handleAdvance} />
         )}
@@ -112,7 +116,19 @@ function StepHeader({ lesson, index }) {
   const pct = Math.round(((index + 1) / total) * 100)
   return (
     <div className="mb-6">
-      <h2 className="font-serif text-3xl text-stone-900 mb-1">{lesson.title}</h2>
+      <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
+        <h2 className="font-serif text-3xl text-stone-900">{lesson.title}</h2>
+        {/* Two doors to the same knowledge: this lesson EXPLAINS it, the
+            reference table STATES it. See notes/34. */}
+        {lesson.reference && (
+          <Link
+            to={`/reference/${lesson.reference}`}
+            className="text-sm font-medium text-clay-700 hover:text-clay-600 transition-colors whitespace-nowrap"
+          >
+            Cheat sheet →
+          </Link>
+        )}
+      </div>
       <p className="text-sm text-stone-600 mb-3">
         Step {index + 1} of {total}
       </p>
@@ -146,21 +162,80 @@ function ExamplesStep({ step }) {
           <li key={it.hmong} className="py-3">
             <div className="flex justify-between items-baseline gap-3">
               <span className="font-medium text-clay-700 text-lg">{it.hmong}</span>
-              <span className="text-stone-700 text-sm">{it.english}</span>
-              <span>
-
-                <button
-                  onClick={() => new Audio(it.audio).play}
-                >
-                  🔊
-                </button>
-
-              </span>
+              {/* Vocabulary lessons carry `english`; the consonant lessons carry
+                  `hmongExample` (an example word) instead. Show whichever exists. */}
+              <span className="text-stone-700 text-sm">{it.english || it.hmongExample}</span>
+              <AudioButton audioSrc={it.audio} wordId={it.hmong} />
             </div>
-            {it.note && <p className="text-xs text-stone-500 mt-1 italic">{it.note}</p>}
+            {(it.note || it.englishSound) && (
+              <p className="text-xs text-stone-500 mt-1 italic">{it.note || it.englishSound}</p>
+            )}
           </li>
         ))}
       </ul>
+    </>
+  )
+}
+
+// A reading passage. The translation starts HIDDEN on purpose: if the English
+// is visible, the eye reads it first and the Hmong becomes decoration. Making
+// the learner ask for it turns reading into an attempt, not a glance.
+// The glossary is always visible — it's a crutch for words, not for meaning.
+function ReadingStep({ step }) {
+  const [showEnglish, setShowEnglish] = useState(false)
+
+  return (
+    <>
+      <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
+        <h3 className="font-serif text-2xl text-stone-900">{step.title}</h3>
+        {step.level && (
+          <span className="text-[10px] uppercase tracking-[0.15em] font-semibold rounded-full bg-cream-200 text-stone-700 px-2.5 py-1">
+            {step.level}
+          </span>
+        )}
+      </div>
+      {step.intro && <p className="text-sm text-stone-600 mb-5 italic">{step.intro}</p>}
+
+      {/* The passage — the hero of this step */}
+      <p className="font-serif text-2xl sm:text-3xl text-clay-700 leading-relaxed mb-5">
+        {step.hmong}
+      </p>
+
+      {showEnglish ? (
+        <div className="rounded-lg bg-cream-100 border border-cream-200 p-4 mb-6">
+          <p className="text-xs uppercase tracking-[0.15em] text-stone-600 mb-1.5">
+            Translation
+          </p>
+          <p className="text-stone-800 leading-relaxed">{step.english}</p>
+        </div>
+      ) : (
+        <button
+          type="button"
+          onClick={() => setShowEnglish(true)}
+          className="btn-ghost mb-6"
+        >
+          Reveal translation
+        </button>
+      )}
+
+      {step.glossary?.length > 0 && (
+        <div>
+          <p className="text-xs uppercase tracking-[0.15em] text-stone-600 mb-2">
+            Words in this passage
+          </p>
+          <ul className="grid gap-x-6 sm:grid-cols-2">
+            {step.glossary.map((g) => (
+              <li
+                key={g.hmong}
+                className="flex justify-between gap-3 py-1.5 text-sm border-b border-cream-200"
+              >
+                <span className="font-medium text-clay-700">{g.hmong}</span>
+                <span className="text-stone-600 text-right">{g.english}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </>
   )
 }
@@ -200,7 +275,7 @@ function PracticeStep({ step, onAdvance }) {
           }`}
         >
           <span className="font-medium">
-            {correct ? 'Correct âœ“' : `Not quite â€” answer: ${step.answer}`}
+            {correct ? 'Correct ✓' : `Not quite — answer: ${step.answer}`}
           </span>
           <button onClick={onAdvance} className="btn-secondary">Continue</button>
         </div>
@@ -215,7 +290,7 @@ function MiniQuizStep({ step, taken }) {
       <h3 className="font-serif text-2xl text-stone-900 mb-2">{step.title}</h3>
       <p className="text-stone-700 mb-5">
         {taken
-          ? "You've taken this quiz â€” you can retake it for more practice. The lesson is marked complete."
+          ? "You've taken this quiz — you can retake it for more practice. The lesson is marked complete."
           : 'Time to put it to the test. Take the mini-quiz to finish this lesson.'}
       </p>
       <div className="flex flex-wrap gap-3">

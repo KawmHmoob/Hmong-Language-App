@@ -5,6 +5,7 @@ import { useProgress } from '../../hooks/useProgress.js'
 import AudioButton from '../common/AudioButton.jsx'
 import Breadcrumbs from '../common/Breadcrumbs.jsx'
 import Flashcard from './Flashcard.jsx'
+import { CategoryIcon } from '../icons/index.jsx'
 
 export default function VocabList() {
   const { categoryId } = useParams()
@@ -40,8 +41,9 @@ export default function VocabList() {
 
       <div className="flex flex-wrap justify-between items-end mb-6 gap-3">
         <div>
-          <h2 className="font-serif text-4xl text-stone-900">
-            {cat.emoji} {cat.title}
+          <h2 className="font-serif text-4xl text-stone-900 flex items-center gap-3">
+            <CategoryIcon category={cat} size={30} className="text-clay-600" />
+            {cat.title}
           </h2>
           <p className="text-stone-700 mt-1">{cat.description}</p>
         </div>
@@ -109,7 +111,7 @@ export default function VocabList() {
               disabled={cardIdx === 0}
               className="btn-ghost disabled:opacity-50"
             >
-              â† Prev
+              ← Prev
             </button>
             <span className="text-sm text-stone-700 self-center">
               {cardIdx + 1} / {cat.words.length}
@@ -119,7 +121,7 @@ export default function VocabList() {
               disabled={cardIdx === cat.words.length - 1}
               className="btn-ghost disabled:opacity-50"
             >
-              Next â†’
+              Next →
             </button>
           </div>
         </div>

@@ -1,6 +1,6 @@
 // Standalone lesson: Hmong possessive pronouns.
-// PLACEHOLDER — examples and notes need real content.
-// Follows the lesson model in ../lessons.js.
+// Content filled 2026-07-16 (Slice A pass) — audio still pending, see
+// instructions/audio-files.md. Follows the lesson model in ../lessons.js.
 
 export const possessivePronouns = {
   id: 'foundations-possessive-pronouns',
@@ -13,7 +13,7 @@ export const possessivePronouns = {
       title: 'How possessives work',
       body: [
         'Hmong does not have separate possessive words like English "my" or "your". The plain pronoun is used, and possession is shown by word order (and sometimes a linking word).',
-        'PLACEHOLDER intro text — update with the real explanation.',
+        'The everyday pattern is pronoun + classifier + noun: "kuv lub tsev" = my house, "koj tus dev" = your dog. The classifier matches the noun being owned, not the owner — so it is "lub" for the house no matter whose house it is.',
       ],
     },
     {
@@ -22,20 +22,20 @@ export const possessivePronouns = {
       title: 'Showing possession',
       intro: 'Read each phrase aloud.',
       items: [
-        { hmong: 'Kuv', english: 'my', note: 'PLACEHOLDER' },
-        { hmong: 'Koj', english: 'your', note: 'PLACEHOLDER' },
-        { hmong: 'Nws', english: 'his / her / its', note: 'PLACEHOLDER' },
-        { hmong: 'Peb', english: 'our', note: 'PLACEHOLDER' },
-        { hmong: 'Lawv', english: 'their', note: 'PLACEHOLDER' },
+        { hmong: 'Kuv', english: 'my', note: '"Kuv lub tsev" = my house — pronoun + classifier + noun.' },
+        { hmong: 'Koj', english: 'your', note: '"Koj tus dev" = your dog.' },
+        { hmong: 'Nws', english: 'his / her / its', note: '"Nws phau ntawv" = his/her book — one word covers all three.' },
+        { hmong: 'Peb', english: 'our', note: 'Also the number three — context separates them.' },
+        { hmong: 'Lawv', english: 'their', note: '"Lawv lub tsev" = their house.' },
       ],
     },
     {
       id: 'foundations-possessive-pronouns-practice',
       kind: 'practice',
       title: 'Quick check',
-      prompt: 'PLACEHOLDER practice question — replace with a real prompt.',
-      options: ['Option A', 'Option B', 'Option C', 'Option D'],
-      answer: 'Option A',
+      prompt: 'Which word means "their"?',
+      options: ['Lawv', 'Peb', 'Koj', 'Nws'],
+      answer: 'Lawv',
     },
   ],
 }

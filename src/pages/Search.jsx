@@ -1,27 +1,28 @@
 ﻿import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { consonants, vowels, tones } from '../data/alphabet.js'
+import { consonants, vowels, tones, grammar } from '../data/reference.js'
 import { categories } from '../data/vocabulary.js'
-import { grammar, everyday, readings } from '../data/course.js'
+import { allPhrases } from '../data/speak.js'
+import { units } from '../data/lessons.js'
 
 function normalize(s) {
   return (s || '').toLowerCase().trim()
 }
 
-// Build the search index once at module load â€” data is static.
+// Build the search index once at module load — data is static.
 function buildIndex() {
   const items = []
   for (const c of consonants) {
-    items.push({ kind: 'alphabet', label: c.letter, hint: c.sound,
-      to: '/alphabet/consonants', haystack: `${c.letter} ${c.sound}` })
+    items.push({ kind: 'reference', label: c.letter, hint: c.sound,
+      to: '/reference/consonants', haystack: `${c.letter} ${c.sound}` })
   }
   for (const v of vowels) {
-    items.push({ kind: 'alphabet', label: v.letter, hint: v.sound,
-      to: '/alphabet/vowels', haystack: `${v.letter} ${v.sound}` })
+    items.push({ kind: 'reference', label: v.letter, hint: v.sound,
+      to: '/reference/vowels', haystack: `${v.letter} ${v.sound}` })
   }
   for (const t of tones) {
-    items.push({ kind: 'alphabet', label: t.marker || '(no marker)', hint: t.name,
-      to: '/alphabet/tones', haystack: `${t.marker} ${t.name} ${t.description}` })
+    items.push({ kind: 'reference', label: t.marker || '(no marker)', hint: t.name,
+      to: '/reference/tones', haystack: `${t.marker} ${t.name} ${t.description}` })
   }
   for (const cat of categories) {
     for (const w of cat.words) {
@@ -33,18 +34,24 @@ function buildIndex() {
   for (const g of grammar) {
     for (const it of g.items) {
       items.push({ kind: 'grammar', label: it.hmong, hint: it.english,
-        to: '/course/grammar', haystack: `${it.hmong} ${it.english}` })
+        to: '/reference/grammar', haystack: `${it.hmong} ${it.english}` })
     }
   }
-  for (const e of everyday) {
-    for (const it of e.items) {
-      items.push({ kind: 'everyday', label: it.hmong, hint: it.english,
-        to: '/course/everyday', haystack: `${it.hmong} ${it.english}` })
-    }
+  // Speak phrases (absorbed the old course "everyday" lists).
+  for (const p of allPhrases()) {
+    items.push({ kind: 'speak', label: p.hmong, hint: p.english,
+      to: `/speak/${p.id}`, haystack: `${p.hmong} ${p.english}` })
   }
-  for (const r of readings) {
-    items.push({ kind: 'reading', label: r.title, hint: r.english.slice(0, 80),
-      to: '/course/reading', haystack: `${r.title} ${r.hmong} ${r.english}` })
+  // Readings are lessons now — index their passages + glossaries.
+  for (const unit of units) {
+    for (const lesson of unit.lessons) {
+      for (const step of lesson.steps) {
+        if (step.kind !== 'reading') continue
+        items.push({ kind: 'reading', label: step.title, hint: step.english.slice(0, 80),
+          to: `/learn/${unit.id}/${lesson.id}`,
+          haystack: `${step.title} ${step.hmong} ${step.english}` })
+      }
+    }
   }
   return items.map((i) => ({ ...i, haystack: normalize(i.haystack) }))
 }
@@ -52,10 +59,10 @@ function buildIndex() {
 const INDEX = buildIndex()
 
 const KIND_LABEL = {
-  alphabet: 'Alphabet',
+  reference: 'Reference',
   vocab: 'Vocabulary',
   grammar: 'Grammar',
-  everyday: 'Everyday',
+  speak: 'Speak',
   reading: 'Reading',
 }
 
@@ -80,7 +87,7 @@ export default function Search() {
         type="search"
         value={q}
         onChange={(e) => setQ(e.target.value)}
-        placeholder="Search words, phrases, lettersâ€¦"
+        placeholder="Search words, phrases, letters…"
         autoFocus
         className="w-full rounded border border-cream-300 bg-cream-50 px-4 py-3 text-base focus:outline-none focus:border-clay-500 mb-6"
       />

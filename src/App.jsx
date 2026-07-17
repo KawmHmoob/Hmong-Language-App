@@ -1,13 +1,13 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext.jsx'
 import { SubscriptionProvider } from './context/SubscriptionContext.jsx'
 import { ProgressProvider } from './context/ProgressContext.jsx'
 import { NotebookProvider } from './context/NotebookContext.jsx'
 import Layout from './components/Layout.jsx'
 import Home from './pages/Home.jsx'
-import Alphabet from './pages/Alphabet.jsx'
-import Course from './pages/Course.jsx'
+import Reference from './pages/Reference.jsx'
 import Learn from './pages/Learn.jsx'
+import Unit from './pages/Unit.jsx'
 import Lesson from './pages/Lesson.jsx'
 import Settings from './pages/Settings.jsx'
 import NotFound from './pages/NotFound.jsx'
@@ -26,6 +26,25 @@ import LoginForm from './components/account/LoginForm.jsx'
 import RegisterForm from './components/account/RegisterForm.jsx'
 import ProfilePage from './components/account/ProfilePage.jsx'
 
+// Legacy URL support. /alphabet/:tab kept its tab names, so it maps 1:1.
+// /course/:tab is messier: 'grammar' has a home in Reference, but 'everyday'
+// moved to Speak and 'reading' became a Learn unit — so each lands where its
+// content actually went, not on a generic 404.
+function AlphabetRedirect() {
+  const { tab } = useParams()
+  return <Navigate to={`/reference/${tab}`} replace />
+}
+
+function CourseRedirect() {
+  const { tab } = useParams()
+  const map = {
+    grammar: '/reference/grammar',
+    everyday: '/speak',
+    reading: '/learn/readings',
+  }
+  return <Navigate to={map[tab] || '/reference/grammar'} replace />
+}
+
 export default function App() {
   return (
     <BrowserRouter>
@@ -40,11 +59,16 @@ export default function App() {
                   <Route path="/speak/:phraseId" element={<SpeakPhrase />} />
                   <Route path="/words" element={<Words />} />
                   <Route path="/words/session" element={<WordsSession />} />
-                  <Route path="/alphabet" element={<Navigate to="/alphabet/consonants" replace />} />
-                  <Route path="/alphabet/:tab" element={<Alphabet />} />
-                  <Route path="/course" element={<Navigate to="/course/grammar" replace />} />
-                  <Route path="/course/:tab" element={<Course />} />
+                  {/* Reference (was /alphabet; absorbed the old /course grammar tables) */}
+                  <Route path="/reference" element={<Navigate to="/reference/consonants" replace />} />
+                  <Route path="/reference/:tab" element={<Reference />} />
+                  {/* Old URLs keep working — see notes/34 */}
+                  <Route path="/alphabet" element={<Navigate to="/reference/consonants" replace />} />
+                  <Route path="/alphabet/:tab" element={<AlphabetRedirect />} />
+                  <Route path="/course" element={<Navigate to="/reference/grammar" replace />} />
+                  <Route path="/course/:tab" element={<CourseRedirect />} />
                   <Route path="/learn" element={<Learn />} />
+                  <Route path="/learn/:unitId" element={<Unit />} />
                   <Route path="/learn/:unitId/:lessonId" element={<Lesson />} />
                   <Route path="/vocabulary" element={<VocabCategoryGrid />} />
                   <Route path="/vocabulary/:categoryId" element={<VocabList />} />

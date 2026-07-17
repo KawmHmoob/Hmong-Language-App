@@ -1,7 +1,9 @@
 // Standalone lesson: the two-letter consonant combinations of Hmong RPA.
 // Note: `Audio` field is intentionally capitalized inconsistently in some
 // entries below — fix when wiring up audio playback. Same applies to the
-// placeholder 'english: "s"' values which need real per-letter content.
+// NOTE: most 'englishSound' descriptions are still empty ('') — filling the
+// ~24 per-letter sound descriptions needs care (ideally with a native
+// speaker) and is tracked as remaining content work, not placeholder text.
 
 export const dualConsonants = {
   id: 'foundations-double-consonants',

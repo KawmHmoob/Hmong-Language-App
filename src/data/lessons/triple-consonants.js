@@ -1,5 +1,6 @@
 // Standalone lesson: the three-letter consonant combinations of Hmong RPA.
-// PLACEHOLDER — letter list, examples, and audio paths need real content.
+// Content filled 2026-07-16 (Slice A pass) — audio still pending, and some
+// example words await native-speaker verification (TODO-VERIFY marks).
 // Follows the lesson model in ../lessons.js.
 
 export const tripleConsonants = {
@@ -14,7 +15,7 @@ export const tripleConsonants = {
       body: [
         'Triple consonants in the Hmong language are combinations of 3 letters used to represent a single consonant sound.',
         'They build on the single and double consonants you have already seen, often layering a pre-nasal or an aspiration onto a simpler cluster.',
-        'PLACEHOLDER intro text — update with the real count and explanation.',
+        'The fourteen combinations below each spell ONE sound, not three. For example the "npl" in "nplooj" (leaf) is a single consonant that begins with a hum through the nose — say it as one crisp sound, not n-p-l.',
       ],
     },
     {
@@ -23,29 +24,29 @@ export const tripleConsonants = {
       title: 'Triple Consonants Examples',
       intro: 'Triple Consonants Examples',
       items: [
-        { hmong: 'Hml', hmongExample: '', audio: '' },
-        { hmong: 'Hny', hmongExample: '', audio: '' },
-        { hmong: 'Nch', hmongExample: '', audio: '' },
-        { hmong: 'Nkh', hmongExample: '', audio: '' },
-        { hmong: 'Nph', hmongExample: '', audio: '' },
-        { hmong: 'Npl', hmongExample: '', audio: '' },
-        { hmong: 'Nqh', hmongExample: '', audio: '' },
-        { hmong: 'Nrh', hmongExample: '', audio: '' },
-        { hmong: 'Nth', hmongExample: '', audio: '' },
-        { hmong: 'Nts', hmongExample: '', audio: '' },
-        { hmong: 'Ntx', hmongExample: '', audio: '' },
-        { hmong: 'Plh', hmongExample: '', audio: '' },
-        { hmong: 'Tsh', hmongExample: '', audio: '' },
-        { hmong: 'Txh', hmongExample: '', audio: '' },
+        { hmong: 'Hml', hmongExample: '', audio: '' }, // TODO-VERIFY: need a common, attested hml- word
+        { hmong: 'Hny', hmongExample: 'Hnyav (heavy)', audio: '' },
+        { hmong: 'Nch', hmongExample: '', audio: '' }, // TODO-VERIFY: candidate "ncho" (to smoke) — confirm before adding
+        { hmong: 'Nkh', hmongExample: 'Nkhaus (crooked)', audio: '' }, // TODO-VERIFY: confirm "nkhaus"
+        { hmong: 'Nph', hmongExample: '', audio: '' }, // TODO-VERIFY: need a common, attested nph- word
+        { hmong: 'Npl', hmongExample: 'Nplooj (leaf)', audio: '' },
+        { hmong: 'Nqh', hmongExample: 'Nqhis (thirsty)', audio: '' },
+        { hmong: 'Nrh', hmongExample: 'Nrhiav (to look for)', audio: '' },
+        { hmong: 'Nth', hmongExample: '', audio: '' }, // TODO-VERIFY: candidate "nthuav" (to unfold) — confirm
+        { hmong: 'Nts', hmongExample: 'Ntses (fish)', audio: '' },
+        { hmong: 'Ntx', hmongExample: 'Ntxuav (to wash)', audio: '' },
+        { hmong: 'Plh', hmongExample: 'Plhu (cheek)', audio: '' }, // TODO-VERIFY: confirm "plhu"
+        { hmong: 'Tsh', hmongExample: 'Tshuaj (medicine)', audio: '' },
+        { hmong: 'Txh', hmongExample: 'Txhua (every)', audio: '' },
       ],
     },
     {
       id: 'foundations-triple-consonants-practice',
       kind: 'practice',
       title: 'Quick check',
-      prompt: 'PLACEHOLDER practice question — replace with a real prompt.',
-      options: ['Option A', 'Option B', 'Option C', 'Option D'],
-      answer: 'Option A',
+      prompt: 'Which of these is a THREE-letter consonant?',
+      options: ['Npl', 'Np', 'Nplh', 'Pl'],
+      answer: 'Npl',
     },
     {
       id: 'foundations-triple-consonants-quiz',

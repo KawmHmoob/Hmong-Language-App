@@ -1,5 +1,5 @@
-import { consonants, doubleConsonants, vowels, tones } from './alphabet.js'
-import { grammar, everyday } from './course.js'
+import { consonants, doubleConsonants, vowels, tones, grammar } from './reference.js'
+import { speakGroups } from './speak.js'
 import { toneDrillWords } from './toneDrill.js'
 
 import {categories} from './vocabulary.js'
@@ -76,9 +76,9 @@ export const quizzes = [
     id: 'everyday-greetings',
     title: 'Greetings',
     description: 'Common Hmong greetings.',
-    questionCount: 4,
+    questionCount: 5,
     questionTypes: ['multiple-choice'],
-    category: 'Everyday',
+    category: 'Speak',
   },
 ]
 
@@ -114,9 +114,11 @@ export function getQuizDataset(id) {
       const group = grammar.find((g) => g.title === 'Pronouns')
       return group ? group.items.map((i) => ({ prompt: i.hmong, answer: i.english })) : []
     }
+    // Sourced from Speak now — the old course "everyday" lists moved there
+    // when /course dissolved. Quiz id kept: it's in users' saved quizScores.
     case 'everyday-greetings': {
-      const group = everyday.find((e) => e.title === 'Greetings')
-      return group ? group.items.map((i) => ({ prompt: i.hmong, answer: i.english })) : []
+      const group = speakGroups.find((g) => g.id === 'speak-greetings')
+      return group ? group.phrases.map((p) => ({ prompt: p.hmong, answer: p.english })) : []
     }
 
 

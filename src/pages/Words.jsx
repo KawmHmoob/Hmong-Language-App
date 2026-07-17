@@ -2,6 +2,10 @@ import { Link } from 'react-router-dom'
 import { categories } from '../data/vocabulary.js'
 import { useProgress } from '../hooks/useProgress.js'
 import { selectDueWords } from '../context/ProgressContext.jsx'
+import {
+  FlameIcon, StarIcon, InboxIcon, CheckCircleIcon,
+  MusicNoteIcon, ZapIcon, GridIcon, NotebookIcon, CategoryIcon,
+} from '../components/icons/index.jsx'
 
 // Words hub — the app's second front door. Pulls today's SRS queue, streak,
 // and XP into one place and fans out to every way of drilling vocabulary
@@ -31,7 +35,10 @@ export default function Words() {
     <div>
       {/* Section hero */}
       <div className="mb-10">
-        <p className="text-xs uppercase tracking-[0.25em] text-clay-600 mb-2">Words</p>
+        <p className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-stone-600 mb-2">
+          <span className="h-2 w-2 rounded-full bg-blush-500" aria-hidden="true" />
+          Words
+        </p>
         <h2 className="font-serif text-4xl sm:text-5xl text-stone-900 mb-3">
           A few words a day.
         </h2>
@@ -43,10 +50,10 @@ export default function Words() {
 
       {/* Stats row */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
-        <StatTile label="Day streak" value={streakData.currentStreak} emoji="🔥" />
-        <StatTile label="Total XP" value={xp} emoji="✨" />
-        <StatTile label="Due today" value={dueNow} emoji="📥" />
-        <StatTile label="Reviewed today" value={reviewedToday} emoji="✅" />
+        <StatTile label="Day streak" value={streakData.currentStreak} icon={FlameIcon} />
+        <StatTile label="Total XP" value={xp} icon={StarIcon} />
+        <StatTile label="Due today" value={dueNow} icon={InboxIcon} />
+        <StatTile label="Reviewed today" value={reviewedToday} icon={CheckCircleIcon} />
       </div>
 
       {/* Daily goal + session CTA */}
@@ -86,25 +93,25 @@ export default function Words() {
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-10">
         <DrillTile
           to="/quiz/tone-drill"
-          emoji="🎵"
+          icon={MusicNoteIcon}
           title="Tone drill"
           blurb="Hear the difference the last letter makes."
         />
         <DrillTile
           to="/quiz"
-          emoji="⚡"
+          icon={ZapIcon}
           title="Quizzes"
           blurb="Multiple choice and matching, by topic."
         />
         <DrillTile
           to="/vocabulary"
-          emoji="🗂️"
+          icon={GridIcon}
           title="Browse words"
           blurb="Flashcards by category, at your own pace."
         />
         <DrillTile
           to="/notebook"
-          emoji="📓"
+          icon={NotebookIcon}
           title="Notebook"
           blurb="The words you saved for later."
         />
@@ -119,7 +126,7 @@ export default function Words() {
             to={`/vocabulary/${c.id}`}
             className="surface surface-hover px-3.5 py-2 text-sm text-stone-800"
           >
-            <span aria-hidden="true" className="mr-1.5">{c.emoji}</span>
+            <CategoryIcon category={c} size={15} className="mr-1.5 inline-block align-[-2px] text-clay-600" />
             {c.title}
           </Link>
         ))}
@@ -128,20 +135,20 @@ export default function Words() {
   )
 }
 
-function StatTile({ label, value, emoji }) {
+function StatTile({ label, value, icon: Icon }) {
   return (
-    <div className="surface p-4 text-center">
-      <p className="text-2xl mb-0.5" aria-hidden="true">{emoji}</p>
+    <div className="surface p-4 text-center flex flex-col items-center">
+      <Icon size={20} className="text-blush-500 mb-1" />
       <p className="font-serif text-2xl text-stone-900 leading-none">{value}</p>
       <p className="text-xs text-stone-600 mt-1">{label}</p>
     </div>
   )
 }
 
-function DrillTile({ to, emoji, title, blurb }) {
+function DrillTile({ to, icon: Icon, title, blurb }) {
   return (
     <Link to={to} className="surface surface-hover p-4 block h-full">
-      <p className="text-2xl mb-2" aria-hidden="true">{emoji}</p>
+      <Icon size={22} className="text-blush-500 mb-2" />
       <p className="font-medium text-stone-900">{title}</p>
       <p className="text-sm text-stone-600 mt-0.5">{blurb}</p>
     </Link>

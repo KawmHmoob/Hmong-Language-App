@@ -30,7 +30,7 @@ function SavedWords() {
   const { savedWords, unsaveWord, updateWordNote } = useNotebook()
   const ids = Object.keys(savedWords)
 
-  // Build a flat lookup once per render â€” small data, fine to recompute.
+  // Build a flat lookup once per render — small data, fine to recompute.
   const wordById = {}
   for (const cat of categories) {
     for (const w of cat.words) {
@@ -98,7 +98,7 @@ function SavedWordItem({ word, entry, onUpdate, onRemove }) {
           <textarea
             value={note}
             onChange={(e) => setNote(e.target.value)}
-            placeholder="Your note about this wordâ€¦"
+            placeholder="Your note about this word…"
             className="w-full rounded border border-cream-300 bg-cream-50 p-3 text-sm focus:outline-none focus:border-clay-500"
             rows={3}
             autoFocus
@@ -203,7 +203,7 @@ function NoteItem({ note }) {
       <textarea
         value={body}
         onChange={(e) => setBody(e.target.value)}
-        placeholder="Write hereâ€¦"
+        placeholder="Write here…"
         rows={6}
         className="w-full rounded border border-cream-300 bg-cream-50 px-3 py-2 text-sm focus:outline-none focus:border-clay-500"
       />

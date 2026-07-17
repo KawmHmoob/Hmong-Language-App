@@ -88,6 +88,48 @@ export const speakGroups = [
         audio: '',
         tip: 'Four quick syllables — keep the rhythm even rather than rushing the middle.',
       },
+      {
+        id: 'speak-thov',
+        hmong: 'Thov',
+        english: 'Please',
+        audio: '',
+        tip: 'The "Th" is aspirated — a puff of air, not the English "th" in "the".',
+      },
+    ],
+  },
+  {
+    id: 'speak-daily-life',
+    title: 'Daily Life',
+    description: 'The small things people actually say to each other every day.',
+    phrases: [
+      {
+        id: 'speak-koj-noj-mov-tau',
+        hmong: 'Koj noj mov tau?',
+        english: 'Have you eaten?',
+        audio: '',
+        tip: 'A greeting as much as a question — asking after someone\'s meal is asking after them.',
+      },
+      {
+        id: 'speak-kuv-tshaib-plab',
+        hmong: 'Kuv tshaib plab',
+        english: "I'm hungry",
+        audio: '',
+        tip: 'Literally "my stomach is hungry" — the body part carries the feeling.',
+      },
+      {
+        id: 'speak-kuv-nqhis-dej',
+        hmong: 'Kuv nqhis dej',
+        english: "I'm thirsty",
+        audio: '',
+        tip: 'Literally "I thirst water." The "nqh" is one sound — hum it through the nose.',
+      },
+      {
+        id: 'speak-kuv-tsaug-zog',
+        hmong: 'Kuv tsaug zog',
+        english: "I'm tired / sleepy",
+        audio: '',
+        tip: 'Don\'t confuse "tsaug zog" (sleepy) with "ua tsaug" (thank you).',
+      },
     ],
   },
   {

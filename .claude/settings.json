@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd \"c:/Users/Devan Chuyen Lee/Documents/KawmHmoob\" && npx vite build 2>&1 | grep -E \"built|error|Error\"; rm -f /tmp/fixmoji.mjs)"
+    ],
+    "additionalDirectories": [
+      "\\tmp"
+    ]
+  }
+}

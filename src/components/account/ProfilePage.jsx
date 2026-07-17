@@ -28,7 +28,7 @@ export default function ProfilePage() {
       <div className="surface p-8 max-w-xl">
         <h2 className="font-serif text-3xl text-stone-900 mb-2">Guest Account</h2>
         <p className="text-stone-700 mb-6 leading-relaxed">
-          You're learning as a guest. Progress is saved on this device only â€” clearing browser
+          You're learning as a guest. Progress is saved on this device only — clearing browser
           data will erase it. Create an account to save your work.
         </p>
         <div className="flex gap-2">

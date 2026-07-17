@@ -6,8 +6,8 @@ const KawmHmoobLogo = '/assets/KawmHmoobSvg1svgexport.svg'
 const links = [
   { to: '/', label: 'Home', end: true },
   { to: '/learn', label: 'Learn' },
-  { to: '/alphabet', label: 'Alphabet' },
-  { to: '/course', label: 'Course' },
+  { to: '/reference', label: 'Reference' },
+  { to: '/speak', label: 'Speak' },
   { to: '/vocabulary', label: 'Vocabulary' },
   { to: '/notebook', label: 'Notebook' },
   { to: '/quiz', label: 'Quiz' },

@@ -1,31 +1,73 @@
-import { useEffect, useRef, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
 
-// The app's primary navigation: exactly TWO front doors (Speak, Words) plus a
-// compact "More" for everything else.
+// Primary navigation — FIVE sections, no "More" sheet. Every page in the app
+// belongs to a section, and the section stays lit wherever you are inside it
+// (e.g. /vocabulary lights up Words). See notes/30 + notes/32 for the IA.
 //
-// Renders BOTH form factors from one links source:
-//   - desktop (md+): a left rail, sticky inside Layout's flex row
-//   - mobile: a fixed bottom tab bar; "More" opens a sheet above the bar
+// Renders both form factors from one config:
+//   - mobile: fixed bottom tab bar with a sliding accent indicator
+//   - desktop (md+): a left rail with accent-tinted active pills
 //
-// The fixed tab bar doesn't care where it sits in the DOM, so one mount point
-// in Layout covers both. Secondary pages stay reachable here AND keep their
-// original routes.
+// Section identity: each section has an accent used for the indicator bar,
+// the rail pill tint, and hub eyebrows — while ACTIVE TEXT stays ink. That's
+// deliberate: some accents (seafoam) fail text-contrast on cream in the
+// light theme, so color marks the place and type weight marks the state.
+//
+// Tailwind note: accent classes are written out literally per section (not
+// template strings) because the JIT compiler only ships classes it can see.
 
-const primary = [
-  { to: '/speak', label: 'Speak', icon: MicIcon, blurb: 'Pronunciation practice' },
-  { to: '/words', label: 'Words', icon: CardsIcon, blurb: 'Vocabulary & drills' },
+const sections = [
+  {
+    id: 'home',
+    to: '/',
+    label: 'Home',
+    icon: HomeIcon,
+    match: (p) => p === '/',
+    ind: 'bg-stone-700',
+    pill: 'bg-cream-100',
+  },
+  {
+    id: 'learn',
+    to: '/learn',
+    label: 'Learn',
+    icon: BookIcon,
+    match: (p) => p.startsWith('/learn'),
+    ind: 'bg-seafoam-500',
+    pill: 'bg-seafoam-500/15',
+  },
+  {
+    id: 'reference',
+    to: '/reference',
+    label: 'Reference',
+    icon: AlphabetIcon,
+    match: (p) => p.startsWith('/reference') || p.startsWith('/alphabet') || p.startsWith('/course'),
+    ind: 'bg-cream-600',
+    pill: 'bg-cream-600/20',
+  },
+  {
+    id: 'speak',
+    to: '/speak',
+    label: 'Speak',
+    icon: MicIcon,
+    match: (p) => p.startsWith('/speak'),
+    ind: 'bg-clay-600',
+    pill: 'bg-clay-600/15',
+  },
+  {
+    id: 'words',
+    to: '/words',
+    label: 'Words',
+    icon: CardsIcon,
+    match: (p) =>
+      ['/words', '/vocabulary', '/quiz', '/notebook'].some((r) => p.startsWith(r)),
+    ind: 'bg-blush-500',
+    pill: 'bg-blush-500/15',
+  },
 ]
 
-const secondary = [
-  { to: '/', label: 'Home', end: true },
-  { to: '/learn', label: 'Learn' },
-  { to: '/alphabet', label: 'Alphabet' },
-  { to: '/course', label: 'Course' },
-  { to: '/vocabulary', label: 'Vocabulary' },
-  { to: '/notebook', label: 'Notebook' },
-  { to: '/quiz', label: 'Quiz' },
-]
+function activeIndex(pathname) {
+  return sections.findIndex((s) => s.match(pathname))
+}
 
 export default function PrimaryNav() {
   return (
@@ -37,197 +79,141 @@ export default function PrimaryNav() {
 }
 
 function SideRail() {
+  const { pathname } = useLocation()
+  const active = activeIndex(pathname)
+
   return (
     <nav
       aria-label="Primary"
-      className="hidden md:block w-56 shrink-0 self-start sticky top-28 pl-4 py-10"
+      className="hidden md:block w-52 shrink-0 self-start sticky top-28 pl-4 py-10"
     >
-      <div className="space-y-2">
-        {primary.map(({ to, label, icon: Icon, blurb }) => (
-          <NavLink
-            key={to}
-            to={to}
-            className={({ isActive }) =>
-              `group flex items-start gap-3 rounded-md border px-4 py-3.5 transition-all duration-200 ${
+      <div className="flex flex-col gap-1">
+        {sections.map((s, i) => {
+          const isActive = i === active
+          const Icon = s.icon
+          return (
+            <NavLink
+              key={s.id}
+              to={s.to}
+              aria-current={isActive ? 'page' : undefined}
+              className={`flex items-center gap-3 rounded-lg px-3 py-2.5 transition-colors ${
                 isActive
-                  ? 'bg-cream-50 border-clay-500 shadow-warm'
-                  : 'bg-cream-50/60 border-cream-200 hover:bg-cream-50 hover:shadow-warm'
-              }`
-            }
-          >
-            {({ isActive }) => (
-              <>
+                  ? `${s.pill} text-stone-900`
+                  : 'text-stone-700 hover:bg-cream-100 hover:text-stone-900'
+              }`}
+            >
+              <Icon aria-hidden="true" filled={isActive} />
+              <span className={`text-sm ${isActive ? 'font-semibold' : 'font-medium'}`}>
+                {s.label}
+              </span>
+              {isActive && (
                 <span
-                  className={`mt-0.5 ${isActive ? 'text-clay-600' : 'text-stone-500 group-hover:text-clay-600'} transition`}
+                  className={`ml-auto h-1.5 w-1.5 rounded-full ${s.ind}`}
                   aria-hidden="true"
-                >
-                  <Icon />
-                </span>
-                <span className="min-w-0">
-                  <span className={`block font-serif text-lg leading-tight ${isActive ? 'text-clay-700' : 'text-stone-900'}`}>
-                    {label}
-                  </span>
-                  <span className="block text-xs text-stone-600 mt-0.5">{blurb}</span>
-                </span>
-              </>
-            )}
-          </NavLink>
-        ))}
-      </div>
-
-      <p className="mt-8 mb-2 px-1 text-[11px] uppercase tracking-[0.2em] text-stone-600">
-        More
-      </p>
-      <div className="flex flex-col gap-0.5">
-        {secondary.map(({ to, label, end }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={end}
-            className={({ isActive }) =>
-              `rounded px-3 py-1.5 text-sm transition ${
-                isActive
-                  ? 'bg-stone-900 text-cream-50 font-medium'
-                  : 'text-stone-800 hover:bg-cream-100'
-              }`
-            }
-          >
-            {label}
-          </NavLink>
-        ))}
+                />
+              )}
+            </NavLink>
+          )
+        })}
       </div>
     </nav>
   )
 }
 
 function TabBar() {
-  const [moreOpen, setMoreOpen] = useState(false)
-  const location = useLocation()
-  const moreRef = useRef(null)
-
-  // Close the sheet whenever navigation happens.
-  useEffect(() => {
-    setMoreOpen(false)
-  }, [location.pathname])
-
-  // Close on Escape, and return focus to the More button.
-  useEffect(() => {
-    if (!moreOpen) return
-    const onKey = (e) => {
-      if (e.key === 'Escape') {
-        setMoreOpen(false)
-        moreRef.current?.focus()
-      }
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [moreOpen])
+  const { pathname } = useLocation()
+  const active = activeIndex(pathname)
 
   return (
-    <nav
-      aria-label="Primary"
-      className="md:hidden fixed bottom-0 inset-x-0 z-30"
-    >
-      {moreOpen && (
-        <div
-          id="more-sheet"
-          className="mx-3 mb-2 rounded-xl glass shadow-warm-lg p-3"
-        >
-          <div className="grid grid-cols-2 gap-1">
-            {secondary.map(({ to, label, end }) => (
-              <NavLink
-                key={to}
-                to={to}
-                end={end}
-                className={({ isActive }) =>
-                  `rounded px-3 py-2.5 text-sm transition ${
-                    isActive
-                      ? 'bg-stone-900 text-cream-50 font-medium'
-                      : 'text-stone-800 hover:bg-cream-100'
-                  }`
-                }
-              >
-                {label}
-              </NavLink>
-            ))}
-          </div>
-        </div>
-      )}
-
-      <div className="glass border-x-0 border-b-0 shadow-warm-lg px-2 pb-[env(safe-area-inset-bottom)]">
-        <div className="grid grid-cols-3">
-          {primary.map(({ to, label, icon: Icon }) => (
-            <NavLink
-              key={to}
-              to={to}
-              className={({ isActive }) =>
-                `flex flex-col items-center gap-0.5 py-2.5 text-xs font-medium transition ${
-                  isActive ? 'text-clay-700' : 'text-stone-600 hover:text-stone-900'
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <Icon aria-hidden="true" />
-                  <span>{label}</span>
-                  <span
-                    className={`h-1 w-1 rounded-full ${isActive ? 'bg-clay-600' : 'bg-transparent'}`}
-                    aria-hidden="true"
-                  />
-                </>
-              )}
-            </NavLink>
-          ))}
-
-          <button
-            ref={moreRef}
-            type="button"
-            onClick={() => setMoreOpen((o) => !o)}
-            aria-expanded={moreOpen}
-            aria-controls="more-sheet"
-            aria-label="More pages"
-            className={`flex flex-col items-center gap-0.5 py-2.5 text-xs font-medium transition ${
-              moreOpen ? 'text-clay-700' : 'text-stone-600 hover:text-stone-900'
+    <nav aria-label="Primary" className="md:hidden fixed bottom-0 inset-x-0 z-30">
+      <div className="glass border-x-0 border-b-0 shadow-warm-lg pb-[env(safe-area-inset-bottom)]">
+        {/* Sliding indicator: one bar, width 1/4, moved by transform so it
+            animates on the GPU (and ports to RN as a transform later). */}
+        <div className="relative">
+          <div
+            aria-hidden="true"
+            className={`absolute top-0 left-0 h-0.5 w-1/5 rounded-full transition-transform duration-300 ${
+              active >= 0 ? sections[active].ind : 'opacity-0'
             }`}
-          >
-            <DotsIcon aria-hidden="true" />
-            <span>More</span>
-            <span
-              className={`h-1 w-1 rounded-full ${moreOpen ? 'bg-clay-600' : 'bg-transparent'}`}
-              aria-hidden="true"
-            />
-          </button>
+            style={{ transform: `translateX(${Math.max(active, 0) * 100}%)` }}
+          />
+          <div className="grid grid-cols-5">
+            {sections.map((s, i) => {
+              const isActive = i === active
+              const Icon = s.icon
+              return (
+                <NavLink
+                  key={s.id}
+                  to={s.to}
+                  aria-current={isActive ? 'page' : undefined}
+                  className={`flex flex-col items-center gap-1 pt-2.5 pb-2 min-h-[52px] transition-colors ${
+                    isActive ? 'text-stone-900' : 'text-stone-600 hover:text-stone-900'
+                  }`}
+                >
+                  <Icon aria-hidden="true" filled={isActive} />
+                  <span className={`text-[11px] ${isActive ? 'font-semibold' : 'font-medium'}`}>
+                    {s.label}
+                  </span>
+                </NavLink>
+              )
+            })}
+          </div>
         </div>
       </div>
     </nav>
   )
 }
 
-function MicIcon(props) {
+// Icons: 24x24 viewBox, currentColor, 2px round strokes. `filled` switches
+// the active state to a weightier look without needing a second SVG set.
+
+function HomeIcon({ filled, ...props }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <rect x="9" y="2" width="6" height="12" rx="3" />
+    <svg width="22" height="22" viewBox="0 0 24 24" fill={filled ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M3 10.5 12 3l9 7.5" fill="none" />
+      <path d="M5 9.5V21h14V9.5" fillOpacity={filled ? 0.15 : 0} />
+      <path d="M9 21v-6h6v6" fill="none" />
+    </svg>
+  )
+}
+
+// Capital "A" — the letters/orthography section. Reads at 22px where a
+// two-glyph "Aa" would turn to mush.
+function AlphabetIcon({ filled, ...props }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      {filled && <path d="M12 5.5L17.5 19h-11z" fill="currentColor" fillOpacity="0.15" stroke="none" />}
+      <path d="M5 20L12 4l7 16" />
+      <line x1="8.2" y1="14.5" x2="15.8" y2="14.5" />
+    </svg>
+  )
+}
+
+function BookIcon({ filled, ...props }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5z" fill={filled ? 'currentColor' : 'none'} fillOpacity={filled ? 0.15 : 0} />
+      <path d="M4 20.5A2.5 2.5 0 0 1 6.5 18H20" />
+      {filled && <line x1="8" y1="8" x2="15" y2="8" />}
+    </svg>
+  )
+}
+
+function MicIcon({ filled, ...props }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <rect x="9" y="2" width="6" height="12" rx="3" fill={filled ? 'currentColor' : 'none'} fillOpacity={filled ? 0.2 : 0} />
       <path d="M5 10v1a7 7 0 0 0 14 0v-1" />
       <line x1="12" y1="18" x2="12" y2="22" />
     </svg>
   )
 }
 
-function CardsIcon(props) {
+function CardsIcon({ filled, ...props }) {
   return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
-      <rect x="3" y="6" width="13" height="15" rx="2" />
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...props}>
+      <rect x="3" y="6" width="13" height="15" rx="2" fill={filled ? 'currentColor' : 'none'} fillOpacity={filled ? 0.2 : 0} />
       <path d="M8 3h11a2 2 0 0 1 2 2v13" />
-    </svg>
-  )
-}
-
-function DotsIcon(props) {
-  return (
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <circle cx="5" cy="12" r="2" />
-      <circle cx="12" cy="12" r="2" />
-      <circle cx="19" cy="12" r="2" />
     </svg>
   )
 }

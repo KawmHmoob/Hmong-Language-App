@@ -1,79 +1,93 @@
 import { Link } from 'react-router-dom'
+import { ArrowRightIcon } from '../components/icons/index.jsx'
+import LessonCard from '../components/learn/LessonCard.jsx'
 import { units, lessonProgress } from '../data/lessons.js'
 import { useProgress } from '../hooks/useProgress.js'
-import { useSubscription, canAccess } from '../context/SubscriptionContext.jsx'
+
+// Learn hub — a MAP of the course, not the whole course. Each unit shows its
+// first two lessons plus a "See all" into the unit's own page (/learn/:unitId).
+// Keeps the hub scannable as units grow; see notes/33.
+
+const PREVIEW_COUNT = 2
 
 export default function Learn() {
   const { completedSteps } = useProgress()
-  const { tier: userTier } = useSubscription()
 
   return (
     <>
       <div className="mb-8">
-        <h2 className="font-serif text-4xl text-stone-900 mb-2">Learn</h2>
+        <p className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-stone-600 mb-2">
+          <span className="h-2 w-2 rounded-full bg-seafoam-500" aria-hidden="true" />
+          Learn
+        </p>
+        <h2 className="font-serif text-4xl text-stone-900 mb-2">Study, step by step.</h2>
         <p className="text-stone-700">
           Structured units. Each lesson walks you through an intro, examples, a quick check, and a mini-quiz.
         </p>
       </div>
 
-      <div className="space-y-10">
-        {units.map((unit) => (
-          <section key={unit.id}>
-            <header className="mb-4">
-              <h3 className="font-serif text-2xl text-stone-900">{unit.title}</h3>
-              <p className="text-sm text-stone-600">{unit.description}</p>
-            </header>
+      {/* The other half of the job split: Learn explains, Reference states. */}
+      <Link
+        to="/reference/grammar"
+        className="surface surface-hover p-4 flex items-center justify-between gap-3 group mb-10"
+      >
+        <span>
+          <span className="block font-serif text-lg text-stone-900 group-hover:text-clay-700 transition">
+            Grammar cheat sheets
+          </span>
+          <span className="block text-sm text-stone-600">
+            Already know the concept? Look up the words instead.
+          </span>
+        </span>
+        <ArrowRightIcon size={18} className="text-stone-500 shrink-0" />
+      </Link>
 
-            <div className="grid gap-4 sm:grid-cols-2">
-              {unit.lessons.map((lesson) => {
-                const p = lessonProgress(lesson, completedSteps)
-                const requiredTier = lesson.tier || unit.tier || 'free'
-                const locked = !canAccess(requiredTier, userTier)
-                return (
+      <div className="space-y-10">
+        {units.map((unit) => {
+          const total = unit.lessons.length
+          const done = unit.lessons.filter(
+            (l) => lessonProgress(l, completedSteps).complete
+          ).length
+          const preview = unit.lessons.slice(0, PREVIEW_COUNT)
+          const rest = total - preview.length
+
+          return (
+            <section key={unit.id} aria-labelledby={`unit-${unit.id}`}>
+              <header className="mb-4 flex flex-wrap items-end justify-between gap-2">
+                <div className="min-w-0">
+                  <h3 id={`unit-${unit.id}`} className="font-serif text-2xl text-stone-900">
+                    <Link to={`/learn/${unit.id}`} className="hover:text-clay-700 transition">
+                      {unit.title}
+                    </Link>
+                  </h3>
+                  <p className="text-sm text-stone-600">{unit.description}</p>
+                </div>
+                <p className="text-xs text-stone-600 whitespace-nowrap">
+                  {done} / {total} done
+                </p>
+              </header>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {preview.map((lesson) => (
+                  <LessonCard key={lesson.id} unit={unit} lesson={lesson} />
+                ))}
+              </div>
+
+              {rest > 0 && (
+                <div className="mt-4">
                   <Link
-                    key={lesson.id}
-                    to={`/learn/${unit.id}/${lesson.id}`}
-                    className="surface surface-hover p-5 block group"
+                    to={`/learn/${unit.id}`}
+                    className="btn-ghost gap-2 w-full sm:w-auto"
                   >
-                    <div className="flex justify-between items-start mb-2 gap-3">
-                      <h4 className="font-serif text-xl text-stone-900 group-hover:text-clay-700 transition">
-                        {lesson.title}
-                      </h4>
-                      {locked ? (
-                        <span className="text-xs font-semibold rounded-full bg-clay-600 text-cream-50 px-2 py-0.5">
-                          ◆ Pro
-                        </span>
-                      ) : p.complete ? (
-                        <span className="text-xs font-semibold rounded-full bg-emerald-700 text-cream-50 px-2 py-0.5">
-                          ✓ Done
-                        </span>
-                      ) : null}
-                    </div>
-                    <p className="text-sm text-stone-600 mb-4 leading-relaxed">{lesson.summary}</p>
-                    <ProgressBar ratio={p.ratio} />
-                    <p className="text-xs text-stone-500 mt-2">
-                      {p.done} / {p.total} steps
-                    </p>
+                    See all {total} lessons
+                    <ArrowRightIcon size={16} />
                   </Link>
-                )
-              })}
-            </div>
-          </section>
-        ))}
+                </div>
+              )}
+            </section>
+          )
+        })}
       </div>
     </>
-  )
-}
-
-function ProgressBar({ ratio }) {
-  const pct = Math.round(ratio * 100)
-  return (
-    <div className="h-2 w-full bg-cream-200 rounded-full overflow-hidden">
-      <div
-        className="h-full bg-clay-600 transition-all"
-        style={{ width: `${pct}%` }}
-        aria-label={`${pct}% complete`}
-      />
-    </div>
   )
 }

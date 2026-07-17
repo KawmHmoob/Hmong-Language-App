@@ -14,7 +14,7 @@ Three-level browse: categories → words in a category → individual word detai
 - **Categories own their words** rather than a flat word array — keeps the data file readable when populated by hand and means category lookup is the primary access pattern (no extra index needed).
 - **Schema is permissive** — `whiteHmong`, `greenHmong`, `audioFile`, `exampleSentence`, and `image` are all optional so words can be added incrementally without schema migrations.
 - **Flip card without CSS 3D** — a simple `flipped` boolean swaps the visible content. Real 3D flip would need `transform-style: preserve-3d` plus `backface-visibility` plumbing; the boolean version reads as well and avoids extra CSS.
-
+s
 ## Code anatomy
 
 ### Data shape

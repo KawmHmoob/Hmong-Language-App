@@ -5,6 +5,7 @@ export const pronouns = {
   id: 'foundations-pronouns',
   title: 'Pronouns',
   summary: 'Singular, dual, and plural — Hmong marks all three.',
+  reference: 'grammar',
   steps: [
     {
       id: 'foundations-pronouns-intro',

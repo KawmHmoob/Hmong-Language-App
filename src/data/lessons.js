@@ -12,9 +12,13 @@ import { nounClassifiers } from './lessons/noun-classifiers'
 import { pronounsDemonstratives } from './lessons/pronouns-demonstratives'
 import { possessivePronouns } from './lessons/possessive-pronouns'
 import { yogToBe } from './lessons/yog-to-be'
+import { tenseMarkers } from './lessons/tense-markers'
 import { numbers } from './lessons/numbers'
 import { howMuch } from './lessons/how-much'
 import { time } from './lessons/time'
+import { readingMim } from './lessons/reading-mim'
+import { readingGarden } from './lessons/reading-garden'
+import { readingSchool } from './lessons/reading-school'
 
 // Structured lesson model: Units → Lessons → Steps.
 //
@@ -22,14 +26,23 @@ import { time } from './lessons/time'
 // A Lesson is one learnable thing (e.g. "Pronouns"). It contains many Steps.
 // A Step is one screen the user sees (intro, examples, practice, mini-quiz).
 //
-// Step kinds (v1):
+// Step kinds:
 //   - 'intro'      { title, body: string[] }
 //   - 'examples'   { title, intro?, items: [{ hmong, english, note?, audio? }] }
+//                  (consonant lessons use { hmong, hmongExample, englishSound }
+//                   instead; the renderer falls through — see notes/28)
 //   - 'practice'   { title, prompt, options: string[], answer }
 //   - 'mini-quiz'  { title, quizId }
+//   - 'reading'    { title, level, intro?, hmong, english, glossary: [{hmong, english}] }
+//                  Translation stays hidden until the learner asks — see notes/34.
 //
 // Optional `tier: 'free' | 'pro'` on a Unit or Lesson gates content behind the
 // paywall. Lesson tier overrides unit tier. Both default to 'free'.
+//
+// Optional `reference: '<tab>'` on a Lesson links it to its cheat sheet in the
+// Reference section (e.g. 'grammar'). The lesson player renders a "Cheat sheet"
+// link; the table links back with "Learn this". Two doors, same knowledge —
+// see notes/34.
 //
 // IDs must be globally unique across the app — they're used as progress keys.
 //
@@ -53,6 +66,7 @@ const foundations = {
     tripleConsonants,
     quadrupleConsonants,
     actionVerbs,
+    tenseMarkers,
     nounClassifiers,
     pronounsDemonstratives,
     possessivePronouns,
@@ -86,10 +100,24 @@ const numbersAndTime = {
   ],
 }
 
+// The Readings unit. Connected prose — the only place words appear in context.
+// Ordered by difficulty (the `level` on each reading step).
+const readings = {
+  id: 'readings',
+  title: 'Readings',
+  description: 'Short passages to read for meaning. Hmong first, translation only when you ask.',
+  lessons: [
+    readingMim,
+    readingGarden,
+    readingSchool,
+    // Drop new readings here, easiest first.
+  ],
+}
+
 // `units` is the top-level export consumed by the Learn page and the lesson
 // player. Add additional units here as you build them — same pattern: import
 // the lessons, declare the unit, list it.
-export const units = [foundations, conversational, numbersAndTime]
+export const units = [foundations, conversational, numbersAndTime, readings]
 
 // ──────────────────────────────────────────────────────────────────────────
 // Helpers — pure read-only functions over the data above.

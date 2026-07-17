@@ -7,6 +7,7 @@ import AudioButton from '../common/AudioButton.jsx'
 import Breadcrumbs from '../common/Breadcrumbs.jsx'
 import PaywallGate from '../common/PaywallGate.jsx'
 import QuizResults from './QuizResults.jsx'
+import { FlameIcon, StarIcon, CheckIcon } from '../icons/index.jsx'
 
 function shuffle(arr) {
   const copy = arr.slice()
@@ -167,8 +168,12 @@ export default function QuizEngine() {
         </div>
         <div className="flex gap-2 text-xs font-semibold">
           <span className="rounded-full bg-cream-200 px-3 py-1 text-clay-700">⏱ {elapsed}s</span>
-          <span className="rounded-full bg-orange-200 px-3 py-1 text-orange-900">🔥 {state.streak}</span>
-          <span className="rounded-full bg-cream-100 px-3 py-1 text-stone-800">★ {state.score}</span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-cream-200 px-3 py-1 text-clay-700">
+            <FlameIcon size={12} /> {state.streak}
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-cream-100 px-3 py-1 text-stone-800">
+            <StarIcon size={12} /> {state.score}
+          </span>
         </div>
       </div>
 
@@ -206,8 +211,9 @@ export default function QuizEngine() {
               : 'bg-red-100 text-red-900'
           }`}
         >
-          <span className="font-medium">
-            {feedback === 'correct' ? 'Correct âœ“' : `Not quite â€” answer: ${q.answer}`}
+          <span className="inline-flex items-center gap-1.5 font-medium">
+            {feedback === 'correct' && <CheckIcon size={15} />}
+            {feedback === 'correct' ? 'Correct' : `Not quite — answer: ${q.answer}`}
           </span>
           <button
             onClick={() => {
@@ -312,7 +318,7 @@ function Matching({ question, feedback, onComplete }) {
                 }`}
               >
                 <div className="font-medium text-clay-700">{l}</div>
-                {matched && <div className="text-xs text-stone-500">â†’ {matched}</div>}
+                {matched && <div className="text-xs text-stone-500">→ {matched}</div>}
               </button>
             )
           })}

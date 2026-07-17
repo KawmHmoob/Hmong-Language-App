@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { LockIcon, CheckIcon } from '../components/icons/index.jsx'
 import { speakGroups, allPhrases, speakStepId } from '../data/speak.js'
 import { useProgress } from '../hooks/useProgress.js'
 import { useSubscription } from '../context/SubscriptionContext.jsx'
@@ -19,7 +20,10 @@ export default function Speak() {
     <div>
       {/* Section hero */}
       <div className="mb-10">
-        <p className="text-xs uppercase tracking-[0.25em] text-clay-600 mb-2">Speak</p>
+        <p className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-stone-600 mb-2">
+          <span className="h-2 w-2 rounded-full bg-clay-600" aria-hidden="true" />
+          Speak
+        </p>
         <h2 className="font-serif text-4xl sm:text-5xl text-stone-900 mb-3">
           Say it like it’s yours.
         </h2>
@@ -68,21 +72,23 @@ export default function Speak() {
                       <span className="shrink-0 flex items-center gap-2">
                         {phrase.tier === 'pro' && (
                           <span
-                            className={`text-[10px] uppercase tracking-wider font-medium rounded-full px-2 py-0.5 ${
+                            className={`inline-flex items-center gap-1 text-[10px] uppercase tracking-wider font-medium rounded-full px-2 py-0.5 ${
                               locked
                                 ? 'bg-cream-200 text-stone-600'
                                 : 'bg-clay-500 text-cream-50'
                             }`}
                           >
-                            {locked ? '🔒 Pro' : 'Pro'}
+                            {locked && <LockIcon size={10} />}
+                            Pro
                           </span>
                         )}
                         {done && (
                           <span
-                            className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-emerald-100 text-emerald-700 text-xs"
+                            className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-emerald-100 text-emerald-700"
                             title="Practiced"
                           >
-                            ✓<span className="sr-only">Practiced</span>
+                            <CheckIcon size={12} />
+                            <span className="sr-only">Practiced</span>
                           </span>
                         )}
                       </span>

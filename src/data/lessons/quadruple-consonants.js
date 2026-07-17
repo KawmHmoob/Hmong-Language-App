@@ -1,5 +1,8 @@
 // Standalone lesson: the four-letter consonant combinations of Hmong RPA.
-// PLACEHOLDER — letter list, examples, and audio paths need real content.
+// Content filled 2026-07-16 (Slice A pass) — audio still pending.
+// NOTE: the earlier entry "Nrhh" was removed — it is not a standard White
+// Hmong RPA cluster (the attested four-letter set is nplh, ntsh, ntxh).
+// TODO-VERIFY: confirm the removal with a native speaker / reference.
 // Follows the lesson model in ../lessons.js.
 
 export const quadrupleConsonants = {
@@ -14,7 +17,7 @@ export const quadrupleConsonants = {
       body: [
         'Quadruple consonants in the Hmong language are combinations of 4 letters used to represent a single consonant sound.',
         'These are the longest consonant clusters in Hmong RPA, typically stacking a pre-nasal, a base consonant, and an aspiration together.',
-        'PLACEHOLDER intro text — update with the real count and explanation.',
+        'White Hmong has just three of them — nplh, ntsh, and ntxh — so this is the shortest letter lesson in the course. Each is still ONE sound: "nplhaib" (ring) starts with a single burst, not four separate letters.',
       ],
     },
     {
@@ -23,19 +26,18 @@ export const quadrupleConsonants = {
       title: 'Quadruple Consonants Examples',
       intro: 'Quadruple Consonants Examples',
       items: [
-        { hmong: 'Nplh', hmongExample: '', audio: '' },
-        { hmong: 'Nrhh', hmongExample: '', audio: '' },
-        { hmong: 'Ntsh', hmongExample: '', audio: '' },
-        { hmong: 'Ntxh', hmongExample: '', audio: '' },
+        { hmong: 'Nplh', hmongExample: 'Nplhaib (ring)', audio: '' },
+        { hmong: 'Ntsh', hmongExample: 'Ntshai (afraid)', audio: '' },
+        { hmong: 'Ntxh', hmongExample: 'Ntxhais (daughter / girl)', audio: '' },
       ],
     },
     {
       id: 'foundations-quadruple-consonants-practice',
       kind: 'practice',
       title: 'Quick check',
-      prompt: 'PLACEHOLDER practice question — replace with a real prompt.',
-      options: ['Option A', 'Option B', 'Option C', 'Option D'],
-      answer: 'Option A',
+      prompt: 'Which of these is a FOUR-letter consonant?',
+      options: ['Ntxh', 'Ntx', 'Txh', 'Nts'],
+      answer: 'Ntxh',
     },
     {
       id: 'foundations-quadruple-consonants-quiz',

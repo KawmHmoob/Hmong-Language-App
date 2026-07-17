@@ -13,6 +13,7 @@ This folder is the audit trail for everything in the app. Each note explains **w
 0. [00-architecture.md](00-architecture.md) — Folder layout, boot sequence, data flow, where to add things
 1. [01-quiz-engine.md](01-quiz-engine.md) — Generic quiz runner with multiple-choice and matching
 2. [02-vocabulary.md](02-vocabulary.md) — Categories, list, flashcards, word detail
+   - ⚠️ Notes 01–17 predate the Speak/Words/Reference restructure. Where they conflict with notes 21–34, the later notes win.
 3. [03-progress-tracking.md](03-progress-tracking.md) — XP, streaks, completed lessons, vocab status, **SRS schedule**
 4. [04-account-system.md](04-account-system.md) — Guest / authed user, login, register, profile
 5. [05-audio-placeholder.md](05-audio-placeholder.md) — AudioButton + useAudio hook (no real audio yet)
@@ -36,6 +37,15 @@ This folder is the audit trail for everything in the app. Each note explains **w
 23. [23-words-section.md](23-words-section.md) — Words section: unified vocab hub, derived daily goal, SRS session flow (supersedes `/review`)
 24. [24-theming-and-polish.md](24-theming-and-polish.md) — Dark/light theming via semantic CSS-variable tokens, glass chrome, radii/press polish, RN migration mapping
 25. [25-neon-theme-and-bento-home.md](25-neon-theme-and-bento-home.md) — Third "Neon" theme (violet/coral/teal, glow shadows), 3-way theme cycle, bento Home dashboard with phrase of the day
+26. [26-cleanup-prompt.md](26-cleanup-prompt.md) — **(Prompt)** Paste-ready cleanup pass: fill PLACEHOLDERs with real Hmong (TODO-VERIFY guardrails), dead-code/bug fixes, content unification, RN migration folder
+27. [27-content-fill-slice-a.md](27-content-fill-slice-a.md) — Slice A executed: all lesson PLACEHOLDERs filled with real White Hmong, Nrhh corrected, TODO-VERIFY review list for a native speaker
+28. [28-dead-code-and-bug-fixes.md](28-dead-code-and-bug-fixes.md) — Slice B executed: Review.jsx deleted, the three-bugs-in-one-line lesson audio fix, color/link sweeps clean
+29. [29-navigation-and-visual-system-prompt.md](29-navigation-and-visual-system-prompt.md) — **(Prompt)** The "looks like 2011" fix: IA/nav rebuild, icon system replacing emoji, elevation ladder, language-forward type scale
+30. [30-four-section-nav.md](30-four-section-nav.md) — Priority 1 executed: four-section IA (Home/Learn/Speak/Words), sliding tab indicator, section accents, "More" sheet deleted
+31. [31-icon-system.md](31-icon-system.md) — Priority 2 executed: inline-SVG icon set replaces all chrome emoji, CategoryIcon fallback pattern, header professionalized
+32. [32-alphabet-section-and-mojibake.md](32-alphabet-section-and-mojibake.md) — Alphabet promoted to a 5th nav section (amends note 30's four-tab rule) + the app-wide mojibake repair and what causes it
+33. [33-unit-pages.md](33-unit-pages.md) — Learn split into a hub (2 previews per unit + See all) and per-unit pages at `/learn/:unitId`; shared LessonCard extracted
+34. [34-reference-vs-learn.md](34-reference-vs-learn.md) — **Course dissolved.** Organizing surfaces by job (look up / learn / drill / say): `/alphabet`→`/reference` + Grammar tab, Readings unit + `reading` step kind, Tense Markers lesson, two-way cross-links
 
 ## Conventions used across features
 

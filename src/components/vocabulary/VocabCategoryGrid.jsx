@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { categories } from '../../data/vocabulary.js'
 import Breadcrumbs from '../common/Breadcrumbs.jsx'
+import { CategoryIcon } from '../icons/index.jsx'
 
 export default function VocabCategoryGrid() {
   return (
@@ -18,7 +19,9 @@ export default function VocabCategoryGrid() {
             to={`/vocabulary/${c.id}`}
             className="surface surface-hover p-6 block"
           >
-            <div className="text-4xl mb-3 opacity-80">{c.emoji}</div>
+            <div className="mb-3 text-clay-600">
+              <CategoryIcon category={c} size={32} />
+            </div>
             <h3 className="font-serif text-xl text-stone-900 mb-1">{c.title}</h3>
             <p className="text-sm text-stone-600 leading-relaxed">{c.description}</p>
             <p className="text-xs uppercase tracking-wider text-clay-600 mt-4">

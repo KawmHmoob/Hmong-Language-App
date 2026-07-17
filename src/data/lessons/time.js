@@ -1,6 +1,6 @@
 // Standalone lesson: telling time and time-of-day words in Hmong.
-// PLACEHOLDER — examples and notes need real content.
-// Follows the lesson model in ../lessons.js.
+// Content filled 2026-07-16 (Slice A pass) — audio still pending, see
+// instructions/audio-files.md. Follows the lesson model in ../lessons.js.
 
 export const time = {
   id: 'numbers-time',
@@ -13,7 +13,7 @@ export const time = {
       title: 'Talking about time',
       body: [
         'This lesson covers the words for parts of the day and how to tell the time in Hmong. It builds directly on the numbers lesson.',
-        'PLACEHOLDER intro text — update with the real explanation.',
+        'Everyday Hmong often marks time by the part of the day — morning, midday, dark — rather than the clock. For clock time, "teev" (hour) does the work with a number in front: "ob teev" = two o\'clock.', // TODO-VERIFY: "ob teev" as natural clock-time phrasing
       ],
     },
     {
@@ -22,22 +22,22 @@ export const time = {
       title: 'Times of day',
       intro: 'Read each word aloud.',
       items: [
-        { hmong: 'Sawv ntxov', english: 'morning', note: 'PLACEHOLDER' },
-        { hmong: 'Tav su', english: 'noon / midday', note: 'PLACEHOLDER' },
-        { hmong: 'Tav su tag', english: 'afternoon', note: 'PLACEHOLDER' },
-        { hmong: 'Yav tsaus ntuj', english: 'evening / night', note: 'PLACEHOLDER' },
-        { hmong: 'Teev', english: "o'clock / hour", note: 'PLACEHOLDER' },
-        { hmong: 'Tag kis', english: 'tomorrow', note: 'PLACEHOLDER' },
-        { hmong: 'Nag hmo', english: 'last night / yesterday', note: 'PLACEHOLDER' },
+        { hmong: 'Sawv ntxov', english: 'morning', note: 'Literally "rise early."' },
+        { hmong: 'Tav su', english: 'noon / midday', note: 'Midday — the time of the midday meal.' }, // TODO-VERIFY: literal sense of "tav su"
+        { hmong: 'Tav su tag', english: 'afternoon', note: '"Tag" = finished — after midday has passed.' },
+        { hmong: 'Yav tsaus ntuj', english: 'evening / night', note: '"Tsaus ntuj" = the sky darkens.' },
+        { hmong: 'Teev', english: "o'clock / hour", note: 'Pairs with numbers: "ib teev" = one o\'clock / one hour.' }, // TODO-VERIFY: hour vs o'clock usage
+        { hmong: 'Tag kis', english: 'tomorrow', note: 'Also written together as "tagkis."' },
+        { hmong: 'Nag hmo', english: 'last night / yesterday', note: 'Context decides between "yesterday" and "last night."' }, // TODO-VERIFY: primary sense of "nag hmo"
       ],
     },
     {
       id: 'numbers-time-practice',
       kind: 'practice',
       title: 'Quick check',
-      prompt: 'PLACEHOLDER practice question — replace with a real prompt.',
-      options: ['Option A', 'Option B', 'Option C', 'Option D'],
-      answer: 'Option A',
+      prompt: 'Which phrase means "morning"?',
+      options: ['Sawv ntxov', 'Tav su', 'Yav tsaus ntuj', 'Tag kis'],
+      answer: 'Sawv ntxov',
     },
   ],
 }
