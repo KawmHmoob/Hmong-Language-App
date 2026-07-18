@@ -26,9 +26,9 @@ export const quadrupleConsonants = {
       title: 'Quadruple Consonants Examples',
       intro: 'Quadruple Consonants Examples',
       items: [
-        { hmong: 'Nplh', hmongExample: 'Nplhaib (ring)', audio: '' },
-        { hmong: 'Ntsh', hmongExample: 'Ntshai (afraid)', audio: '' },
-        { hmong: 'Ntxh', hmongExample: 'Ntxhais (daughter / girl)', audio: '' },
+        { hmong: 'Nplh', hmongExample: 'Nplhaib (ring)', audio: '/assets/audio/consonants/quad-consonants/quad-consonants-nplh.mp3' },
+        { hmong: 'Ntsh', hmongExample: 'Ntshai (afraid)', audio: '/assets/audio/consonants/quad-consonants/quad-consonants-ntsh.mp3' },
+        { hmong: 'Ntxh', hmongExample: 'Ntxhais (daughter / girl)', audio: '/assets/audio/consonants/quad-consonants/quad-consonants-ntxh.mp3' },
       ],
     },
     {

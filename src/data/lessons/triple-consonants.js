@@ -24,20 +24,20 @@ export const tripleConsonants = {
       title: 'Triple Consonants Examples',
       intro: 'Triple Consonants Examples',
       items: [
-        { hmong: 'Hml', hmongExample: '', audio: '' }, // TODO-VERIFY: need a common, attested hml- word
-        { hmong: 'Hny', hmongExample: 'Hnyav (heavy)', audio: '' },
-        { hmong: 'Nch', hmongExample: '', audio: '' }, // TODO-VERIFY: candidate "ncho" (to smoke) — confirm before adding
-        { hmong: 'Nkh', hmongExample: 'Nkhaus (crooked)', audio: '' }, // TODO-VERIFY: confirm "nkhaus"
-        { hmong: 'Nph', hmongExample: '', audio: '' }, // TODO-VERIFY: need a common, attested nph- word
-        { hmong: 'Npl', hmongExample: 'Nplooj (leaf)', audio: '' },
-        { hmong: 'Nqh', hmongExample: 'Nqhis (thirsty)', audio: '' },
-        { hmong: 'Nrh', hmongExample: 'Nrhiav (to look for)', audio: '' },
-        { hmong: 'Nth', hmongExample: '', audio: '' }, // TODO-VERIFY: candidate "nthuav" (to unfold) — confirm
-        { hmong: 'Nts', hmongExample: 'Ntses (fish)', audio: '' },
-        { hmong: 'Ntx', hmongExample: 'Ntxuav (to wash)', audio: '' },
-        { hmong: 'Plh', hmongExample: 'Plhu (cheek)', audio: '' }, // TODO-VERIFY: confirm "plhu"
-        { hmong: 'Tsh', hmongExample: 'Tshuaj (medicine)', audio: '' },
-        { hmong: 'Txh', hmongExample: 'Txhua (every)', audio: '' },
+        { hmong: 'Hml', hmongExample: '', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-hml.mp3' }, 
+        { hmong: 'Hny', hmongExample: 'Hnyav (heavy)', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-hny.mp3' },
+        { hmong: 'Nch', hmongExample: '', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nch.mp3' },
+        { hmong: 'Nkh', hmongExample: 'Nkhaus (crooked)', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nkh.mp3' },
+        { hmong: 'Nph', hmongExample: '', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nph.mp3' },
+        { hmong: 'Npl', hmongExample: 'Nplooj (leaf)', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-npl.mp3' },
+        { hmong: 'Nqh', hmongExample: 'Nqhis (thirsty)', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nqh.mp3' },
+        { hmong: 'Nrh', hmongExample: 'Nrhiav (to look for)', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nrh.mp3' },
+        { hmong: 'Nth', hmongExample: '', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nth.mp3' },
+        { hmong: 'Nts', hmongExample: 'Ntses (fish)', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nts.mp3' },
+        { hmong: 'Ntx', hmongExample: 'Ntxuav (to wash)', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-ntx.mp3' },
+        { hmong: 'Plh', hmongExample: 'Plhu (cheek)', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-plh.mp3' },
+        { hmong: 'Tsh', hmongExample: 'Tshuaj (medicine)', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-tsh.mp3' },
+        { hmong: 'Txh', hmongExample: 'Txhua (every)', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-txh.mp3' },
       ],
     },
     {

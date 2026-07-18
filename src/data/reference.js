@@ -8,7 +8,7 @@
 // (grammar arrived here when the old /course page dissolved.)
 
 export const consonants = [
-  { letter: 'c', sound: 'j (English)', audio: '/assets/audio/consonants/single-consonants/single-consonant-c.mp3' },
+  { letter: 'c', sound: 'C', audio: '/assets/audio/consonants/single-consonants/single-consonant-c.mp3' },
   { letter: 'ch', sound: 'ch', audio: '/assets/audio/consonants/double-consonants/double-consonant-ch.mp3' },
   { letter: 'd', sound: 'd', audio: '/assets/audio/consonants/single-consonants/single-consonant-d.mp3' },
   { letter: 'dh', sound: 'd-h', audio: '/assets/audio/consonants/double-consonants/double-consonant-dh.mp3' },
@@ -26,8 +26,7 @@ export const consonants = [
   { letter: 'np', sound: 'mb', audio: '/assets/audio/consonants/double-consonants/double-consonant-np.mp3' },
   { letter: 'nq', sound: 'ng-g (uvular)', audio: '/assets/audio/consonants/double-consonants/double-consonant-nq.mp3' },
   { letter: 'nt', sound: 'nd', audio: '/assets/audio/consonants/double-consonants/double-consonant-nt.mp3' },
-  { letter: 'nts', sound: 'ndz' },
-  { letter: 'ntx', sound: 'ndj' },
+
   { letter: 'ny', sound: 'ny', audio: '/assets/audio/consonants/double-consonants/double-consonant-ny.mp3' },
   { letter: 'p', sound: 'p', audio: '/assets/audio/consonants/single-consonants/single-consonant-p.mp3' },
   { letter: 'ph', sound: 'p-h', audio: '/assets/audio/consonants/double-consonants/double-consonant-ph.mp3' },
@@ -40,9 +39,9 @@ export const consonants = [
   { letter: 't', sound: 't', audio: '/assets/audio/consonants/single-consonants/single-consonant-t.mp3' },
   { letter: 'th', sound: 't-h', audio: '/assets/audio/consonants/double-consonants/double-consonant-th.mp3' },
   { letter: 'ts', sound: 'ts', audio: '/assets/audio/consonants/double-consonants/double-consonant-ts.mp3' },
-  { letter: 'tsh', sound: 'tsh' },
+
   { letter: 'tx', sound: 'ts (English)', audio: '/assets/audio/consonants/double-consonants/double-consonant-tx.mp3' },
-  { letter: 'txh', sound: 'tx-h' },
+
   { letter: 'v', sound: 'v', audio: '/assets/audio/consonants/single-consonants/single-consonant-v.mp3' },
   { letter: 'x', sound: 's', audio: '/assets/audio/consonants/single-consonants/single-consonant-x.mp3' },
   { letter: 'xy', sound: 'sh-y', audio: '/assets/audio/consonants/double-consonants/double-consonant-xy.mp3' },
@@ -51,20 +50,26 @@ export const consonants = [
   // Triple consonants (3 letters, one sound). Sound column left blank — these
   // are learned by ear; the full set matches the Triple Consonants lesson.
   // (nts, ntx, tsh, txh already appear above with sounds.)
-  { letter: 'hml', sound: '' },
-  { letter: 'hny', sound: '' },
-  { letter: 'nch', sound: '' },
-  { letter: 'nkh', sound: '' },
-  { letter: 'nph', sound: '' },
-  { letter: 'npl', sound: '' },
-  { letter: 'nqh', sound: '' },
-  { letter: 'nrh', sound: '' },
-  { letter: 'nth', sound: '' },
-  { letter: 'plh', sound: '' },
+  
+  { letter: 'hml', sound: 'hml', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-hml.mp3' },
+  { letter: 'hny', sound: 'hny', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-hny.mp3' },
+  { letter: 'nch', sound: 'nch', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nch.mp3' },
+  { letter: 'nkh', sound: 'nkh', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nkh.mp3' },
+  { letter: 'nph', sound: 'nph', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nph.mp3' },
+  { letter: 'npl', sound: 'npl', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-npl.mp3' },
+  { letter: 'nqh', sound: 'nqh', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nqh.mp3' },
+  { letter: 'nrh', sound: 'nrh', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nrh.mp3' },
+  { letter: 'nth', sound: 'nth', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nth.mp3' },
+  { letter: 'nts', sound: 'ndz', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nts.mp3' },
+  { letter: 'ntx', sound: 'ndj', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-ntx.mp3' },
+  { letter: 'txh', sound: 'tx-h', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-txh.mp3'},
+  { letter: 'tsh', sound: 'tsh', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-tsh.mp3'},
+  
+  { letter: 'plh', sound: 'plh', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-plh.mp3' },
   // Quadruple consonants (4 letters, one sound) — the whole set in White Hmong.
-  { letter: 'nplh', sound: '' },
-  { letter: 'ntsh', sound: '' },
-  { letter: 'ntxh', sound: '' },
+  { letter: 'nplh', sound: 'nplh', audio: '/assets/audio/consonants/quad-consonants/quad-consonants-nplh.mp3' },
+  { letter: 'ntsh', sound: 'ntsh', audio: '/assets/audio/consonants/quad-consonants/quad-consonants-ntsh.mp3' },
+  { letter: 'ntxh', sound: 'ntxh' ,  audio: '/assets/audio/consonants/quad-consonants/quad-consonants-ntxh.mp3'},
 ]
 
 // Consonants grouped by cluster length, for the categorized Reference view.
@@ -104,22 +109,76 @@ export const doubleConsonants = [
   { letter: 'Xy', audio: '/assets/audio/consonants/double-consonants/double-consonant-xy.mp3', exampleWord: '' },
 ]
 
-export const vowels = [
-  { letter: 'a', sound: 'ah' },
-  { letter: 'e', sound: 'eh' },
-  { letter: 'i', sound: 'ee' },
-  { letter: 'o', sound: 'aw' },
-  { letter: 'u', sound: 'oo' },
-  { letter: 'w', sound: 'uh (schwa)' },
-  { letter: 'aa', sound: 'an' },
-  { letter: 'ai', sound: 'eye' },
-  { letter: 'au', sound: 'ow' },
-  { letter: 'aw', sound: 'aw-uh' },
-  { letter: 'ee', sound: 'eng' },
-  { letter: 'ia', sound: 'ee-ah' },
-  { letter: 'oo', sound: 'ong' },
-  { letter: 'ua', sound: 'oo-ah' },
+
+export const tripleConsonants = [
+  { letter: 'Hml', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-hml.mp3', exampleWord: '' },
+  { letter: 'Hny', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-hny.mp3', exampleWord: '' },
+  { letter: 'Nch', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nch.mp3', exampleWord: '' },
+  { letter: 'Nkh', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nkh.mp3', exampleWord: '' },
+  { letter: 'Nph', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nph.mp3', exampleWord: '' },
+  { letter: 'Npl', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-npl.mp3', exampleWord: '' },
+  { letter: 'Nqh', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nqh.mp3', exampleWord: '' },
+  { letter: 'Nrh', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nrh.mp3', exampleWord: '' },
+  { letter: 'Nth', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-nth.mp3', exampleWord: '' },
+  { letter: 'Plh', audio: '/assets/audio/consonants/triple-consonants/triple-consonants-plh.mp3', exampleWord: '' },
 ]
+
+export const vowels = [
+  { letter: 'a', sound: 'ah', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-a.mp3' },
+  { letter: 'e', sound: 'eh', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-e.mp3' },
+  { letter: 'i', sound: 'ee', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-i.mp3' },
+  { letter: 'o', sound: 'aw', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-o.mp3' },
+  { letter: 'u', sound: 'oo', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-u.mp3' },
+  { letter: 'w', sound: 'uh (schwa)', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-w.mp3' },
+  { letter: 'aa', sound: 'an', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-aa.mp3' },
+  { letter: 'ai', sound: 'eye', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ai.mp3' },
+  { letter: 'au', sound: 'ow', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-au.mp3' },
+  { letter: 'aw', sound: 'aw-uh', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-aw.mp3' },
+  { letter: 'ee', sound: 'eng', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ee.mp3' },
+  { letter: 'ia', sound: 'ee-ah', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ia.mp3' },
+  { letter: 'oo', sound: 'ong', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-oo.mp3' },
+  { letter: 'ua', sound: 'oo-ah', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ua.mp3' },
+]
+
+
+// Seperation
+
+export const vowelGroups = [
+
+  { id: 'single', title: 'Single', blurb: 'One letter, one sound.' },
+  { id: 'double', title: 'Double', blurb: 'Two letters,  sound.' },
+
+]
+  .map((g, i) => ({ ...g, items: consonants.filter((c) => c.letter.length === i + 1) }))
+  .filter((g) => g.items.length > 0)
+
+
+
+
+// Groups
+
+
+export const singleVowels = [
+  { letter: 'a', sound: 'ah', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-a.mp3' },
+  { letter: 'e', sound: 'eh', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-e.mp3' },
+  { letter: 'i', sound: 'ee', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-i.mp3' },
+  { letter: 'o', sound: 'aw', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-o.mp3' },
+  { letter: 'u', sound: 'oo', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-u.mp3' },
+  { letter: 'w', sound: 'uh (schwa)', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-w.mp3' },
+]
+
+
+export const doubleVowels = [
+  { letter: 'aa', sound: 'an', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-aa.mp3' },
+  { letter: 'ai', sound: 'eye', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ai.mp3' },
+  { letter: 'au', sound: 'ow', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-au.mp3' },
+  { letter: 'aw', sound: 'aw-uh', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-aw.mp3' },
+  { letter: 'ee', sound: 'eng', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ee.mp3' },
+  { letter: 'ia', sound: 'ee-ah', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ia.mp3' },
+  { letter: 'oo', sound: 'ong', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-oo.mp3' },
+  { letter: 'ua', sound: 'oo-ah', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ua.mp3' },
+]
+
 
 export const tones = [
   { marker: 'b', name: 'High', description: 'High level tone', example: 'pob (ball)' },

@@ -19,6 +19,7 @@ import { time } from './lessons/time'
 import { readingMim } from './lessons/reading-mim'
 import { readingGarden } from './lessons/reading-garden'
 import { readingSchool } from './lessons/reading-school'
+// import {vowels} from './lessons/vowels'
 
 // Structured lesson model: Units → Lessons → Steps.
 //
@@ -74,11 +75,12 @@ const foundations = {
   title: 'Foundations',
   description: 'Start here. Pronouns, basic verbs, and how Hmong sentences hold together.',
   lessons: [
-    pronouns,
+
     singularConsonants,
     dualConsonants,
     tripleConsonants,
     quadrupleConsonants,
+    pronouns,
     actionVerbs,
     tenseMarkers,
     nounClassifiers,

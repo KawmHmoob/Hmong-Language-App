@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import Tabs from '../components/Tabs.jsx'
-import { consonantGroups, vowels, tones, grammar } from '../data/reference.js'
+import { consonantGroups, vowels, vowelGroups, tones, grammar } from '../data/reference.js'
 import AudioButton from '../components/common/AudioButton.jsx'
 import { ArrowRightIcon } from '../components/icons/index.jsx'
 
@@ -37,7 +37,7 @@ export default function Reference() {
       <Tabs basePath="/reference" tabs={tabs} />
 
       {tab === 'consonants' && <GroupedConsonants groups={consonantGroups} />}
-      {tab === 'vowels' && <Grid items={vowels} />}
+      {tab === 'vowels' && <GroupedVowels vg={vowelGroups} />}
       {tab === 'tones' && <ToneList items={tones} />}
       {tab === 'grammar' && <GrammarTables sections={grammar} />}
     </>
@@ -79,6 +79,30 @@ function GroupedConsonants({ groups }) {
     </div>
   )
 }
+
+
+function GroupedVowels({vg}){
+  return(
+    <div className="space-y-8">
+      {vg.map((g) => (
+        <section key={g.id} aria-labelledby='cons-${g,id}'>
+          <div className="mb-3">
+            <h3 id={`cons-${g.id}`} className="font-display text-xl text-stone-900">
+              {g.title} <span className="text-stone-400 text-base">({g.items.length})</span>
+            </h3>
+             <p className="text-sm text-stone-600">{g.blurb}</p>
+        
+          </div>
+          <Grid items={g.items} />
+
+        </section>
+      ))}
+    </div>
+  )
+}
+
+
+
 
 function ToneList({ items }) {
   return (
