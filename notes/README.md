@@ -71,6 +71,7 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [05-audio-placeholder.md](05-audio-placeholder.md) | `AudioButton` + `useAudio` — the cache, single-`current` concurrency, and the `ownedSrc` glow trick |
 | [40-audio-plumbing.md](40-audio-plumbing.md) | Wiring audio consumption + the filename→field propagation pattern (counts historical — see 42) |
 | [42-audio-naming-drift.md](42-audio-naming-drift.md) | Why audio can fail *silently* (`single` vs `singular`), the disk-vs-data diagnostic, and re-syncing to repair drift |
+| [44-audio-folder-structure.md](44-audio-folder-structure.md) | Audio nested by type (`consonants/…`, `vocabulary/`); the rewire loop; two shapes in one file; the plural-`s` rename |
 
 ## Pronunciation (the Speak roadmap)
 
@@ -79,6 +80,7 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [18-pronunciation-practice.md](18-pronunciation-practice.md) | The full scope. **Phase 1 shipped** (note 22); Phases 2–3 (DSP tone scoring, ML) are the plan |
 | [19-speech-testing.md](19-speech-testing.md) | How to *verify* a pronunciation score — eval sets, calibration. Distinct from note 01's text quizzes |
 | [../instructions/pronunciation-apis.md](../instructions/pronunciation-apis.md) | The API/service landscape: what's free, what to self-host |
+| [future-implementations/01-pronunciation-dataset.md](future-implementations/01-pronunciation-dataset.md) | **(Design/not built)** Tone scoring + the community Hmong voice dataset — reference corpus, result-tracking model, consent |
 
 ## Lessons learned (debugging patterns worth re-reading)
 
