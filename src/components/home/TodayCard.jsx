@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useProgress } from '../../hooks/useProgress.js'
-import { selectDueWords } from '../../context/ProgressContext.jsx'
+import { selectSession } from '../../context/ProgressContext.jsx'
 import { categories } from '../../data/vocabulary.js'
 import { quizzes } from '../../data/quizzes.js'
 
@@ -8,7 +8,7 @@ export default function TodayCard() {
   const { vocabSchedule, quizScores, streakData } = useProgress()
 
   const allWords = categories.flatMap((c) => c.words)
-  const dueCount = selectDueWords(allWords, vocabSchedule).length
+  const dueCount = selectSession(allWords, vocabSchedule).queue.length
 
   const today = new Date().toISOString().slice(0, 10)
   const doneTodayQuizIds = new Set(
@@ -40,7 +40,7 @@ export default function TodayCard() {
   return (
     <div className="surface-elevated p-7">
       <div className="flex items-baseline justify-between mb-5">
-        <h3 className="font-serif text-2xl text-stone-900">Today</h3>
+        <h3 className="font-display text-2xl text-stone-900">Today</h3>
         <span className="text-sm text-stone-600">
           {streakData.currentStreak > 0
             ? `${streakData.currentStreak}-day streak`

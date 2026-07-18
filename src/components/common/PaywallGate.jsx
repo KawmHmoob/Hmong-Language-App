@@ -20,7 +20,7 @@ function UpgradeCard({ contentLabel }) {
   return (
     <div className="surface p-8 text-center max-w-xl mx-auto">
       <p className="text-xs uppercase tracking-[0.25em] text-clay-600 mb-3">Pro content</p>
-      <h2 className="font-serif text-3xl text-stone-900 mb-3">
+      <h2 className="font-display text-3xl text-stone-900 mb-3">
         {contentLabel || 'This is part of Kawm Hmoob Pro'}
       </h2>
       <p className="text-stone-700 mb-6 leading-relaxed">

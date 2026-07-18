@@ -6,6 +6,7 @@ export const time = {
   id: 'numbers-time',
   title: 'Time',
   summary: 'Words for telling time and parts of the day.',
+  vocab: 'timeframes',
   steps: [
     {
       id: 'numbers-time-intro',
@@ -32,12 +33,9 @@ export const time = {
       ],
     },
     {
-      id: 'numbers-time-practice',
-      kind: 'practice',
-      title: 'Quick check',
-      prompt: 'Which phrase means "morning"?',
-      options: ['Sawv ntxov', 'Tav su', 'Yav tsaus ntuj', 'Tag kis'],
-      answer: 'Sawv ntxov',
+      id: 'numbers-time-quiz',
+      kind: 'quiz',
+      title: 'Learn the time words',
     },
   ],
 }

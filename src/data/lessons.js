@@ -24,17 +24,24 @@ import { readingSchool } from './lessons/reading-school'
 //
 // A Unit is a chapter (e.g. "Foundations"). It contains many Lessons.
 // A Lesson is one learnable thing (e.g. "Pronouns"). It contains many Steps.
-// A Step is one screen the user sees (intro, examples, practice, mini-quiz).
+// A Step is one screen the user sees (intro, examples, quiz, reading…).
 //
 // Step kinds:
 //   - 'intro'      { title, body: string[] }
 //   - 'examples'   { title, intro?, items: [{ hmong, english, note?, audio? }] }
 //                  (consonant lessons use { hmong, hmongExample, englishSound }
 //                   instead; the renderer falls through — see notes/28)
-//   - 'practice'   { title, prompt, options: string[], answer }
-//   - 'mini-quiz'  { title, quizId }
+//                  When the lesson has `vocab`, this step also shows the "Study
+//                  the words" button that unlocks the quiz step.
+//   - 'quiz'       { title? }  — requires `vocab` on the lesson. The lesson's
+//                  final step: the vocab-<vocab> quiz, LOCKED until the learner
+//                  has studied (study → then test). See notes/37.
 //   - 'reading'    { title, level, intro?, hmong, english, glossary: [{hmong, english}] }
 //                  Translation stays hidden until the learner asks — see notes/34.
+//   - 'practice'   { title, prompt, options: string[], answer }
+//                  Only readings still use this (comprehension check). Vocab
+//                  lessons' old quick-checks are commented out — see notes/37.
+//   - 'mini-quiz'  { title, quizId }  — consonant lessons; links an alphabet quiz.
 //
 // Optional `tier: 'free' | 'pro'` on a Unit or Lesson gates content behind the
 // paywall. Lesson tier overrides unit tier. Both default to 'free'.
@@ -43,6 +50,13 @@ import { readingSchool } from './lessons/reading-school'
 // Reference section (e.g. 'grammar'). The lesson player renders a "Cheat sheet"
 // link; the table links back with "Learn this". Two doors, same knowledge —
 // see notes/34.
+//
+// Optional `vocab: '<categoryId>'` on a Lesson names the vocabulary category it
+// teaches (an id from src/data/vocabulary.js). It drives the study→quiz flow:
+// the examples step gets a "Study the words" button (→ the word bank), and the
+// final `quiz` step stays locked until the learner studies. The lesson explains;
+// Words drills; the quiz tests. Don't re-list the words inside the lesson —
+// that's the redundancy this removes. See notes/37.
 //
 // IDs must be globally unique across the app — they're used as progress keys.
 //

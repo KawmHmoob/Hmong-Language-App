@@ -1,42 +1,69 @@
 # Audio Files
 
-## File location
-Put MP3 (or OGG) files in `public/audio/`. Vite serves `public/` from the root, so `public/audio/dev.mp3` is fetchable at `/audio/dev.mp3`.
+How to add pronunciation audio. **The plumbing is done** (notes/40) — every
+surface that shows an audio button already reads an audio field and plays it via
+the cached `useAudio` hook. So adding sound is now pure **content work**: drop a
+correctly-named MP3 in the folder, point a data field at it, done. No code.
 
-## Naming convention
-`{category}-{english-slug}.mp3` — matches the `id` field of words. So `animals-dog.mp3` for `{ id: 'animals-dog', hmongRPA: 'dev' }`.
+## Where files go
+`public/assets/audio/`. Vite serves `public/` from the site root, so
+`public/assets/audio/foo.mp3` is fetchable at `/assets/audio/foo.mp3`.
 
-For alphabet: `consonant-{letter}.mp3`, `vowel-{letter}.mp3`, `tone-{markerOrName}.mp3`.
+> **Not** `src/public/…` — that path does nothing (Vite's public dir is the
+> top-level `public/`). An empty `src/public/audio/…` tree used to exist as a
+> trap; it was deleted.
 
-## Wiring
+## How a field becomes a playing button
+`AudioButton` takes an `audioSrc`. If it's set → an enabled ♪ button that plays.
+If it's `null`/`''` → a disabled "Audio coming soon" button. So a data file with
+empty audio fields already renders correctly; filling the field lights it up.
 
-### Vocabulary
-In `src/data/vocabulary.js`, set `audioFile: 'animals-dog.mp3'` on the relevant word object. The path `/audio/` is prepended in `useAudio`, so just the filename here.
+Path rules (`useAudio` `resolveSrc`):
+- **Absolute** (`/assets/audio/foo.mp3`) → used as-is.  ← reference & speak use this
+- **Bare filename** (`foo.mp3`) → `/assets/audio/` is prepended.  ← vocabulary uses this
+- Empty / `null` → no-op (disabled button).
 
-### Alphabet / Quizzes
-Currently `<AudioButton audioSrc={null} ... />` is hardcoded in those components. To enable:
+## Where each data field lives
 
-1. Extend `consonants`, `vowels`, `tones` items in `src/data/alphabet.js` with an `audio` field.
-2. In `src/pages/Alphabet.jsx`, change `audioSrc={null}` to `audioSrc={it.audio}`.
-3. Same for tones (`audioSrc={t.audio}`).
+| Data file | Field | Form | Example |
+| --- | --- | --- | --- |
+| `src/data/vocabulary.js` | `audioFile` | bare filename | `audioFile: 'animals-dog.mp3'` |
+| `src/data/reference.js` (consonants/vowels/tones) | `audio` | absolute path | `audio: '/assets/audio/single-consonant-c.mp3'` |
+| `src/data/speak.js` (phrases) | `audio` | absolute path | `audio: '/assets/audio/speak-nyob-zoo.mp3'` |
+| `src/data/lessons/*.js` (`examples` items, readings) | `audio` | absolute path | `audio: '/assets/audio/…​.mp3'` |
 
-For quiz prompts: `src/components/quiz/QuizEngine.jsx` `<MultipleChoice>` — the dataset adapter in `getQuizDataset` would need to thread the audio URL through (e.g. `{ prompt, answer, audio }`).
+⚠️ **`audioFile` (vocabulary) vs `audio` (everywhere else)** — same idea, two key
+names, for historical reasons. Watch it when filling data.
 
-## Make `useAudio` actually play
+## Naming conventions (what's already on disk)
+The 39 existing recordings follow these — keep them consistent as you add:
+- **Single consonants:** `single-consonant-<letter>.mp3` (e.g. `single-consonant-c.mp3`)
+- **Double consonants:** `double-consonant-<letter>.mp3` (letter lowercased, e.g. `double-consonant-ch.mp3`)
+- **Vocabulary (suggested):** `<wordId>.mp3` — e.g. `animals-dog.mp3` for `id: 'animals-dog'`
+- **Speak (suggested):** `<phraseId>.mp3` — e.g. `speak-nyob-zoo.mp3`
+- **Vowels / tones / triples / quads:** not yet recorded — suggest
+  `vowel-<letter>.mp3`, `tone-<marker>.mp3`, `triple-consonant-<letter>.mp3`.
 
-Replace the body of `play` in `src/hooks/useAudio.js`:
+## What's wired today vs. still silent
+- **Wired & playing:** 36 of 40 `consonants` (the 17 singles + 19 doubles that
+  have files). Set in `reference.js`.
+- **Still silent (no file yet):** consonants `nts, ntx, tsh, txh`; all 14 vowels;
+  all tones; every vocabulary word (`audioFile: null`); every speak phrase
+  (`audio: ''`); every lesson example. These render disabled buttons until a file
+  + field land.
+- **`doubleConsonants` export** already has all 22 paths and feeds the
+  `alphabet-double-consonants` quiz — but note it overlaps the `consonants` list.
 
-```js
-const play = useCallback((src, wordId) => {
-  if (!src) return
-  const audio = new Audio(`/audio/${src}`)
-  audio.play().catch((e) => console.warn('audio play failed', e))
-  setPlaying(src)
-  audio.onended = () => setPlaying(null)
-}, [])
-```
+## Propagation workflow (per batch)
+1. Record → export MP3, name it per the convention above.
+2. Drop it in `public/assets/audio/`.
+3. Set the field (`audio` or `audioFile`) on the matching data entry.
+4. Save — the button lights up on reload. No build step, no code.
 
-If you want playback to feel responsive on repeated taps, cache the `Audio` instance per src in a ref/Map and call `.currentTime = 0; .play()` on subsequent taps.
+For a big batch, a script can fill fields by matching filenames to ids the same
+way the consonant wiring did (see notes/40 for that pattern).
 
 ## License note
-If audio comes from a third party (a textbook publisher, etc.), confirm you have rights to redistribute before checking files into the repo. For non-redistributable assets, host them in a private bucket and load via signed URLs.
+If audio comes from a third party (a textbook, etc.), confirm you have
+redistribution rights before committing files. For non-redistributable assets,
+host them in a private bucket and load via signed URLs instead.

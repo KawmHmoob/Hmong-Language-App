@@ -6,6 +6,7 @@ export const yogToBe = {
   id: 'foundations-yog-to-be',
   title: 'Yog — To Be',
   summary: 'How "yog" links a noun to what it is, and when you can leave it out.',
+  vocab: 'yog-to-be',
   steps: [
     {
       id: 'foundations-yog-to-be-intro',
@@ -29,13 +30,19 @@ export const yogToBe = {
         { hmong: 'Puas yog?', english: 'Is it? / Right?', note: 'Tacked on at the end of a sentence it works like "…right?"' },
       ],
     },
-    {
+    // quick-check removed — the lesson now hands off to the word bank (notes/37)
+    /*{
       id: 'foundations-yog-to-be-practice',
       kind: 'practice',
       title: 'Quick check',
       prompt: 'How do you say "is not"?',
       options: ['Tsis yog', 'Puas yog', 'Kuv yog', 'Nws yog'],
       answer: 'Tsis yog',
+    },*/
+    {
+      id: 'foundations-yog-to-be-quiz',
+      kind: 'quiz',
+      title: 'Learn the words',
     },
   ],
 }

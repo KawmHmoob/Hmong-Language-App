@@ -3,7 +3,9 @@ import { getPhrase, adjacentPhrases, speakStepId } from '../data/speak.js'
 import { useProgress } from '../hooks/useProgress.js'
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
 import PaywallGate from '../components/common/PaywallGate.jsx'
+import AccountGate from '../components/common/AccountGate.jsx'
 import PronounceStep from '../components/speak/PronounceStep.jsx'
+import { isPhraseGuestAllowed, GUEST_PHRASE_LIMIT } from '../lib/access.js'
 
 // One phrase's practice screen. PronounceStep does the record/compare loop;
 // this page owns routing, the paywall, progress, and prev/next flow.
@@ -38,6 +40,11 @@ export default function SpeakPhrase() {
   }
 
   return (
+    <AccountGate
+      allowed={isPhraseGuestAllowed(phrase.id)}
+      contentLabel="Create a free account to keep practicing"
+      blurb={`The first ${GUEST_PHRASE_LIMIT} phrases are open to everyone. An account is free — it unlocks every phrase and saves the words you're working on.`}
+    >
     <PaywallGate tier={phrase.tier} contentLabel={`“${phrase.hmong}” is a Pro phrase`}>
       <div>
         <Breadcrumbs
@@ -77,5 +84,6 @@ export default function SpeakPhrase() {
         </div>
       </div>
     </PaywallGate>
+    </AccountGate>
   )
 }

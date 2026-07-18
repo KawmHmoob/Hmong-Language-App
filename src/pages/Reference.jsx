@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import Tabs from '../components/Tabs.jsx'
-import { consonants, vowels, tones, grammar } from '../data/reference.js'
+import { consonantGroups, vowels, tones, grammar } from '../data/reference.js'
 import AudioButton from '../components/common/AudioButton.jsx'
 import { ArrowRightIcon } from '../components/icons/index.jsx'
 
@@ -27,7 +27,7 @@ export default function Reference() {
           <span className="h-2 w-2 rounded-full bg-cream-600" aria-hidden="true" />
           Reference
         </p>
-        <h2 className="font-serif text-4xl text-stone-900 mb-2">Look it up.</h2>
+        <h2 className="font-display text-4xl text-stone-900 mb-2">Look it up.</h2>
         <p className="text-stone-700 max-w-2xl">
           Letters, tones, and grammar at a glance — for when you know the concept
           and just need the word. Each table links to the lesson that explains it.
@@ -36,7 +36,7 @@ export default function Reference() {
 
       <Tabs basePath="/reference" tabs={tabs} />
 
-      {tab === 'consonants' && <Grid items={consonants} />}
+      {tab === 'consonants' && <GroupedConsonants groups={consonantGroups} />}
       {tab === 'vowels' && <Grid items={vowels} />}
       {tab === 'tones' && <ToneList items={tones} />}
       {tab === 'grammar' && <GrammarTables sections={grammar} />}
@@ -50,11 +50,31 @@ function Grid({ items }) {
       {items.map((it) => (
         <div key={it.letter} className="surface p-3 text-center">
           <div className="flex justify-end mb-1">
-            <AudioButton audioSrc={null} wordId={it.letter} />
+            <AudioButton audioSrc={it.audio} wordId={it.letter} />
           </div>
-          <div className="font-serif text-2xl text-clay-700">{it.letter}</div>
-          <div className="text-xs text-stone-500 mt-1">{it.sound}</div>
+          <div className="font-display text-2xl text-clay-700">{it.letter}</div>
+          {it.sound && <div className="text-xs text-stone-500 mt-1">{it.sound}</div>}
         </div>
+      ))}
+    </div>
+  )
+}
+
+// Consonants split into Single / Double / Triple / Quadruple sections. Each is
+// the same Grid, under a subheading with a count.
+function GroupedConsonants({ groups }) {
+  return (
+    <div className="space-y-8">
+      {groups.map((g) => (
+        <section key={g.id} aria-labelledby={`cons-${g.id}`}>
+          <div className="mb-3">
+            <h3 id={`cons-${g.id}`} className="font-display text-xl text-stone-900">
+              {g.title} <span className="text-stone-400 text-base">({g.items.length})</span>
+            </h3>
+            <p className="text-sm text-stone-600">{g.blurb}</p>
+          </div>
+          <Grid items={g.items} />
+        </section>
       ))}
     </div>
   )
@@ -65,14 +85,14 @@ function ToneList({ items }) {
     <div className="space-y-2">
       {items.map((t) => (
         <div key={t.name} className="surface flex items-center gap-4 p-4">
-          <div className="w-10 font-serif text-2xl text-clay-700 text-center">
+          <div className="w-10 font-display text-2xl text-clay-700 text-center">
             {t.marker || '–'}
           </div>
           <div className="flex-1 min-w-0">
             <div className="font-semibold text-stone-800">{t.name}</div>
             <div className="text-sm text-stone-600">{t.description}</div>
           </div>
-          <AudioButton audioSrc={null} wordId={t.name} />
+          <AudioButton audioSrc={t.audio} wordId={t.name} />
           <div className="text-sm text-stone-700 italic hidden sm:block">{t.example}</div>
         </div>
       ))}
@@ -85,7 +105,7 @@ function GrammarTables({ sections }) {
     <div className="grid gap-5 sm:grid-cols-2">
       {sections.map((s) => (
         <div key={s.title} className="surface p-6 flex flex-col">
-          <h3 className="font-serif text-xl text-stone-900 mb-1">{s.title}</h3>
+          <h3 className="font-display text-xl text-stone-900 mb-1">{s.title}</h3>
           <p className="text-sm text-stone-500 mb-3 italic">{s.note}</p>
           <ul className="divide-y divide-cream-200 flex-1">
             {s.items.map((it) => (

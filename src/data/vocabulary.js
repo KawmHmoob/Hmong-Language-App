@@ -3863,9 +3863,100 @@ exampleSentence: { hmong: 'Kuv nyuam qhuav tuaj.', english: 'I just came.' },
 ],
 },
 
-
-
-
+  // ── Grammar-concept categories ────────────────────────────────────────────
+  // Added 2026-07-17. These hold the words the FOUNDATIONS lessons teach.
+  // They existed only as inline `examples` items inside lesson files, which
+  // meant they could never be drilled, scheduled by the SRS, or quizzed —
+  // and every lesson about a grammar concept had nowhere to hand off to.
+  // Now each has a real category, so `vocab: '<id>'` on the lesson works and
+  // `vocab-<id>` quizzes auto-generate. See notes/38.
+  {
+    id: 'pronouns',
+    title: 'Pronouns',
+    description: 'I, you, he/she — including the dual forms Hmong has and English lacks.',
+    emoji: '👤',
+    words: [
+      { id: 'pronouns-i', hmongRPA: 'kuv', english: 'I / me', category: 'pronouns', tags: ['pronoun', 'singular'], audioFile: null, exampleSentence: { hmong: 'Kuv yog Hmoob.', english: 'I am Hmong.' } },
+      { id: 'pronouns-you', hmongRPA: 'koj', english: 'you (one person)', category: 'pronouns', tags: ['pronoun', 'singular'], audioFile: null, exampleSentence: { hmong: 'Koj puas nyob zoo?', english: 'How are you?' } },
+      { id: 'pronouns-he-she', hmongRPA: 'nws', english: 'he / she / it', category: 'pronouns', tags: ['pronoun', 'singular'], audioFile: null, exampleSentence: { hmong: 'Nws hu ua Mim.', english: 'Her name is Mim.' } },
+      { id: 'pronouns-we-two', hmongRPA: 'wb', english: 'we two (you and I)', category: 'pronouns', tags: ['pronoun', 'dual'], audioFile: null },
+      { id: 'pronouns-you-two', hmongRPA: 'neb', english: 'you two', category: 'pronouns', tags: ['pronoun', 'dual'], audioFile: null },
+      { id: 'pronouns-they-two', hmongRPA: 'nkawd', english: 'they two', category: 'pronouns', tags: ['pronoun', 'dual'], audioFile: null, exampleSentence: { hmong: 'Nkawd sib hlub.', english: 'The two of them love each other.' } },
+      { id: 'pronouns-we', hmongRPA: 'peb', english: 'we (three or more)', category: 'pronouns', tags: ['pronoun', 'plural'], audioFile: null },
+      { id: 'pronouns-you-plural', hmongRPA: 'nej', english: 'you (three or more)', category: 'pronouns', tags: ['pronoun', 'plural'], audioFile: null },
+      { id: 'pronouns-they', hmongRPA: 'lawv', english: 'they', category: 'pronouns', tags: ['pronoun', 'plural'], audioFile: null, exampleSentence: { hmong: 'Lawv mus lawm.', english: 'They went.' } },
+    ],
+  },
+  {
+    id: 'numbers',
+    title: 'Numbers',
+    description: 'One through ten — the base every larger number builds on.',
+    emoji: '🔢',
+    words: [
+      { id: 'numbers-1', hmongRPA: 'ib', english: 'one', category: 'numbers', tags: ['number'], audioFile: null, exampleSentence: { hmong: 'Ib tug dev.', english: 'One dog.' } },
+      { id: 'numbers-2', hmongRPA: 'ob', english: 'two', category: 'numbers', tags: ['number'], audioFile: null },
+      { id: 'numbers-3', hmongRPA: 'peb', english: 'three', category: 'numbers', tags: ['number'], audioFile: null },
+      { id: 'numbers-4', hmongRPA: 'plaub', english: 'four', category: 'numbers', tags: ['number'], audioFile: null },
+      { id: 'numbers-5', hmongRPA: 'tsib', english: 'five', category: 'numbers', tags: ['number'], audioFile: null },
+      { id: 'numbers-6', hmongRPA: 'rau', english: 'six', category: 'numbers', tags: ['number'], audioFile: null },
+      { id: 'numbers-7', hmongRPA: 'xya', english: 'seven', category: 'numbers', tags: ['number'], audioFile: null },
+      { id: 'numbers-8', hmongRPA: 'yim', english: 'eight', category: 'numbers', tags: ['number'], audioFile: null },
+      { id: 'numbers-9', hmongRPA: 'cuaj', english: 'nine', category: 'numbers', tags: ['number'], audioFile: null },
+      { id: 'numbers-10', hmongRPA: 'kaum', english: 'ten', category: 'numbers', tags: ['number'], audioFile: null, exampleSentence: { hmong: 'Kaum ib.', english: 'Eleven (ten-one).' } },
+    ],
+  },
+  {
+    id: 'tense-markers',
+    title: 'Tense Markers',
+    description: 'The small words that place a verb in time — Hmong never conjugates.',
+    emoji: '⏳',
+    words: [
+      { id: 'tense-markers-progressive', hmongRPA: 'tab tom', english: 'currently (-ing)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: null, exampleSentence: { hmong: 'Kuv tab tom noj.', english: 'I am eating.' } },
+      { id: 'tense-markers-future', hmongRPA: 'yuav', english: 'will (future)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: null, exampleSentence: { hmong: 'Kuv yuav noj.', english: 'I will eat.' } },
+      { id: 'tense-markers-past', hmongRPA: 'tau', english: 'already (past completed)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: null, exampleSentence: { hmong: 'Kuv tau noj.', english: 'I have eaten.' } },
+      { id: 'tense-markers-still', hmongRPA: 'tseem', english: 'still', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: null, exampleSentence: { hmong: 'Kuv tseem noj.', english: 'I am still eating.' } },
+      { id: 'tense-markers-completed', hmongRPA: 'lawm', english: 'completed (sentence-final)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: null, exampleSentence: { hmong: 'Kuv noj lawm.', english: 'I ate already.' } },
+    ],
+  },
+  {
+    id: 'demonstratives',
+    title: 'Demonstratives',
+    description: 'This, that, here, there — the pointing words. They follow the noun.',
+    emoji: '👉',
+    words: [
+      { id: 'demonstratives-this', hmongRPA: 'no', english: 'this', category: 'demonstratives', tags: ['demonstrative'], audioFile: null, exampleSentence: { hmong: 'Lub tsev no.', english: 'This house.' } },
+      { id: 'demonstratives-that', hmongRPA: 'ntawd', english: 'that (over there)', category: 'demonstratives', tags: ['demonstrative'], audioFile: null },
+      { id: 'demonstratives-that-near-you', hmongRPA: 'ko', english: 'that (near the listener)', category: 'demonstratives', tags: ['demonstrative'], audioFile: null }, // TODO-VERIFY: "ko" vs "ntawd" nuance
+      { id: 'demonstratives-here', hmongRPA: 'ntawm no', english: 'here', category: 'demonstratives', tags: ['demonstrative', 'location'], audioFile: null },
+      { id: 'demonstratives-there', hmongRPA: 'ntawm ntawd', english: 'there', category: 'demonstratives', tags: ['demonstrative', 'location'], audioFile: null },
+    ],
+  },
+  {
+    id: 'reciprocals',
+    title: 'Sib — Reciprocals',
+    description: 'Verbs made mutual with "sib" — things people do to each other.',
+    emoji: '🤝',
+    words: [
+      { id: 'reciprocals-love', hmongRPA: 'sib hlub', english: 'to love each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: null, exampleSentence: { hmong: 'Nkawd sib hlub.', english: 'The two of them love each other.' } },
+      { id: 'reciprocals-help', hmongRPA: 'sib pab', english: 'to help each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: null },
+      { id: 'reciprocals-fight', hmongRPA: 'sib ntaus', english: 'to fight each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: null },
+      { id: 'reciprocals-talk', hmongRPA: 'sib tham', english: 'to talk with each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: null },
+      { id: 'reciprocals-see', hmongRPA: 'sib pom', english: 'to see each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: null },
+      { id: 'reciprocals-meet-again', hmongRPA: 'sib ntsib dua', english: 'to meet again (goodbye)', category: 'reciprocals', tags: ['verb', 'reciprocal', 'greeting'], audioFile: null },
+    ],
+  },
+  {
+    id: 'yog-to-be',
+    title: 'Yog — To Be',
+    description: 'Linking one noun to another. Not used before adjectives.',
+    emoji: '🟰',
+    words: [
+      { id: 'yog-to-be-is', hmongRPA: 'yog', english: 'to be / equals', category: 'yog-to-be', tags: ['verb', 'copula'], audioFile: null, exampleSentence: { hmong: 'Kuv yog Hmoob.', english: 'I am Hmong.' } },
+      { id: 'yog-to-be-is-not', hmongRPA: 'tsis yog', english: 'is not / no', category: 'yog-to-be', tags: ['verb', 'copula', 'negation'], audioFile: null },
+      { id: 'yog-to-be-question', hmongRPA: 'puas yog?', english: 'is it? / right?', category: 'yog-to-be', tags: ['verb', 'copula', 'question'], audioFile: null },
+      { id: 'yog-to-be-located', hmongRPA: 'nyob', english: 'to be located at', category: 'yog-to-be', tags: ['verb', 'location'], audioFile: null, exampleSentence: { hmong: 'Kuv nyob hauv tsev.', english: 'I am at home.' } },
+    ],
+  },
 ]
 
 export function getCategory(id) {

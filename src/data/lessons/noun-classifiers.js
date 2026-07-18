@@ -6,6 +6,7 @@ export const nounClassifiers = {
   id: 'foundations-noun-classifiers',
   title: 'Noun Classifiers',
   summary: 'The measure words Hmong uses to count and specify nouns.',
+  vocab: 'classifiers',
   reference: 'grammar',
   steps: [
     {
@@ -32,12 +33,9 @@ export const nounClassifiers = {
       ],
     },
     {
-      id: 'foundations-noun-classifiers-practice',
-      kind: 'practice',
-      title: 'Quick check',
-      prompt: 'Which classifier is used for people and animals?',
-      options: ['Tus', 'Lub', 'Daim', 'Phau'],
-      answer: 'Tus',
+      id: 'foundations-noun-classifiers-quiz',
+      kind: 'quiz',
+      title: 'Learn the classifiers',
     },
   ],
 }

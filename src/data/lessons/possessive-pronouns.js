@@ -6,6 +6,7 @@ export const possessivePronouns = {
   id: 'foundations-possessive-pronouns',
   title: 'Possessive Pronouns',
   summary: 'How to say my, your, his, her, and our in Hmong.',
+  vocab: 'pronouns',
   steps: [
     {
       id: 'foundations-possessive-pronouns-intro',
@@ -29,13 +30,19 @@ export const possessivePronouns = {
         { hmong: 'Lawv', english: 'their', note: '"Lawv lub tsev" = their house.' },
       ],
     },
-    {
+    // quick-check removed — the lesson now hands off to the word bank (notes/37)
+    /*{
       id: 'foundations-possessive-pronouns-practice',
       kind: 'practice',
       title: 'Quick check',
       prompt: 'Which word means "their"?',
       options: ['Lawv', 'Peb', 'Koj', 'Nws'],
       answer: 'Lawv',
+    },*/
+    {
+      id: 'foundations-possessive-pronouns-quiz',
+      kind: 'quiz',
+      title: 'Learn the words',
     },
   ],
 }

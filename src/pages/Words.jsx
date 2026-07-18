@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { categories } from '../data/vocabulary.js'
 import { useProgress } from '../hooks/useProgress.js'
-import { selectDueWords } from '../context/ProgressContext.jsx'
+import { selectSession, DAILY_NEW_LIMIT } from '../context/ProgressContext.jsx'
 import {
   FlameIcon, StarIcon, InboxIcon, CheckCircleIcon,
   MusicNoteIcon, ZapIcon, GridIcon, NotebookIcon, CategoryIcon,
@@ -22,14 +22,17 @@ export default function Words() {
   const { xp, streakData, vocabSchedule } = useProgress()
 
   const allWords = categories.flatMap((c) => c.words)
-  const dueNow = selectDueWords(allWords, vocabSchedule).length
+  // Reviews are time-sensitive; new words are a capped introduction. Mixing
+  // them is what made day one claim 391 words were "due" — see notes/35.
+  const { reviews, fresh, queue } = selectSession(allWords, vocabSchedule)
   const reviewedToday = Object.values(vocabSchedule).filter(
     (s) => s.lastReviewedAt === todayISO()
   ).length
+  const learnedTotal = Object.keys(vocabSchedule).length
 
-  const goal = reviewedToday + dueNow
+  const goal = reviewedToday + queue.length
   const goalPct = goal === 0 ? 100 : Math.round((reviewedToday / goal) * 100)
-  const caughtUp = dueNow === 0
+  const caughtUp = queue.length === 0
 
   return (
     <div>
@@ -39,7 +42,7 @@ export default function Words() {
           <span className="h-2 w-2 rounded-full bg-blush-500" aria-hidden="true" />
           Words
         </p>
-        <h2 className="font-serif text-4xl sm:text-5xl text-stone-900 mb-3">
+        <h2 className="font-display text-4xl sm:text-5xl text-stone-900 mb-3">
           A few words a day.
         </h2>
         <p className="text-stone-700 max-w-xl leading-relaxed">
@@ -52,21 +55,31 @@ export default function Words() {
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8">
         <StatTile label="Day streak" value={streakData.currentStreak} icon={FlameIcon} />
         <StatTile label="Total XP" value={xp} icon={StarIcon} />
-        <StatTile label="Due today" value={dueNow} icon={InboxIcon} />
-        <StatTile label="Reviewed today" value={reviewedToday} icon={CheckCircleIcon} />
+        <StatTile label="Reviews due" value={reviews.length} icon={InboxIcon} />
+        <StatTile
+          label={`Words started`}
+          value={`${learnedTotal}/${allWords.length}`}
+          icon={CheckCircleIcon}
+        />
       </div>
 
       {/* Daily goal + session CTA */}
       <div className="surface-elevated p-6 sm:p-8 mb-10">
         <div className="flex flex-wrap items-center justify-between gap-4">
           <div className="min-w-0 flex-1">
-            <h3 className="font-serif text-2xl text-stone-900 mb-1">
+            <h3 className="font-display text-2xl text-stone-900 mb-1">
               {caughtUp ? 'All caught up. 🎉' : 'Today’s session'}
             </h3>
             <p className="text-sm text-stone-700 mb-3">
               {caughtUp
-                ? 'Nothing due right now — drill something below or come back tomorrow.'
-                : `${dueNow} word${dueNow === 1 ? '' : 's'} waiting. Clear the queue to keep the streak alive.`}
+                ? 'Nothing due and no new words left — drill something below or come back tomorrow.'
+                : [
+                    reviews.length > 0 &&
+                      `${reviews.length} review${reviews.length === 1 ? '' : 's'} due`,
+                    fresh.length > 0 && `${fresh.length} new word${fresh.length === 1 ? '' : 's'}`,
+                  ]
+                    .filter(Boolean)
+                    .join(' · ')}
             </p>
             <div className="flex items-center gap-3">
               <div className="h-2 w-full max-w-xs bg-cream-200 rounded-full overflow-hidden">
@@ -89,7 +102,7 @@ export default function Words() {
       </div>
 
       {/* Other ways to drill */}
-      <h3 className="font-serif text-2xl text-stone-900 mb-4">Drill another way</h3>
+      <h3 className="font-display text-2xl text-stone-900 mb-4">Drill another way</h3>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-10">
         <DrillTile
           to="/quiz/tone-drill"
@@ -101,7 +114,7 @@ export default function Words() {
           to="/quiz"
           icon={ZapIcon}
           title="Quizzes"
-          blurb="Multiple choice and matching, by topic."
+          blurb="Multiple choice drills, by topic."
         />
         <DrillTile
           to="/vocabulary"
@@ -118,7 +131,7 @@ export default function Words() {
       </div>
 
       {/* Category strip */}
-      <h3 className="font-serif text-2xl text-stone-900 mb-4">Categories</h3>
+      <h3 className="font-display text-2xl text-stone-900 mb-4">Categories</h3>
       <div className="flex flex-wrap gap-2">
         {categories.map((c) => (
           <Link
@@ -139,7 +152,7 @@ function StatTile({ label, value, icon: Icon }) {
   return (
     <div className="surface p-4 text-center flex flex-col items-center">
       <Icon size={20} className="text-blush-500 mb-1" />
-      <p className="font-serif text-2xl text-stone-900 leading-none">{value}</p>
+      <p className="font-display text-2xl text-stone-900 leading-none">{value}</p>
       <p className="text-xs text-stone-600 mt-1">{label}</p>
     </div>
   )

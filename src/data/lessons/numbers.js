@@ -6,6 +6,7 @@ export const numbers = {
   id: 'numbers-counting',
   title: 'Numbers',
   summary: 'Counting in Hmong, from one upward.',
+  vocab: 'numbers',
   reference: 'grammar',
   steps: [
     {
@@ -35,13 +36,19 @@ export const numbers = {
         { hmong: 'Kaum', english: 'ten', note: 'Builds the teens: "kaum ib" = eleven.' },
       ],
     },
-    {
+    // quick-check removed — the lesson now hands off to the word bank (notes/37)
+    /*{
       id: 'numbers-counting-practice',
       kind: 'practice',
       title: 'Quick check',
       prompt: 'What is the Hmong word for "five"?',
       options: ['Tsib', 'Plaub', 'Rau', 'Cuaj'],
       answer: 'Tsib',
+    },*/
+    {
+      id: 'numbers-counting-quiz',
+      kind: 'quiz',
+      title: 'Learn the words',
     },
   ],
 }

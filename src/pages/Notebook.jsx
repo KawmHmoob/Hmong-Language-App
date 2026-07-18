@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Tabs from '../components/Tabs.jsx'
+import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
 import { useNotebook } from '../context/NotebookContext.jsx'
 import { categories } from '../data/vocabulary.js'
 
@@ -13,8 +14,15 @@ export default function Notebook() {
   const { tab } = useParams()
   return (
     <>
+      <Breadcrumbs
+        items={[
+          { label: 'Home', to: '/' },
+          { label: 'Words', to: '/words' },
+          { label: 'Notebook' },
+        ]}
+      />
       <div className="mb-8">
-        <h2 className="font-serif text-4xl text-stone-900 mb-2">Notebook</h2>
+        <h2 className="font-display text-4xl text-stone-900 mb-2">Notebook</h2>
         <p className="text-stone-700">
           A place for words you want to remember and notes from your reading.
         </p>
@@ -83,7 +91,7 @@ function SavedWordItem({ word, entry, onUpdate, onRemove }) {
           to={`/vocabulary/${word._category.id}/${word.id}`}
           className="hover:opacity-80"
         >
-          <div className="font-serif text-xl text-clay-700">{word.hmongRPA}</div>
+          <div className="font-display text-xl text-clay-700">{word.hmongRPA}</div>
           <div className="text-sm text-stone-600">{word.english}</div>
         </Link>
         <button
@@ -177,7 +185,7 @@ function NoteItem({ note }) {
         className="surface surface-hover p-5 cursor-pointer"
         onClick={() => setEditing(true)}
       >
-        <h3 className="font-serif text-xl text-stone-900 mb-1">
+        <h3 className="font-display text-xl text-stone-900 mb-1">
           {note.title || 'Untitled'}
         </h3>
         {note.body && (
@@ -198,7 +206,7 @@ function NoteItem({ note }) {
         value={title}
         onChange={(e) => setTitle(e.target.value)}
         placeholder="Title"
-        className="w-full rounded border border-cream-300 bg-cream-50 px-3 py-2 text-base font-serif mb-2 focus:outline-none focus:border-clay-500"
+        className="w-full rounded border border-cream-300 bg-cream-50 px-3 py-2 text-base font-display mb-2 focus:outline-none focus:border-clay-500"
       />
       <textarea
         value={body}
@@ -236,7 +244,7 @@ function EmptyState({ icon, title, message }) {
   return (
     <div className="rounded-md border-2 border-dashed border-cream-400 bg-cream-50/60 p-12 text-center">
       <div className="text-5xl mb-3 opacity-70">{icon}</div>
-      <h3 className="font-serif text-xl text-stone-900">{title}</h3>
+      <h3 className="font-display text-xl text-stone-900">{title}</h3>
       <p className="text-sm text-stone-600 mt-1">{message}</p>
     </div>
   )

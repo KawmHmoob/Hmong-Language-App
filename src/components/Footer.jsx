@@ -42,7 +42,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-serif text-stone-900 mb-3">Explore</h3>
+          <h3 className="font-display text-stone-900 mb-3">Explore</h3>
           <ul className="space-y-1.5 text-sm">
             {links.map(({ to, label, end }) => (
               <li key={to}>
@@ -59,7 +59,7 @@ export default function Footer() {
         </div>
 
         <div>
-          <h3 className="font-serif text-stone-900 mb-3">Account</h3>
+          <h3 className="font-display text-stone-900 mb-3">Account</h3>
           <ul className="space-y-1.5 text-sm">
             {resources.map(({ to, label }) => (
               <li key={to}>

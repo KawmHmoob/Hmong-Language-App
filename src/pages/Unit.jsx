@@ -52,7 +52,7 @@ export default function Unit() {
           <span className="h-2 w-2 rounded-full bg-seafoam-500" aria-hidden="true" />
           Unit
         </p>
-        <h2 className="font-serif text-4xl text-stone-900 mb-2">{unit.title}</h2>
+        <h2 className="font-display text-4xl text-stone-900 mb-2">{unit.title}</h2>
         <p className="text-stone-700 max-w-2xl">{unit.description}</p>
 
         <div className="mt-5 flex flex-wrap items-center gap-4">

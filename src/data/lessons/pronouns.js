@@ -5,6 +5,7 @@ export const pronouns = {
   id: 'foundations-pronouns',
   title: 'Pronouns',
   summary: 'Singular, dual, and plural — Hmong marks all three.',
+  vocab: 'pronouns',
   reference: 'grammar',
   steps: [
     {
@@ -33,19 +34,26 @@ export const pronouns = {
         { hmong: 'Lawv', english: 'They', note: 'Plural' },
       ],
     },
-    {
+    // quick-check removed — the lesson now hands off to the word bank (notes/37)
+    /*{
       id: 'foundations-pronouns-practice',
       kind: 'practice',
       title: 'Quick check',
       prompt: 'You and one friend are walking together. Which pronoun would you use for "we"?',
       options: ['Kuv', 'Wb', 'Peb', 'Lawv'],
       answer: 'Wb',
-    },
-    {
+    },*/
+    // quick-check removed — the lesson now hands off to the word bank (notes/37)
+    /*{
       id: 'foundations-pronouns-quiz',
       kind: 'mini-quiz',
       title: 'Pronouns mini-quiz',
       quizId: 'grammar-pronouns',
+    },*/
+    {
+      id: 'foundations-pronouns-quiz',
+      kind: 'quiz',
+      title: 'Learn the words',
     },
   ],
 }

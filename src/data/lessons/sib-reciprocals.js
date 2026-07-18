@@ -6,6 +6,7 @@ export const sibReciprocals = {
   id: 'vocab-sib-reciprocals',
   title: 'Sib — Reciprocals',
   summary: 'How "sib" turns a verb into a mutual, back-and-forth action.',
+  vocab: 'reciprocals',
   steps: [
     {
       id: 'vocab-sib-reciprocals-intro',
@@ -30,7 +31,8 @@ export const sibReciprocals = {
         { hmong: 'Sib pom', english: 'to see each other', note: '"Pom" = to see — from the action verbs lesson.' },
       ],
     },
-    {
+    // quick-check removed — the lesson now hands off to the word bank (notes/37)
+    /*{
       id: 'vocab-sib-reciprocals-practice',
       kind: 'practice',
       title: 'Quick check',
@@ -42,6 +44,11 @@ export const sibReciprocals = {
         'To talk with each other',
       ],
       answer: 'To help each other',
+    },*/
+    {
+      id: 'vocab-sib-reciprocals-quiz',
+      kind: 'quiz',
+      title: 'Learn the words',
     },
   ],
 }

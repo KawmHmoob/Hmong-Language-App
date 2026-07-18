@@ -1,10 +1,14 @@
 ﻿import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getLesson, getUnit, allStepIds } from '../data/lessons.js'
+import { getCategory } from '../data/vocabulary.js'
+import { CheckIcon, LockIcon, ArrowLeftIcon, ArrowRightIcon } from '../components/icons/index.jsx'
 import { useProgress } from '../hooks/useProgress.js'
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
 import PaywallGate from '../components/common/PaywallGate.jsx'
+import AccountGate from '../components/common/AccountGate.jsx'
 import AudioButton from '../components/common/AudioButton.jsx'
+import { isLessonGuestAllowed, GUEST_LESSON_LIMIT } from '../lib/access.js'
 
 export default function Lesson() {
   const { unitId, lessonId } = useParams()
@@ -14,13 +18,19 @@ export default function Lesson() {
   const { completedSteps, quizScores, markStepComplete } = useProgress()
   const [index, setIndex] = useState(0)
 
-  // Auto-mark mini-quiz steps complete when a quiz score for that quizId exists.
+  // Auto-mark a quiz step complete once a score for its quiz exists — even if
+  // the user took the quiz on its own page and never clicked "Finish".
+  //   - 'mini-quiz' points at an explicit step.quizId
+  //   - 'quiz' (the study→quiz flow) derives it from the lesson's vocab category
   useEffect(() => {
     if (!lesson) return
     lesson.steps.forEach((step) => {
-      if (step.kind !== 'mini-quiz') return
+      let quizId = null
+      if (step.kind === 'mini-quiz') quizId = step.quizId
+      else if (step.kind === 'quiz' && lesson.vocab) quizId = `vocab-${lesson.vocab}`
+      else return
       if (completedSteps.includes(step.id)) return
-      const taken = quizScores.some((s) => s.quizId === step.quizId)
+      const taken = quizScores.some((s) => s.quizId === quizId)
       if (taken) {
         const ids = allStepIds(lesson)
         const remaining = ids.filter((id) => id !== step.id && !completedSteps.includes(id))
@@ -67,6 +77,13 @@ export default function Lesson() {
   }
 
   return (
+    // Account gate OUTSIDE the paywall: you can't subscribe without an account,
+    // so the cheaper ask always comes first. See notes/36.
+    <AccountGate
+      allowed={isLessonGuestAllowed(lesson.id)}
+      contentLabel="Create a free account to keep learning"
+      blurb={`The first ${GUEST_LESSON_LIMIT} lessons are open to everyone. Creating an account is free — it unlocks the rest of the course and keeps your streak going.`}
+    >
     <PaywallGate tier={requiredTier} contentLabel={`${lesson.title} is Pro`}>
     <div>
       <Breadcrumbs
@@ -82,8 +99,9 @@ export default function Lesson() {
 
       <div className="surface p-6 sm:p-8">
         {step.kind === 'intro' && <IntroStep step={step} />}
-        {step.kind === 'examples' && <ExamplesStep step={step} />}
+        {step.kind === 'examples' && <ExamplesStep step={step} lesson={lesson} />}
         {step.kind === 'reading' && <ReadingStep key={step.id} step={step} />}
+        {step.kind === 'quiz' && <QuizStep step={step} lesson={lesson} />}
         {step.kind === 'practice' && (
           <PracticeStep step={step} onAdvance={handleAdvance} />
         )}
@@ -92,22 +110,29 @@ export default function Lesson() {
         )}
       </div>
 
-      {step.kind !== 'practice' && step.kind !== 'mini-quiz' && (
-        <div className="mt-6 flex justify-between items-center">
-          <button
-            onClick={() => setIndex((i) => Math.max(0, i - 1))}
-            disabled={index === 0}
-            className="text-sm text-stone-700 underline disabled:opacity-40 disabled:no-underline"
-          >
-            Back
-          </button>
-          <button onClick={handleAdvance} className="btn-primary">
+      {/* Back is ALWAYS available — it used to vanish on practice/mini-quiz
+          steps, which stranded you with no way backward. Only Continue is
+          conditional: those two steps supply their own forward action. */}
+      <div className="mt-6 flex justify-between items-center gap-3">
+        <button
+          onClick={() => setIndex((i) => Math.max(0, i - 1))}
+          disabled={index === 0}
+          className="btn-ghost gap-2 disabled:opacity-40 disabled:pointer-events-none"
+        >
+          <ArrowLeftIcon size={16} />
+          Back
+        </button>
+
+        {step.kind !== 'practice' && step.kind !== 'mini-quiz' && step.kind !== 'quiz' && (
+          <button onClick={handleAdvance} className="btn-primary gap-2">
             {isLast ? 'Finish' : 'Continue'}
+            <ArrowRightIcon size={16} />
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </div>
     </PaywallGate>
+    </AccountGate>
   )
 }
 
@@ -117,7 +142,7 @@ function StepHeader({ lesson, index }) {
   return (
     <div className="mb-6">
       <div className="flex flex-wrap items-baseline justify-between gap-2 mb-1">
-        <h2 className="font-serif text-3xl text-stone-900">{lesson.title}</h2>
+        <h2 className="font-display text-3xl text-stone-900">{lesson.title}</h2>
         {/* Two doors to the same knowledge: this lesson EXPLAINS it, the
             reference table STATES it. See notes/34. */}
         {lesson.reference && (
@@ -142,7 +167,7 @@ function StepHeader({ lesson, index }) {
 function IntroStep({ step }) {
   return (
     <>
-      <h3 className="font-serif text-2xl text-stone-900 mb-4">{step.title}</h3>
+      <h3 className="font-display text-2xl text-stone-900 mb-4">{step.title}</h3>
       <div className="space-y-4 text-stone-800 leading-relaxed">
         {step.body.map((p, i) => (
           <p key={i}>{p}</p>
@@ -152,10 +177,10 @@ function IntroStep({ step }) {
   )
 }
 
-function ExamplesStep({ step }) {
+function ExamplesStep({ step, lesson }) {
   return (
     <>
-      <h3 className="font-serif text-2xl text-stone-900 mb-2">{step.title}</h3>
+      <h3 className="font-display text-2xl text-stone-900 mb-2">{step.title}</h3>
       {step.intro && <p className="text-sm text-stone-600 mb-4 italic">{step.intro}</p>}
       <ul className="divide-y divide-cream-200">
         {step.items.map((it) => (
@@ -173,7 +198,51 @@ function ExamplesStep({ step }) {
           </li>
         ))}
       </ul>
+
+      {/* When the lesson maps to a word set, the examples step is the jumping-off
+          point: study the full set in the word bank. Doing so unlocks the quiz
+          on the next step (see QuizStep). */}
+      {lesson?.vocab && <StudyHandoff lesson={lesson} />}
     </>
+  )
+}
+
+// The studied flag — a completedSteps entry set when the learner heads off to
+// study. Separate from any real step id; it only gates the quiz step.
+function studiedFlag(lesson) {
+  return `${lesson.id}-studied`
+}
+
+// Shared "go study" action, used on the examples step AND on the locked quiz
+// step. Marks the flag, then opens the category's word bank.
+function useStudyHandoff(lesson) {
+  const navigate = useNavigate()
+  const { markStepComplete } = useProgress()
+  return () => {
+    markStepComplete(studiedFlag(lesson)) // no lessonId → doesn't touch completion
+    navigate(`/vocabulary/${lesson.vocab}`)
+  }
+}
+
+function StudyHandoff({ lesson }) {
+  const { completedSteps } = useProgress()
+  const category = getCategory(lesson.vocab)
+  const studied = completedSteps.includes(studiedFlag(lesson))
+  const goStudy = useStudyHandoff(lesson)
+  if (!category) return null
+
+  return (
+    <div className="mt-6 pt-5 border-t border-cream-200">
+      <button onClick={goStudy} className="btn-primary gap-2 w-full sm:w-auto">
+        Study the {category.words.length} words
+        <ArrowRightIcon size={16} />
+      </button>
+      <p className="text-xs text-stone-600 mt-2">
+        {studied
+          ? '✓ Studied — the quiz is unlocked on the next step.'
+          : 'Study these in your word bank to unlock the quiz.'}
+      </p>
+    </div>
   )
 }
 
@@ -187,7 +256,7 @@ function ReadingStep({ step }) {
   return (
     <>
       <div className="flex flex-wrap items-baseline justify-between gap-2 mb-2">
-        <h3 className="font-serif text-2xl text-stone-900">{step.title}</h3>
+        <h3 className="font-display text-2xl text-stone-900">{step.title}</h3>
         {step.level && (
           <span className="text-[10px] uppercase tracking-[0.15em] font-semibold rounded-full bg-cream-200 text-stone-700 px-2.5 py-1">
             {step.level}
@@ -197,7 +266,7 @@ function ReadingStep({ step }) {
       {step.intro && <p className="text-sm text-stone-600 mb-5 italic">{step.intro}</p>}
 
       {/* The passage — the hero of this step */}
-      <p className="font-serif text-2xl sm:text-3xl text-clay-700 leading-relaxed mb-5">
+      <p className="font-display text-2xl sm:text-3xl text-clay-700 leading-relaxed mb-5">
         {step.hmong}
       </p>
 
@@ -240,13 +309,89 @@ function ReadingStep({ step }) {
   )
 }
 
+// The lesson's final step: the quiz for its words — but LOCKED until the
+// learner has studied (the flag set by StudyHandoff on the examples step).
+// You study first, then you're tested. It links to the same vocab-<cat> quiz
+// the Words section uses; taking it there auto-completes this step (see the
+// effect in Lesson). See notes/37.
+function QuizStep({ lesson }) {
+  const { unitId } = useParams()
+  const { completedSteps, quizScores } = useProgress()
+  const category = getCategory(lesson.vocab)
+  const goStudy = useStudyHandoff(lesson)
+
+  if (!category) {
+    return (
+      <p className="text-stone-700">
+        This lesson doesn’t have a word set yet. Head back to{' '}
+        <Link to="/learn" className="text-clay-700 underline">Learn</Link>.
+      </p>
+    )
+  }
+
+  const studied = completedSteps.includes(studiedFlag(lesson))
+  const quizId = `vocab-${category.id}`
+  const best = quizScores
+    .filter((s) => s.quizId === quizId)
+    .reduce((m, s) => Math.max(m, s.accuracy), -1)
+  const taken = best >= 0
+
+  // Locked — study is the prerequisite.
+  if (!studied) {
+    return (
+      <div className="text-center py-4">
+        <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-cream-100 text-stone-500 mb-4">
+          <LockIcon size={22} />
+        </span>
+        <h3 className="font-display text-2xl text-stone-900 mb-2">Study the words first</h3>
+        <p className="text-stone-700 mb-6 max-w-md mx-auto leading-relaxed">
+          The quiz unlocks once you’ve studied the {category.words.length} words in{' '}
+          {category.title}. Head to your word bank, then come back.
+        </p>
+        <button onClick={goStudy} className="btn-primary gap-2">
+          Study the words
+          <ArrowRightIcon size={16} />
+        </button>
+      </div>
+    )
+  }
+
+  // Unlocked.
+  return (
+    <div className="text-center py-4">
+      <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-cream-100 text-clay-700 mb-4">
+        <CheckIcon size={22} />
+      </span>
+      <h3 className="font-display text-2xl text-stone-900 mb-2">
+        {taken ? 'Quiz unlocked' : 'Ready when you are'}
+      </h3>
+      <p className="text-stone-700 mb-6 max-w-md mx-auto leading-relaxed">
+        {Math.min(10, category.words.length)} questions drawn from the {category.title}{' '}
+        words you studied.
+        {taken && ` Your best so far: ${best}%.`}
+      </p>
+      <div className="flex flex-wrap gap-3 justify-center">
+        <Link to={`/quiz/${quizId}`} className="btn-primary gap-2">
+          {taken ? 'Retake quiz' : 'Take the quiz'}
+          <ArrowRightIcon size={16} />
+        </Link>
+        {taken && (
+          <Link to={`/learn/${unitId}`} className="btn-ghost">
+            Finish lesson
+          </Link>
+        )}
+      </div>
+    </div>
+  )
+}
+
 function PracticeStep({ step, onAdvance }) {
   const [picked, setPicked] = useState(null)
   const correct = picked === step.answer
 
   return (
     <>
-      <h3 className="font-serif text-2xl text-stone-900 mb-4">{step.title}</h3>
+      <h3 className="font-display text-2xl text-stone-900 mb-4">{step.title}</h3>
       <p className="text-stone-800 mb-5">{step.prompt}</p>
       <div className="grid gap-2 sm:grid-cols-2">
         {step.options.map((opt) => {
@@ -287,7 +432,7 @@ function PracticeStep({ step, onAdvance }) {
 function MiniQuizStep({ step, taken }) {
   return (
     <>
-      <h3 className="font-serif text-2xl text-stone-900 mb-2">{step.title}</h3>
+      <h3 className="font-display text-2xl text-stone-900 mb-2">{step.title}</h3>
       <p className="text-stone-700 mb-5">
         {taken
           ? "You've taken this quiz — you can retake it for more practice. The lesson is marked complete."

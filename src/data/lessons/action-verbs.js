@@ -6,6 +6,7 @@ export const actionVerbs = {
   id: 'foundations-action-verbs',
   title: 'Action Verbs',
   summary: 'Everyday Hmong verbs for the things people do.',
+  vocab: 'verbs',
   reference: 'grammar',
   steps: [
     {
@@ -33,12 +34,9 @@ export const actionVerbs = {
       ],
     },
     {
-      id: 'foundations-action-verbs-practice',
-      kind: 'practice',
-      title: 'Quick check',
-      prompt: 'Which verb means "to eat"?',
-      options: ['Noj', 'Haus', 'Mus', 'Pom'],
-      answer: 'Noj',
+      id: 'foundations-action-verbs-quiz',
+      kind: 'quiz',
+      title: 'Quiz',
     },
   ],
 }

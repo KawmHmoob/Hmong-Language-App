@@ -6,6 +6,7 @@ export const howMuch = {
   id: 'numbers-how-much',
   title: 'Yog Pes Tsawg — How Much?',
   summary: 'Asking how much something costs and how many there are.',
+  vocab: 'money',
   reference: 'grammar',
   steps: [
     {
@@ -30,12 +31,9 @@ export const howMuch = {
       ],
     },
     {
-      id: 'numbers-how-much-practice',
-      kind: 'practice',
-      title: 'Quick check',
-      prompt: 'Which phrase means "how much / how many"?',
-      options: ['Pes tsawg', 'Li cas', 'Qhov twg', 'Thaum twg'],
-      answer: 'Pes tsawg',
+      id: 'numbers-how-much-quiz',
+      kind: 'quiz',
+      title: 'Learn the money words',
     },
   ],
 }

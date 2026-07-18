@@ -1,7 +1,16 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cd \"c:/Users/Devan Chuyen Lee/Documents/KawmHmoob\" && npx vite build 2>&1 | grep -E \"built|error|Error\"; rm -f /tmp/fixmoji.mjs)"
+      "Bash(cd \"c:/Users/Devan Chuyen Lee/Documents/KawmHmoob\" && npx vite build 2>&1 | grep -E \"built|error|Error\"; rm -f /tmp/fixmoji.mjs)",
+      "Bash(grep -v \"^\\\\s*//\")",
+      "Bash(grep -v \"// \")",
+      "Bash(node -e ' *)",
+      "Bash(grep -n \"^export const categories\\\\|^export function\\\\|^]$\" src/data/vocabulary.js)",
+      "Bash(grep -v \"^$\")",
+      "Bash(grep -nE \"kind: '|/\\\\*\\\\{|\\\\}\\\\*/\" src/data/lessons/pronouns.js)",
+      "Bash(grep -nE \"kind: '|/\\\\*\\\\{|\\\\}\\\\*/\" src/data/lessons/tense-markers.js)",
+      "Bash(xargs echo \"flip references in note 37:\")",
+      "Bash(xargs echo \"count:\")"
     ],
     "additionalDirectories": [
       "\\tmp"

@@ -40,10 +40,53 @@ const initialState = {
 
 
 
+const GUEST_KEY = 'kawmhmoob.progress.guest'
+
+function readGuestProgress() {
+  try {
+    const raw = localStorage.getItem(GUEST_KEY)
+    if (!raw) return null
+    const parsed = JSON.parse(raw)
+    // Ignore an untouched guest state — adopting `initialState` is a no-op
+    // and would mask a genuinely empty new account.
+    const touched =
+      parsed &&
+      (parsed.xp > 0 ||
+        parsed.completedSteps?.length > 0 ||
+        parsed.completedLessons?.length > 0 ||
+        parsed.quizScores?.length > 0 ||
+        Object.keys(parsed.vocabSchedule || {}).length > 0)
+    return touched ? { ...initialState, ...parsed } : null
+  } catch {
+    return null
+  }
+}
+
 async function loadProgress(userId) {
-  if (userId === 'guest') return JSON.parse(localStorage.getItem('kawmhmoob.progress.guest') || 'null') || initialState
+  if (userId === 'guest') {
+    return readGuestProgress() || initialState
+  }
+
   const { data } = await supabase.from('progress').select('data').eq('user_id', userId).single()
-  return data?.data || initialState
+  if (data?.data) return data.data
+
+  // GUEST → ACCOUNT ADOPTION.
+  // No row means this account has never saved progress — i.e. someone just
+  // signed up. Adopt whatever they did as a guest on this device so the
+  // signup wall never costs them their work (notes/36).
+  //
+  // Only on an EMPTY account, deliberately: a returning user logging in on a
+  // borrowed device must never have their real progress overwritten by
+  // whatever a guest did here. Empty is the only safe merge.
+  //
+  // The guest key is NOT cleared: the save effect writes to Supabase ~500ms
+  // later, and clearing first would lose the data if that write failed. The
+  // cost of leaving it is that a second account on this device inherits the
+  // same sample progress — harmless.
+  const guest = readGuestProgress()
+  if (guest) return guest
+
+  return initialState
 }
 
 async function saveProgress(userId, state) {
@@ -185,12 +228,45 @@ export function useProgressContext() {
   return ctx
 }
 
-// Pure helper: pass any list of word objects (with .id) and the schedule from context.
-// Returns the words whose dueDate <= today, plus any never-reviewed words.
-export function selectDueWords(words, schedule) {
+// ── Session selection ───────────────────────────────────────────────────────
+// A word is in exactly one of three states, and conflating them is what made
+// day-one show "391 words due":
+//
+//   NEW      no vocabSchedule entry — never studied. Not "due", just available.
+//   DUE      has a schedule, dueDate <= today — the SRS wants it back NOW.
+//   WAITING  has a schedule, dueDate in the future — leave it alone.
+//
+// Only DUE is time-sensitive. NEW is an unlimited backlog, so it MUST be
+// capped or the queue is the whole dictionary. See notes/35.
+
+// How many never-seen words a session will introduce. The one number that
+// controls daily workload — raise for cramming, lower for a gentler pace.
+export const DAILY_NEW_LIMIT = 10
+
+// Words the SRS is actively asking for (studied before, dueDate reached).
+export function selectReviewWords(words, schedule) {
   const today = todayISO()
   return words.filter((w) => {
     const sched = schedule[w.id]
-    return !sched || sched.dueDate <= today
+    return sched && sched.dueDate <= today
   })
 }
+
+// Never-studied words, in data order (curriculum order beats random).
+export function selectNewWords(words, schedule, limit = DAILY_NEW_LIMIT) {
+  const fresh = words.filter((w) => !schedule[w.id])
+  return limit == null ? fresh : fresh.slice(0, limit)
+}
+
+// The actual day's work: every review, plus a capped handful of new words.
+// Reviews come first — they're the ones with a deadline.
+export function selectSession(words, schedule, limit = DAILY_NEW_LIMIT) {
+  const reviews = selectReviewWords(words, schedule)
+  const fresh = selectNewWords(words, schedule, limit)
+  return { reviews, fresh, queue: [...reviews, ...fresh] }
+}
+
+// NOTE: `selectDueWords` used to live here and treated never-seen words as
+// "due" — that's what made day one a 391-card queue. It was removed once every
+// caller moved to selectSession(). Don't reintroduce it: "never seen" and
+// "due for review" are different states (notes/35).

@@ -1,4 +1,6 @@
-﻿export default function QuizResults({
+﻿import Confetti from '../common/Confetti.jsx'
+
+export default function QuizResults({
   config,
   questions,
   answers,
@@ -11,16 +13,30 @@
 }) {
   const accuracy = questions.length > 0 ? Math.round((score / questions.length) * 100) : 0
   const missed = answers.filter((a) => !a.isCorrect)
+  // Perfect score — a real achievement worth celebrating. Not shown while
+  // reviewing mistakes (there are none) or on an empty quiz.
+  const perfect = accuracy === 100 && questions.length > 0 && !reviewing
 
   return (
     <div className="surface p-8">
-      <h2 className="font-serif text-3xl text-stone-900 mb-1">{config.title}</h2>
+      {perfect && <Confetti />}
+
+      <h2 className="font-display text-3xl text-stone-900 mb-1">{config.title}</h2>
       <p className="text-sm text-stone-600 mb-8">Time: {elapsed}s</p>
+
+      {perfect && (
+        <div className="mb-6 rounded-xl bg-clay-600 text-cream-50 px-5 py-4 text-center shadow-warm">
+          <p className="font-display text-2xl">Perfect score! 🎉</p>
+          <p className="text-sm text-cream-50/85 mt-0.5">
+            Every question right — you know these cold.
+          </p>
+        </div>
+      )}
 
       <div className="flex items-center gap-6 mb-8">
         <CircularProgress percent={accuracy} />
         <div>
-          <div className="font-serif text-4xl text-stone-900">
+          <div className="font-display text-4xl text-stone-900">
             {score} <span className="text-stone-400">/ {questions.length}</span>
           </div>
           <div className="text-sm text-stone-600 mt-1">{accuracy}% accuracy</div>
@@ -29,7 +45,7 @@
 
       {reviewing && missed.length > 0 && (
         <div className="mb-8">
-          <h3 className="font-serif text-xl text-stone-900 mb-3">Missed Questions</h3>
+          <h3 className="font-display text-xl text-stone-900 mb-3">Missed Questions</h3>
           <ul className="space-y-2">
             {missed.map((m, i) => {
               const q = questions[m.questionIndex]

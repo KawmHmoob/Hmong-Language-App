@@ -9,7 +9,7 @@ export default function Settings() {
 
   return (
     <>
-      <h2 className="font-serif text-4xl text-stone-900 mb-8">Settings</h2>
+      <h2 className="font-display text-4xl text-stone-900 mb-8">Settings</h2>
 
       <div className="space-y-4 max-w-xl">
         <Field label="Dialect" hint="Choose which Hmong dialect to study.">

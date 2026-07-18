@@ -45,7 +45,9 @@ export const quizzes = [
     title: 'Vowels',
     description: 'Recognize Hmong vowels by sound.',
     questionCount: 10,
-    questionTypes: ['multiple-choice', 'matching'],
+    // MATCHING DISABLED — multiple-choice only for now.
+    // questionTypes: ['multiple-choice', 'matching'],
+    questionTypes: ['multiple-choice'],
     category: 'Alphabet',
   },
   {
@@ -69,7 +71,9 @@ export const quizzes = [
     title: 'Pronouns',
     description: 'Translate Hmong pronouns.',
     questionCount: 7,
-    questionTypes: ['multiple-choice', 'matching'],
+    // MATCHING DISABLED — multiple-choice only for now.
+    // questionTypes: ['multiple-choice', 'matching'],
+    questionTypes: ['multiple-choice'],
     category: 'Grammar',
   },
   {
@@ -103,7 +107,9 @@ export function getQuizDataset(id) {
 
   switch (id) {
     case 'alphabet-consonants':
-      return consonants.map((c) => ({ prompt: c.letter, answer: c.sound }))
+      // Only sound-bearing entries — triples/quads with a blank sound would
+      // make questions with empty answers (see notes/43).
+      return consonants.filter((c) => c.sound).map((c) => ({ prompt: c.letter, answer: c.sound }))
     case 'alphabet-vowels':
       return vowels.map((v) => ({ prompt: v.letter, answer: v.sound }))
     case 'alphabet-tones':

@@ -154,18 +154,20 @@
   }
 
   body {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: 'Nunito Sans', system-ui, sans-serif;
     color: rgb(var(--c-stone-900));
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11'; /* Inter: open digits/legible alternates */
   }
 
+  /* Nunito carries the Hmong text everywhere (font-display), so it has to
+     work at 5xl on a hero AND at 14px in a glossary row. Rounded terminals
+     read as warm/handmade rather than clinical. */
   h1, h2, h3, h4 {
-    font-family: 'Fraunces', 'Lora', Georgia, serif;
-    letter-spacing: -0.015em;
-    font-weight: 600;
+    font-family: 'Nunito', 'Nunito Sans', system-ui, sans-serif;
+    letter-spacing: -0.01em; /* rounded geometrics need a touch of tightening */
+    font-weight: 700;        /* Nunito needs 700 to carry display sizes */
   }
 
   /* One focus language everywhere. Only shows for keyboard focus. */
@@ -207,6 +209,50 @@
   .glass {
     @apply bg-cream-50/85 backdrop-blur-md border border-cream-200/70;
   }
+  /* Confetti piece — one falling ribbon. Position/color/timing come from the
+     component as inline styles; drift + spin come from per-piece CSS vars.
+     Only rendered when the user hasn't asked for reduced motion (Confetti.jsx
+     skips it), so no reduced-motion handling is needed here. */
+  .confetti-piece {
+    position: absolute;
+    top: -6vh;
+    border-radius: 2px;
+    will-change: transform, opacity;
+    animation-name: confetti-fall;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+  }
+  @keyframes confetti-fall {
+    0%   { transform: translate3d(0, -6vh, 0) rotate(0deg); opacity: 1; }
+    85%  { opacity: 1; }
+    100% { transform: translate3d(var(--drift, 0), 106vh, 0) rotate(var(--rot, 540deg)); opacity: 0.85; }
+  }
+
+  /* Flashcard 3D flip. Pure CSS — the `is-flipped` class rotates the card,
+     both faces are always in the DOM (backface hidden). The global
+     prefers-reduced-motion rule flattens the transition to ~0ms, so a
+     motion-sensitive user gets an instant swap, same information. */
+  .flip-scene {
+    perspective: 1200px;
+  }
+  .flip-card {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.4, 0.2, 0.2, 1);
+  }
+  .flip-card.is-flipped {
+    transform: rotateY(180deg);
+  }
+  .flip-face {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+  .flip-face-back {
+    position: absolute;
+    inset: 0;
+    transform: rotateY(180deg);
+  }
+
   /* Display gradient for hero text — accent → teal. Warm themes render it
      terracotta→sea-glass (subtle); Neon renders coral→electric teal (vivid).
      Same class, theme decides the drama. */
@@ -226,7 +272,16 @@
   .btn-secondary {
     @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-stone-900 text-cream-50 font-medium text-sm hover:bg-stone-800 active:scale-[0.98] transition;
   }
+  /* Ghost = quiet, NOT invisible. It still needs a surface fill: standing on
+     the seafoam page background (not inside a cream card) a fill-less button
+     is just a floating outline. */
   .btn-ghost {
-    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg border border-cream-300 text-stone-800 font-medium text-sm hover:bg-cream-100 active:scale-[0.98] transition;
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-cream-50 border border-cream-300 text-stone-800 font-medium text-sm hover:bg-cream-100 hover:border-cream-400 active:scale-[0.98] transition;
+  }
+  /* Destructive action (quit, delete). red-600/white are intentionally
+     theme-INDEPENDENT — a warning should read the same in every theme, and a
+     tokenized text color would flip to dark-on-red in dark mode. */
+  .btn-danger {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg bg-red-600 text-white font-medium text-sm hover:bg-red-700 active:scale-[0.98] transition;
   }
 }

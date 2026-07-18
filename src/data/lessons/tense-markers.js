@@ -7,6 +7,7 @@ export const tenseMarkers = {
   id: 'foundations-tense-markers',
   title: 'Tense Markers',
   summary: 'How Hmong says when something happens — without changing the verb.',
+  vocab: 'tense-markers',
   reference: 'grammar',
   steps: [
     {
@@ -52,15 +53,17 @@ export const tenseMarkers = {
         },
       ],
     },
-    {
+    // quick-check removed — the lesson now hands off to the word bank (notes/37)
+    /*{
       id: 'foundations-tense-markers-practice',
       kind: 'practice',
       title: 'Quick check',
       prompt: 'Which marker would you use to say "I WILL eat"?',
       options: ['Yuav', 'Tau', 'Tseem', 'Lawm'],
       answer: 'Yuav',
-    },
-    {
+    },*/
+    // quick-check removed — the lesson now hands off to the word bank (notes/37)
+    /*{
       id: 'foundations-tense-markers-practice-2',
       kind: 'practice',
       title: 'One more',
@@ -72,6 +75,11 @@ export const tenseMarkers = {
         'It replaces the verb',
       ],
       answer: 'At the very end of the sentence',
+    },*/
+    {
+      id: 'foundations-tense-markers-quiz',
+      kind: 'quiz',
+      title: 'Learn the words',
     },
   ],
 }

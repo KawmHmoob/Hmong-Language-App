@@ -1,5 +1,11 @@
 # Lesson System — Code Walkthrough
 
+> 🕰 **Partly superseded.** This walks the *original* `Lesson.jsx` (intro /
+> examples / practice / mini-quiz). The reasoning still teaches how the player
+> works, but the current step set + the study→gated-quiz flow live in
+> [37](37-lesson-study-handoff-and-fonts.md). Read this for the *why*, note 37
+> for the *now*.
+
 A teaching companion to [12-lesson-system.md](12-lesson-system.md). That note tells you *what* the system is and *how to extend it*. This note explains *why each line is there* so you can read the code and understand the reasoning, not just the shape.
 
 Read this top-to-bottom. Each section walks one file or one decision.

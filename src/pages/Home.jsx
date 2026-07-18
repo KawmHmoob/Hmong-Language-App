@@ -4,7 +4,7 @@ import { FlameIcon, StarIcon, MicIcon, CardsIcon } from '../components/icons/ind
 import { allPhrases } from '../data/speak.js'
 import { categories } from '../data/vocabulary.js'
 import { useProgress } from '../hooks/useProgress.js'
-import { selectDueWords } from '../context/ProgressContext.jsx'
+import { selectSession } from '../context/ProgressContext.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
 
 // Home — a bento-style dashboard. One glance answers "where am I?" (streak,
@@ -36,7 +36,7 @@ export default function Home() {
   const { xp, streakData, vocabSchedule } = useProgress()
 
   const allWords = categories.flatMap((c) => c.words)
-  const dueCount = selectDueWords(allWords, vocabSchedule).length
+  const dueCount = selectSession(allWords, vocabSchedule).queue.length
   const phrase = phraseOfTheDay()
 
   return (
@@ -46,9 +46,9 @@ export default function Home() {
         <p className="text-sm uppercase tracking-[0.25em] text-clay-600 mb-3 font-semibold">
           {user.isGuest ? 'Welcome' : `Welcome back, ${user.username}`}
         </p>
-        <h2 className="font-serif text-5xl sm:text-6xl text-stone-900 mb-4">Nyob zoo.</h2>
+        <h2 className="font-display text-5xl sm:text-6xl text-stone-900 mb-4">Nyob zoo.</h2>
         <p className="text-lg text-stone-700 max-w-xl leading-relaxed">
-          A quiet place to learn Hmong — one phrase, one word, one tone at a time.
+          Learn to read, speak, and understand Hmong — one tone at a time.
         </p>
       </section>
 
@@ -63,7 +63,7 @@ export default function Home() {
             Phrase of the day
           </p>
           <div className="py-6">
-            <p className="font-serif text-3xl sm:text-4xl text-stone-900 leading-snug group-hover:text-clay-700 transition">
+            <p className="font-display text-3xl sm:text-4xl text-stone-900 leading-snug group-hover:text-clay-700 transition">
               {phrase.hmong}
             </p>
             <p className="text-stone-600 mt-2">{phrase.english}</p>
@@ -76,14 +76,14 @@ export default function Home() {
         {/* Stats */}
         <div className="surface p-5 text-center flex flex-col items-center justify-center">
           <FlameIcon size={22} className="text-clay-600 mb-1.5" />
-          <p className="font-serif text-3xl text-stone-900 leading-none">
+          <p className="font-display text-3xl text-stone-900 leading-none">
             {streakData.currentStreak}
           </p>
           <p className="text-xs text-stone-600 mt-1.5">day streak</p>
         </div>
         <div className="surface p-5 text-center flex flex-col items-center justify-center">
           <StarIcon size={22} className="text-clay-600 mb-1.5" />
-          <p className="font-serif text-3xl text-stone-900 leading-none">{xp}</p>
+          <p className="font-display text-3xl text-stone-900 leading-none">{xp}</p>
           <p className="text-xs text-stone-600 mt-1.5">total XP</p>
         </div>
 
@@ -93,7 +93,7 @@ export default function Home() {
           className="surface surface-hover col-span-2 sm:col-span-1 lg:col-span-1 p-5 group"
         >
           <MicIcon size={22} className="text-clay-600 mb-2" />
-          <p className="font-serif text-lg text-stone-900 group-hover:text-clay-700 transition">
+          <p className="font-display text-lg text-stone-900 group-hover:text-clay-700 transition">
             Speak
           </p>
           <p className="text-sm text-stone-600 mt-0.5">Record &amp; compare</p>
@@ -103,7 +103,7 @@ export default function Home() {
           className="surface surface-hover col-span-2 sm:col-span-1 lg:col-span-1 p-5 group"
         >
           <CardsIcon size={22} className="text-blush-500 mb-2" />
-          <p className="font-serif text-lg text-stone-900 group-hover:text-clay-700 transition">
+          <p className="font-display text-lg text-stone-900 group-hover:text-clay-700 transition">
             Words
           </p>
           <p className="text-sm text-stone-600 mt-0.5">
@@ -121,7 +121,7 @@ export default function Home() {
 
       {/* Explore the rest */}
       <section className="mt-10">
-        <h3 className="font-serif text-xl text-stone-900 mb-3">Explore</h3>
+        <h3 className="font-display text-xl text-stone-900 mb-3">Explore</h3>
         <div className="flex flex-wrap gap-2">
           {explore.map((c) => (
             <Link

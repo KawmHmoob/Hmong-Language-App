@@ -1,6 +1,16 @@
 # Lesson system (Units → Lessons → Steps)
 
-Structured teaching surface at `/learn`. Distinct from the existing `Course` and `Alphabet` reference pages, which remain as flat reference views. The lesson system is the path we'll grow real pedagogy on.
+> 🕰 **Partly superseded — read this for the Units→Lessons→Steps *shape*, not the
+> specifics.** Since this note: `Course.jsx`/`Alphabet.jsx` no longer exist
+> (Course dissolved → [34](34-reference-vs-learn.md); Alphabet → Reference →
+> [32](32-alphabet-section-and-mojibake.md)); the `/learn` page is now a hub with
+> per-unit pages ([33](33-unit-pages.md)); and the **step model changed** — the
+> current kinds and the study→gated-quiz flow are in
+> [37](37-lesson-study-handoff-and-fonts.md), with `reading` in
+> [34](34-reference-vs-learn.md). The units→lessons→steps skeleton and the
+> mini-quiz auto-complete pattern below are still accurate.
+
+Structured teaching surface at `/learn`. The lesson system is the path real pedagogy grows on.
 
 ## Why it exists
 

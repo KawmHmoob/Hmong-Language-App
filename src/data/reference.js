@@ -8,20 +8,20 @@
 // (grammar arrived here when the old /course page dissolved.)
 
 export const consonants = [
-  { letter: 'c', sound: 'j (English)' },
+  { letter: 'c', sound: 'j (English)', audio: '/assets/audio/single-consonant-c.mp3' },
   { letter: 'ch', sound: 'ch' },
-  { letter: 'd', sound: 'd' },
+  { letter: 'd', sound: 'd', audio: '/assets/audio/single-consonant-d.mp3' },
   { letter: 'dh', sound: 'd-h' },
-  { letter: 'f', sound: 'f' },
-  { letter: 'h', sound: 'h' },
+  { letter: 'f', sound: 'f', audio: '/assets/audio/single-consonant-f.mp3' },
+  { letter: 'h', sound: 'h', audio: '/assets/audio/single-consonant-h.mp3' },
   { letter: 'hl', sound: 'voiceless l' },
   { letter: 'hm', sound: 'voiceless m' },
   { letter: 'hn', sound: 'voiceless n' },
-  { letter: 'k', sound: 'k' },
+  { letter: 'k', sound: 'k', audio: '/assets/audio/single-consonant-k.mp3' },
   { letter: 'kh', sound: 'k-h' },
-  { letter: 'l', sound: 'l' },
-  { letter: 'm', sound: 'm' },
-  { letter: 'n', sound: 'n' },
+  { letter: 'l', sound: 'l', audio: '/assets/audio/single-consonant-l.mp3' },
+  { letter: 'm', sound: 'm', audio: '/assets/audio/single-consonant-m.mp3' },
+  { letter: 'n', sound: 'n', audio: '/assets/audio/single-consonant-n.mp3' },
   { letter: 'nc', sound: 'nj' },
   { letter: 'np', sound: 'mb' },
   { letter: 'nq', sound: 'ng-g (uvular)' },
@@ -29,26 +29,55 @@ export const consonants = [
   { letter: 'nts', sound: 'ndz' },
   { letter: 'ntx', sound: 'ndj' },
   { letter: 'ny', sound: 'ny' },
-  { letter: 'p', sound: 'p' },
+  { letter: 'p', sound: 'p', audio: '/assets/audio/single-consonant-p.mp3' },
   { letter: 'ph', sound: 'p-h' },
   { letter: 'pl', sound: 'pl' },
-  { letter: 'q', sound: 'k (uvular)' },
+  { letter: 'q', sound: 'k (uvular)', audio: '/assets/audio/single-consonant-q.mp3' },
   { letter: 'qh', sound: 'q-h' },
-  { letter: 'r', sound: 'tr' },
+  { letter: 'r', sound: 'tr', audio: '/assets/audio/single-consonant-r.mp3' },
   { letter: 'rh', sound: 'tr-h' },
-  { letter: 's', sound: 'sh' },
-  { letter: 't', sound: 't' },
+  { letter: 's', sound: 'sh', audio: '/assets/audio/single-consonant-s.mp3' },
+  { letter: 't', sound: 't', audio: '/assets/audio/single-consonant-t.mp3' },
   { letter: 'th', sound: 't-h' },
   { letter: 'ts', sound: 'ts' },
   { letter: 'tsh', sound: 'tsh' },
   { letter: 'tx', sound: 'ts (English)' },
   { letter: 'txh', sound: 'tx-h' },
-  { letter: 'v', sound: 'v' },
-  { letter: 'x', sound: 's' },
+  { letter: 'v', sound: 'v', audio: '/assets/audio/single-consonant-v.mp3' },
+  { letter: 'x', sound: 's', audio: '/assets/audio/single-consonant-x.mp3' },
   { letter: 'xy', sound: 'sh-y' },
-  { letter: 'y', sound: 'y' },
-  { letter: 'z', sound: 'zh' },
+  { letter: 'y', sound: 'y', audio: '/assets/audio/single-consonant-y.mp3' },
+  { letter: 'z', sound: 'zh', audio: '/assets/audio/single-consonant-z.mp3' },
+  // Triple consonants (3 letters, one sound). Sound column left blank — these
+  // are learned by ear; the full set matches the Triple Consonants lesson.
+  // (nts, ntx, tsh, txh already appear above with sounds.)
+  { letter: 'hml', sound: '' },
+  { letter: 'hny', sound: '' },
+  { letter: 'nch', sound: '' },
+  { letter: 'nkh', sound: '' },
+  { letter: 'nph', sound: '' },
+  { letter: 'npl', sound: '' },
+  { letter: 'nqh', sound: '' },
+  { letter: 'nrh', sound: '' },
+  { letter: 'nth', sound: '' },
+  { letter: 'plh', sound: '' },
+  // Quadruple consonants (4 letters, one sound) — the whole set in White Hmong.
+  { letter: 'nplh', sound: '' },
+  { letter: 'ntsh', sound: '' },
+  { letter: 'ntxh', sound: '' },
 ]
+
+// Consonants grouped by cluster length, for the categorized Reference view.
+// Derived from `consonants` above (length = category), so there's one source.
+// Empty groups drop out. See notes/43.
+export const consonantGroups = [
+  { id: 'single', title: 'Single', blurb: 'One letter, one sound.' },
+  { id: 'double', title: 'Double', blurb: 'Two letters, one sound.' },
+  { id: 'triple', title: 'Triple', blurb: 'Three letters, one sound.' },
+  { id: 'quadruple', title: 'Quadruple', blurb: 'Four letters, one sound.' },
+]
+  .map((g, i) => ({ ...g, items: consonants.filter((c) => c.letter.length === i + 1) }))
+  .filter((g) => g.items.length > 0)
 
 export const doubleConsonants = [
   { letter: 'Ch', audio: '/assets/audio/double-consonant-ch.mp3', exampleWord: 'Chiaj' },

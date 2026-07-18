@@ -82,7 +82,7 @@ export default function Search() {
 
   return (
     <>
-      <h2 className="font-serif text-4xl text-stone-900 mb-6">Search</h2>
+      <h2 className="font-display text-4xl text-stone-900 mb-6">Search</h2>
       <input
         type="search"
         value={q}

@@ -20,7 +20,7 @@ export default function Learn() {
           <span className="h-2 w-2 rounded-full bg-seafoam-500" aria-hidden="true" />
           Learn
         </p>
-        <h2 className="font-serif text-4xl text-stone-900 mb-2">Study, step by step.</h2>
+        <h2 className="font-display text-4xl text-stone-900 mb-2">Study, step by step.</h2>
         <p className="text-stone-700">
           Structured units. Each lesson walks you through an intro, examples, a quick check, and a mini-quiz.
         </p>
@@ -32,7 +32,7 @@ export default function Learn() {
         className="surface surface-hover p-4 flex items-center justify-between gap-3 group mb-10"
       >
         <span>
-          <span className="block font-serif text-lg text-stone-900 group-hover:text-clay-700 transition">
+          <span className="block font-display text-lg text-stone-900 group-hover:text-clay-700 transition">
             Grammar cheat sheets
           </span>
           <span className="block text-sm text-stone-600">
@@ -55,7 +55,7 @@ export default function Learn() {
             <section key={unit.id} aria-labelledby={`unit-${unit.id}`}>
               <header className="mb-4 flex flex-wrap items-end justify-between gap-2">
                 <div className="min-w-0">
-                  <h3 id={`unit-${unit.id}`} className="font-serif text-2xl text-stone-900">
+                  <h3 id={`unit-${unit.id}`} className="font-display text-2xl text-stone-900">
                     <Link to={`/learn/${unit.id}`} className="hover:text-clay-700 transition">
                       {unit.title}
                     </Link>

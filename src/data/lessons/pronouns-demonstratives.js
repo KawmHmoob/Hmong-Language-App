@@ -6,6 +6,7 @@ export const pronounsDemonstratives = {
   id: 'foundations-pronouns-demonstratives',
   title: 'Pronouns & Demonstratives',
   summary: 'Pointing words — this, that, here, there — and how they pair with classifiers.',
+  vocab: 'demonstratives',
   steps: [
     {
       id: 'foundations-pronouns-demonstratives-intro',
@@ -29,13 +30,19 @@ export const pronounsDemonstratives = {
         { hmong: 'Ntawm ntawd', english: 'there', note: 'Literally "at that (place)."' },
       ],
     },
-    {
+    // quick-check removed — the lesson now hands off to the word bank (notes/37)
+    /*{
       id: 'foundations-pronouns-demonstratives-practice',
       kind: 'practice',
       title: 'Quick check',
       prompt: 'Which word means "this"?',
       options: ['No', 'Ntawd', 'Ko', 'Ntawm ntawd'],
       answer: 'No',
+    },*/
+    {
+      id: 'foundations-pronouns-demonstratives-quiz',
+      kind: 'quiz',
+      title: 'Learn the words',
     },
   ],
 }

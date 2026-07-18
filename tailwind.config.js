@@ -12,8 +12,11 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Fraunces', 'Lora', 'Georgia', 'serif'],
+        // `display` is the Hmong/heading face; `sans` is everything else.
+        // Named `display` (not `serif`) because it ISN'T a serif — a token
+        // named for what it isn't is the blush-200 trap all over again.
+        sans: ['"Nunito Sans"', 'system-ui', 'sans-serif'],
+        display: ['Nunito', '"Nunito Sans"', 'system-ui', 'sans-serif'],
       },
       colors: {
         // Warm neutrals — card surfaces, borders, tracks.

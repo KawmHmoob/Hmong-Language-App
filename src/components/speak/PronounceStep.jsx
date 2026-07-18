@@ -65,7 +65,7 @@ export default function PronounceStep({ phrase, done, onDone }) {
   return (
     <div className="text-center">
       {/* The phrase */}
-      <p className="font-serif text-3xl sm:text-4xl text-stone-900">{phrase.hmong}</p>
+      <p className="font-display text-3xl sm:text-4xl text-stone-900">{phrase.hmong}</p>
       <p className="text-stone-600 mt-1">{phrase.english}</p>
       {phrase.tip && (
         <p className="mt-3 mx-auto max-w-md text-sm text-stone-700 bg-cream-100 border border-cream-200 rounded-md px-4 py-2.5">
