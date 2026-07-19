@@ -1,8 +1,10 @@
 import { useParams, Link } from 'react-router-dom'
 import Tabs from '../components/Tabs.jsx'
 import { consonantGroups, vowels, vowelGroups, tones, grammar } from '../data/reference.js'
-import AudioButton from '../components/common/AudioButton.jsx'
 import { ArrowRightIcon } from '../components/icons/index.jsx'
+// Shared with the Learn lessons so both render letters/tones identically.
+import Grid from '../components/reference/LetterGrid.jsx'
+import ToneList from '../components/reference/ToneRows.jsx'
 
 // Reference — the LOOK-IT-UP surface (was /alphabet, and absorbed the old
 // /course grammar tables). Everything here is a table you consult and leave.
@@ -41,22 +43,6 @@ export default function Reference() {
       {tab === 'tones' && <ToneList items={tones} />}
       {tab === 'grammar' && <GrammarTables sections={grammar} />}
     </>
-  )
-}
-
-function Grid({ items }) {
-  return (
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-3">
-      {items.map((it) => (
-        <div key={it.letter} className="surface p-3 text-center">
-          <div className="flex justify-end mb-1">
-            <AudioButton audioSrc={it.audio} wordId={it.letter} />
-          </div>
-          <div className="font-display text-2xl text-clay-700">{it.letter}</div>
-          {it.sound && <div className="text-xs text-stone-500 mt-1">{it.sound}</div>}
-        </div>
-      ))}
-    </div>
   )
 }
 
@@ -103,26 +89,6 @@ function GroupedVowels({vg}){
 
 
 
-
-function ToneList({ items }) {
-  return (
-    <div className="space-y-2">
-      {items.map((t) => (
-        <div key={t.name} className="surface flex items-center gap-4 p-4">
-          <div className="w-10 font-display text-2xl text-clay-700 text-center">
-            {t.marker || '–'}
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="font-semibold text-stone-800">{t.name}</div>
-            <div className="text-sm text-stone-600">{t.description}</div>
-          </div>
-          <AudioButton audioSrc={t.audio} wordId={t.name} />
-          <div className="text-sm text-stone-700 italic hidden sm:block">{t.example}</div>
-        </div>
-      ))}
-    </div>
-  )
-}
 
 function GrammarTables({ sections }) {
   return (

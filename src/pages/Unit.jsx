@@ -76,11 +76,40 @@ export default function Unit() {
         </div>
       </div>
 
-      <div className="grid gap-4 sm:grid-cols-2">
-        {unit.lessons.map((lesson) => (
-          <LessonCard key={lesson.id} unit={unit} lesson={lesson} />
-        ))}
-      </div>
+      {/* A unit may be split into headed sections (`groups`) — Foundations is,
+          so the alphabet reads as: word structure → consonants → vowels →
+          tones. Units without groups render one flat grid, unchanged. */}
+      {unit.groups ? (
+        <div className="space-y-10">
+          {unit.groups.map((g) => (
+            <section key={g.id} aria-labelledby={`group-${g.id}`}>
+              <div className="mb-4">
+                <h3
+                  id={`group-${g.id}`}
+                  className="font-display text-2xl text-stone-900"
+                >
+                  {g.title}{' '}
+                  <span className="text-stone-400 text-base font-normal">
+                    ({g.lessons.length})
+                  </span>
+                </h3>
+                {g.blurb && <p className="text-sm text-stone-600">{g.blurb}</p>}
+              </div>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {g.lessons.map((lesson) => (
+                  <LessonCard key={lesson.id} unit={unit} lesson={lesson} />
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2">
+          {unit.lessons.map((lesson) => (
+            <LessonCard key={lesson.id} unit={unit} lesson={lesson} />
+          ))}
+        </div>
+      )}
     </div>
   )
 }

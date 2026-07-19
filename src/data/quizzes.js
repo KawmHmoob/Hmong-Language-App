@@ -99,21 +99,32 @@ export function getQuizDataset(id) {
     const cat = categories.find((c) => c.id == catId)
     return cat ? cat.words.map((item) => ({
       prompt: item.hmongRPA,
-      answer: item.english
+      answer: item.english,
+      audio: item.audioFile,   // bare filename — resolveSrc prepends AUDIO_BASE
     })) :
     []
 
   }
 
   switch (id) {
+    // Each adapter also passes `audio` so the quiz can play the sound it's
+    // asking about, and optionally `blurb` — a transcript line shown under the
+    // prompt. See notes/48.
     case 'alphabet-consonants':
       // Only sound-bearing entries — triples/quads with a blank sound would
       // make questions with empty answers (see notes/43).
-      return consonants.filter((c) => c.sound).map((c) => ({ prompt: c.letter, answer: c.sound }))
+      return consonants
+        .filter((c) => c.sound)
+        .map((c) => ({ prompt: c.letter, answer: c.sound, audio: c.audio }))
     case 'alphabet-vowels':
-      return vowels.map((v) => ({ prompt: v.letter, answer: v.sound }))
+      return vowels.map((v) => ({ prompt: v.letter, answer: v.sound, audio: v.audio }))
     case 'alphabet-tones':
-      return tones.map((t) => ({ prompt: t.marker || '(no marker)', answer: t.name }))
+      return tones.map((t) => ({
+        prompt: t.marker || '(no marker)',
+        answer: t.name,
+        audio: t.audio,
+        blurb: t.example2,   // the tone's Hmong name — what the recording says
+      }))
     case 'tone-drill':
       return toneDrillWords.map((w) => ({ prompt: w.word, answer: w.tone }))
     case 'grammar-pronouns': {

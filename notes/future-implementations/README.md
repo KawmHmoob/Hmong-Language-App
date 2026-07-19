@@ -13,3 +13,6 @@ which is a short backlog *list*. This folder holds full design docs.
 - [01-pronunciation-dataset.md](01-pronunciation-dataset.md) — Speak scoring +
   the community Hmong-voice dataset: reference corpus, tone-contour comparison,
   result tracking, and the consent model.
+- [02-gamification-and-incentives.md](02-gamification-and-incentives.md) — Points,
+  leaderboards, and rewards-instead-of-payroll — and the contradiction between
+  rewarding high scores and needing bad-pronunciation data.

@@ -2,12 +2,17 @@
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getLesson, getUnit, allStepIds } from '../data/lessons.js'
 import { getCategory } from '../data/vocabulary.js'
-import { CheckIcon, LockIcon, ArrowLeftIcon, ArrowRightIcon } from '../components/icons/index.jsx'
+import { CheckIcon, LockIcon, MicIcon, ArrowLeftIcon, ArrowRightIcon } from '../components/icons/index.jsx'
+import { getWordFamily } from '../data/wordFamilies.js'
 import { useProgress } from '../hooks/useProgress.js'
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
 import PaywallGate from '../components/common/PaywallGate.jsx'
 import AccountGate from '../components/common/AccountGate.jsx'
 import AudioButton from '../components/common/AudioButton.jsx'
+// Same components the Reference page uses — letters/tones look identical in
+// both places instead of being mangled by the generic examples list.
+import LetterGrid from '../components/reference/LetterGrid.jsx'
+import ToneRows from '../components/reference/ToneRows.jsx'
 import { isLessonGuestAllowed, GUEST_LESSON_LIMIT } from '../lib/access.js'
 
 export default function Lesson() {
@@ -100,6 +105,9 @@ export default function Lesson() {
       <div className="surface p-6 sm:p-8">
         {step.kind === 'intro' && <IntroStep step={step} />}
         {step.kind === 'examples' && <ExamplesStep step={step} lesson={lesson} />}
+        {step.kind === 'speak-drill' && <SpeakDrillStep step={step} />}
+        {step.kind === 'letters' && <LettersStep step={step} />}
+        {step.kind === 'tones' && <TonesStep step={step} />}
         {step.kind === 'reading' && <ReadingStep key={step.id} step={step} />}
         {step.kind === 'quiz' && <QuizStep step={step} lesson={lesson} />}
         {step.kind === 'practice' && (
@@ -243,6 +251,61 @@ function StudyHandoff({ lesson }) {
           : 'Study these in your word bank to unlock the quiz.'}
       </p>
     </div>
+  )
+}
+
+// Hands the lesson off to a Speak drill — say the sounds you just learned.
+// Replaces the old multiple-choice mini-quiz on the alphabet lessons: you
+// can't prove you can pronounce a consonant by clicking a button. See notes/50.
+function SpeakDrillStep({ step }) {
+  const family = getWordFamily(step.familyId)
+  if (!family) {
+    return (
+      <p className="text-stone-700">
+        This drill isn’t set up yet. Head back to{' '}
+        <Link to="/learn" className="text-clay-700 underline">Learn</Link>.
+      </p>
+    )
+  }
+  return (
+    <div className="text-center py-4">
+      <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-cream-100 text-clay-600 mb-4">
+        <MicIcon size={22} />
+      </span>
+      <h3 className="font-display text-2xl text-stone-900 mb-2">{step.title}</h3>
+      <p className="text-stone-700 mb-6 max-w-md mx-auto leading-relaxed">
+        {step.blurb ||
+          `Now say them out loud. ${family.words.length} sounds to practice — listen to a native speaker, then record yourself.`}
+      </p>
+      <Link to={`/speak/family/${family.id}`} className="btn-primary gap-2">
+        Practice speaking
+        <ArrowRightIcon size={16} />
+      </Link>
+    </div>
+  )
+}
+
+// Letters (consonants/vowels) inside a lesson — rendered with the SAME grid
+// the Reference page uses, not the generic examples list.
+function LettersStep({ step }) {
+  return (
+    <>
+      <h3 className="font-display text-2xl text-stone-900 mb-2">{step.title}</h3>
+      {step.intro && <p className="text-sm text-stone-600 mb-4 italic">{step.intro}</p>}
+      <LetterGrid items={step.items} />
+    </>
+  )
+}
+
+// Tones inside a lesson — the Reference tone rows, so the marker / name /
+// description / Hmong name / audio layout is preserved.
+function TonesStep({ step }) {
+  return (
+    <>
+      <h3 className="font-display text-2xl text-stone-900 mb-2">{step.title}</h3>
+      {step.intro && <p className="text-sm text-stone-600 mb-4 italic">{step.intro}</p>}
+      <ToneRows items={step.items} heading={null} />
+    </>
   )
 }
 

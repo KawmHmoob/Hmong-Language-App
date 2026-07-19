@@ -1,5 +1,5 @@
 ﻿import { useEffect, useMemo, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { getQuizConfig, getQuizDataset } from '../data/quizzes.js'
 import { useQuizState } from '../hooks/useQuizState.js'
 import { useProgress } from '../hooks/useProgress.js'
@@ -8,7 +8,8 @@ import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
 import PaywallGate from '../components/common/PaywallGate.jsx'
 import QuizResults from '../components/quiz/QuizResults.jsx'
 import ConfirmModal from '../components/common/ConfirmModal.jsx'
-import { FlameIcon, StarIcon, CheckIcon } from '../components/icons/index.jsx'
+import { FlameIcon, StarIcon, CheckIcon, LockIcon } from '../components/icons/index.jsx'
+import { quizUnlock } from '../lib/access.js'
 
 function shuffle(arr) {
   const copy = arr.slice()
@@ -41,9 +42,32 @@ function buildQuestions(config, dataset) {
     //     answer: pairs.map((p) => `${p.prompt}=${p.answer}`).join('|'),
     //   }
     // }
-    const distractors = shuffle(dataset.filter((d) => d.answer !== item.answer)).slice(0, 3)
+    // Distractors must have DISTINCT answers, not just distinct items.
+    // The tone drill has ~30 words but only 8 tone names, so picking 3 random
+    // non-matching words routinely produced options like
+    // [Mid, High, High, High] — duplicate, unanswerable choices. Dedupe by
+    // answer text, and stop early if the dataset has fewer than 4 distinct
+    // answers (then the question just has fewer options). See notes/51.
+    const seenAnswers = new Set([item.answer])
+    const distractors = []
+    for (const d of shuffle(dataset)) {
+      if (seenAnswers.has(d.answer)) continue
+      seenAnswers.add(d.answer)
+      distractors.push(d)
+      if (distractors.length === 3) break
+    }
     const options = shuffle([item, ...distractors]).map((d) => d.answer)
-    return { type: 'multiple-choice', prompt: item.prompt, answer: item.answer, options }
+    // `audio` and `blurb` are optional and pass straight through from the
+    // dataset adapter, so any quiz whose data has a recording gets a working
+    // play button (see notes/48).
+    return {
+      type: 'multiple-choice',
+      prompt: item.prompt,
+      answer: item.answer,
+      audio: item.audio,
+      blurb: item.blurb,
+      options,
+    }
   })
 }
 
@@ -53,11 +77,15 @@ export default function QuizEngine() {
   const config = getQuizConfig(topicId)
   const dataset = getQuizDataset(topicId)
   const { state, start, answer, next, review, reset } = useQuizState()
-  const { recordQuizScore } = useProgress()
+  const { recordQuizScore, vocabProgress } = useProgress()
+  const unlock = quizUnlock(topicId, vocabProgress)
   const [feedback, setFeedback] = useState(null)
   const [elapsed, setElapsed] = useState(0)
   const [savedThisRun, setSavedThisRun] = useState(false)
   const [showQuit, setShowQuit] = useState(false)
+  // Which option the learner chose — needed to highlight a WRONG pick in red
+  // (the correct answer alone going green doesn't show what they got wrong).
+  const [picked, setPicked] = useState(null)
 
   const questions = useMemo(() => (config ? buildQuestions(config, dataset) : []), [config, dataset])
 
@@ -114,6 +142,31 @@ export default function QuizEngine() {
     )
   }
 
+  // Study-before-quiz gate. The menu hides locked quizzes behind a "Study
+  // first" card, but this guard is what actually enforces it — otherwise a
+  // direct link to /quiz/vocab-<cat> walks straight past the menu. See notes/52.
+  if (unlock.gated && !unlock.unlocked) {
+    return (
+      <div className="surface-elevated p-8 sm:p-10 text-center max-w-xl mx-auto">
+        <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-cream-100 text-stone-500 mb-4">
+          <LockIcon size={22} />
+        </span>
+        <h2 className="font-display text-3xl text-stone-900 mb-3">Study the words first</h2>
+        <p className="text-stone-700 mb-6 leading-relaxed">
+          You’ve studied {unlock.studied} of {unlock.category.words.length} words in{' '}
+          {unlock.category.title}. Study {unlock.remaining} more to unlock this quiz —
+          testing words you haven’t seen is guessing, not practice.
+        </p>
+        <div className="flex flex-wrap gap-3 justify-center">
+          <Link to={`/vocabulary/${unlock.category.id}`} className="btn-primary">
+            Study {unlock.category.title}
+          </Link>
+          <Link to="/quiz" className="btn-ghost">Back to Quizzes</Link>
+        </div>
+      </div>
+    )
+  }
+
   const confirmQuit = () => {
     setShowQuit(false)
     reset()
@@ -143,6 +196,7 @@ export default function QuizEngine() {
             setSavedThisRun(false)
             setElapsed(0)
             setFeedback(null)
+            setPicked(null)
           }}
           reviewing={state.status === 'reviewing'}
           onReview={review}
@@ -188,9 +242,11 @@ export default function QuizEngine() {
           <MultipleChoice
             question={q}
             feedback={feedback}
+            picked={picked}
             onPick={(opt) => {
               if (feedback) return
               const isCorrect = opt === q.answer
+              setPicked(opt)
               answer(opt, isCorrect)
               setFeedback(isCorrect ? 'correct' : 'incorrect')
             }}
@@ -226,6 +282,7 @@ export default function QuizEngine() {
           <button
             onClick={() => {
               setFeedback(null)
+              setPicked(null) // don't carry the last pick into the next question
               next()
             }}
             className="btn-secondary"
@@ -255,20 +312,30 @@ export default function QuizEngine() {
   )
 }
 
-function MultipleChoice({ question, feedback, onPick }) {
+function MultipleChoice({ question, feedback, picked, onPick }) {
   return (
     <>
-      <div className="flex items-center gap-3 mb-6">
-        <AudioButton audioSrc={null} wordId={question.prompt} />
-        <h3 className="font-display text-3xl text-stone-900">{question.prompt}</h3>
+      <div className="mb-6">
+        <div className="flex items-center gap-3">
+          <AudioButton audioSrc={question.audio} wordId={question.prompt} size="lg" />
+          <h3 className="font-display text-3xl text-stone-900">{question.prompt}</h3>
+        </div>
+        {/* Transcript of the recording — lets the learner SEE what they're
+            hearing (e.g. the tone's Hmong name, "Cim Siab"). */}
+        {question.blurb && (
+          <p className="text-sm text-stone-600 italic mt-2">{question.blurb}</p>
+        )}
       </div>
       <div className="grid gap-2 sm:grid-cols-2">
         {question.options.map((opt) => {
           const isAnswer = opt === question.answer
           const showResult = Boolean(feedback)
+          // After answering: correct → green, the learner's WRONG pick → red,
+          // everything else dimmed. Mirrors PracticeStep in Lesson.jsx.
           let cls = 'border-cream-300 bg-cream-50 hover:border-clay-500'
           if (showResult && isAnswer) cls = 'border-emerald-500 bg-emerald-50'
-          if (showResult && !isAnswer) cls = 'border-cream-200 bg-cream-50 opacity-60'
+          else if (showResult && opt === picked) cls = 'border-red-500 bg-red-50'
+          else if (showResult) cls = 'border-cream-200 bg-cream-50 opacity-60'
           return (
             <button
               key={opt}

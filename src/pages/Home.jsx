@@ -6,6 +6,7 @@ import { categories } from '../data/vocabulary.js'
 import { useProgress } from '../hooks/useProgress.js'
 import { selectSession } from '../context/ProgressContext.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
+import { pickOfTheDay } from '../lib/daily.js'
 
 // Home — a bento-style dashboard. One glance answers "where am I?" (streak,
 // XP, due words) and "what should I do?" (the two front doors + today's
@@ -23,12 +24,9 @@ const explore = [
 
 // Deterministic daily pick: hash the ISO date into an index. Same phrase all
 // day, new phrase tomorrow, no state or randomness to store.
+// Shared with Speak's word of the day — see src/lib/daily.js.
 function phraseOfTheDay() {
-  const list = allPhrases()
-  const day = new Date().toISOString().slice(0, 10)
-  let hash = 0
-  for (const ch of day) hash += ch.charCodeAt(0)
-  return list[hash % list.length]
+  return pickOfTheDay(allPhrases(), 'home-phrase')
 }
 
 export default function Home() {

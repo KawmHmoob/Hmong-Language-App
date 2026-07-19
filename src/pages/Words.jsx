@@ -130,7 +130,9 @@ export default function Words() {
         />
       </div>
 
-      {/* Category strip */}
+      {/* Category strip — commented out. All 28 categories as chips made the
+          hub long and competed with the "Browse words" drill tile, which
+          already leads to the same place (/vocabulary). Uncomment to restore.
       <h3 className="font-display text-2xl text-stone-900 mb-4">Categories</h3>
       <div className="flex flex-wrap gap-2">
         {categories.map((c) => (
@@ -144,6 +146,7 @@ export default function Words() {
           </Link>
         ))}
       </div>
+      */}
     </div>
   )
 }

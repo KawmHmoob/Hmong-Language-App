@@ -49,10 +49,10 @@ export const tripleConsonants = {
       answer: 'Npl',
     },
     {
-      id: 'foundations-triple-consonants-quiz',
-      kind: 'mini-quiz',
-      title: 'Triple Consonants mini-quiz',
-      quizId: 'alphabet-consonants',
+      id: 'triple-consonants-speak',
+      kind: 'speak-drill',
+      title: 'Now say them',
+      familyId: 'family-consonant-triple',
     },
   ],
 }

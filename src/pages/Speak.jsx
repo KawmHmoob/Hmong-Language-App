@@ -5,6 +5,8 @@ import { useProgress } from '../hooks/useProgress.js'
 import { useAuth } from '../context/AuthContext.jsx'
 import { useSubscription } from '../context/SubscriptionContext.jsx'
 import { isPhraseGuestAllowed, GUEST_PHRASE_LIMIT } from '../lib/access.js'
+import { wordFamilies } from '../data/wordFamilies.js'
+import { pickOfTheDay } from '../lib/daily.js'
 
 // Speak hub — one of the app's two front doors. Lists every pronounceable
 // phrase grouped by topic, with per-phrase practice state and Pro locks.
@@ -18,6 +20,11 @@ export default function Speak() {
   const practiced = allPhrases().filter((p) =>
     completedSteps.includes(speakStepId(p.id))
   ).length
+
+  // Today's phrase to say out loud. Salted differently from Home's phrase of
+  // the day so the two surfaces don't show the same thing (src/lib/daily.js).
+  const daily = pickOfTheDay(allPhrases(), 'speak-daily')
+  const dailyDone = daily && completedSteps.includes(speakStepId(daily.id))
 
   return (
     <div>
@@ -46,6 +53,68 @@ export default function Speak() {
           </span>
         </div>
       </div>
+
+      {/* Say this today — one rotating phrase, same for everyone, no state
+          stored (the date is the seed). The daily anchor a streak/leaderboard
+          would eventually hang off. See notes/52. */}
+      {daily && (
+        <Link
+          to={`/speak/${daily.id}`}
+          className="surface-elevated surface-hover flex items-center justify-between gap-4 p-5 mb-10 group"
+        >
+          <span className="min-w-0">
+            <span className="block text-xs uppercase tracking-[0.2em] text-stone-600 mb-1">
+              Say this today
+            </span>
+            <span className="block font-display text-2xl text-stone-900 group-hover:text-clay-700 transition truncate">
+              {daily.hmong}
+            </span>
+            <span className="block text-sm text-stone-600 truncate">{daily.english}</span>
+          </span>
+          {dailyDone ? (
+            <span className="shrink-0 inline-flex items-center gap-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 px-2.5 py-1">
+              <CheckIcon size={12} /> Done
+            </span>
+          ) : (
+            <span className="shrink-0 text-sm font-medium text-clay-700">Practice →</span>
+          )}
+        </Link>
+      )}
+
+      {/* Word families — sound drills built on a shared rime. Barebones
+          preview for now; recording/scoring not built (notes/46). */}
+      {wordFamilies.length > 0 && (
+        <section className="mb-10" aria-labelledby="word-families">
+          <h3 id="word-families" className="font-display text-2xl text-stone-900 mb-1">
+            Word families
+          </h3>
+          <p className="text-sm text-stone-600 mb-4">
+            Drill one sound at a time — words that share the same ending.
+          </p>
+          <ul className="grid gap-3 sm:grid-cols-2">
+            {wordFamilies.map((f) => (
+              <li key={f.id}>
+                <Link
+                  to={`/speak/family/${f.id}`}
+                  className="surface surface-hover flex items-center justify-between gap-3 p-4 h-full"
+                >
+                  <span className="min-w-0">
+                    <span className="block font-display text-lg text-stone-900 truncate">
+                      {f.title}
+                    </span>
+                    <span className="block text-sm text-stone-600">
+                      {f.words.length} words · {f.pattern}
+                    </span>
+                  </span>
+                  <span className="shrink-0 text-[10px] uppercase tracking-wider font-medium rounded-full bg-cream-200 text-stone-600 px-2 py-0.5">
+                    Preview
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <div className="space-y-10">
         {speakGroups.map((group) => (

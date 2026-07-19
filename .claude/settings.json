@@ -10,7 +10,9 @@
       "Bash(grep -nE \"kind: '|/\\\\*\\\\{|\\\\}\\\\*/\" src/data/lessons/pronouns.js)",
       "Bash(grep -nE \"kind: '|/\\\\*\\\\{|\\\\}\\\\*/\" src/data/lessons/tense-markers.js)",
       "Bash(xargs echo \"flip references in note 37:\")",
-      "Bash(xargs echo \"count:\")"
+      "Bash(xargs echo \"count:\")",
+      "Bash(xargs echo \"icons found:\")",
+      "Bash(xargs echo \"  withLessons refs:\")"
     ],
     "additionalDirectories": [
       "\\tmp"

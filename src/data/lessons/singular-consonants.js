@@ -58,10 +58,10 @@ export const singularConsonants = {
       answer: '"s" as in "see"',
     },
     {
-      id: 'foundations-consonants-quiz',
-      kind: 'mini-quiz',
-      title: 'Consonants mini-quiz',
-      quizId: 'alphabet-consonants',
+      id: 'singular-consonants-speak',
+      kind: 'speak-drill',
+      title: 'Now say them',
+      familyId: 'family-consonant-single',
     },
   ],
 }

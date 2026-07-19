@@ -15,6 +15,7 @@ import Notebook from './pages/Notebook.jsx'
 import Search from './pages/Search.jsx'
 import Speak from './pages/Speak.jsx'
 import SpeakPhrase from './pages/SpeakPhrase.jsx'
+import SpeakFamily from './pages/SpeakFamily.jsx'
 import Words from './pages/Words.jsx'
 import WordsSession from './pages/WordsSession.jsx'
 import QuizMenu from './pages/QuizMenu.jsx'
@@ -56,6 +57,8 @@ export default function App() {
                 <Route element={<Layout />}>
                   <Route path="/" element={<Home />} />
                   <Route path="/speak" element={<Speak />} />
+                  {/* more specific route first so 'family' isn't read as a phraseId */}
+                  <Route path="/speak/family/:familyId" element={<SpeakFamily />} />
                   <Route path="/speak/:phraseId" element={<SpeakPhrase />} />
                   <Route path="/words" element={<Words />} />
                   <Route path="/words/session" element={<WordsSession />} />

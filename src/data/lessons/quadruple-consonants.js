@@ -40,10 +40,10 @@ export const quadrupleConsonants = {
       answer: 'Ntxh',
     },
     {
-      id: 'foundations-quadruple-consonants-quiz',
-      kind: 'mini-quiz',
-      title: 'Quadruple Consonants mini-quiz',
-      quizId: 'alphabet-consonants',
+      id: 'quadruple-consonants-speak',
+      kind: 'speak-drill',
+      title: 'Now say them',
+      familyId: 'family-consonant-quadruple',
     },
   ],
 }

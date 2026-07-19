@@ -1,5 +1,6 @@
 import { units } from '../data/lessons.js'
 import { allPhrases } from '../data/speak.js'
+import { getCategory } from '../data/vocabulary.js'
 
 // Guest access limits — the "try before you sign up" boundary.
 //
@@ -48,4 +49,36 @@ export function isPhraseGuestAllowed(phraseId) {
 export const guestLimits = {
   lessons: GUEST_LESSON_LIMIT,
   phrases: GUEST_PHRASE_LIMIT,
+}
+
+// ── Study-before-quiz gate ──────────────────────────────────────────────────
+// A category quiz is locked until enough of that category has been studied.
+// Testing a word set you've never seen is guessing, not assessment — the same
+// reasoning that gates the in-lesson quiz behind the Study handoff (notes/37).
+//
+// "Studied" is DERIVED from `vocabProgress` (a word has an entry once it's
+// marked Learning/Known on a flashcard) — no new state, and it can't drift.
+// Only `vocab-*` quizzes are gated; alphabet/tone/grammar quizzes have no word
+// set to study, so they stay open.
+
+// Fraction of a category that must be studied before its quiz opens.
+export const QUIZ_UNLOCK_RATIO = 0.5
+
+export function quizUnlock(quizId, vocabProgress = {}) {
+  const open = { gated: false, unlocked: true }
+  if (!quizId || !quizId.startsWith('vocab-')) return open
+
+  const category = getCategory(quizId.slice('vocab-'.length))
+  if (!category || category.words.length === 0) return open // nothing to study
+
+  const studied = category.words.filter((w) => vocabProgress[w.id]).length
+  const needed = Math.ceil(category.words.length * QUIZ_UNLOCK_RATIO)
+  return {
+    gated: true,
+    unlocked: studied >= needed,
+    studied,
+    needed,
+    remaining: Math.max(0, needed - studied),
+    category,
+  }
 }

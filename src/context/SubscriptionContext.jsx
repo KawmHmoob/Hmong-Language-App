@@ -13,6 +13,15 @@ import { useAuth } from './AuthContext.jsx'
 const SubscriptionContext = createContext(null)
 const KEY_PREFIX = 'kawmhmoob.subscription.'
 
+// ⚠️ MASTER SWITCH — the Pro paywall is OFF for testing.
+// While false: canAccess() always passes and every user reads as Pro, so no
+// content is gated and no "Pro" locks render. Flip to true to re-arm the
+// paywall (tiers in the data take effect again). This is the ONE line.
+//
+// Sibling switch: GUEST_GATING_ENABLED in src/lib/access.js (also off).
+// BOTH must be true before release. See notes/36.
+export const PAYWALL_ENABLED = false
+
 const FREE = { tier: 'free', expiresAt: null }
 
 function loadTier(userId) {
@@ -56,9 +65,11 @@ export function SubscriptionProvider({ children }) {
 
   const value = useMemo(
     () => ({
-      tier: sub.tier,
+      // With the paywall off, everyone reads as Pro so lock badges disappear
+      // too (Speak/LessonCard branch on isPro, not just canAccess).
+      tier: PAYWALL_ENABLED ? sub.tier : 'pro',
       expiresAt: sub.expiresAt,
-      isPro: sub.tier === 'pro',
+      isPro: PAYWALL_ENABLED ? sub.tier === 'pro' : true,
       mockUpgrade,
       mockDowngrade,
     }),
@@ -77,6 +88,7 @@ export function useSubscription() {
 // Pure helper: returns true if the content's tier is accessible to the user's tier.
 // Default tier is 'free' when omitted from data.
 export function canAccess(contentTier, userTier) {
+  if (!PAYWALL_ENABLED) return true // testing — nothing is gated
   const t = contentTier || 'free'
   if (t === 'free') return true
   return userTier === 'pro'

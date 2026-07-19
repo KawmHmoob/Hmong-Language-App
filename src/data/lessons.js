@@ -5,6 +5,10 @@ import { singularConsonants } from './lessons/singular-consonants'
 import { dualConsonants } from './lessons/dual-consonants'
 import { tripleConsonants } from './lessons/triple-consonants'
 import { quadrupleConsonants } from './lessons/quadruple-consonants'
+import { hmongWordStructure } from './lessons/hmong-word-structure'
+import { SingleVowels } from './lessons/vowels'
+import { DoubleVowels } from './lessons/double-vowels'
+import { Tones } from './lessons/tones'
 import { sibReciprocals } from './lessons/sib-reciprocals'
 import { greetingsFarewells } from './lessons/greetings-farewells'
 import { actionVerbs } from './lessons/action-verbs'
@@ -37,12 +41,24 @@ import { readingSchool } from './lessons/reading-school'
 //   - 'quiz'       { title? }  — requires `vocab` on the lesson. The lesson's
 //                  final step: the vocab-<vocab> quiz, LOCKED until the learner
 //                  has studied (study → then test). See notes/37.
+//   - 'letters'    { title, intro?, items: [{ letter, sound?, audio? }] }
+//                  The letter tile grid — renders the SAME <LetterGrid> the
+//                  Reference page uses. For consonants/vowels. See notes/47.
+//   - 'tones'      { title, intro?, items: [{ marker, name, description, example2, audio }] }
+//                  The tone rows — the SAME <ToneRows> as Reference. See notes/47.
+//                  (Do NOT push letters/tones through 'examples' — that layout
+//                   is for word lists and mangles them.)
 //   - 'reading'    { title, level, intro?, hmong, english, glossary: [{hmong, english}] }
 //                  Translation stays hidden until the learner asks — see notes/34.
 //   - 'practice'   { title, prompt, options: string[], answer }
 //                  Only readings still use this (comprehension check). Vocab
 //                  lessons' old quick-checks are commented out — see notes/37.
-//   - 'mini-quiz'  { title, quizId }  — consonant lessons; links an alphabet quiz.
+//   - 'mini-quiz'  { title, quizId }  — links out to an existing quiz.
+//   - 'speak-drill' { title, familyId, blurb? }
+//                  Hands off to a Speak word-family drill (/speak/family/:id).
+//                  The alphabet lessons end on this instead of a mini-quiz —
+//                  you can't prove you can SAY a consonant by clicking a
+//                  multiple-choice option. See notes/50.
 //
 // Optional `tier: 'free' | 'pro'` on a Unit or Lesson gates content behind the
 // paywall. Lesson tier overrides unit tier. Both default to 'free'.
@@ -68,18 +84,67 @@ import { readingSchool } from './lessons/reading-school'
 //   3. Add it to the unit's `lessons` array below.
 // ──────────────────────────────────────────────────────────────────────────
 
-// The Foundations unit. The Unit declares its own metadata (id, title,
-// description) and then lists which Lessons belong to it, in display order.
+// UNIT LAYOUT — see notes/46.
+//
+// FOUNDATIONS = the alphabet. A Hmong word is consonant + vowel + tone, so
+// Foundations teaches that formula and then each of its three pieces. That's
+// what a beginner needs before anything else, and it's the unit's whole job.
+//
+// Everything that is NOT alphabet work lives in its own unit — grammar first.
+// That's what keeps Foundations from becoming the dumping ground it was (it
+// held all 14 lessons, grammar included).
+//
+// Order inside Foundations follows the formula: structure → consonants →
+// vowels → tones. Tones sits last because it's the hardest and builds on the
+// other two; expect it to grow several contrast lessons.
+
+// A unit may declare `groups` instead of a flat `lessons` array. Groups are a
+// DISPLAY concept — headed sections inside one unit — so a long unit reads as
+// a curriculum instead of a wall of cards. `lessons` is derived from them (see
+// withLessons below), so progress, routing, and the Learn hub are unchanged.
 const foundations = {
   id: 'foundations',
   title: 'Foundations',
-  description: 'Start here. Pronouns, basic verbs, and how Hmong sentences hold together.',
-  lessons: [
+  description:
+    'Start here. How a Hmong word is built — consonant + vowel + tone — and each piece in turn.',
+  groups: [
+    {
+      id: 'word-structure',
+      title: 'How Hmong Words Work',
+      blurb: 'The formula everything else builds on.',
+      lessons: [hmongWordStructure],
+    },
+    {
+      id: 'consonants',
+      title: 'Consonants',
+      blurb: 'Cov tsiaj ntawv — the sound a word starts with.',
+      lessons: [singularConsonants, dualConsonants, tripleConsonants, quadrupleConsonants],
+    },
+    {
+      id: 'vowels',
+      title: 'Vowels',
+      blurb: 'Cov tab — the middle of the syllable.',
+      lessons: [SingleVowels, DoubleVowels],
+    },
+    {
+      id: 'tones',
+      title: 'Tones',
+      blurb: 'Cov cim — the pitch that changes meaning. The hardest piece.',
+      lessons: [
+        Tones,
+        // Add contrast lessons here: high vs high-falling, the breathy -g,
+        // the creaky -m, minimal-pair drills. One idea per lesson.
+      ],
+    },
+  ],
+}
 
-    singularConsonants,
-    dualConsonants,
-    tripleConsonants,
-    quadrupleConsonants,
+// The Grammar unit — how words COMBINE. Not alphabet work, so not Foundations.
+const grammarUnit = {
+  id: 'grammar',
+  title: 'Grammar',
+  description: 'Pronouns, verbs, tense markers, and classifiers — how Hmong sentences hold together.',
+  lessons: [
     pronouns,
     actionVerbs,
     tenseMarkers,
@@ -87,7 +152,6 @@ const foundations = {
     pronounsDemonstratives,
     possessivePronouns,
     yogToBe,
-    // Drop new Foundations lessons here, in the order you want them shown.
   ],
 }
 
@@ -133,7 +197,22 @@ const readings = {
 // `units` is the top-level export consumed by the Learn page and the lesson
 // player. Add additional units here as you build them — same pattern: import
 // the lessons, declare the unit, list it.
-export const units = [foundations, conversational, numbersAndTime, readings]
+// Normalize a unit so EVERY unit has a flat `lessons` array, whether it was
+// declared with `groups` or not. This is the compatibility seam: all existing
+// code (progress, getLesson, the Learn hub, allStepIds) keeps reading
+// `unit.lessons` and never has to know about groups.
+function withLessons(unit) {
+  if (!unit.groups) return unit
+  return { ...unit, lessons: unit.groups.flatMap((g) => g.lessons) }
+}
+
+export const units = [
+  foundations,     // the alphabet: word structure → consonants → vowels → tones
+  grammarUnit,     // how words combine
+  conversational,
+  numbersAndTime,
+  readings,
+].map(withLessons)
 
 // ──────────────────────────────────────────────────────────────────────────
 // Helpers — pure read-only functions over the data above.

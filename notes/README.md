@@ -41,6 +41,15 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [13-lesson-system-walkthrough.md](13-lesson-system-walkthrough.md) | **Learn** — line-by-line walkthrough 🕰 *(original Lesson.jsx; current flow in 37)* |
 | [32-alphabet-section-and-mojibake.md](32-alphabet-section-and-mojibake.md) | **Reference** — why it's its own section; plus the app-wide mojibake repair |
 | [43-consonant-groups.md](43-consonant-groups.md) | **Reference** — consonants split Single/Double/Triple/Quadruple, derived by `letter.length` from one flat list |
+| [45-vowel-and-tone-lessons.md](45-vowel-and-tone-lessons.md) | **Learn** — vowel/tone lesson scaffolds whose examples *derive from* `reference.js`; the `doubleVowels` path bug; verifying templated audio paths |
+| [46-unit-restructure-and-word-families.md](46-unit-restructure-and-word-families.md) | **Learn + Speak** — Foundations = the alphabet (grammar moved out), new word-structure anchor lesson, and the Speak **word family** drill placeholder |
+| [47-shared-reference-components.md](47-shared-reference-components.md) | **Share the component, not just the data** — `LetterGrid`/`ToneRows` used by both Reference and lessons; the `letters`/`tones` step kinds |
+| [48-quiz-audio-and-blurb.md](48-quiz-audio-and-blurb.md) | Quiz questions play their sound + show a transcript `blurb`; the hardcoded `audioSrc={null}` bug |
+| [49-tone-drill-and-wrong-answer.md](49-tone-drill-and-wrong-answer.md) | Tone drill derives its answers from each word's final letter (was drifting); wrong quiz picks now highlight red |
+| [50-consonant-speak-drills.md](50-consonant-speak-drills.md) | **Speak** — a drill per consonant type, derived from `consonantGroups`; the `speak-drill` step replaces the alphabet mini-quiz |
+| [51-duplicate-options-and-vocab-groups.md](51-duplicate-options-and-vocab-groups.md) | **Bug:** quiz options could repeat (dedupe by *answer*, not item) + vocabulary grouped into 7 themes with a "More" safety net |
+| [52-study-before-quiz-gate.md](52-study-before-quiz-gate.md) | Category quizzes lock until half the words are studied — derived from `vocabProgress`, enforced in the engine not just the menu |
+| [53-quiz-menu-themes.md](53-quiz-menu-themes.md) | **Words** — Quizzes page reuses the *same* seven vocabulary themes; splitting on the `vocab-` id prefix; deleting the "Show all" workaround once the cause was fixed |
 | [25-neon-theme-and-bento-home.md](25-neon-theme-and-bento-home.md) | **Home** — bento dashboard, phrase of the day |
 
 ## Design system

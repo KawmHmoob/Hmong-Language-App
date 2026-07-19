@@ -76,10 +76,10 @@ export const consonants = [
 // Derived from `consonants` above (length = category), so there's one source.
 // Empty groups drop out. See notes/43.
 export const consonantGroups = [
-  { id: 'single', title: 'Single', blurb: 'One letter, one sound.' },
-  { id: 'double', title: 'Double', blurb: 'Two letters, one sound.' },
-  { id: 'triple', title: 'Triple', blurb: 'Three letters, one sound.' },
-  { id: 'quadruple', title: 'Quadruple', blurb: 'Four letters, one sound.' },
+  { id: 'single', title: 'Single | Cov Tsiaj Ntawv Txiv Tab', blurb: 'One letter, one sound.' },
+  { id: 'double', title: 'Double | Cov Txiv Txooj', blurb: 'Two letters, one sound.' },
+  { id: 'triple', title: 'Triple | Cov Txiv Peb Tug', blurb: 'Three letters, one sound.' },
+  { id: 'quadruple', title: 'Quadruple | Cov Txiv Plaub Tug', blurb: 'Four letters, one sound.' },
 ]
   .map((g, i) => ({ ...g, items: consonants.filter((c) => c.letter.length === i + 1) }))
   .filter((g) => g.items.length > 0)
@@ -130,14 +130,14 @@ export const vowels = [
   { letter: 'o', sound: 'aw', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-o.mp3' },
   { letter: 'u', sound: 'oo', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-u.mp3' },
   { letter: 'w', sound: 'uh (schwa)', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-w.mp3' },
-  { letter: 'aa', sound: 'an', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-aa.mp3' },
-  { letter: 'ai', sound: 'eye', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ai.mp3' },
-  { letter: 'au', sound: 'ow', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-au.mp3' },
-  { letter: 'aw', sound: 'aw-uh', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-aw.mp3' },
-  { letter: 'ee', sound: 'eng', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ee.mp3' },
-  { letter: 'ia', sound: 'ee-ah', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ia.mp3' },
-  { letter: 'oo', sound: 'ong', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-oo.mp3' },
-  { letter: 'ua', sound: 'oo-ah', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ua.mp3' },
+  { letter: 'aa', sound: 'an', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-aa.mp3` },
+  { letter: 'ai', sound: 'eye', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-ai.mp3` },
+  { letter: 'au', sound: 'ow', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-au.mp3` },
+  { letter: 'aw', sound: 'aw-uh', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-aw.mp3` },
+  { letter: 'ee', sound: 'eng', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-ee.mp3` },
+  { letter: 'ia', sound: 'ee-ah', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-ia.mp3` },
+  { letter: 'oo', sound: 'ong', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-oo.mp3` },
+  { letter: 'ua', sound: 'oo-ah', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-ua.mp3` },
 ]
 
 
@@ -145,11 +145,11 @@ export const vowels = [
 
 export const vowelGroups = [
 
-  { id: 'single', title: 'Single', blurb: 'One letter, one sound.' },
-  { id: 'double', title: 'Double', blurb: 'Two letters,  sound.' },
+  { id: 'single', title: 'Single | Cov Tab', blurb: 'One letter, one sound.' },
+  { id: 'double', title: 'Double | Cov Txooj', blurb: 'Two letters,  sound.' },
 
 ]
-  .map((g, i) => ({ ...g, items: consonants.filter((c) => c.letter.length === i + 1) }))
+  .map((g, i) => ({ ...g, items: vowels.filter((c) => c.letter.length === i + 1) }))
   .filter((g) => g.items.length > 0)
 
 
@@ -169,27 +169,32 @@ export const singleVowels = [
 
 
 export const doubleVowels = [
-  { letter: 'aa', sound: 'an', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-aa.mp3' },
-  { letter: 'ai', sound: 'eye', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ai.mp3' },
-  { letter: 'au', sound: 'ow', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-au.mp3' },
-  { letter: 'aw', sound: 'aw-uh', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-aw.mp3' },
-  { letter: 'ee', sound: 'eng', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ee.mp3' },
-  { letter: 'ia', sound: 'ee-ah', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ia.mp3' },
-  { letter: 'oo', sound: 'ong', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-oo.mp3' },
-  { letter: 'ua', sound: 'oo-ah', audio: '/assets/audio/vowels/single-vowels/hmong-single-vowels-ua.mp3' },
+  { letter: 'aa', sound: 'an', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-aa.mp3' },
+  { letter: 'ai', sound: 'eye', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-ai.mp3' },
+  { letter: 'au', sound: 'ow', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-au.mp3' },
+  { letter: 'aw', sound: 'aw-uh', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-aw.mp3' },
+  { letter: 'ee', sound: 'eng', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-ee.mp3' },
+  { letter: 'ia', sound: 'ee-ah', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-ia.mp3' },
+  { letter: 'oo', sound: 'ong', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-oo.mp3' },
+  { letter: 'ua', sound: 'oo-ah', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-ua.mp3' },
 ]
 
 
 export const tones = [
-  { marker: 'b', name: 'High', description: 'High level tone', example: 'pob (ball)' },
-  { marker: 'j', name: 'High-falling', description: 'Falls from high', example: 'poj (female)' },
-  { marker: 'v', name: 'Mid-rising', description: 'Rises to mid', example: 'pov (throw)' },
-  { marker: '', name: 'Mid', description: 'Mid level (no marker)', example: 'po (spleen)' },
-  { marker: 's', name: 'Low', description: 'Low level tone', example: 'pos (thorn)' },
-  { marker: 'g', name: 'Mid-low breathy', description: 'Breathy mid-low', example: 'pog (grandma)' },
-  { marker: 'm', name: 'Low-falling glottalized', description: 'Creaky low-falling', example: 'pom (see)' },
-  { marker: 'd', name: 'Low-rising', description: 'Rises from low (rare)', example: 'pod (?)' },
-]
+  { marker: 'b', name: 'High', description: 'Pitch is High', example: 'pob (ball)', example2: 'Cim Siab' },
+  { marker: 'j', name: 'High-falling', description: 'Pitch is High Falling', example: 'poj (female)', example2: 'Cim Ntuj' },
+  { marker: 'v', name: 'Rising', description: 'Pitch is Rising', example: 'pov (throw)', example2: 'Cim Kuv' },
+  { marker: '', name: 'Mid', description: 'Pitch Mid (no marker)', example: 'po (spleen)', example2: 'Cim Ua' },
+  { marker: 's', name: 'Low', description: 'Pitch is Low', example: 'pos (thorn)', example2: 'Cim Mus' },
+  { marker: 'g', name: 'Mid-Falling with Air', description: 'Pitch is Mid-Falling with Air', example: 'pog (grandma)', example2: 'Cim Neeg' },
+  { marker: 'm', name: 'Low-Falling', description: 'Pitch is Low-Falling', example: 'pom (see)', example2: 'Cim Niam' },
+  { marker: 'd', name: 'Low-Rising', description: 'Pitch is Low-Rising', example: 'pod (?)', example2: 'Cim Tod' },
+].map((t) => ({
+  ...t,
+  audio: t.marker
+    ? `/assets/audio/tones/hmong-tone-${t.marker}.mp3`
+    : '/assets/audio/tones/hmong-tone-none.mp3',
+}))
 
 // ── Grammar cheat sheets ────────────────────────────────────────────────────
 // Came from the dissolved /course page. These are LOOKUP tables — the "what",

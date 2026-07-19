@@ -3959,6 +3959,79 @@ exampleSentence: { hmong: 'Kuv nyuam qhuav tuaj.', english: 'I just came.' },
   },
 ]
 
+// ── Category grouping ───────────────────────────────────────────────────────
+// 33 categories in one flat grid is a wall. These are THEMES for display only —
+// the `categories` array above stays the single source; groups just reference
+// ids. Same idea as consonantGroups (notes/43).
+//
+// Adding a category? Drop its id into a theme below. If you forget, it still
+// shows up under "More" — nothing silently disappears.
+
+const CATEGORY_THEMES = [
+  {
+    id: 'people',
+    title: 'People & Family',
+    blurb: 'Kinship terms — which change depending on who is speaking.',
+    ids: ['family-male-perspective', 'family-female-perspective', 'relatives'],
+  },
+  {
+    id: 'home',
+    title: 'Home & Places',
+    blurb: 'The house, what is in it, and where things are.',
+    ids: [
+      'household', 'household-rooms', 'housing', 'buildings',
+      'tools-household', 'places', 'locations-prepositions',
+    ],
+  },
+  {
+    id: 'living-world',
+    title: 'Nature & Food',
+    blurb: 'Animals, the natural world, and what is on the table.',
+    ids: ['animals', 'nature', 'food'],
+  },
+  {
+    id: 'clothing',
+    title: 'Clothing',
+    blurb: 'What you wear — and the verbs Hmong uses for wearing it.',
+    ids: ['wear-verbs', 'clothing-verbs'],
+  },
+  {
+    id: 'time-numbers',
+    title: 'Time, Numbers & Money',
+    blurb: 'Counting, the calendar, and buying things.',
+    ids: ['numbers', 'quantifiers', 'timeframes', 'days-of-week', 'months', 'calendar', 'money'],
+  },
+  {
+    id: 'describing',
+    title: 'Describing',
+    blurb: 'Colors, qualities, and the "siab" expressions for character and feeling.',
+    ids: ['colors', 'descriptions', 'personality-siab'],
+  },
+  {
+    id: 'grammar-words',
+    title: 'Grammar & Function Words',
+    blurb: 'The small words that hold sentences together. Each has a lesson.',
+    ids: [
+      'pronouns', 'demonstratives', 'classifiers', 'verbs',
+      'tense-markers', 'reciprocals', 'yog-to-be', 'grammar',
+    ],
+  },
+]
+
+// Resolve ids → category objects, drop ids that don't exist, and sweep any
+// category nobody assigned into a final "More" group so it stays reachable.
+const themed = CATEGORY_THEMES.map((t) => ({
+  ...t,
+  items: t.ids.map((id) => categories.find((c) => c.id === id)).filter(Boolean),
+})).filter((t) => t.items.length > 0)
+
+const assigned = new Set(themed.flatMap((t) => t.items.map((c) => c.id)))
+const leftovers = categories.filter((c) => !assigned.has(c.id))
+
+export const categoryGroups = leftovers.length
+  ? [...themed, { id: 'more', title: 'More', blurb: '', items: leftovers }]
+  : themed
+
 export function getCategory(id) {
   return categories.find((c) => c.id === id)
 }
