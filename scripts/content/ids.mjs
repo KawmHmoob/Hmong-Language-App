@@ -18,11 +18,14 @@ const stepOwners = new Map()
 const lessonOwners = new Map()
 const exportOwners = new Map()
 
-// Commented-out steps are still TEXT. Several lessons keep their retired
-// quick-checks in `/* … */` blocks (notes/37), and scanning raw source counted
-// those ids as real — reporting a duplicate that doesn't exist at runtime. A
-// checker that cries wolf gets ignored, so strip block comments first.
-const strip = (src) => src.replace(/\/\*[\s\S]*?\*\//g, '')
+// Commented-out steps are still TEXT. Lessons keep retired quick-checks in
+// `/* … */` blocks (notes/37) AND, when a speak-drill's family has no audio
+// yet, comment the step out line-by-line with `//` (notes/62). Scanning raw
+// source counted those ids/familyIds as real — a checker that cries wolf on
+// commented code gets ignored. Strip block comments, then full-line `//`
+// comments (only whole-line ones, so `https://` or a trailing note survives).
+const strip = (src) =>
+  src.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '')
 
 for (const f of readdirSync(DIR).filter((x) => x.endsWith('.js'))) {
   const src = strip(readFileSync(`${DIR}/${f}`, 'utf8'))

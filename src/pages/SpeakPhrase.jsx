@@ -30,13 +30,15 @@ export default function SpeakPhrase() {
   const { prev, next } = adjacentPhrases(phrase.id)
   const done = completedSteps.includes(speakStepId(phrase.id))
 
+  // Points fire when a take is RECORDED (onTake below), not here — recording
+  // is the thing worth rewarding, and it's the corpus contribution. UNCAPPED
+  // and unguarded by `done`: every take is a new clip worth having (notes/57).
+  const handleTake = () => {
+    awardPoints('speak-attempt')
+  }
+
   const handleDone = () => {
     if (!done) markStepComplete(speakStepId(phrase.id))
-    // UNCAPPED, and awarded on every pass — including repeats of a phrase
-    // already marked done. Re-recording a phrase you've done before is still a
-    // new clip and still worth having, so unlike `markStepComplete` this is
-    // deliberately not guarded by `done`. See notes/57.
-    awardPoints('speak-attempt')
     if (next) {
       navigate(`/speak/${next.id}`)
     } else {
@@ -66,6 +68,7 @@ export default function SpeakPhrase() {
             phrase={phrase}
             done={done}
             onDone={handleDone}
+            onTake={handleTake}
           />
         </div>
 

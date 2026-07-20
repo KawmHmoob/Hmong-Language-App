@@ -5,7 +5,7 @@ import { categoryGroups } from '../data/vocabulary.js'
 import { useProgress } from '../hooks/useProgress.js'
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
 import { quizUnlock } from '../lib/access.js'
-import { CheckIcon, LockIcon } from '../components/icons/index.jsx'
+import { CheckIcon, LockIcon, BookIcon } from '../components/icons/index.jsx'
 
 // Quiz menu. ~35 quizzes, 33 of them one-per-vocab-category, so a flat list is
 // a wall — and grouping by the `category` field alone just moved the wall into
@@ -208,9 +208,12 @@ function QuizCard({ quiz, best, unlock }) {
         {quiz.description}
       </p>
       {locked ? (
-        <p className="text-xs text-clay-700 font-medium">
-          Study {unlock.remaining} more word{unlock.remaining === 1 ? '' : 's'} to unlock →
-        </p>
+        // A button-shaped CTA, not a whisper of text — the study path is the
+        // whole point of a locked card, so make it look tappable. See notes/63.
+        <span className="inline-flex items-center gap-1.5 rounded-lg bg-clay-600/10 text-clay-700 text-sm font-semibold px-3 py-2 group-hover:bg-clay-600/15 transition">
+          <BookIcon size={15} />
+          Study {unlock.remaining} more to unlock
+        </span>
       ) : (
         <p className="text-xs text-stone-500">{quiz.questionCount} questions</p>
       )}

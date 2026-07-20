@@ -8,7 +8,7 @@ import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
 import PaywallGate from '../components/common/PaywallGate.jsx'
 import QuizResults from '../components/quiz/QuizResults.jsx'
 import ConfirmModal from '../components/common/ConfirmModal.jsx'
-import { FlameIcon, StarIcon, CheckIcon, LockIcon } from '../components/icons/index.jsx'
+import { FlameIcon, StarIcon, CheckIcon, LockIcon, BookIcon } from '../components/icons/index.jsx'
 import { quizUnlock } from '../lib/access.js'
 
 function shuffle(arr) {
@@ -147,21 +147,43 @@ export default function QuizEngine() {
   // direct link to /quiz/vocab-<cat> walks straight past the menu. See notes/52.
   if (unlock.gated && !unlock.unlocked) {
     return (
-      <div className="surface-elevated p-8 sm:p-10 text-center max-w-xl mx-auto">
-        <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-cream-100 text-stone-500 mb-4">
-          <LockIcon size={22} />
+      <div className="surface-elevated p-6 sm:p-10 text-center max-w-xl mx-auto">
+        <span className="inline-flex items-center justify-center h-14 w-14 rounded-full bg-cream-100 text-clay-700 mb-4">
+          <LockIcon size={26} />
         </span>
-        <h2 className="font-display text-3xl text-stone-900 mb-3">Study the words first</h2>
-        <p className="text-stone-700 mb-6 leading-relaxed">
-          You’ve studied {unlock.studied} of {unlock.category.words.length} words in{' '}
-          {unlock.category.title}. Study {unlock.remaining} more to unlock this quiz —
-          testing words you haven’t seen is guessing, not practice.
+        <h2 className="font-display text-2xl sm:text-3xl text-stone-900 mb-3">
+          Study the words first
+        </h2>
+        <p className="text-stone-700 mb-3 leading-relaxed">
+          Testing words you haven’t seen is guessing, not practice. Learn the{' '}
+          {unlock.category.title} words, then come back to test yourself.
         </p>
-        <div className="flex flex-wrap gap-3 justify-center">
-          <Link to={`/vocabulary/${unlock.category.id}`} className="btn-primary">
-            Study {unlock.category.title}
+
+        {/* Progress toward unlock — a bar makes "how close am I" instant. */}
+        <div className="max-w-xs mx-auto mb-6">
+          <div className="h-2 rounded-full bg-cream-200 overflow-hidden">
+            <div
+              className="h-full bg-clay-600 transition-all"
+              style={{ width: `${(unlock.studied / unlock.needed) * 100}%` }}
+            />
+          </div>
+          <p className="text-sm text-stone-600 mt-2">
+            {unlock.studied} of {unlock.needed} studied · {unlock.remaining} to go
+          </p>
+        </div>
+
+        {/* One clear primary action. Full-width on mobile so it's an easy tap. */}
+        <Link
+          to={`/vocabulary/${unlock.category.id}`}
+          className="btn-primary w-full sm:w-auto gap-2 text-base"
+        >
+          <BookIcon size={18} />
+          Study the {unlock.category.title} words
+        </Link>
+        <div className="mt-4">
+          <Link to="/quiz" className="text-sm text-stone-600 hover:text-clay-700 underline">
+            Back to Quizzes
           </Link>
-          <Link to="/quiz" className="btn-ghost">Back to Quizzes</Link>
         </div>
       </div>
     )
@@ -237,7 +259,20 @@ export default function QuizEngine() {
         </div>
       </div>
 
-      <div className="surface p-8">
+      {/* Always-available study link for vocab quizzes — a learner mid-quiz
+          who realizes they need the words shouldn't have to quit to find them.
+          Only vocab quizzes carry `unlock.category`. See notes/63. */}
+      {unlock.category && (
+        <Link
+          to={`/vocabulary/${unlock.category.id}`}
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-clay-700 hover:text-clay-800 mb-3"
+        >
+          <BookIcon size={15} />
+          Study the {unlock.category.title} words
+        </Link>
+      )}
+
+      <div className="surface p-4 sm:p-8">
         {q.type === 'multiple-choice' && (
           <MultipleChoice
             question={q}
@@ -318,7 +353,9 @@ function MultipleChoice({ question, feedback, picked, onPick }) {
       <div className="mb-6">
         <div className="flex items-center gap-3">
           <AudioButton audioSrc={question.audio} wordId={question.prompt} size="lg" />
-          <h3 className="font-display text-3xl text-stone-900">{question.prompt}</h3>
+          <h3 className="font-display text-2xl sm:text-3xl text-stone-900 break-words min-w-0">
+            {question.prompt}
+          </h3>
         </div>
         {/* Transcript of the recording — lets the learner SEE what they're
             hearing (e.g. the tone's Hmong name, "Cim Siab"). */}
@@ -326,7 +363,11 @@ function MultipleChoice({ question, feedback, picked, onPick }) {
           <p className="text-sm text-stone-600 italic mt-2">{question.blurb}</p>
         )}
       </div>
-      <div className="grid gap-2 sm:grid-cols-2">
+      {/* Single column on phones (full-width, thumb-reachable), two columns
+          from sm up. Options are the primary tap target, so they get a
+          comfortable min-height and base text — p-3/text-sm was cramped on
+          touch. See notes/63. */}
+      <div className="grid gap-2.5 sm:grid-cols-2">
         {question.options.map((opt) => {
           const isAnswer = opt === question.answer
           const showResult = Boolean(feedback)
@@ -346,7 +387,7 @@ function MultipleChoice({ question, feedback, picked, onPick }) {
             <button
               key={opt}
               onClick={() => onPick(opt)}
-              className={`text-left rounded border p-3 text-sm transition ${cls}`}
+              className={`text-left rounded-lg border p-4 min-h-[3.25rem] text-base transition active:scale-[0.99] ${cls}`}
               disabled={showResult}
             >
               {opt}

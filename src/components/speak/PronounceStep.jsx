@@ -3,7 +3,12 @@ import { usePronunciation } from '../../hooks/usePronunciation.js'
 import LevelMeter from './LevelMeter.jsx'
 import ToneCurve from './ToneCurve.jsx'
 import { scoreTake } from '../../lib/pronounceScore.js'
-import { VolumeIcon, PlayIcon, SwapIcon, RefreshIcon, CheckIcon } from '../icons/index.jsx'
+import { POINT_SOURCES } from '../../lib/leveling.js'
+import { VolumeIcon, PlayIcon, SwapIcon, RefreshIcon, CheckIcon, StarIcon } from '../icons/index.jsx'
+
+// Kept in sync with the award in SpeakPhrase — both read the same source, so
+// the displayed "+N" can't disagree with what's actually granted.
+const SPEAK_ATTEMPT_POINTS = POINT_SOURCES['speak-attempt'].points
 
 // The Speak practice loop for one phrase:
 //   Listen (native MP3) → Record → see your pitch vs the native curve → A/B.
@@ -14,13 +19,22 @@ import { VolumeIcon, PlayIcon, SwapIcon, RefreshIcon, CheckIcon } from '../icons
 // until it's calibrated against real takes (notes/19, guide Part 7).
 //
 // `onDone` fires when the learner moves on; the parent records progress.
+// `onTake(result)` fires ONCE per recorded take that produced voice — the
+// parent awards points there, so points reward the act of recording, not
+// clicking Next. See notes/63.
 
-export default function PronounceStep({ phrase, done, onDone }) {
+export default function PronounceStep({ phrase, done, onDone, onTake }) {
   const { status, clip, analyser, start, stop, supported } = usePronunciation()
   const [playing, setPlaying] = useState(null) // 'ref' | 'take' | 'ab' | null
   const [result, setResult] = useState(null) // { score, ref, user } | null
   const [scoring, setScoring] = useState(false)
   const playersRef = useRef([])
+
+  // Keep the latest onTake without making it a scoring-effect dependency —
+  // an inline callback from the parent would otherwise re-run scoring on every
+  // render (and re-award). The ref holds the current one; the effect fires it.
+  const onTakeRef = useRef(onTake)
+  onTakeRef.current = onTake
 
   const hasReference = Boolean(phrase.audio)
   const recording = status === 'recording'
@@ -34,7 +48,13 @@ export default function PronounceStep({ phrase, done, onDone }) {
     setScoring(true)
     setResult(null)
     scoreTake(clip.blob, phrase.audio)
-      .then((r) => live && setResult(r))
+      .then((r) => {
+        if (!live) return
+        setResult(r)
+        // Award only when the take actually captured voice — silence
+        // (reason 'no-voice', empty user curve) isn't a contribution.
+        if (r?.user?.length > 0) onTakeRef.current?.(r)
+      })
       .catch(() => live && setResult(null))
       .finally(() => live && setScoring(false))
     return () => {
@@ -170,6 +190,14 @@ export default function PronounceStep({ phrase, done, onDone }) {
               {result.score != null && <ScoreBadge score={result.score} />}
               {(result.ref?.length > 0 || result.user?.length > 0) && (
                 <ToneCurve refCurve={result.ref} user={result.user} />
+              )}
+              {/* Points confirmation — a recorded take earned points (uncapped),
+                  so tell the learner. Shown whenever voice was captured, even
+                  with no reference to score against. See notes/63. */}
+              {result.user?.length > 0 && (
+                <p className="inline-flex items-center gap-1.5 text-sm font-semibold text-clay-700 bg-clay-600/10 rounded-full px-3 py-1">
+                  <StarIcon size={13} /> +{SPEAK_ATTEMPT_POINTS} points
+                </p>
               )}
               {result.score == null && (
                 <p className="text-sm text-stone-600">

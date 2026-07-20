@@ -89,8 +89,41 @@ Same stance as notes/61: the score shows, colored by band, but never blocks
 "Next". 80%-to-pass waits for calibration against real takes. Don't wire a
 threshold here until the distribution exists.
 
+## Speak shows only what can be recorded
+Rule going forward: **a Speak item without a real recording is commented out,
+not shown.** An entry with `audio: ''` can't be scored — it drops to
+self-curve-only, which is a dead end dressed up as a feature. So:
+
+| Surface | Kept (has audio) | Commented out (no audio) |
+|---|---|---|
+| `speak.js` phrases | tones (8), greetings (5), `ua tsaug` | politeness ×3, daily-life, introductions |
+| `wordFamilies.js` | consonant + vowel families (derived, real audio) | `family-vowel-a`, `family-time-clock` |
+
+Greetings + `ua tsaug` were **wired** to the existing
+`grammar/conversations/greetings-and-farewells/` recordings, not left empty —
+"use the audio we already have; comment out only what we don't."
+
+**Commented, never deleted.** The Hmong, tips, breakdowns, and ids are all
+worth keeping — uncomment each block the moment its recordings land.
+
+### Commenting a speak-drill means commenting its family too
+`family-time-clock` and the `time-explained` lesson's `speak-drill` step that
+points at it are a **pair** — comment one without the other and the step points
+at a dead family (the `ids.mjs` guard catches exactly this). They carry a note
+telling you to restore both together.
+
+### The guard learned to ignore line comments
+`scripts/content/ids.mjs` stripped `/* */` blocks but not `//` lines, so a
+line-commented `familyId:` still tripped it — a false BROKEN. It now strips
+whole-line `//` comments too (only full-line, so `https://` and trailing notes
+survive). Same principle as notes/58: a checker that flags commented-out code
+gets ignored.
+
 ## Files
-- `src/data/speak.js` — `toneSpeakGroup`, derived from `reference.js`; first group
+- `src/data/speak.js` — `toneSpeakGroup` (first group); greetings + `ua tsaug` wired; audio-less groups commented
+- `src/data/wordFamilies.js` — `family-vowel-a` + `family-time-clock` commented out
+- `src/data/lessons/time-explained.js` — `speak-drill` step commented with its family
+- `scripts/content/ids.mjs` — now strips full-line `//` comments
 - `src/components/speak/ToneCurve.jsx` — `ref` → `refCurve` fix
 - `src/components/speak/PronounceStep.jsx` — call site updated
 - unchanged but load-bearing: `src/lib/{pronounceScore,yin,toneScore,audioSamples}.js`

@@ -33,6 +33,7 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [22-speak-section.md](22-speak-section.md) | **Speak** — record & compare, `usePronunciation`, level meter, `data/speak.js` |
 | [61-tone-scorer.md](61-tone-scorer.md) | **Speak** — the tone scorer: YIN F0 → semitone normalization → DTW → score, the pitch-overlay chart, why it's not a gate, and the synthetic self-test |
 | [62-speak-tones-wired.md](62-speak-tones-wired.md) | **Speak** — the Eight Tones group, the first end-to-end record→score; derived from `reference.js`; the reserved-`ref`-prop bug; what to verify by ear |
+| [63-record-points-quiz-mobile.md](63-record-points-quiz-mobile.md) | **Speak + Words** — points awarded on record (not Next); quiz mobile tap targets/padding; the study button made obvious in three places |
 | [23-words-section.md](23-words-section.md) | **Words** — vocab hub, derived daily goal, SRS session (supersedes `/review`) |
 | [35-srs-session-and-quiz-menu.md](35-srs-session-and-quiz-menu.md) | **Words** — the 391-card bug: "never seen" ≠ "due"; `DAILY_NEW_LIMIT`; grouped quiz menu |
 | [33-unit-pages.md](33-unit-pages.md) | **Learn** — hub + per-unit pages, shared `LessonCard` |

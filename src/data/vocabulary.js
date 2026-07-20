@@ -842,22 +842,22 @@ export const categories = [
     emoji: '🌿',
     words: [],
   },
-  {
-    id: 'household',
-    title: 'Household',
-    description: 'Items around the home.',
-    emoji: '🏠',
-    words: [
-      {
-        id: 'household-house',
-        hmongRPA: 'tsev',
-        english: 'house / home',
-        category: 'household',
-        tags: ['structure'],
-        audioFile: null,
-      },
-    ],
-  },
+  // {
+  //   id: 'household',
+  //   title: 'Household',
+  //   description: 'Items around the home.',
+  //   emoji: '🏠',
+  //   words: [
+  //     {
+  //       id: 'household-house',
+  //       hmongRPA: 'tsev',
+  //       english: 'house / home',
+  //       category: 'household',
+  //       tags: ['structure'],
+  //       audioFile: null,
+  //     },
+  //   ],
+  // },
   {
     id: 'classifiers',
     title: 'Classifiers',

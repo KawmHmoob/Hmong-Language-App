@@ -80,16 +80,19 @@ export const timeExplained = {
         // { hmong: 'Tav su', audio: 'vocabulary/timeframes/hmong-time-tavsu.mp3', english: 'noon / midday', note: 'The hinge between sawv ntxov and tsaus ntuj.' }, // TODO-VERIFY: literal sense of "tav su"
       ],
     },
-    {
-      // A SPEAKING check, not a multiple-choice one. Telling the time is a
-      // production skill — you can pick "6:30" off a list without being able to
-      // say "rau teev pebcaug sawv ntxov". See notes/58.
-      id: 'time-explained-speak',
-      kind: 'speak-drill',
-      title: 'Say the time',
-      familyId: 'family-time-clock',
-      blurb: 'Build each time out loud: hour → teev → minutes → a.m./p.m.',
-    },
+    // COMMENTED OUT with its family: `family-time-clock` has no recordings yet
+    // (notes/62), so this speak-drill would point at a dead family. Restore
+    // BOTH together when the telling-the-time audio is recorded. Do not delete.
+    // {
+    //   // A SPEAKING check, not a multiple-choice one. Telling the time is a
+    //   // production skill — you can pick "6:30" off a list without being able
+    //   // to say "rau teev pebcaug sawv ntxov". See notes/58.
+    //   id: 'time-explained-speak',
+    //   kind: 'speak-drill',
+    //   title: 'Say the time',
+    //   familyId: 'family-time-clock',
+    //   blurb: 'Build each time out loud: hour → teev → minutes → a.m./p.m.',
+    // },
     {
       id: 'time-explained-quiz',
       kind: 'quiz',
