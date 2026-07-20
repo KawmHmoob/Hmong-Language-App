@@ -5,6 +5,7 @@ import Footer from './Footer.jsx'
 import GuestBanner from './account/GuestBanner.jsx'
 import PrimaryNav from './PrimaryNav.jsx'
 import SkeletonCard from './common/SkeletonCard.jsx'
+import WarningRibbon from './common/WarningRibbon.jsx'
 
 export default function Layout() {
   const location = useLocation()
@@ -22,6 +23,8 @@ export default function Layout() {
       <GuestBanner />
       {/* Desktop: rail + content side by side. Mobile: the rail hides itself
           and PrimaryNav's fixed bottom tab bar takes over (hence pb-24). */}
+      <WarningRibbon/>
+      
       <div className="mx-auto max-w-6xl flex gap-6">
         <PrimaryNav />
         <main className="flex-1 min-w-0 px-5 sm:px-8 py-12 sm:py-16 pb-28 md:pb-16">

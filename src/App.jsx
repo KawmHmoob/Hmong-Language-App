@@ -29,6 +29,7 @@ import ProfilePage from './pages/ProfilePage.jsx'
 import Leaderboard from './pages/Leaderboard.jsx'
 import BattlePass from './pages/BattlePass.jsx'
 
+
 // Legacy URL support. /alphabet/:tab kept its tab names, so it maps 1:1.
 // /course/:tab is messier: 'grammar' has a home in Reference, but 'everyday'
 // moved to Speak and 'reading' became a Learn unit — so each lands where its
