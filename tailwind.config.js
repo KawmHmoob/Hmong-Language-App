@@ -53,6 +53,37 @@ export default {
           400: v('seafoam-400'),
           500: v('seafoam-500'),
         },
+
+        ocean: {
+          50:  v('ocean-50'),
+          100: v('ocean-100'),
+          200: v('ocean-200'),
+          300: v('ocean-300'),
+          400: v('ocean-400'),
+          500: v('ocean-500'),
+          600: v('ocean-600'),   // darker
+          700: v('ocean-700'),   // much darker
+        },
+        // Answer feedback. Named for MEANING, not hue, because the hue moves:
+        // neon's "success" is electric teal, not green. Like `stone`, these
+        // INVERT — 50 is always the surface and 900 is always the text on it,
+        // so `bg-success-50 text-success-900` is legible in all three themes.
+        // Raw `emerald-50`/`red-50` do NOT theme, and produced near-white text
+        // on a near-white chip in dark mode. See notes/55.
+        success: {
+          50: v('success-50'),
+          200: v('success-200'),
+          500: v('success-500'),
+          700: v('success-700'),
+          900: v('success-900'),
+        },
+        danger: {
+          50: v('danger-50'),
+          200: v('danger-200'),
+          500: v('danger-500'),
+          700: v('danger-700'),
+          900: v('danger-900'),
+        },
         // Text scale. Overrides Tailwind's default `stone` so the scale can
         // INVERT in dark mode (stone-900 = ink: near-black in light, warm
         // white in dark). Components keep saying text-stone-900 everywhere.

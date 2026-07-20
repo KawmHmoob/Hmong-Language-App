@@ -151,7 +151,7 @@ export default function VocabList() {
 
 function StatusPill({ status }) {
   const styles = {
-    known: 'bg-emerald-100 text-emerald-800',
+    known: 'bg-success-50 text-success-900',
     learning: 'bg-cream-200 text-clay-700',
     new: 'bg-cream-100 text-stone-600',
   }

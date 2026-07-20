@@ -16,10 +16,13 @@ import { nounClassifiers } from './lessons/noun-classifiers'
 import { pronounsDemonstratives } from './lessons/pronouns-demonstratives'
 import { possessivePronouns } from './lessons/possessive-pronouns'
 import { yogToBe } from './lessons/yog-to-be'
+import { adjectives } from './lessons/adjectives'
+import { conjunctions } from './lessons/conjunctions'
 import { tenseMarkers } from './lessons/tense-markers'
 import { numbers } from './lessons/numbers'
 import { howMuch } from './lessons/how-much'
 import { time } from './lessons/time'
+import { timeExplained } from './lessons/time-explained'
 import { readingMim } from './lessons/reading-mim'
 import { readingGarden } from './lessons/reading-garden'
 import { readingSchool } from './lessons/reading-school'
@@ -152,6 +155,13 @@ const grammarUnit = {
     pronounsDemonstratives,
     possessivePronouns,
     yogToBe,
+    // Adjectives sits straight after `yogToBe` on purpose: the "no 'to be'
+    // before an adjective" rule is the same rule seen from the other side, and
+    // it lands best while yog is still fresh.
+    adjectives,
+    // Conjunctions last — joining two clauses only matters once you can build
+    // one, so it depends on everything above it.
+    conjunctions,
   ],
 }
 
@@ -175,6 +185,11 @@ const numbersAndTime = {
   lessons: [
     numbers,
     howMuch,
+    // Comes BEFORE `time`: it teaches the pattern for building a clock time out
+    // of numbers you already have, which is the useful skill. `time` is the
+    // wider vocabulary set (relative days, parts of the day) — reference-shaped
+    // material that lands better once you know what it's for.
+    timeExplained,
     time,
     // Drop new Numbers & Time lessons here, in the order you want them shown.
   ],

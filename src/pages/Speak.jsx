@@ -72,7 +72,7 @@ export default function Speak() {
             <span className="block text-sm text-stone-600 truncate">{daily.english}</span>
           </span>
           {dailyDone ? (
-            <span className="shrink-0 inline-flex items-center gap-1 text-xs font-semibold rounded-full bg-emerald-100 text-emerald-800 px-2.5 py-1">
+            <span className="shrink-0 inline-flex items-center gap-1 text-xs font-semibold rounded-full bg-success-50 text-success-900 px-2.5 py-1">
               <CheckIcon size={12} /> Done
             </span>
           ) : (
@@ -165,7 +165,7 @@ export default function Speak() {
                         )}
                         {done && (
                           <span
-                            className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-emerald-100 text-emerald-700"
+                            className="inline-flex items-center justify-center h-6 w-6 rounded-full bg-success-50 text-success-900"
                             title="Practiced"
                           >
                             <CheckIcon size={12} />

@@ -30,11 +30,16 @@ export const DoubleVowels = {
       intro: 'Two letters, one sound. Tap to hear each.',
       items: doubleVowels,
     },
+    // Ends on a SPEAK DRILL, matching the consonant lessons. Replaced a
+    // `mini-quiz` pointing at the shared 'alphabet-vowels' quiz — which tested
+    // single AND double vowels, so finishing this lesson quizzed you on
+    // letters it hadn't taught (notes/60).
     {
-      id: 'foundations-double-vowels-quiz',
-      kind: 'mini-quiz',
-      title: 'Vowels mini-quiz',
-      quizId: 'alphabet-vowels',
+      id: 'foundations-double-vowels-speak',
+      kind: 'speak-drill',
+      title: 'Say the double vowels',
+      familyId: 'family-vowel-double',
+      blurb: 'Two letters, one sound — say each as a single unit.',
     },
   ],
 }

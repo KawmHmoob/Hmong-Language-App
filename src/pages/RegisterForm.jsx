@@ -89,7 +89,7 @@ export default function RegisterForm() {
           </select>
         </label>
         {error && (
-          <p className="text-sm rounded bg-red-100 text-red-900 px-3 py-2">{error}</p>
+          <p className="text-sm rounded bg-danger-50 text-danger-900 px-3 py-2">{error}</p>
         )}
         <button className="btn-primary w-full" disabled={submitting}>
           {submitting ? 'Creating account…' : 'Create Account'}

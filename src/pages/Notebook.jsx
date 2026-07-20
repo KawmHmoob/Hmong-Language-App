@@ -96,7 +96,7 @@ function SavedWordItem({ word, entry, onUpdate, onRemove }) {
         </Link>
         <button
           onClick={onRemove}
-          className="text-xs text-stone-500 hover:text-red-700"
+          className="text-xs text-stone-500 hover:text-danger-900"
         >
           Remove
         </button>
@@ -231,7 +231,7 @@ function NoteItem({ note }) {
           onClick={() => {
             if (window.confirm('Delete this note?')) deleteNote(note.id)
           }}
-          className="ml-auto text-xs text-stone-500 hover:text-red-700"
+          className="ml-auto text-xs text-stone-500 hover:text-danger-900"
         >
           Delete
         </button>

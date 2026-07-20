@@ -4,7 +4,7 @@
 
 export const time = {
   id: 'numbers-time',
-  title: 'Time',
+  title: 'Time Vocabulary',
   summary: 'Words for telling time and parts of the day.',
   vocab: 'timeframes',
   steps: [

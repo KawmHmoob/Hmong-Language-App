@@ -16,3 +16,8 @@ which is a short backlog *list*. This folder holds full design docs.
 - [02-gamification-and-incentives.md](02-gamification-and-incentives.md) — Points,
   leaderboards, and rewards-instead-of-payroll — and the contradiction between
   rewarding high scores and needing bad-pronunciation data.
+- [03-corpus-strategy.md](03-corpus-strategy.md) — **The layer above both:** why
+  the labeled corpus (not the audio) is the asset, why learner *errors* are the
+  scarce part, the label-integrity failure modes, consent as a hard gate — plus
+  a reconciliation against shipped code, including three things that must be
+  settled **before the first utterance is stored**.

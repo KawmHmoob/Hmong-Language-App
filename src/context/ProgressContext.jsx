@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react'
 import { useAuth } from './AuthContext.jsx'
 import { supabase } from '../lib/supabase.js'
+import { POINT_SOURCES, pointsFor, SEASON, weekKey } from '../lib/leveling.js'
 
 const ProgressContext = createContext(null)
 const KEY_PREFIX = 'kawmhmoob.progress.'
@@ -17,6 +18,17 @@ const initialState = {
   vocabSchedule: {},                                     // { [wordId]: { intervalIdx, dueDate, lastReviewedAt } }
   streakData: { currentStreak: 0, lastActiveDate: null },
   xp: 0,
+  // ── Season layer (notes/57) ───────────────────────────────────────────────
+  // seasonPoints resets when the season rolls; xp above never does.
+  seasonPoints: 0,
+  seasonId: SEASON.id,
+  // Today's spend against DAILY_CAP. Stored as {date, capped} rather than a
+  // full history: the cap only ever asks about TODAY, and an unbounded ledger
+  // would grow forever inside a single JSON blob.
+  dailyEarned: { date: null, capped: 0 },
+  // Rolling weekly total, for the leaderboard's "this week" board.
+  weekEarned: { week: null, points: 0 },
+  clipsContributed: 0,
 }
 
 
@@ -52,6 +64,11 @@ function readGuestProgress() {
     const touched =
       parsed &&
       (parsed.xp > 0 ||
+        // Season points count as "touched" too. In practice they arrive with
+        // xp, but the uncapped speak sources can award them on paths that
+        // don't — and a guest who earned points must not lose them at signup
+        // just because this list forgot a field. See notes/57.
+        parsed.seasonPoints > 0 ||
         parsed.completedSteps?.length > 0 ||
         parsed.completedLessons?.length > 0 ||
         parsed.quizScores?.length > 0 ||
@@ -119,6 +136,53 @@ function nextSchedule(prev, success) {
   return { intervalIdx: newIdx, dueDate: due, lastReviewedAt: todayISO() }
 }
 
+// ── Season points ───────────────────────────────────────────────────────────
+// PURE. Takes the whole state and a source id, returns the patch to merge.
+// Pure because every earning action needs it and none of them should have to
+// remember the rollover rules — those live here, once.
+//
+// Three rollovers happen lazily, on the next earn rather than on a timer:
+//   season change -> seasonPoints back to 0
+//   date change   -> today's cap allowance refills
+//   week change   -> the weekly board total resets
+//
+// Lazy is right: there's no server, so nothing can run at midnight. Checking
+// on write means a learner who was away for a month still gets a correct
+// allowance the moment they come back, with no catch-up loop.
+export function earn(state, sourceId) {
+  const src = POINT_SOURCES[sourceId]
+  if (!src) {
+    if (import.meta.env.DEV) console.warn('[points] unknown source', sourceId)
+    return null
+  }
+
+  const today = todayISO()
+  const week = weekKey()
+
+  const freshSeason = state.seasonId !== SEASON.id
+  const seasonPoints = freshSeason ? 0 : state.seasonPoints || 0
+  const daily =
+    state.dailyEarned?.date === today ? state.dailyEarned : { date: today, capped: 0 }
+  const weekly =
+    state.weekEarned?.week === week && !freshSeason ? state.weekEarned : { week, points: 0 }
+
+  const { points, capped } = pointsFor(sourceId, daily.capped)
+  if (points <= 0) {
+    // Cap reached. Still normalize the rollover fields so the next call is cheap.
+    return { seasonId: SEASON.id, seasonPoints, dailyEarned: daily, weekEarned: weekly }
+  }
+
+  return {
+    seasonId: SEASON.id,
+    seasonPoints: seasonPoints + points,
+    dailyEarned: { date: today, capped: daily.capped + (capped ? points : 0) },
+    weekEarned: { week, points: weekly.points + points },
+    ...(sourceId === 'speak-contribution'
+      ? { clipsContributed: (state.clipsContributed || 0) + 1 }
+      : {}),
+  }
+}
+
 export function ProgressProvider({ children }) {
   const { user } = useAuth()
   const userId = user?.id || 'guest'
@@ -153,6 +217,7 @@ export function ProgressProvider({ children }) {
         completedLessons: [...s.completedLessons, lessonId],
         xp: s.xp + 10,
         streakData: nextStreak(s.streakData, todayISO()),
+        ...earn(s, 'lesson-complete'),
       }
     })
   }, [])
@@ -167,24 +232,45 @@ export function ProgressProvider({ children }) {
         completedSteps,
         xp: s.xp + 2,
         streakData: nextStreak(s.streakData, todayISO()),
+        ...earn(s, 'lesson-step'),
       }
       // If caller passed lessonId, auto-complete the lesson once all its steps are done.
       // Caller is responsible for checking step coverage; we just append the lesson id once.
       if (lessonId && opts.lessonComplete && !s.completedLessons.includes(lessonId)) {
         next.completedLessons = [...s.completedLessons, lessonId]
         next.xp += 10
+        // `next` (not `s`) so the step's own award is already counted against
+        // the cap — otherwise finishing a lesson could exceed DAILY_CAP.
+        Object.assign(next, earn(next, 'lesson-complete'))
       }
       return next
     })
   }, [])
 
   const recordQuizScore = useCallback((entry) => {
-    setState((s) => ({
-      ...s,
-      quizScores: [...s.quizScores, { ...entry, date: new Date().toISOString() }],
-      xp: s.xp + 5,
-      streakData: nextStreak(s.streakData, todayISO()),
-    }))
+    setState((s) => {
+      const next = {
+        ...s,
+        quizScores: [...s.quizScores, { ...entry, date: new Date().toISOString() }],
+        xp: s.xp + 5,
+        streakData: nextStreak(s.streakData, todayISO()),
+        ...earn(s, 'quiz-complete'),
+      }
+      // Perfect run pays a bonus on top — chained off `next` so both awards
+      // share one cap budget.
+      if (entry?.accuracy === 100) Object.assign(next, earn(next, 'quiz-perfect'))
+      return next
+    })
+  }, [])
+
+  // Public award hook for anything without its own action — notably the Speak
+  // flow, whose sources are UNCAPPED. Call with a source id from POINT_SOURCES,
+  // never a raw number.
+  const awardPoints = useCallback((sourceId) => {
+    setState((s) => {
+      const patch = earn(s, sourceId)
+      return patch ? { ...s, ...patch, streakData: nextStreak(s.streakData, todayISO()) } : s
+    })
   }, [])
 
   const setVocabStatus = useCallback((wordId, status) => {
@@ -201,6 +287,9 @@ export function ProgressProvider({ children }) {
         },
         xp: s.xp + xpDelta,
         streakData: nextStreak(s.streakData, todayISO()),
+        // Only a FIRST-TIME "known" pays — same condition as the xp delta.
+        // Otherwise toggling a card known/learning/known farms points forever.
+        ...(xpDelta > 0 ? earn(s, 'word-known') : {}),
       }
     })
   }, [])
@@ -214,9 +303,10 @@ export function ProgressProvider({ children }) {
       markStepComplete,
       recordQuizScore,
       setVocabStatus,
+      awardPoints,
       exportData,
     }),
-    [state, markLessonComplete, markStepComplete, recordQuizScore, setVocabStatus, exportData]
+    [state, markLessonComplete, markStepComplete, recordQuizScore, setVocabStatus, awardPoints, exportData]
   )
 
   return <ProgressContext.Provider value={value}>{children}</ProgressContext.Provider>

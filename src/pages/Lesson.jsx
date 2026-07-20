@@ -172,14 +172,45 @@ function StepHeader({ lesson, index }) {
   )
 }
 
+// Intro body: an array of paragraphs, with two opt-in prefixes.
+//
+//   '## Heading'  → a subheading
+//   '> line'      → an indented example line (a Hmong form + its gloss)
+//
+// Added because a long explainer — telling the time runs ~25 paragraphs — is
+// unreadable as one undifferentiated column, and one-word entries like
+// "Example:" were each becoming their own paragraph. Both prefixes are
+// backwards compatible: no existing lesson string starts with either, so every
+// other intro renders exactly as before.
 function IntroStep({ step }) {
   return (
     <>
       <h3 className="font-display text-2xl text-stone-900 mb-4">{step.title}</h3>
       <div className="space-y-4 text-stone-800 leading-relaxed">
-        {step.body.map((p, i) => (
-          <p key={i}>{p}</p>
-        ))}
+        {step.body.map((p, i) => {
+          if (typeof p !== 'string') return null // tolerate holes in the array
+          if (p.startsWith('## ')) {
+            return (
+              <h4
+                key={i}
+                className="font-display text-xl text-stone-900 pt-4 first:pt-0"
+              >
+                {p.slice(3)}
+              </h4>
+            )
+          }
+          if (p.startsWith('> ')) {
+            return (
+              <p
+                key={i}
+                className="border-l-2 border-clay-600/40 pl-4 text-clay-700 font-medium"
+              >
+                {p.slice(2)}
+              </p>
+            )
+          }
+          return <p key={i}>{p}</p>
+        })}
       </div>
     </>
   )
@@ -191,14 +222,19 @@ function ExamplesStep({ step, lesson }) {
       <h3 className="font-display text-2xl text-stone-900 mb-2">{step.title}</h3>
       {step.intro && <p className="text-sm text-stone-600 mb-4 italic">{step.intro}</p>}
       <ul className="divide-y divide-cream-200">
-        {step.items.map((it) => (
-          <li key={it.hmong} className="py-3">
+        {/* Keyed by index, not by `it.hmong`: a lesson may legitimately list the
+            same phrase twice with different senses — the greetings lesson has
+            "Nyob zoo" as both hello and goodbye. Keying on the text gave React
+            duplicate keys and gave both rows the same audio identity. The list
+            is static and never reordered, so the index is a safe key here. */}
+        {step.items.map((it, i) => (
+          <li key={`${step.id}-${i}`} className="py-3">
             <div className="flex justify-between items-baseline gap-3">
               <span className="font-medium text-clay-700 text-lg">{it.hmong}</span>
               {/* Vocabulary lessons carry `english`; the consonant lessons carry
                   `hmongExample` (an example word) instead. Show whichever exists. */}
               <span className="text-stone-700 text-sm">{it.english || it.hmongExample}</span>
-              <AudioButton audioSrc={it.audio} wordId={it.hmong} />
+              <AudioButton audioSrc={it.audio} wordId={`${step.id}-${i}`} />
             </div>
             {(it.note || it.englishSound) && (
               <p className="text-xs text-stone-500 mt-1 italic">{it.note || it.englishSound}</p>
@@ -459,10 +495,12 @@ function PracticeStep({ step, onAdvance }) {
       <div className="grid gap-2 sm:grid-cols-2">
         {step.options.map((opt) => {
           const isAnswer = opt === step.answer
-          let cls = 'border-cream-300 bg-cream-50 hover:border-clay-500'
-          if (picked && isAnswer) cls = 'border-emerald-500 bg-emerald-50'
-          if (picked && opt === picked && !isAnswer) cls = 'border-red-500 bg-red-50'
-          if (picked && opt !== picked && !isAnswer) cls = 'border-cream-200 bg-cream-50 opacity-60'
+          // Each state carries its own text color — see the same block in
+          // QuizEngine.jsx and notes/55 for why inheriting it broke dark mode.
+          let cls = 'border-cream-300 bg-cream-50 hover:border-clay-500 text-stone-800'
+          if (picked && isAnswer) cls = 'border-success-500 bg-success-50 text-success-900 font-medium'
+          if (picked && opt === picked && !isAnswer) cls = 'border-danger-500 bg-danger-50 text-danger-900 font-medium'
+          if (picked && opt !== picked && !isAnswer) cls = 'border-cream-200 bg-cream-50 text-stone-700 opacity-60'
           return (
             <button
               key={opt}
@@ -479,7 +517,7 @@ function PracticeStep({ step, onAdvance }) {
       {picked && (
         <div
           className={`mt-5 rounded-md p-4 flex flex-wrap justify-between items-center gap-3 shadow-warm ${
-            correct ? 'bg-emerald-100 text-emerald-900' : 'bg-red-100 text-red-900'
+            correct ? 'bg-success-50 text-success-900' : 'bg-danger-50 text-danger-900'
           }`}
         >
           <span className="font-medium">

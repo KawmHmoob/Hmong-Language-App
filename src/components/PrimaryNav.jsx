@@ -83,9 +83,11 @@ function SideRail() {
   const active = activeIndex(pathname)
 
   return (
+    // top-32 (not top-28): the header grew taller, and the sticky rail has to
+    // clear it or it tucks under the blur on scroll.
     <nav
       aria-label="Primary"
-      className="hidden md:block w-52 shrink-0 self-start sticky top-28 pl-4 py-10"
+      className="hidden md:block w-52 shrink-0 self-start sticky top-32 pl-4 py-10"
     >
       <div className="flex flex-col gap-1">
         {sections.map((s, i) => {

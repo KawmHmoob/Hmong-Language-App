@@ -50,13 +50,13 @@ export default function QuizResults({
             {missed.map((m, i) => {
               const q = questions[m.questionIndex]
               return (
-                <li key={i} className="rounded border border-red-200 bg-red-50/60 p-4 text-sm">
+                <li key={i} className="rounded border border-danger-200 bg-danger-50/60 p-4 text-sm">
                   <div className="font-medium text-stone-900 mb-1">{q.prompt}</div>
                   <div className="text-stone-700">
-                    Your answer: <span className="text-red-700">{String(m.selected)}</span>
+                    Your answer: <span className="text-danger-900">{String(m.selected)}</span>
                   </div>
                   <div className="text-stone-700">
-                    Correct: <span className="text-emerald-700">{String(q.answer)}</span>
+                    Correct: <span className="text-success-900">{String(q.answer)}</span>
                   </div>
                 </li>
               )

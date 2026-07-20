@@ -1,26 +1,156 @@
 import { Link } from 'react-router-dom'
 import TodayCard from '../components/home/TodayCard.jsx'
-import { FlameIcon, StarIcon, MicIcon, CardsIcon } from '../components/icons/index.jsx'
+import {
+  FlameIcon,
+  StarIcon,
+  MicIcon,
+  CardsIcon,
+  BookIcon,
+  ScrollIcon,
+  GridIcon,
+  ZapIcon,
+  NotebookIcon,
+  TrophyIcon,
+  TiersIcon,
+  ArrowRightIcon,
+} from '../components/icons/index.jsx'
 import { allPhrases } from '../data/speak.js'
 import { categories } from '../data/vocabulary.js'
 import { useProgress } from '../hooks/useProgress.js'
 import { selectSession } from '../context/ProgressContext.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
 import { pickOfTheDay } from '../lib/daily.js'
+import { levelFromPoints } from '../lib/leveling.js'
 
 // Home — a bento-style dashboard. One glance answers "where am I?" (streak,
 // XP, due words) and "what should I do?" (the two front doors + today's
 // suggestions). The phrase of the day gives the Hmong language itself the
 // hero treatment.
 
+// Vocabulary size, DERIVED. A hardcoded "429 words across 33 categories" was
+// already wrong by the time it was written — the real figures are 423/37 — and
+// a stale number in the UI is worse than none, because it reads as a fact.
+//
+// Deduped by id the same way getCategory() resolves, so this counts what a
+// learner can actually REACH. (There are two `timeframes` categories; the
+// second is unreachable — see notes/56.)
+const vocabStats = (() => {
+  const byId = new Map()
+  for (const c of categories) if (!byId.has(c.id)) byId.set(c.id, c)
+  const cats = [...byId.values()]
+  return {
+    categories: cats.length,
+    words: cats.reduce((n, c) => n + c.words.length, 0),
+  }
+})()
+
+// Explore cards. Each carries a BLURB saying what the destination is for —
+// a bare label ("Reference") assumes you already know, which is exactly wrong
+// for the people who need this section. The accent is the owning section's
+// color from PrimaryNav, so Home agrees with the rail about what belongs where.
 const explore = [
-  { to: '/learn', label: 'Learn' },
-  { to: '/reference', label: 'Reference' },
-  { to: '/learn/readings', label: 'Readings' },
-  { to: '/vocabulary', label: 'Vocabulary' },
-  { to: '/notebook', label: 'Notebook' },
-  { to: '/quiz', label: 'Quizzes' },
+  {
+    to: '/learn',
+    label: 'Learn',
+    blurb: 'Structured lessons, start to finish.',
+    Icon: BookIcon,
+    accent: 'text-seafoam-500',
+  },
+  {
+    to: '/reference',
+    label: 'Reference',
+    blurb: 'Look up any letter, tone, or rule.',
+    Icon: GridIcon,
+    accent: 'text-cream-600',
+  },
+  {
+    to: '/learn/readings',
+    label: 'Readings',
+    blurb: 'Short passages to read for meaning.',
+    Icon: ScrollIcon,
+    accent: 'text-seafoam-500',
+  },
+  {
+    to: '/vocabulary',
+    label: 'Vocabulary',
+    blurb: `${vocabStats.words} words across ${vocabStats.categories} categories.`,
+    Icon: CardsIcon,
+    accent: 'text-blush-500',
+  },
+  {
+    to: '/quiz',
+    label: 'Quizzes',
+    blurb: 'Test a category once you’ve studied it.',
+    Icon: ZapIcon,
+    accent: 'text-blush-500',
+  },
+  {
+    to: '/notebook',
+    label: 'Notebook',
+    blurb: 'Saved words and your own notes.',
+    Icon: NotebookIcon,
+    accent: 'text-blush-500',
+  },
+  {
+    to: '/leaderboard',
+    label: 'Leaderboard',
+    blurb: 'This week’s standings and season race.',
+    Icon: TrophyIcon,
+    accent: 'text-clay-600',
+  },
+  {
+    to: '/pass',
+    label: 'Season Pass',
+    blurb: '50 tiers of rewards to work through.',
+    Icon: TiersIcon,
+    accent: 'text-clay-600',
+  },
 ]
+
+// The season strip: level, progress to the next level, and the two doors into
+// the season layer. Derived entirely from seasonPoints — no extra state.
+function SeasonStrip() {
+  const { seasonPoints } = useProgress()
+  const lv = levelFromPoints(seasonPoints || 0)
+  const pct = Math.round(lv.progress * 100)
+
+  return (
+    <div className="surface p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3 mb-3">
+        <div className="flex items-baseline gap-3">
+          <span className="font-display text-3xl text-stone-900 leading-none">
+            Lv {lv.level}
+          </span>
+          <span className="text-sm text-stone-600">
+            {(seasonPoints || 0).toLocaleString()} season pts
+            {!lv.maxed && ` · ${lv.remaining.toLocaleString()} to next`}
+          </span>
+        </div>
+        <div className="flex gap-2">
+          <Link to="/pass" className="btn-secondary text-xs px-3 py-1.5">
+            Season Pass
+          </Link>
+          <Link to="/leaderboard" className="btn-secondary text-xs px-3 py-1.5">
+            Leaderboard
+          </Link>
+        </div>
+      </div>
+      <div
+        className="h-2 rounded-full bg-cream-200 overflow-hidden"
+        role="progressbar"
+        aria-valuenow={pct}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-label={`Level ${lv.level} progress`}
+      >
+        <div
+          className="h-full rounded-full bg-clay-600 transition-[width] duration-500"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
+    </div>
+  )
+}
 
 // Deterministic daily pick: hash the ISO date into an index. Same phrase all
 // day, new phrase tomorrow, no state or randomness to store.
@@ -111,6 +241,13 @@ export default function Home() {
           </p>
         </Link>
 
+        {/* Season strip — the entry point for the leaderboard + pass. These
+            aren't a sixth nav section (the five-section IA is load-bearing),
+            so Home is where they have to be discoverable. See notes/57. */}
+        <div className="col-span-2 lg:col-span-4">
+          <SeasonStrip />
+        </div>
+
         {/* Today's suggestions */}
         <div className="col-span-2 lg:col-span-4">
           <TodayCard />
@@ -118,16 +255,24 @@ export default function Home() {
       </section>
 
       {/* Explore the rest */}
-      <section className="mt-10">
-        <h3 className="font-display text-xl text-stone-900 mb-3">Explore</h3>
-        <div className="flex flex-wrap gap-2">
-          {explore.map((c) => (
-            <Link
-              key={c.to}
-              to={c.to}
-              className="surface surface-hover px-3.5 py-2 text-sm text-stone-800"
-            >
-              {c.label}
+      <section className="mt-14">
+        <h3 className="font-display text-3xl text-stone-900 mb-1">Explore</h3>
+        <p className="text-stone-700 mb-5">Everywhere else in the app.</p>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {explore.map(({ to, label, blurb, Icon, accent }) => (
+            <Link key={to} to={to} className="surface surface-hover p-5 group flex flex-col">
+              <Icon size={26} className={`${accent} mb-3`} />
+              <p className="font-display text-xl text-stone-900 group-hover:text-clay-700 transition">
+                {label}
+              </p>
+              <p className="text-sm text-stone-600 mt-1 leading-snug flex-1">{blurb}</p>
+              <span className="text-sm font-medium text-clay-700 mt-3 inline-flex items-center gap-1">
+                Open
+                <ArrowRightIcon
+                  size={14}
+                  className="transition-transform group-hover:translate-x-0.5"
+                />
+              </span>
             </Link>
           ))}
         </div>

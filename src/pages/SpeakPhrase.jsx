@@ -14,7 +14,7 @@ export default function SpeakPhrase() {
   const { phraseId } = useParams()
   const navigate = useNavigate()
   const phrase = getPhrase(phraseId)
-  const { completedSteps, markStepComplete } = useProgress()
+  const { completedSteps, markStepComplete, awardPoints } = useProgress()
 
   if (!phrase) {
     return (
@@ -32,6 +32,11 @@ export default function SpeakPhrase() {
 
   const handleDone = () => {
     if (!done) markStepComplete(speakStepId(phrase.id))
+    // UNCAPPED, and awarded on every pass — including repeats of a phrase
+    // already marked done. Re-recording a phrase you've done before is still a
+    // new clip and still worth having, so unlike `markStepComplete` this is
+    // deliberately not guarded by `done`. See notes/57.
+    awardPoints('speak-attempt')
     if (next) {
       navigate(`/speak/${next.id}`)
     } else {

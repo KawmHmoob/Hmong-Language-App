@@ -64,8 +64,8 @@ export default function Flashcard({ word, onAdvance }) {
           onClick={() => mark('known')}
           className={`px-4 py-2 rounded text-sm font-medium transition shadow-warm ${
             status === 'known'
-              ? 'bg-emerald-700 text-cream-50'
-              : 'bg-emerald-100 text-emerald-800 hover:bg-emerald-200'
+              ? 'bg-success-700 text-cream-50'
+              : 'bg-success-50 text-success-900 hover:bg-success-200'
           }`}
         >
           Mark Known

@@ -193,7 +193,7 @@ function QuizCard({ quiz, best, unlock }) {
             <span
               className={`inline-flex items-center gap-1 text-[10px] font-semibold rounded-full px-2 py-0.5 ${
                 best >= 80
-                  ? 'bg-emerald-100 text-emerald-800'
+                  ? 'bg-success-50 text-success-900'
                   : 'bg-cream-200 text-stone-700'
               }`}
               title={`Best score: ${best}%`}

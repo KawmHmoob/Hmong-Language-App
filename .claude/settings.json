@@ -12,7 +12,24 @@
       "Bash(xargs echo \"flip references in note 37:\")",
       "Bash(xargs echo \"count:\")",
       "Bash(xargs echo \"icons found:\")",
-      "Bash(xargs echo \"  withLessons refs:\")"
+      "Bash(xargs echo \"  withLessons refs:\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\manifest.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\dupes.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\writeManifest.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\match.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\wire.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\wire2.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\verify.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\tokens.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\contrast.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\gap.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\levels.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\blurb.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\fam.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\next.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\peek.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\sents.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\provenance.mjs\")"
     ],
     "additionalDirectories": [
       "\\tmp"

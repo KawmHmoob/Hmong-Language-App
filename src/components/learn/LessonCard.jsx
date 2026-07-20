@@ -43,7 +43,7 @@ export default function LessonCard({ unit, lesson }) {
             <LockIcon size={11} /> Free account
           </span>
         ) : p.complete ? (
-          <span className="inline-flex items-center gap-1 shrink-0 text-xs font-semibold rounded-full bg-emerald-700 text-cream-50 px-2 py-0.5">
+          <span className="inline-flex items-center gap-1 shrink-0 text-xs font-semibold rounded-full bg-success-700 text-cream-50 px-2 py-0.5">
             <CheckIcon size={11} /> Done
           </span>
         ) : null}

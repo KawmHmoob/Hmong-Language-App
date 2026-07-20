@@ -43,6 +43,52 @@ export function StarIcon(props) {
   )
 }
 
+// Open book — the Learn section. Distinct from NotebookIcon (which is a bound
+// pad you write in); this one is a spread you read from.
+export function BookIcon(props) {
+  return (
+    <svg {...base(props)}>
+      <path d="M12 6.5C10.5 5 8.5 4.5 4 4.5v13c4.5 0 6.5.5 8 2 1.5-1.5 3.5-2 8-2v-13c-4.5 0-6.5.5-8 2z" fill="currentColor" fillOpacity="0.12" />
+      <path d="M12 6.5v13" />
+    </svg>
+  )
+}
+
+// Unrolled scroll — connected prose, i.e. the readings.
+export function ScrollIcon(props) {
+  return (
+    <svg {...base(props)}>
+      <path d="M6 4h11a2 2 0 0 1 2 2v12a2 2 0 0 0 2 2H8a2 2 0 0 1-2-2z" fill="currentColor" fillOpacity="0.12" />
+      <path d="M6 4a2 2 0 0 0-2 2v2h2" />
+      <path d="M9.5 9h6M9.5 13h6" />
+    </svg>
+  )
+}
+
+// Cup with handles on a stepped base — the leaderboard. Kept chunky so it
+// still reads as a trophy at 16px in the header.
+export function TrophyIcon(props) {
+  return (
+    <svg {...base(props)}>
+      <path d="M7 4h10v5a5 5 0 0 1-10 0z" fill="currentColor" fillOpacity="0.15" />
+      <path d="M7 5H4.8a.8.8 0 0 0-.8.9c.2 2 1.3 3.4 3 3.6M17 5h2.2a.8.8 0 0 1 .8.9c-.2 2-1.3 3.4-3 3.6" />
+      <path d="M12 14v3" />
+      <path d="M8.5 20h7l-.7-3h-5.6z" />
+    </svg>
+  )
+}
+
+// Layered chevrons — tiers stacking up. Used for the season pass.
+export function TiersIcon(props) {
+  return (
+    <svg {...base(props)}>
+      <path d="m12 3 8 4.5-8 4.5-8-4.5z" fill="currentColor" fillOpacity="0.15" />
+      <path d="m4 12 8 4.5 8-4.5" />
+      <path d="m4 16.5 8 4.5 8-4.5" />
+    </svg>
+  )
+}
+
 export function VolumeIcon(props) {
   return (
     <svg {...base(props)}>

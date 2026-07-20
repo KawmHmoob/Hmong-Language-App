@@ -47,6 +47,9 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [48-quiz-audio-and-blurb.md](48-quiz-audio-and-blurb.md) | Quiz questions play their sound + show a transcript `blurb`; the hardcoded `audioSrc={null}` bug |
 | [49-tone-drill-and-wrong-answer.md](49-tone-drill-and-wrong-answer.md) | Tone drill derives its answers from each word's final letter (was drifting); wrong quiz picks now highlight red |
 | [50-consonant-speak-drills.md](50-consonant-speak-drills.md) | **Speak** — a drill per consonant type, derived from `consonantGroups`; the `speak-drill` step replaces the alphabet mini-quiz |
+| [58-speaking-quiz-and-id-guard.md](58-speaking-quiz-and-id-guard.md) | **Speak + Learn** — the time lesson's speaking drill, `kind: 'phrase'` families, and `scripts/content/ids.mjs` after two colliding-id bugs shipped silently |
+| [59-intro-formatting.md](59-intro-formatting.md) | **Learn** — `## ` subheads and `> ` example lines in intro bodies; restructuring prose without touching the Hmong |
+| [60-vowel-drills-and-orphan-audio.md](60-vowel-drills-and-orphan-audio.md) | **Speak + Learn** — vowel lessons end on drills like the consonant ones; the missing `oi`; `orphans.mjs` finds recordings nothing references |
 | [51-duplicate-options-and-vocab-groups.md](51-duplicate-options-and-vocab-groups.md) | **Bug:** quiz options could repeat (dedupe by *answer*, not item) + vocabulary grouped into 7 themes with a "More" safety net |
 | [52-study-before-quiz-gate.md](52-study-before-quiz-gate.md) | Category quizzes lock until half the words are studied — derived from `vocabProgress`, enforced in the engine not just the menu |
 | [53-quiz-menu-themes.md](53-quiz-menu-themes.md) | **Words** — Quizzes page reuses the *same* seven vocabulary themes; splitting on the `vocab-` id prefix; deleting the "Show all" workaround once the cause was fixed |
@@ -57,6 +60,7 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | Note | What |
 |---|---|
 | [24-theming-and-polish.md](24-theming-and-polish.md) | **The token engine** — light/dark/neon via CSS variables. Read before touching any color |
+| [55-feedback-color-tokens.md](55-feedback-color-tokens.md) | **`success`/`danger` tokens** — why raw `emerald-50` made dark-mode answers invisible; name for meaning not hue; never inherit a state's text color; the WCAG contrast guard |
 | [31-icon-system.md](31-icon-system.md) | The inline-SVG icon set + `CategoryIcon` fallback |
 | [21-two-section-nav.md](21-two-section-nav.md) | Palette fix (seafoam/blush), focus rings, reduced-motion 🕰 *(nav superseded by 30/32)* |
 | [07-styling-system.md](07-styling-system.md) | 🕰 Original palette/utility classes — superseded by 24 for anything color |
@@ -68,6 +72,7 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | Note | What |
 |---|---|
 | [03-progress-tracking.md](03-progress-tracking.md) | XP, streaks, completed lessons/steps, vocab status, SRS schedule |
+| [57-season-points-and-battlepass.md](57-season-points-and-battlepass.md) | **Season points, levels, leaderboard, 50-tier pass** — two currencies; award-by-name; the daily cap and why voice recording has none; lazy rollovers; why there's no profile route |
 | [09-spaced-repetition.md](09-spaced-repetition.md) | Leitner-box SRS 🕰 *(the `/review` page is now `/words/session`; selection rules changed in 35)* |
 | [01-quiz-engine.md](01-quiz-engine.md) | The quiz runner (**text** testing — speech testing is note 19) |
 | [02-vocabulary.md](02-vocabulary.md) | Categories, list, flashcards, word detail 🕰 *(pages moved to `pages/`)* |
@@ -81,6 +86,7 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [40-audio-plumbing.md](40-audio-plumbing.md) | Wiring audio consumption + the filename→field propagation pattern (counts historical — see 42) |
 | [42-audio-naming-drift.md](42-audio-naming-drift.md) | Why audio can fail *silently* (`single` vs `singular`), the disk-vs-data diagnostic, and re-syncing to repair drift |
 | [44-audio-folder-structure.md](44-audio-folder-structure.md) | Audio nested by type (`consonants/…`, `vocabulary/`); the rewire loop; two shapes in one file; the plural-`s` rename |
+| [54-wiring-grammar-audio.md](54-wiring-grammar-audio.md) | Wiring 97 Grammar clips by slugified Hmong; **the missing-comma bug that assigned the wrong word's audio**; bound-and-throw over search-forward; verifying output by meaning, not exit code |
 
 ## Pronunciation (the Speak roadmap)
 
@@ -90,6 +96,7 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [19-speech-testing.md](19-speech-testing.md) | How to *verify* a pronunciation score — eval sets, calibration. Distinct from note 01's text quizzes |
 | [../instructions/pronunciation-apis.md](../instructions/pronunciation-apis.md) | The API/service landscape: what's free, what to self-host |
 | [future-implementations/01-pronunciation-dataset.md](future-implementations/01-pronunciation-dataset.md) | **(Design/not built)** Tone scoring + the community Hmong voice dataset — reference corpus, result-tracking model, consent |
+| [future-implementations/03-corpus-strategy.md](future-implementations/03-corpus-strategy.md) | **(Scope/not built)** Why the *labeled* corpus is the asset and learner **errors** are its scarce part; label-integrity failure modes; consent as a hard gate; **what must be settled before the first utterance is stored** |
 
 ## Lessons learned (debugging patterns worth re-reading)
 
@@ -106,6 +113,7 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | Note | What |
 |---|---|
 | [27-content-fill-slice-a.md](27-content-fill-slice-a.md) | All lesson PLACEHOLDERs → real White Hmong + the **TODO-VERIFY list for a native speaker** |
+| [56-lesson-wordbank-gap.md](56-lesson-wordbank-gap.md) | **Words taught in a lesson but missing from its word bank** — the unchecked invariant behind the split explain/drill design, plus `scripts/content/gap.mjs` |
 | [11-future-implementations.md](11-future-implementations.md) | Backlog: extra quiz types, dialogues, cultural modules |
 
 ## Prompts (paste-ready, for handing work to a coding model)

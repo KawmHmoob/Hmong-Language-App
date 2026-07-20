@@ -870,7 +870,7 @@ export const categories = [
         english: '(classifier for people, animals & long thin individual things)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-tus.mp3',
         exampleSentence: { hmong: 'Kuv muaj ib tus dev.', english: 'I have one dog.' },
       },
       {
@@ -879,7 +879,7 @@ export const categories = [
         english: '(classifier for round or solid objects & general items)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-lub.mp3',
         exampleSentence: { hmong: 'Ib lub tsev.', english: 'One house.' },
       },
       {
@@ -888,7 +888,7 @@ export const categories = [
         english: '(classifier for books & bound documents)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-phau.mp3',
         exampleSentence: { hmong: 'Ib phau ntawv.', english: 'One book.' },
       },
       {
@@ -897,7 +897,7 @@ export const categories = [
         english: '(classifier for songs, stories, speeches & dragon-like figures)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-zaj.mp3',
         exampleSentence: { hmong: 'Ib zaj dab neeg.', english: 'One story.' },
       },
       {
@@ -906,7 +906,7 @@ export const categories = [
         english: '(classifier for long flexible things: roads, rivers, lives, rules)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-txoj.mp3',
         exampleSentence: { hmong: 'Ib txoj kev.', english: 'One road.' },
       },
       {
@@ -915,7 +915,7 @@ export const categories = [
         english: '(classifier for tools, weapons & long rigid implements)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-rab.mp3',
         exampleSentence: { hmong: 'Ib rab riam.', english: 'One knife.' },
       },
       {
@@ -924,7 +924,7 @@ export const categories = [
         english: '(classifier for bags & sacks)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-hnab.mp3',
         exampleSentence: { hmong: 'Ib hnab nplej.', english: 'One bag of rice.' },
       },
       {
@@ -933,7 +933,7 @@ export const categories = [
         english: '(classifier for flat objects: paper, cloth, mats, maps, land)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-daim.mp3',
         exampleSentence: { hmong: 'Ib daim ntawv.', english: 'One sheet of paper.' },
       },
       {
@@ -942,7 +942,7 @@ export const categories = [
         english: '(classifier for cups/glasses of liquid)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-khob.mp3',
         exampleSentence: { hmong: 'Ib khob dej.', english: 'One cup of water.' },
       },
       {
@@ -951,7 +951,7 @@ export const categories = [
         english: '(classifier for leaves & pages)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-nplooj.mp3',
         exampleSentence: { hmong: 'Ib nplooj ntawv.', english: 'One page.' },
       },
       {
@@ -960,7 +960,7 @@ export const categories = [
         english: '(classifier for pairs: shoes, chopsticks, married couples)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-nkawm.mp3',
         exampleSentence: { hmong: 'Ib nkawm khau.', english: 'One pair of shoes.' },
       },
       {
@@ -969,7 +969,7 @@ export const categories = [
         english: '(classifier for small round/lumped items: balls, stones, seeds)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-pob.mp3',
         exampleSentence: { hmong: 'Ib pob zeb.', english: 'One stone.' },
       },
       {
@@ -978,7 +978,7 @@ export const categories = [
         english: '(classifier for one of a paired body part: hand, arm, leg, eye)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-txhais.mp3',
         exampleSentence: { hmong: 'Ib txhais tes.', english: 'One hand.' },
       },
       {
@@ -987,7 +987,7 @@ export const categories = [
         english: '(classifier for chunks, blocks, slabs & segments)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-thooj.mp3',
         exampleSentence: { hmong: 'Ib thooj nqaij.', english: 'One chunk of meat.' },
       },
       {
@@ -996,7 +996,7 @@ export const categories = [
         english: '(classifier for sides, sections, divisions & directions)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-fab.mp3',
         exampleSentence: { hmong: 'Ib fab.', english: 'One side/section.' },
       },
       {
@@ -1005,7 +1005,7 @@ export const categories = [
         english: '(classifier for people, formal/respectful)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-leej.mp3',
         exampleSentence: { hmong: 'Ib leej neeg.', english: 'One person.' },
       },
       {
@@ -1014,7 +1014,7 @@ export const categories = [
         english: '(classifier for plants, trees & clumps of vegetation)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-tsob.mp3',
         exampleSentence: { hmong: 'Ib tsob ntoo.', english: 'One tree.' },
       },
       {
@@ -1023,7 +1023,7 @@ export const categories = [
         english: '(classifier for steps, levels, tiers & floors)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-theem.mp3',
         exampleSentence: { hmong: 'Ib theem tsev.', english: 'One floor of a building.' },
       },
       {
@@ -1032,7 +1032,7 @@ export const categories = [
         english: '(classifier for households / families)',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-yim.mp3',
         exampleSentence: { hmong: 'Ib yim neeg.', english: 'One household.' },
       },
       {
@@ -1041,7 +1041,7 @@ export const categories = [
         english: '(plural classifier / "the (group of)")',
         category: 'classifiers',
         tags: ['classifier'],
-        audioFile: null,
+        audioFile: 'grammar/classifiers/hmong-classifiers-cov.mp3',
         exampleSentence: { hmong: 'Cov menyuam.', english: 'The children.' },
       },
 
@@ -2089,7 +2089,7 @@ export const categories = [
         english: 'How much does it cost? (lit. "expensive how much?")',
         category: 'money',
         tags: ['phrase', 'question', 'shopping'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-how-much/how-much-kim-npaum-licas.mp3',
         exampleSentence: { hmong: 'Lub no kim npaum li cas?', english: 'How much is this one?' },
         // note: source 'licas'; standard spacing 'li cas'. Built on 'kim' (expensive) + 'npaum li cas' (how much/to what extent).
       },
@@ -2099,7 +2099,7 @@ export const categories = [
         english: 'How much? / How many?',
         category: 'money',
         tags: ['phrase', 'question', 'shopping'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-how-much/how-much-pestsawg.mp3',
         exampleSentence: { hmong: 'Yog pes tsawg?', english: 'How much is it?' },
         // note: source 'pestsawg'; standard spacing 'pes tsawg'. This is the general "how many/how much" question word, not money-specific. 'yog pes tsawg' = "is how much."
       },
@@ -2109,7 +2109,7 @@ export const categories = [
         english: 'dollar',
         category: 'money',
         tags: ['noun', 'currency', 'loanword'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-duaslas.mp3',
         exampleSentence: { hmong: 'Tsib duas las.', english: 'Five dollars.' },
         // note: loanword from English "dollar." Spelling not standardized ('duas las', 'das las'). FLAG — choose a canonical form.
       },
@@ -2119,7 +2119,7 @@ export const categories = [
         english: 'cent',
         category: 'money',
         tags: ['noun', 'currency', 'loanword'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-xees.mp3',
         // note: loanword from English "cent(s)." Verify spelling.
       },
       {
@@ -2128,7 +2128,7 @@ export const categories = [
         english: 'expensive (adjective)',
         category: 'money',
         tags: ['adjective', 'shopping'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-kim.mp3',
         exampleSentence: { hmong: 'Heev kim.', english: 'Very expensive.' },
       },
       {
@@ -2137,7 +2137,7 @@ export const categories = [
         english: 'cheap, inexpensive (adjective)',
         category: 'money',
         tags: ['adjective', 'shopping'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-pheejyig.mp3',
         exampleSentence: { hmong: 'Lub no pheej yig.', english: 'This one is cheap.' },
       },
       {
@@ -2146,7 +2146,7 @@ export const categories = [
         english: '(verb: to buy)',
         category: 'money',
         tags: ['verb', 'shopping'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-yuav.mp3',
         exampleSentence: { hmong: 'Kuv yuav lub no.', english: 'I\'ll buy this one.' },
         // note: homograph with the future marker 'yuav' (will/going to). Appears in both your buildings and money sets — good recurring teaching point.
       },
@@ -2156,7 +2156,7 @@ export const categories = [
         english: '(verb: to return, give back; refund)',
         category: 'money',
         tags: ['verb', 'shopping'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-thim.mp3',
         exampleSentence: { hmong: 'Thim rov qab.', english: 'Return it back.' },
         // note: 'thim' = to return/back up/refund. 'thim nyiaj' = refund money.
       },
@@ -2166,7 +2166,7 @@ export const categories = [
         english: '(verb: to sell)',
         category: 'money',
         tags: ['verb', 'shopping'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-muag.mp3',
         exampleSentence: { hmong: 'Muag khoom.', english: 'To sell goods.' },
         // note: homograph — 'muag' also = "face" and "blind/blurry." Tone is the same; context disambiguates. Worth a learner note.
       },
@@ -2186,7 +2186,7 @@ export const categories = [
         english: 'discount; to lower the price',
         category: 'money',
         tags: ['noun', 'verb', 'shopping'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-txo-nqi.mp3',
         exampleSentence: { hmong: 'Txo nqi lawm.', english: 'The price was lowered.' },
         // note: 'txo' (to lower/reduce) + 'nqi' (price). Functions as a verb phrase as well as a noun.
       },
@@ -2196,7 +2196,7 @@ export const categories = [
         english: 'sale; price reduction',
         category: 'money',
         tags: ['noun', 'shopping'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-lov-nqi.mp3',
         // note: 'lov nqi' — 'lov' (to break) + 'nqi' (price), "broken/slashed price." Spelling/usage uncertain to me vs the more common 'txo nqi'. FLAG for verification.
       },
       {
@@ -2205,7 +2205,7 @@ export const categories = [
         english: 'money; silver',
         category: 'money',
         tags: ['noun', 'currency'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-nyiaj.mp3',
         exampleSentence: { hmong: 'Kuv tsis muaj nyiaj.', english: 'I don\'t have money.' },
         // note: 'nyiaj' = money AND silver (the metal) — the link reflects silver's historic role as currency/wealth in Hmong culture. Nice cultural teaching point.
       },
@@ -2215,9 +2215,16 @@ export const categories = [
         english: 'check (payment)',
         category: 'money',
         tags: ['noun', 'currency', 'loanword'],
-        audioFile: null,
+        audioFile: 'vocabulary/money/hmong-money/hmong-money-tshev.mp3',
         // note: loanword from English "check." Verify spelling 'tshev'.
       },
+      // The four price questions the how-much lesson teaches. They were in the
+      // lesson only, so the word bank drilled a set the learner hadn't seen
+      // (notes/56). Glosses are the lesson's own.
+      { id: 'money-how-much-is-it', hmongRPA: 'yog pes tsawg?', english: 'how much is it?', category: 'money', tags: ['question', 'phrase'], audioFile: 'vocabulary/money/hmong-how-much/how-much-yog-pestsawg.mp3' },
+      { id: 'money-how-many-are-there', hmongRPA: 'muaj pes tsawg?', english: 'how many are there?', category: 'money', tags: ['question', 'phrase'], audioFile: 'vocabulary/money/hmong-how-much/how-much-muaj-pestsawg.mp3' },
+      { id: 'money-how-many-want', hmongRPA: 'koj xav tau pes tsawg?', english: 'how many do you want?', category: 'money', tags: ['question', 'phrase'], audioFile: 'vocabulary/money/hmong-how-much/how-much-koj-xav-tau-pestsawg.mp3' },
+      { id: 'money-what-price', hmongRPA: 'nqi pes tsawg?', english: 'what is the price?', category: 'money', tags: ['question', 'phrase'], audioFile: 'vocabulary/money/hmong-how-much/how-much-nqi-pestsawg.mp3' },
     ],
   },
 
@@ -2245,7 +2252,7 @@ export const categories = [
         english: 'one night / all night long',
         category: 'timeframes',
         tags: ['noun', 'time', 'duration'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-ib-hmos.mp3',
         exampleSentence: { hmong: 'Pw ib hmos.', english: 'Sleep one whole night.' },
       },
       {
@@ -2254,7 +2261,7 @@ export const categories = [
         english: 'noon, midday',
         category: 'timeframes',
         tags: ['noun', 'time', 'time-of-day'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-tavsu.mp3',
         exampleSentence: { hmong: 'Tav su lawm.', english: 'It\'s noon now.' },
         // note: source 'Tavsu'; standard spacing 'tav su'. 'su' relates to the midday rest/meal.
       },
@@ -2264,7 +2271,7 @@ export const categories = [
         english: 'afternoon (lit. "past noon")',
         category: 'timeframes',
         tags: ['noun', 'time', 'time-of-day'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-tavsu-dua.mp3',
         // note: 'dua' (past/over) marks it as after midday. Also 'yav tav su' / 'yav tom qab tav su' for afternoon. Verify preferred form.
       },
       {
@@ -2273,7 +2280,7 @@ export const categories = [
         english: 'morning; a.m.',
         category: 'timeframes',
         tags: ['noun', 'time', 'time-of-day'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-sawv-ntxov.mp3',
         exampleSentence: { hmong: 'Yav sawv ntxov.', english: 'In the morning.' },
         // note: 'sawv ntxov' = lit. "rise early." Common full form 'yav sawv ntxov.'
       },
@@ -2283,7 +2290,7 @@ export const categories = [
         english: 'night, evening; p.m. (lit. "dark sky")',
         category: 'timeframes',
         tags: ['noun', 'time', 'time-of-day'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-tsaus-ntuj.mp3',
         exampleSentence: { hmong: 'Yav tsaus ntuj.', english: 'In the evening.' },
       },
       {
@@ -2292,7 +2299,7 @@ export const categories = [
         english: 'daytime',
         category: 'timeframes',
         tags: ['noun', 'time', 'time-of-day'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-nruab-hnub.mp3',
         // note: 'nruab' (midst/middle) + 'hnub' (day/sun). Parallels 'nruab nrab' (middle) from your locatives set.
       },
       {
@@ -2301,7 +2308,7 @@ export const categories = [
         english: 'nighttime',
         category: 'timeframes',
         tags: ['noun', 'time', 'time-of-day'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-hmo-ntuj.mp3',
         exampleSentence: { hmong: 'Hmo ntuj tsaus.', english: 'The night is dark.' },
       },
       {
@@ -2310,7 +2317,7 @@ export const categories = [
         english: 'this morning',
         category: 'timeframes',
         tags: ['noun', 'time', 'relative'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-tagkis-no.mp3',
         // note: 'tag kis' = morning OR tomorrow; 'no' (this) pins it to "this morning." See 'tag kis' (tomorrow) below — same word, context-dependent. KEY teaching point.
       },
       {
@@ -2319,7 +2326,7 @@ export const categories = [
         english: 'in a moment, later, shortly',
         category: 'timeframes',
         tags: ['noun', 'time', 'relative'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-ib-pliag.mp3',
         exampleSentence: { hmong: 'Ib pliag ntxiv.', english: 'In a little while.' },
         // note: source 'Ib pliag / tsam'; 'ib pliag' and 'ib tsam' both = "a short while / in a moment." Could split into two entries.
       },
@@ -2329,7 +2336,7 @@ export const categories = [
         english: 'hour; o\'clock',
         category: 'timeframes',
         tags: ['noun', 'time'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-teev.mp3',
         exampleSentence: { hmong: 'Tsib teev.', english: 'Five o\'clock.' },
         // note: 'teev' = hour/o'clock AND "to weigh." Homograph; context disambiguates.
       },
@@ -2339,7 +2346,7 @@ export const categories = [
         english: 'minute',
         category: 'timeframes',
         tags: ['noun', 'time'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-feeb.mp3',
         exampleSentence: { hmong: 'Kaum feeb.', english: 'Ten minutes.' },
       },
       {
@@ -2348,7 +2355,7 @@ export const categories = [
         english: 'clock; watch',
         category: 'timeframes',
         tags: ['noun', 'time'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-teev-sij.mp3',
         // note: also in your furniture set ('lub teev sij' = clock). Cross-reference.
       },
       // ---- Relative days: PAST ----
@@ -2358,7 +2365,7 @@ export const categories = [
         english: 'three days ago',
         category: 'timeframes',
         tags: ['noun', 'time', 'relative'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-hnub-hnub.mp3',
         // note: 'hnub hnub' as "3 days ago" is uncertain to me — 'hnub hnub' often means "every day / daily." The day-offset sense needs verification. FLAG.
       },
       {
@@ -2367,7 +2374,7 @@ export const categories = [
         english: 'two days ago',
         category: 'timeframes',
         tags: ['noun', 'time', 'relative'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-hnub-hmos.mp3',
         // note: 'hnub hmos' for "2 days ago" — uncertain; verify against the full day-offset series. FLAG.
       },
       {
@@ -2387,7 +2394,7 @@ export const categories = [
         english: 'tomorrow (also: morning)',
         category: 'timeframes',
         tags: ['noun', 'time', 'relative'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-tagkis.mp3',
         exampleSentence: { hmong: 'Tag kis kuv mus.', english: 'I\'ll go tomorrow.' },
         // note: same word as the 'morning' sense in 'tag kis no'. Tomorrow vs morning is context-dependent — the single most important ambiguity in this set.
       },
@@ -2397,7 +2404,7 @@ export const categories = [
         english: 'the day after tomorrow (two days from now)',
         category: 'timeframes',
         tags: ['noun', 'time', 'relative'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-nagkis.mp3',
         // note: 'nag kis' as "2 days later" — verify; the past/future day-offset series varies and I'm not fully confident here. FLAG.
       },
       {
@@ -2406,7 +2413,7 @@ export const categories = [
         english: 'three days from now',
         category: 'timeframes',
         tags: ['noun', 'time', 'relative'],
-        audioFile: null,
+        audioFile: 'vocabulary/timeframes/hmong-time-puag-nraus.mp3',
         // note: 'puag nraus' for "3 days later" — uncertain spelling and offset. FLAG for verification.
       },
     ],
@@ -2848,7 +2855,7 @@ export const categories = [
         english: 'to read',
         category: 'verbs',
         tags: ['verb', 'literacy', 'communication'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-nyeem.mp3',
         exampleSentence: { hmong: 'Kuv nyeem ntawv.', english: 'I read.' },
       },
       {
@@ -2857,7 +2864,7 @@ export const categories = [
         english: 'to write',
         category: 'verbs',
         tags: ['verb', 'literacy', 'communication'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-sau.mp3',
         exampleSentence: { hmong: 'Kuv sau ntawv.', english: 'I write.' },
       },
       {
@@ -2866,7 +2873,7 @@ export const categories = [
         english: 'to learn, study, practice',
         category: 'verbs',
         tags: ['verb', 'education'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-kawm.mp3',
         exampleSentence: { hmong: 'Kuv kawm lus Hmoob.', english: 'I study Hmong.' },
       },
       {
@@ -2875,7 +2882,7 @@ export const categories = [
         english: 'to say',
         category: 'verbs',
         tags: ['verb', 'communication'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-hais.mp3',
         exampleSentence: { hmong: 'Kuv hais lus.', english: 'I speak.' },
       },
       {
@@ -2884,7 +2891,7 @@ export const categories = [
         english: 'to tell, teach',
         category: 'verbs',
         tags: ['verb', 'communication', 'education'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-qhia.mp3',
         exampleSentence: { hmong: 'Koj qhia kuv.', english: 'You teach me.' },
       },
       {
@@ -2893,7 +2900,7 @@ export const categories = [
         english: 'to ask',
         category: 'verbs',
         tags: ['verb', 'communication'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-nug.mp3',
         exampleSentence: { hmong: 'Kuv nug koj.', english: 'I ask you.' },
       },
       {
@@ -2902,7 +2909,7 @@ export const categories = [
         english: 'to answer',
         category: 'verbs',
         tags: ['verb', 'communication'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-teb.mp3',
         exampleSentence: { hmong: 'Kuv teb nws.', english: 'I answer her.' },
       },
       {
@@ -2911,7 +2918,7 @@ export const categories = [
         english: 'to explain, narrate',
         category: 'verbs',
         tags: ['verb', 'communication'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-piav.mp3',
         exampleSentence: { hmong: 'Kuv piav dab neeg.', english: 'I tell a story.' },
       },
       {
@@ -2920,7 +2927,7 @@ export const categories = [
         english: 'to sit',
         category: 'verbs',
         tags: ['verb', 'posture', 'motion'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-zaum.mp3',
         exampleSentence: { hmong: 'Kuv zaum no.', english: 'I sit here.' },
       },
       {
@@ -2929,7 +2936,7 @@ export const categories = [
         english: 'to stand, wake up, get up',
         category: 'verbs',
         tags: ['verb', 'posture', 'motion'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-sawv.mp3',
         exampleSentence: { hmong: 'Kuv sawv lawm.', english: 'I got up.' },
       },
       {
@@ -2938,7 +2945,7 @@ export const categories = [
         english: 'to open',
         category: 'verbs',
         tags: ['verb', 'motion', 'action'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-qhib.mp3',
         exampleSentence: { hmong: 'Qhib lub rooj.', english: 'Open the door.' },
       },
       {
@@ -2947,7 +2954,7 @@ export const categories = [
         english: 'to close',
         category: 'verbs',
         tags: ['verb', 'motion', 'action'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-kaw.mp3',
         exampleSentence: { hmong: 'Kaw lub rooj.', english: 'Close the door.' },
       },
       {
@@ -2956,7 +2963,7 @@ export const categories = [
         english: 'to flip a page, unfold',
         category: 'verbs',
         tags: ['verb', 'motion', 'action'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-nthuav.mp3',
         exampleSentence: { hmong: 'Nthuav nplooj ntawv.', english: 'Flip the page.' },
       },
       {
@@ -2965,7 +2972,7 @@ export const categories = [
         english: 'to go',
         category: 'verbs',
         tags: ['verb', 'motion'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-mus.mp3',
         exampleSentence: { hmong: 'Kuv mus tsev.', english: 'I go home.' },
       },
       {
@@ -2974,7 +2981,7 @@ export const categories = [
         english: 'to talk',
         category: 'verbs',
         tags: ['verb', 'communication'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-tham.mp3',
         exampleSentence: { hmong: 'Kuv tham nrog koj.', english: 'I talk with you.' },
       },
       {
@@ -2983,7 +2990,7 @@ export const categories = [
         english: 'to let, allow',
         category: 'verbs',
         tags: ['verb', 'auxiliary'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-cia.mp3',
         exampleSentence: { hmong: 'Kuv cia nws.', english: 'I let him.' },
       },
       {
@@ -2992,7 +2999,7 @@ export const categories = [
         english: 'to let go, release, leave behind',
         category: 'verbs',
         tags: ['verb', 'motion', 'action'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-tso.mp3',
         exampleSentence: { hmong: 'Kuv tso nws.', english: 'I release it.' },
       },
       {
@@ -3001,7 +3008,7 @@ export const categories = [
         english: 'to see',
         category: 'verbs',
         tags: ['verb', 'perception'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-pom.mp3',
         exampleSentence: { hmong: 'Kuv pom koj.', english: 'I see you.' },
       },
       {
@@ -3010,7 +3017,7 @@ export const categories = [
         english: 'to look at',
         category: 'verbs',
         tags: ['verb', 'perception'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-ntsia.mp3',
         exampleSentence: { hmong: 'Kuv ntsia nws.', english: 'I look at him.' },
       },
       {
@@ -3019,9 +3026,16 @@ export const categories = [
         english: 'to watch',
         category: 'verbs',
         tags: ['verb', 'perception'],
-        audioFile: null,
+        audioFile: 'grammar/action-verbs/hmong-action-verbs-saib.mp3',
         exampleSentence: { hmong: 'Kuv saib nws.', english: 'I watch it.' },
       },
+      // Taught in the action-verbs lesson but previously absent here, so they
+      // could not be drilled or quizzed (notes/56). Glosses and example
+      // sentences are the lesson's own text, not newly authored.
+      { id: 'verbs-eat', hmongRPA: 'noj', english: 'to eat', category: 'verbs', tags: ['verb'], audioFile: 'grammar/action-verbs/hmong-action-verbs-noj.mp3', exampleSentence: { hmong: 'Noj mov.', english: 'Eat rice / have a meal.' } },
+      { id: 'verbs-drink', hmongRPA: 'haus', english: 'to drink', category: 'verbs', tags: ['verb'], audioFile: 'grammar/action-verbs/hmong-action-verbs-haus.mp3', exampleSentence: { hmong: 'Haus dej.', english: 'Drink water.' } },
+      { id: 'verbs-come', hmongRPA: 'los', english: 'to come', category: 'verbs', tags: ['verb', 'motion'], audioFile: 'grammar/action-verbs/hmong-action-verbs-los.mp3' },
+      { id: 'verbs-make', hmongRPA: 'ua', english: 'to do / make', category: 'verbs', tags: ['verb'], audioFile: 'grammar/action-verbs/hmong-action-verbs-ua.mp3', exampleSentence: { hmong: 'Ua tsaug.', english: 'Thank you (literally "do thanks").' } },
     ],
   },
 
@@ -3174,7 +3188,7 @@ export const categories = [
         english: 'big, large, older',
         category: 'descriptions',
         tags: ['adjective', 'size', 'age'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-loj.mp3',
         exampleSentence: { hmong: 'Tsev no loj.', english: 'This house is big.' },
       },
       {
@@ -3183,7 +3197,7 @@ export const categories = [
         english: 'overweight',
         category: 'descriptions',
         tags: ['adjective', 'body'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-rog.mp3',
       },
       {
         id: 'descriptions-small',
@@ -3191,7 +3205,7 @@ export const categories = [
         english: 'small, young',
         category: 'descriptions',
         tags: ['adjective', 'size', 'age'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-me.mp3',
         exampleSentence: { hmong: 'Me nyuam no me.', english: 'This child is small.' },
       },
       {
@@ -3200,7 +3214,7 @@ export const categories = [
         english: 'skinny',
         category: 'descriptions',
         tags: ['adjective', 'body'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-yuag.mp3',
       },
       {
         id: 'descriptions-many-objects',
@@ -3208,7 +3222,7 @@ export const categories = [
         english: 'many (objects)',
         category: 'descriptions',
         tags: ['adjective', 'quantity'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-ntau.mp3',
         exampleSentence: { hmong: 'Dej ntau.', english: 'There is a lot of water.' },
       },
       {
@@ -3217,7 +3231,7 @@ export const categories = [
         english: 'talkative',
         category: 'descriptions',
         tags: ['adjective', 'personality'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-kheev-tham.mp3',
       },
       {
         id: 'descriptions-few',
@@ -3225,7 +3239,7 @@ export const categories = [
         english: 'a little, few',
         category: 'descriptions',
         tags: ['adjective', 'quantity'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-tsawg.mp3',
         exampleSentence: { hmong: 'Neeg tsawg.', english: 'Few people.' },
       },
       {
@@ -3234,7 +3248,7 @@ export const categories = [
         english: 'smiley',
         category: 'descriptions',
         tags: ['adjective', 'personality'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-kheev-luag.mp3',
       },
       {
         id: 'descriptions-tall',
@@ -3242,7 +3256,7 @@ export const categories = [
         english: 'tall',
         category: 'descriptions',
         tags: ['adjective', 'size', 'body'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-siab.mp3',
         exampleSentence: { hmong: 'Nws siab heev.', english: 'He is very tall.' },
       },
       {
@@ -3251,7 +3265,7 @@ export const categories = [
         english: 'good',
         category: 'descriptions',
         tags: ['adjective', 'quality'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-zoo.mp3',
         exampleSentence: { hmong: 'Zoo heev.', english: 'Very good.' },
       },
       {
@@ -3260,7 +3274,7 @@ export const categories = [
         english: 'new',
         category: 'descriptions',
         tags: ['adjective', 'age'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-tshiab.mp3',
         exampleSentence: { hmong: 'Lub tsev tshiab.', english: 'The new house.' },
       },
       {
@@ -3269,7 +3283,7 @@ export const categories = [
         english: 'bad',
         category: 'descriptions',
         tags: ['adjective', 'quality'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-phem.mp3',
         exampleSentence: { hmong: 'Tus neeg phem.', english: 'The bad person.' },
       },
       {
@@ -3278,7 +3292,7 @@ export const categories = [
         english: 'old',
         category: 'descriptions',
         tags: ['adjective', 'age'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-qub.mp3',
         exampleSentence: { hmong: 'Lub tsev qub.', english: 'The old house.' },
       },
       {
@@ -3287,7 +3301,7 @@ export const categories = [
         english: 'not lazy, diligent',
         category: 'descriptions',
         tags: ['adjective', 'personality'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-nquag.mp3',
       },
       {
         id: 'descriptions-cheap',
@@ -3295,7 +3309,7 @@ export const categories = [
         english: 'cheap',
         category: 'descriptions',
         tags: ['adjective', 'price'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-pheej-yig.mp3',
         exampleSentence: { hmong: 'Nqi pheej yig.', english: 'The price is cheap.' },
       },
       {
@@ -3304,7 +3318,7 @@ export const categories = [
         english: 'lazy',
         category: 'descriptions',
         tags: ['adjective', 'personality'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-tub-nkeeg.mp3',
       },
       {
         id: 'descriptions-pretty',
@@ -3312,7 +3326,7 @@ export const categories = [
         english: 'pretty',
         category: 'descriptions',
         tags: ['adjective', 'appearance'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-zoo-nkauj.mp3',
         exampleSentence: { hmong: 'Nws zoo nkauj.', english: 'She is pretty.' },
       },
       {
@@ -3321,7 +3335,7 @@ export const categories = [
         english: 'long',
         category: 'descriptions',
         tags: ['adjective', 'size'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-ntev.mp3',
         exampleSentence: { hmong: 'Txoj hlaub ntev.', english: 'The pipe is long.' },
       },
       {
@@ -3330,7 +3344,7 @@ export const categories = [
         english: 'handsome',
         category: 'descriptions',
         tags: ['adjective', 'appearance'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-zoo-nraug.mp3',
         exampleSentence: { hmong: 'Nws zoo nraug.', english: 'He is handsome.' },
       },
       {
@@ -3339,7 +3353,7 @@ export const categories = [
         english: 'short (objects)',
         category: 'descriptions',
         tags: ['adjective', 'size'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-luv.mp3',
       },
       {
         id: 'descriptions-short',
@@ -3347,7 +3361,7 @@ export const categories = [
         english: 'short',
         category: 'descriptions',
         tags: ['adjective', 'size', 'body'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-qib-taub.mp3',
       },
       {
         id: 'descriptions-loveable',
@@ -3355,7 +3369,7 @@ export const categories = [
         english: 'loveable',
         category: 'descriptions',
         tags: ['adjective', 'personality'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-ntxim-hlub.mp3',
       },
       {
         id: 'descriptions-many-animate',
@@ -3363,7 +3377,7 @@ export const categories = [
         english: 'many (animate)',
         category: 'descriptions',
         tags: ['adjective', 'quantity'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-coob.mp3',
         exampleSentence: { hmong: 'Neeg coob.', english: 'Many people.' },
       },
       {
@@ -3372,7 +3386,7 @@ export const categories = [
         english: 'mature',
         category: 'descriptions',
         tags: ['adjective', 'personality'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-paub-taub.mp3',
       },
       {
         id: 'descriptions-well-mannered',
@@ -3380,7 +3394,7 @@ export const categories = [
         english: 'well-mannered',
         category: 'descriptions',
         tags: ['adjective', 'personality'],
-        audioFile: null,
+        audioFile: 'grammar/adjectives/hmong-common-adjectives-paub-cai.mp3',
       },
     ],
   },
@@ -3454,7 +3468,7 @@ hmongRPA: 'ces',
 english: 'then, so then',
 category: 'conjunctions',
 tags: ['conjunction', 'sequence'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-ces.mp3',
 exampleSentence: { hmong: 'Kuv mus ces koj tuaj.', english: 'I go then you come.' },
 },
 {
@@ -3463,7 +3477,7 @@ hmongRPA: 'thiab',
 english: 'and',
 category: 'conjunctions',
 tags: ['conjunction', 'coordination'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-thiab.mp3',
 exampleSentence: { hmong: 'Kuv thiab koj.', english: 'You and I.' },
 },
 {
@@ -3472,7 +3486,7 @@ hmongRPA: 'nrog',
 english: 'with',
 category: 'conjunctions',
 tags: ['preposition', 'comitative'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-nrog.mp3',
 exampleSentence: { hmong: 'Kuv mus nrog nws.', english: 'I go with him.' },
 },
 {
@@ -3481,7 +3495,7 @@ hmongRPA: 'tiamsis',
 english: 'but',
 category: 'conjunctions',
 tags: ['conjunction', 'contrast'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-tiamsis.mp3',
 exampleSentence: { hmong: 'Kuv xav tiamsis tsis tau.', english: 'I want but cannot.' },
 },
 {
@@ -3490,7 +3504,7 @@ hmongRPA: 'ib tsam',
 english: 'just in case, or else',
 category: 'conjunctions',
 tags: ['conjunction', 'condition'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-ib-tsam.mp3',
 },
 {
 id: 'conjunctions-because',
@@ -3498,7 +3512,7 @@ hmongRPA: 'vim hais tias',
 english: 'because',
 category: 'conjunctions',
 tags: ['conjunction', 'causation'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-vim-hais-tias.mp3',
 exampleSentence: { hmong: 'Kuv tsis mus vim hais tias kuv nyuaj siab.', english: 'I do not go because I am sad.' },
 },
 {
@@ -3507,7 +3521,7 @@ hmongRPA: 'vim',
 english: 'because',
 category: 'conjunctions',
 tags: ['conjunction', 'causation'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-vim.mp3',
 },
 {
 id: 'conjunctions-or',
@@ -3515,7 +3529,7 @@ hmongRPA: 'los yog',
 english: 'or',
 category: 'conjunctions',
 tags: ['conjunction', 'alternation'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-los-yog.mp3',
 exampleSentence: { hmong: 'Koj nyiam los yog kuv nyiam.', english: 'You like or I like.' },
 },
 {
@@ -3524,7 +3538,7 @@ hmongRPA: 'lossis',
 english: 'or',
 category: 'conjunctions',
 tags: ['conjunction', 'alternation'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-lossis.mp3',
 },
 {
 id: 'conjunctions-also',
@@ -3532,7 +3546,7 @@ hmongRPA: 'tsis tas li ntawd',
 english: 'also, in addition to that',
 category: 'conjunctions',
 tags: ['conjunction', 'addition'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-tsis-tas-li-ntawd.mp3',
 },
 {
 id: 'conjunctions-even-though',
@@ -3540,7 +3554,7 @@ hmongRPA: 'txawm ... los',
 english: 'even though, although',
 category: 'conjunctions',
 tags: ['conjunction', 'concession'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-txawm-los.mp3',
 },
 {
 id: 'conjunctions-let',
@@ -3548,7 +3562,7 @@ hmongRPA: 'cia',
 english: 'to let',
 category: 'conjunctions',
 tags: ['verb', 'causative'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-cia.mp3',
 exampleSentence: { hmong: 'Cia kuv hais.', english: 'Let me speak.' },
 },
 {
@@ -3557,7 +3571,7 @@ hmongRPA: 'hais tias',
 english: '(complementizer: that)',
 category: 'conjunctions',
 tags: ['complementizer', 'quotation'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-hais-tias.mp3',
 exampleSentence: { hmong: 'Nws hais tias nws paub.', english: 'He said that he knows.' },
 },
 {
@@ -3566,7 +3580,7 @@ hmongRPA: 'tias',
 english: '(complementizer: that)',
 category: 'conjunctions',
 tags: ['complementizer', 'quotation'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-tias.mp3',
 },
 {
 id: 'conjunctions-that-relative',
@@ -3574,7 +3588,7 @@ hmongRPA: 'uas',
 english: '(relative marker: that, which, who)',
 category: 'conjunctions',
 tags: ['relative marker', 'subordinator'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-uas.mp3',
 exampleSentence: { hmong: 'Tus neeg uas kuv pom.', english: 'The person that I saw.' },
 },
 {
@@ -3583,7 +3597,7 @@ hmongRPA: 'txog',
 english: 'about',
 category: 'conjunctions',
 tags: ['preposition', 'topic'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-txog.mp3',
 exampleSentence: { hmong: 'Kuv hais txog koj.', english: 'I speak about you.' },
 },
 {
@@ -3592,7 +3606,7 @@ hmongRPA: 'kom',
 english: 'so that',
 category: 'conjunctions',
 tags: ['conjunction', 'purpose'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-kom.mp3',
 exampleSentence: { hmong: 'Koj mus kom kuv paub.', english: 'You go so that I know.' },
 },
 {
@@ -3601,7 +3615,7 @@ hmongRPA: 'yog hais tias',
 english: 'if',
 category: 'conjunctions',
 tags: ['conjunction', 'condition'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-yog-hais-tias.mp3',
 },
 {
 id: 'conjunctions-if-short',
@@ -3609,7 +3623,7 @@ hmongRPA: 'yog',
 english: 'if',
 category: 'conjunctions',
 tags: ['conjunction', 'condition'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-yog.mp3',
 exampleSentence: { hmong: 'Yog koj mus ces kuv tuaj.', english: 'If you go then I come.' },
 },
 {
@@ -3618,7 +3632,7 @@ hmongRPA: 'ntshe',
 english: 'maybe',
 category: 'conjunctions',
 tags: ['adverb', 'modality'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-ntshe.mp3',
 exampleSentence: { hmong: 'Ntshe koj paub.', english: 'Maybe you know.' },
 },
 {
@@ -3627,7 +3641,7 @@ hmongRPA: 'tsuas ... xwb',
 english: 'only',
 category: 'conjunctions',
 tags: ['adverb', 'restrictive'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-tsuas-xwb.mp3',
 },
 {
 id: 'conjunctions-to-for',
@@ -3635,7 +3649,7 @@ hmongRPA: 'rau',
 english: 'to, for',
 category: 'conjunctions',
 tags: ['preposition', 'dative'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-rau.mp3',
 exampleSentence: { hmong: 'Kuv muab rau koj.', english: 'I give to you.' },
 },
 {
@@ -3644,7 +3658,7 @@ hmongRPA: 'hos',
 english: 'whereas',
 category: 'conjunctions',
 tags: ['conjunction', 'contrast'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-hos.mp3',
 },
 {
 id: 'conjunctions-to-see-if',
@@ -3652,23 +3666,23 @@ hmongRPA: 'seb',
 english: 'to see if',
 category: 'conjunctions',
 tags: ['conjunction', 'determination'],
-audioFile: null,
+audioFile: 'grammar/conjunctions/hmong-conjunctions-seb.mp3',
 exampleSentence: { hmong: 'Kuv mus seb nws nyob.', english: 'I go to see if he is home.' },
 },
 ],
 },
 
 {
-id: 'timeframes',
-title: 'Timeframes',
-description: 'Hmong words for parts of the day, telling time, and relative days.',
+id: 'timeframes-days',
+title: 'Days & Frequency',
+description: 'Day words built on "hnub" — today, everyday, the other day.',
 emoji: '🕐',
 words: [
 {
 id: 'timeframes-day',
 hmongRPA: 'hnub',
 english: 'day, sun',
-category: 'timeframes',
+category: 'timeframes-days',
 tags: ['noun', 'time'],
 audioFile: null,
 exampleSentence: { hmong: 'Hnub ci sov.', english: 'The sun shines warm.' },
@@ -3677,7 +3691,7 @@ exampleSentence: { hmong: 'Hnub ci sov.', english: 'The sun shines warm.' },
 id: 'timeframes-today',
 hmongRPA: 'hnub no',
 english: 'today',
-category: 'timeframes',
+category: 'timeframes-days',
 tags: ['noun', 'time', 'relative'],
 audioFile: null,
 exampleSentence: { hmong: 'Hnub no kuv mus.', english: 'Today I go.' },
@@ -3686,7 +3700,7 @@ exampleSentence: { hmong: 'Hnub no kuv mus.', english: 'Today I go.' },
 id: 'timeframes-one-day',
 hmongRPA: 'ib hnub',
 english: 'one day, all day, someday',
-category: 'timeframes',
+category: 'timeframes-days',
 tags: ['noun', 'time', 'relative'],
 audioFile: null,
 exampleSentence: { hmong: 'Ib hnub kuv yuav mus.', english: 'Someday I will go.' },
@@ -3695,7 +3709,7 @@ exampleSentence: { hmong: 'Ib hnub kuv yuav mus.', english: 'Someday I will go.'
 id: 'timeframes-all-the-time',
 hmongRPA: 'tas hnub',
 english: 'all the time, all day and all night',
-category: 'timeframes',
+category: 'timeframes-days',
 tags: ['noun', 'time', 'duration'],
 audioFile: null,
 },
@@ -3703,7 +3717,7 @@ audioFile: null,
 id: 'timeframes-everyday',
 hmongRPA: 'txhua hnub',
 english: 'everyday',
-category: 'timeframes',
+category: 'timeframes-days',
 tags: ['noun', 'time', 'relative'],
 audioFile: null,
 exampleSentence: { hmong: 'Kuv mus tsev txhua hnub.', english: 'I go home everyday.' },
@@ -3712,7 +3726,7 @@ exampleSentence: { hmong: 'Kuv mus tsev txhua hnub.', english: 'I go home everyd
 id: 'timeframes-the-other-day',
 hmongRPA: 'hnub i',
 english: 'the other day',
-category: 'timeframes',
+category: 'timeframes-days',
 tags: ['noun', 'time', 'relative'],
 audioFile: null,
 exampleSentence: { hmong: 'Hnub i kuv pom nws.', english: 'The other day I saw him.' },
@@ -3721,7 +3735,7 @@ exampleSentence: { hmong: 'Hnub i kuv pom nws.', english: 'The other day I saw h
 id: 'timeframes-some-other-day',
 hmongRPA: 'lwm hnub',
 english: 'some other day',
-category: 'timeframes',
+category: 'timeframes-days',
 tags: ['noun', 'time', 'relative'],
 audioFile: null,
 exampleSentence: { hmong: 'Lwm hnub kuv tuaj.', english: 'Some other day I will come.' },
@@ -3876,15 +3890,15 @@ exampleSentence: { hmong: 'Kuv nyuam qhuav tuaj.', english: 'I just came.' },
     description: 'I, you, he/she — including the dual forms Hmong has and English lacks.',
     emoji: '👤',
     words: [
-      { id: 'pronouns-i', hmongRPA: 'kuv', english: 'I / me', category: 'pronouns', tags: ['pronoun', 'singular'], audioFile: null, exampleSentence: { hmong: 'Kuv yog Hmoob.', english: 'I am Hmong.' } },
-      { id: 'pronouns-you', hmongRPA: 'koj', english: 'you (one person)', category: 'pronouns', tags: ['pronoun', 'singular'], audioFile: null, exampleSentence: { hmong: 'Koj puas nyob zoo?', english: 'How are you?' } },
-      { id: 'pronouns-he-she', hmongRPA: 'nws', english: 'he / she / it', category: 'pronouns', tags: ['pronoun', 'singular'], audioFile: null, exampleSentence: { hmong: 'Nws hu ua Mim.', english: 'Her name is Mim.' } },
-      { id: 'pronouns-we-two', hmongRPA: 'wb', english: 'we two (you and I)', category: 'pronouns', tags: ['pronoun', 'dual'], audioFile: null },
-      { id: 'pronouns-you-two', hmongRPA: 'neb', english: 'you two', category: 'pronouns', tags: ['pronoun', 'dual'], audioFile: null },
+      { id: 'pronouns-i', hmongRPA: 'kuv', english: 'I / me', category: 'pronouns', tags: ['pronoun', 'singular'], audioFile: 'grammar/pronouns/hmong-pronouns-kuv.mp3', exampleSentence: { hmong: 'Kuv yog Hmoob.', english: 'I am Hmong.' } },
+      { id: 'pronouns-you', hmongRPA: 'koj', english: 'you (one person)', category: 'pronouns', tags: ['pronoun', 'singular'], audioFile: 'grammar/pronouns/hmong-pronouns-koj.mp3', exampleSentence: { hmong: 'Koj puas nyob zoo?', english: 'How are you?' } },
+      { id: 'pronouns-he-she', hmongRPA: 'nws', english: 'he / she / it', category: 'pronouns', tags: ['pronoun', 'singular'], audioFile: 'grammar/pronouns/hmong-pronouns-nws.mp3', exampleSentence: { hmong: 'Nws hu ua Mim.', english: 'Her name is Mim.' } },
+      { id: 'pronouns-we-two', hmongRPA: 'wb', english: 'we two (you and I)', category: 'pronouns', tags: ['pronoun', 'dual'], audioFile: 'grammar/pronouns/hmong-pronouns-wb.mp3' },
+      { id: 'pronouns-you-two', hmongRPA: 'neb', english: 'you two', category: 'pronouns', tags: ['pronoun', 'dual'], audioFile: 'grammar/pronouns/hmong-pronouns-neb.mp3' },
       { id: 'pronouns-they-two', hmongRPA: 'nkawd', english: 'they two', category: 'pronouns', tags: ['pronoun', 'dual'], audioFile: null, exampleSentence: { hmong: 'Nkawd sib hlub.', english: 'The two of them love each other.' } },
-      { id: 'pronouns-we', hmongRPA: 'peb', english: 'we (three or more)', category: 'pronouns', tags: ['pronoun', 'plural'], audioFile: null },
-      { id: 'pronouns-you-plural', hmongRPA: 'nej', english: 'you (three or more)', category: 'pronouns', tags: ['pronoun', 'plural'], audioFile: null },
-      { id: 'pronouns-they', hmongRPA: 'lawv', english: 'they', category: 'pronouns', tags: ['pronoun', 'plural'], audioFile: null, exampleSentence: { hmong: 'Lawv mus lawm.', english: 'They went.' } },
+      { id: 'pronouns-we', hmongRPA: 'peb', english: 'we (three or more)', category: 'pronouns', tags: ['pronoun', 'plural'], audioFile: 'grammar/pronouns/hmong-pronouns-peb.mp3' },
+      { id: 'pronouns-you-plural', hmongRPA: 'nej', english: 'you (three or more)', category: 'pronouns', tags: ['pronoun', 'plural'], audioFile: 'grammar/pronouns/hmong-pronouns-nej.mp3' },
+      { id: 'pronouns-they', hmongRPA: 'lawv', english: 'they', category: 'pronouns', tags: ['pronoun', 'plural'], audioFile: 'grammar/pronouns/hmong-pronouns-lawv.mp3', exampleSentence: { hmong: 'Lawv mus lawm.', english: 'They went.' } },
     ],
   },
   {
@@ -3892,17 +3906,32 @@ exampleSentence: { hmong: 'Kuv nyuam qhuav tuaj.', english: 'I just came.' },
     title: 'Numbers',
     description: 'One through ten — the base every larger number builds on.',
     emoji: '🔢',
-    words: [
-      { id: 'numbers-1', hmongRPA: 'ib', english: 'one', category: 'numbers', tags: ['number'], audioFile: null, exampleSentence: { hmong: 'Ib tug dev.', english: 'One dog.' } },
-      { id: 'numbers-2', hmongRPA: 'ob', english: 'two', category: 'numbers', tags: ['number'], audioFile: null },
-      { id: 'numbers-3', hmongRPA: 'peb', english: 'three', category: 'numbers', tags: ['number'], audioFile: null },
-      { id: 'numbers-4', hmongRPA: 'plaub', english: 'four', category: 'numbers', tags: ['number'], audioFile: null },
-      { id: 'numbers-5', hmongRPA: 'tsib', english: 'five', category: 'numbers', tags: ['number'], audioFile: null },
-      { id: 'numbers-6', hmongRPA: 'rau', english: 'six', category: 'numbers', tags: ['number'], audioFile: null },
-      { id: 'numbers-7', hmongRPA: 'xya', english: 'seven', category: 'numbers', tags: ['number'], audioFile: null },
-      { id: 'numbers-8', hmongRPA: 'yim', english: 'eight', category: 'numbers', tags: ['number'], audioFile: null },
-      { id: 'numbers-9', hmongRPA: 'cuaj', english: 'nine', category: 'numbers', tags: ['number'], audioFile: null },
-      { id: 'numbers-10', hmongRPA: 'kaum', english: 'ten', category: 'numbers', tags: ['number'], audioFile: null, exampleSentence: { hmong: 'Kaum ib.', english: 'Eleven (ten-one).' } },
+words: [
+      { id: 'numbers-1', hmongRPA: 'ib', english: 'one', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-ib.mp3', exampleSentence: { hmong: 'Ib tug dev.', english: 'One dog.' } },
+      { id: 'numbers-2', hmongRPA: 'ob', english: 'two', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-ob.mp3', exampleSentence: { hmong: 'Ob tug miv.', english: 'Two cats.' } },
+      { id: 'numbers-3', hmongRPA: 'peb', english: 'three', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-peb.mp3', exampleSentence: { hmong: 'Peb tug menyuam.', english: 'Three children.' } },
+      { id: 'numbers-4', hmongRPA: 'plaub', english: 'four', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-plaub.mp3', exampleSentence: { hmong: 'Plaub tug noog.', english: 'Four birds.' } },
+      { id: 'numbers-5', hmongRPA: 'tsib', english: 'five', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-tsib.mp3', exampleSentence: { hmong: 'Tsib phau ntawv.', english: 'Five books.' } },
+      { id: 'numbers-6', hmongRPA: 'rau', english: 'six', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-rau.mp3', exampleSentence: { hmong: 'Rau hnub.', english: 'Six days.' } },
+      { id: 'numbers-7', hmongRPA: 'xya', english: 'seven', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-xya.mp3', exampleSentence: { hmong: 'Xya lub hlis.', english: 'Seven months.' } },
+      { id: 'numbers-8', hmongRPA: 'yim', english: 'eight', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-yim.mp3', exampleSentence: { hmong: 'Yim teev.', english: 'Eight o\'clock.' } },
+      { id: 'numbers-9', hmongRPA: 'cuaj', english: 'nine', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-cuaj.mp3', exampleSentence: { hmong: 'Cuaj lub rooj.', english: 'Nine tables.' } },
+      { id: 'numbers-10', hmongRPA: 'kaum', english: 'ten', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-kaum.mp3', exampleSentence: { hmong: 'Kaum ib.', english: 'Eleven.' } },
+
+      { id: 'numbers-20', hmongRPA: 'neesnkaum', english: 'twenty', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-neesnkaum.mp3', exampleSentence: { hmong: 'Neesnkaum xyoo.', english: 'Twenty years.' } },
+      { id: 'numbers-30', hmongRPA: 'pebcaug', english: 'thirty', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-pebcaug.mp3', exampleSentence: { hmong: 'Pebcaug hnub.', english: 'Thirty days.' } },
+      { id: 'numbers-40', hmongRPA: 'plaubcaug', english: 'forty', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-plaubcaug.mp3', exampleSentence: { hmong: 'Plaubcaug feeb.', english: 'Forty minutes.' } },
+      { id: 'numbers-50', hmongRPA: 'tsibcaug', english: 'fifty', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-tsibcaug.mp3', exampleSentence: { hmong: 'Tsibcaug mais.', english: 'Fifty miles.' } },
+      { id: 'numbers-60', hmongRPA: 'raucaum', english: 'sixty', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-raucaum.mp3', exampleSentence: { hmong: 'Raucaum tus tub.', english: 'Sixty students.' } },
+      { id: 'numbers-70', hmongRPA: 'xyacaum', english: 'seventy', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-xyacaum.mp3', exampleSentence: { hmong: 'Xyacaum las.', english: 'Seventy dollars.' } },
+      { id: 'numbers-80', hmongRPA: 'yimcaum', english: 'eighty', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-yimcaum.mp3', exampleSentence: { hmong: 'Yimcaum kg.', english: 'Eighty kilograms.' } },
+      { id: 'numbers-90', hmongRPA: 'cuajcaum', english: 'ninety', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-cuajcaum.mp3', exampleSentence: { hmong: 'Cuajcaum feem.', english: 'Ninety percent.' } },
+
+      { id: 'numbers-100', hmongRPA: 'ib puas', english: 'one hundred', category: 'numbers', tags: ['number'], audioFile: 'vocabulary/numbers/hmong-numbers-ib-puas.mp3', exampleSentence: { hmong: 'Ib puas tus neeg.', english: 'One hundred people.' } },
+      { id: 'numbers-puas', hmongRPA: 'puas', english: 'hundred', category: 'numbers', tags: ['number', 'multiplier'], audioFile: 'vocabulary/numbers/hmong-numbers-puas.mp3', exampleSentence: { hmong: 'Ob puas.', english: 'Two hundred.' } },
+      { id: 'numbers-txhiab', hmongRPA: 'txhiab', english: 'thousand', category: 'numbers', tags: ['number', 'multiplier'], audioFile: 'vocabulary/numbers/hmong-numbers-txhiab.mp3', exampleSentence: { hmong: 'Ib txhiab.', english: 'One thousand.' } },
+      { id: 'numbers-vam', hmongRPA: 'vam', english: 'ten thousand', category: 'numbers', tags: ['number', 'multiplier'], audioFile: 'vocabulary/numbers/hmong-numbers-vam.mp3', exampleSentence: { hmong: 'Ib vam.', english: 'Ten thousand.' } },
+      { id: 'numbers-plhom', hmongRPA: 'plhom', english: 'million', category: 'numbers', tags: ['number', 'multiplier'], audioFile: 'vocabulary/numbers/hmong-numbers-plhom.mp3', exampleSentence: { hmong: 'Ib plhom.', english: 'One million.' } },
     ],
   },
   {
@@ -3911,11 +3940,11 @@ exampleSentence: { hmong: 'Kuv nyuam qhuav tuaj.', english: 'I just came.' },
     description: 'The small words that place a verb in time — Hmong never conjugates.',
     emoji: '⏳',
     words: [
-      { id: 'tense-markers-progressive', hmongRPA: 'tab tom', english: 'currently (-ing)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: null, exampleSentence: { hmong: 'Kuv tab tom noj.', english: 'I am eating.' } },
-      { id: 'tense-markers-future', hmongRPA: 'yuav', english: 'will (future)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: null, exampleSentence: { hmong: 'Kuv yuav noj.', english: 'I will eat.' } },
-      { id: 'tense-markers-past', hmongRPA: 'tau', english: 'already (past completed)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: null, exampleSentence: { hmong: 'Kuv tau noj.', english: 'I have eaten.' } },
-      { id: 'tense-markers-still', hmongRPA: 'tseem', english: 'still', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: null, exampleSentence: { hmong: 'Kuv tseem noj.', english: 'I am still eating.' } },
-      { id: 'tense-markers-completed', hmongRPA: 'lawm', english: 'completed (sentence-final)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: null, exampleSentence: { hmong: 'Kuv noj lawm.', english: 'I ate already.' } },
+      { id: 'tense-markers-progressive', hmongRPA: 'tab tom', english: 'currently (-ing)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: 'grammar/tense-markers/hmong-tense-markers-tabtom.mp3', exampleSentence: { hmong: 'Kuv tab tom noj.', english: 'I am eating.' } },
+      { id: 'tense-markers-future', hmongRPA: 'yuav', english: 'will (future)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: 'grammar/tense-markers/hmong-tense-markers-yuav.mp3', exampleSentence: { hmong: 'Kuv yuav noj.', english: 'I will eat.' } },
+      { id: 'tense-markers-past', hmongRPA: 'tau', english: 'already (past completed)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: 'grammar/tense-markers/hmong-tense-markers-tau.mp3', exampleSentence: { hmong: 'Kuv tau noj.', english: 'I have eaten.' } },
+      { id: 'tense-markers-still', hmongRPA: 'tseem', english: 'still', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: 'grammar/tense-markers/hmong-tense-markers-tseem.mp3', exampleSentence: { hmong: 'Kuv tseem noj.', english: 'I am still eating.' } },
+      { id: 'tense-markers-completed', hmongRPA: 'lawm', english: 'completed (sentence-final)', category: 'tense-markers', tags: ['particle', 'aspect'], audioFile: 'grammar/tense-markers/hmong-tense-markers-lawm.mp3', exampleSentence: { hmong: 'Kuv noj lawm.', english: 'I ate already.' } },
     ],
   },
   {
@@ -3924,11 +3953,11 @@ exampleSentence: { hmong: 'Kuv nyuam qhuav tuaj.', english: 'I just came.' },
     description: 'This, that, here, there — the pointing words. They follow the noun.',
     emoji: '👉',
     words: [
-      { id: 'demonstratives-this', hmongRPA: 'no', english: 'this', category: 'demonstratives', tags: ['demonstrative'], audioFile: null, exampleSentence: { hmong: 'Lub tsev no.', english: 'This house.' } },
-      { id: 'demonstratives-that', hmongRPA: 'ntawd', english: 'that (over there)', category: 'demonstratives', tags: ['demonstrative'], audioFile: null },
-      { id: 'demonstratives-that-near-you', hmongRPA: 'ko', english: 'that (near the listener)', category: 'demonstratives', tags: ['demonstrative'], audioFile: null }, // TODO-VERIFY: "ko" vs "ntawd" nuance
-      { id: 'demonstratives-here', hmongRPA: 'ntawm no', english: 'here', category: 'demonstratives', tags: ['demonstrative', 'location'], audioFile: null },
-      { id: 'demonstratives-there', hmongRPA: 'ntawm ntawd', english: 'there', category: 'demonstratives', tags: ['demonstrative', 'location'], audioFile: null },
+      { id: 'demonstratives-this', hmongRPA: 'no', english: 'this', category: 'demonstratives', tags: ['demonstrative'], audioFile: 'grammar/common-demonstratives/hmong-demonstratives-no.mp3', exampleSentence: { hmong: 'Lub tsev no.', english: 'This house.' } },
+      { id: 'demonstratives-that', hmongRPA: 'ntawd', english: 'that (over there)', category: 'demonstratives', tags: ['demonstrative'], audioFile: 'grammar/common-demonstratives/hmong-demonstratives-ntawd.mp3' },
+      { id: 'demonstratives-that-near-you', hmongRPA: 'ko', english: 'that (near the listener)', category: 'demonstratives', tags: ['demonstrative'], audioFile: 'grammar/common-demonstratives/hmong-demonstratives-ko.mp3' }, // TODO-VERIFY: "ko" vs "ntawd" nuance
+      { id: 'demonstratives-here', hmongRPA: 'ntawm no', english: 'here', category: 'demonstratives', tags: ['demonstrative', 'location'], audioFile: 'grammar/common-demonstratives/hmong-demonstratives-ntawm-no.mp3' },
+      { id: 'demonstratives-there', hmongRPA: 'ntawm ntawd', english: 'there', category: 'demonstratives', tags: ['demonstrative', 'location'], audioFile: 'grammar/common-demonstratives/hmong-demonstratives-ntawm-ntawd.mp3' },
     ],
   },
   {
@@ -3937,12 +3966,34 @@ exampleSentence: { hmong: 'Kuv nyuam qhuav tuaj.', english: 'I just came.' },
     description: 'Verbs made mutual with "sib" — things people do to each other.',
     emoji: '🤝',
     words: [
-      { id: 'reciprocals-love', hmongRPA: 'sib hlub', english: 'to love each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: null, exampleSentence: { hmong: 'Nkawd sib hlub.', english: 'The two of them love each other.' } },
-      { id: 'reciprocals-help', hmongRPA: 'sib pab', english: 'to help each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: null },
-      { id: 'reciprocals-fight', hmongRPA: 'sib ntaus', english: 'to fight each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: null },
-      { id: 'reciprocals-talk', hmongRPA: 'sib tham', english: 'to talk with each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: null },
-      { id: 'reciprocals-see', hmongRPA: 'sib pom', english: 'to see each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: null },
-      { id: 'reciprocals-meet-again', hmongRPA: 'sib ntsib dua', english: 'to meet again (goodbye)', category: 'reciprocals', tags: ['verb', 'reciprocal', 'greeting'], audioFile: null },
+      { id: 'reciprocals-love', hmongRPA: 'sib hlub', english: 'to love each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: 'grammar/conversations/sib-reciprocals/hmong-sib-reciprocals-sib-hlub.mp3', exampleSentence: { hmong: 'Nkawd sib hlub.', english: 'The two of them love each other.' } },
+      { id: 'reciprocals-help', hmongRPA: 'sib pab', english: 'to help each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: 'grammar/conversations/sib-reciprocals/hmong-sib-reciprocals-sib-pab.mp3' },
+      { id: 'reciprocals-fight', hmongRPA: 'sib ntaus', english: 'to fight each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: 'grammar/conversations/sib-reciprocals/hmong-sib-reciprocals-sib-ntaus.mp3' },
+      { id: 'reciprocals-talk', hmongRPA: 'sib tham', english: 'to talk with each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: 'grammar/conversations/sib-reciprocals/hmong-sib-reciprocals-sib-tham.mp3' },
+      { id: 'reciprocals-see', hmongRPA: 'sib pom', english: 'to see each other', category: 'reciprocals', tags: ['verb', 'reciprocal'], audioFile: 'grammar/conversations/sib-reciprocals/hmong-sib-reciprocals-sib-pom.mp3' },
+      { id: 'reciprocals-meet-again', hmongRPA: 'sib ntsib dua', english: 'to meet again (goodbye)', category: 'reciprocals', tags: ['verb', 'reciprocal', 'greeting'], audioFile: 'grammar/conversations/sib-reciprocals/hmong-sib-reciprocals-sib-ntsib-dua.mp3' },
+    ],
+  },
+  {
+    id: 'greetings',
+    title: 'Greetings & Farewells',
+    description: 'Hello, goodbye, thank you, and asking how someone is.',
+    emoji: '👋',
+    words: [
+      // Promoted out of the greetings-farewells LESSON, where these lived only
+      // as `examples` items — so they had recordings but could never be drilled
+      // or quizzed (the gap in notes/56). Glosses and notes are the lesson's
+      // own, verbatim; nothing here was newly authored.
+      // ONE entry, not two, even though the lesson lists "Nyob zoo" twice. The
+      // same string with two glosses would put two correct answers in the same
+      // quiz — the duplicate-answer bug from notes/51. The lesson teaches the
+      // dual sense; the word bank drills the word.
+      { id: 'greetings-hello', hmongRPA: 'nyob zoo', english: 'hello / stay well', category: 'greetings', tags: ['greeting', 'farewell', 'phrase'], audioFile: 'grammar/conversations/greetings-and-farewells/hmonggreetingsandfarewells-nyob-zoo.mp3', exampleSentence: { hmong: 'Nyob zoo, koj puas nyob zoo?', english: 'Hello, how are you?' } },
+      { id: 'greetings-how-are-you', hmongRPA: 'koj puas nyob zoo?', english: 'how are you?', category: 'greetings', tags: ['greeting', 'question', 'phrase'], audioFile: 'grammar/conversations/greetings-and-farewells/hmonggreetingsandfarewells-koj-puas-nyob-zoo.mp3' },
+      { id: 'greetings-i-am-well', hmongRPA: 'kuv nyob zoo', english: 'I am well', category: 'greetings', tags: ['greeting', 'phrase'], audioFile: 'grammar/conversations/greetings-and-farewells/hmonggreetingsandfarewells-kuv-nyob-zoo.mp3' },
+      { id: 'greetings-thank-you', hmongRPA: 'ua tsaug', english: 'thank you', category: 'greetings', tags: ['courtesy', 'phrase'], audioFile: 'grammar/conversations/greetings-and-farewells/hmonggreetingsandfarewells-ua-tsaug.mp3' },
+      { id: 'greetings-goodbye', hmongRPA: 'sib ntsib dua', english: 'see you again / goodbye', category: 'greetings', tags: ['farewell', 'phrase', 'reciprocal'], audioFile: 'grammar/conversations/greetings-and-farewells/hmonggreetingsandfarewells-sib-ntsib-dua.mp3' },
+      { id: 'greetings-go-well', hmongRPA: 'mus zoo', english: 'go well (said to the one leaving)', category: 'greetings', tags: ['farewell', 'phrase'], audioFile: 'grammar/conversations/greetings-and-farewells/hmonggreetingsandfarewells-mus-zoo.mp3' },
     ],
   },
   {
@@ -3951,9 +4002,15 @@ exampleSentence: { hmong: 'Kuv nyuam qhuav tuaj.', english: 'I just came.' },
     description: 'Linking one noun to another. Not used before adjectives.',
     emoji: '🟰',
     words: [
-      { id: 'yog-to-be-is', hmongRPA: 'yog', english: 'to be / equals', category: 'yog-to-be', tags: ['verb', 'copula'], audioFile: null, exampleSentence: { hmong: 'Kuv yog Hmoob.', english: 'I am Hmong.' } },
-      { id: 'yog-to-be-is-not', hmongRPA: 'tsis yog', english: 'is not / no', category: 'yog-to-be', tags: ['verb', 'copula', 'negation'], audioFile: null },
-      { id: 'yog-to-be-question', hmongRPA: 'puas yog?', english: 'is it? / right?', category: 'yog-to-be', tags: ['verb', 'copula', 'question'], audioFile: null },
+      { id: 'yog-to-be-is', hmongRPA: 'yog', english: 'to be / equals', category: 'yog-to-be', tags: ['verb', 'copula'], audioFile: 'grammar/yog-to-be/hmong-yog-to-be-yog.mp3', exampleSentence: { hmong: 'Kuv yog Hmoob.', english: 'I am Hmong.' } },
+      // The three conjugated forms the lesson actually teaches. They were only
+      // in the lesson's `examples` step, so the word bank drilled a set the
+      // learner had never been shown — see notes/56.
+      { id: 'yog-to-be-i-am', hmongRPA: 'kuv yog', english: 'I am', category: 'yog-to-be', tags: ['verb', 'copula', 'pronoun'], audioFile: 'grammar/yog-to-be/hmong-yog-to-be-kuv-yog.mp3', exampleSentence: { hmong: 'Kuv yog Hmoob.', english: 'I am Hmong.' } },
+      { id: 'yog-to-be-you-are', hmongRPA: 'koj yog', english: 'you are', category: 'yog-to-be', tags: ['verb', 'copula', 'pronoun'], audioFile: 'grammar/yog-to-be/hmong-yog-to-be-koj-yog.mp3' },
+      { id: 'yog-to-be-he-she-is', hmongRPA: 'nws yog', english: 'he / she is', category: 'yog-to-be', tags: ['verb', 'copula', 'pronoun'], audioFile: 'grammar/yog-to-be/hmong-yog-to-be-nws-yog.mp3' },
+      { id: 'yog-to-be-is-not', hmongRPA: 'tsis yog', english: 'is not / no', category: 'yog-to-be', tags: ['verb', 'copula', 'negation'], audioFile: 'grammar/yog-to-be/hmong-yog-to-be-tsis-yog.mp3' },
+      { id: 'yog-to-be-question', hmongRPA: 'puas yog?', english: 'is it? / right?', category: 'yog-to-be', tags: ['verb', 'copula', 'question'], audioFile: 'grammar/yog-to-be/hmong-yog-to-be-puas-yog.mp3' },
       { id: 'yog-to-be-located', hmongRPA: 'nyob', english: 'to be located at', category: 'yog-to-be', tags: ['verb', 'location'], audioFile: null, exampleSentence: { hmong: 'Kuv nyob hauv tsev.', english: 'I am at home.' } },
     ],
   },
@@ -3999,7 +4056,10 @@ const CATEGORY_THEMES = [
     id: 'time-numbers',
     title: 'Time, Numbers & Money',
     blurb: 'Counting, the calendar, and buying things.',
-    ids: ['numbers', 'quantifiers', 'timeframes', 'days-of-week', 'months', 'calendar', 'money'],
+    ids: [
+      'numbers', 'quantifiers', 'timeframes', 'timeframes-days',
+      'days-of-week', 'months', 'calendar', 'money',
+    ],
   },
   {
     id: 'describing',
@@ -4015,6 +4075,12 @@ const CATEGORY_THEMES = [
       'pronouns', 'demonstratives', 'classifiers', 'verbs',
       'tense-markers', 'reciprocals', 'yog-to-be', 'grammar',
     ],
+  },
+  {
+    id: 'everyday',
+    title: 'Everyday Speech',
+    blurb: 'Phrases you say out loud — greetings, thanks, goodbyes.',
+    ids: ['greetings', 'discourse-particles', 'conjunctions'],
   },
 ]
 

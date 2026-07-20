@@ -86,7 +86,7 @@ export default function WordDetail() {
           </button>
           <button
             onClick={() => setVocabStatus(word.id, 'known')}
-            className="px-4 py-2 rounded bg-emerald-100 text-emerald-800 text-sm font-medium hover:bg-emerald-200 transition"
+            className="px-4 py-2 rounded bg-success-50 text-success-900 text-sm font-medium hover:bg-success-200 transition"
           >
             Mark Known
           </button>

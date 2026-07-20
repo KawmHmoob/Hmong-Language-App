@@ -1,11 +1,16 @@
 import { useProgress } from '../../hooks/useProgress.js'
 import { StarIcon } from '../icons/index.jsx'
 
-export default function XPBadge() {
+// `className` lets the caller control responsive visibility — the header hides
+// this below `sm` to make room for the season level (notes/57).
+export default function XPBadge({ className = '' }) {
   const { xp } = useProgress()
   return (
-    <span className="inline-flex items-center gap-1 rounded-full bg-cream-200 px-2.5 py-1 text-xs font-semibold text-clay-700">
-      <StarIcon size={13} />
+    <span
+      title={`${xp} lifetime XP`}
+      className={`inline-flex items-center gap-1 rounded-full bg-cream-200 px-3 py-1.5 text-sm font-semibold text-clay-700 ${className}`}
+    >
+      <StarIcon size={15} />
       {xp}
     </span>
   )

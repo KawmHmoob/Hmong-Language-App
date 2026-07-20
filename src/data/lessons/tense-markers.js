@@ -27,27 +27,27 @@ export const tenseMarkers = {
       intro: 'Read each one aloud with the verb "noj" (to eat).',
       items: [
         {
-          hmong: 'tab tom',
+          hmong: 'tab tom', audio: 'grammar/tense-markers/hmong-tense-markers-tabtom.mp3',
           english: 'Currently (-ing)',
           note: 'Goes before the verb: "Kuv tab tom noj" — I am eating.',
         },
         {
-          hmong: 'yuav',
+          hmong: 'yuav', audio: 'grammar/tense-markers/hmong-tense-markers-yuav.mp3',
           english: 'Will (future)',
           note: 'Goes before the verb: "Kuv yuav noj" — I will eat.',
         },
         {
-          hmong: 'tau',
+          hmong: 'tau', audio: 'grammar/tense-markers/hmong-tense-markers-tau.mp3',
           english: 'Already (past completed)',
           note: 'Goes before the verb: "Kuv tau noj" — I have eaten / I did eat.',
         },
         {
-          hmong: 'tseem',
+          hmong: 'tseem', audio: 'grammar/tense-markers/hmong-tense-markers-tseem.mp3',
           english: 'Still',
           note: 'Goes before the verb: "Kuv tseem noj" — I am still eating.',
         },
         {
-          hmong: 'lawm',
+          hmong: 'lawm', audio: 'grammar/tense-markers/hmong-tense-markers-lawm.mp3',
           english: 'Completed (sentence-final)',
           note: 'Goes at the END: "Kuv noj lawm" — I ate / I have eaten already.',
         },

@@ -271,8 +271,8 @@ export default function QuizEngine() {
         <div
           className={`mt-4 rounded-md p-4 flex flex-wrap justify-between items-center gap-3 shadow-warm ${
             feedback === 'correct'
-              ? 'bg-emerald-100 text-emerald-900'
-              : 'bg-red-100 text-red-900'
+              ? 'bg-success-50 text-success-900'
+              : 'bg-danger-50 text-danger-900'
           }`}
         >
           <span className="inline-flex items-center gap-1.5 font-medium">
@@ -330,12 +330,18 @@ function MultipleChoice({ question, feedback, picked, onPick }) {
         {question.options.map((opt) => {
           const isAnswer = opt === question.answer
           const showResult = Boolean(feedback)
-          // After answering: correct → green, the learner's WRONG pick → red,
-          // everything else dimmed. Mirrors PracticeStep in Lesson.jsx.
-          let cls = 'border-cream-300 bg-cream-50 hover:border-clay-500'
-          if (showResult && isAnswer) cls = 'border-emerald-500 bg-emerald-50'
-          else if (showResult && opt === picked) cls = 'border-red-500 bg-red-50'
-          else if (showResult) cls = 'border-cream-200 bg-cream-50 opacity-60'
+          // After answering: correct → success, the learner's WRONG pick →
+          // danger, everything else dimmed. Mirrors PracticeStep in Lesson.jsx.
+          //
+          // Each state sets its OWN text color rather than inheriting. The
+          // inherited color is what broke this in dark mode: a fixed near-white
+          // `emerald-50` chip under near-white inherited text hid the answer.
+          // Surface and text now come from the same inverting scale, so they
+          // can never drift apart. See notes/55.
+          let cls = 'border-cream-300 bg-cream-50 hover:border-clay-500 text-stone-800'
+          if (showResult && isAnswer) cls = 'border-success-500 bg-success-50 text-success-900 font-medium'
+          else if (showResult && opt === picked) cls = 'border-danger-500 bg-danger-50 text-danger-900 font-medium'
+          else if (showResult) cls = 'border-cream-200 bg-cream-50 text-stone-700 opacity-60'
           return (
             <button
               key={opt}
@@ -398,9 +404,9 @@ function Matching({ question, feedback, onComplete }) {
                 disabled={Boolean(matched) || Boolean(feedback)}
                 className={`w-full text-left rounded border p-3 transition ${
                   isCorrect
-                    ? 'border-emerald-500 bg-emerald-50'
+                    ? 'border-success-500 bg-success-50 text-success-900'
                     : isWrong
-                    ? 'border-red-500 bg-red-50'
+                    ? 'border-danger-500 bg-danger-50 text-danger-900'
                     : isSel
                     ? 'border-clay-500 bg-cream-100'
                     : matched

@@ -35,11 +35,16 @@ export const SingleVowels = {
             intro: 'One letter, one vowel sound. Tap to hear each.',
             items: singleVowels,
         },
+        // Ends on a SPEAK DRILL, matching the consonant lessons — you can't
+        // show you can say a vowel by clicking a multiple-choice option. This
+        // replaced a `mini-quiz` step that pointed at the shared
+        // 'alphabet-vowels' quiz (notes/50, notes/60).
         {
-            id: 'foundations-single-vowels-quiz',
-            kind: 'mini-quiz',
-            title: 'Vowels mini-quiz',
-            quizId: 'alphabet-vowels',
+            id: 'foundations-single-vowels-speak',
+            kind: 'speak-drill',
+            title: 'Say the single vowels',
+            familyId: 'family-vowel-single',
+            blurb: 'One letter, one sound. Listen, then say each one.',
         },
     ]
 

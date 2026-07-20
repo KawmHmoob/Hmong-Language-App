@@ -23,11 +23,11 @@ export const possessivePronouns = {
       title: 'Showing possession',
       intro: 'Read each phrase aloud.',
       items: [
-        { hmong: 'Kuv', english: 'my', note: '"Kuv lub tsev" = my house — pronoun + classifier + noun.' },
-        { hmong: 'Koj', english: 'your', note: '"Koj tus dev" = your dog.' },
-        { hmong: 'Nws', english: 'his / her / its', note: '"Nws phau ntawv" = his/her book — one word covers all three.' },
-        { hmong: 'Peb', english: 'our', note: 'Also the number three — context separates them.' },
-        { hmong: 'Lawv', english: 'their', note: '"Lawv lub tsev" = their house.' },
+        { hmong: 'Kuv', audio: 'grammar/pronouns/hmong-pronouns-kuv.mp3', english: 'my', note: '"Kuv lub tsev" = my house — pronoun + classifier + noun.' },
+        { hmong: 'Koj', audio: 'grammar/pronouns/hmong-pronouns-koj.mp3', english: 'your', note: '"Koj tus dev" = your dog.' },
+        { hmong: 'Nws', audio: 'grammar/pronouns/hmong-pronouns-nws.mp3', english: 'his / her / its', note: '"Nws phau ntawv" = his/her book — one word covers all three.' },
+        { hmong: 'Peb', audio: 'grammar/pronouns/hmong-pronouns-peb.mp3', english: 'our', note: 'Also the number three — context separates them.' },
+        { hmong: 'Lawv', audio: 'grammar/pronouns/hmong-pronouns-lawv.mp3', english: 'their', note: '"Lawv lub tsev" = their house.' },
       ],
     },
     // quick-check removed — the lesson now hands off to the word bank (notes/37)

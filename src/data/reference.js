@@ -136,6 +136,7 @@ export const vowels = [
   { letter: 'aw', sound: 'aw-uh', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-aw.mp3` },
   { letter: 'ee', sound: 'eng', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-ee.mp3` },
   { letter: 'ia', sound: 'ee-ah', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-ia.mp3` },
+  { letter: 'oi', sound: 'oy', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-oi.mp3` }, // TODO-VERIFY: "oy" gloss — the recording existed but the letter was missing from this list entirely
   { letter: 'oo', sound: 'ong', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-oo.mp3` },
   { letter: 'ua', sound: 'oo-ah', audio: `/assets/audio/vowels/double-vowels/hmong-double-vowels-ua.mp3` },
 ]
@@ -175,6 +176,7 @@ export const doubleVowels = [
   { letter: 'aw', sound: 'aw-uh', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-aw.mp3' },
   { letter: 'ee', sound: 'eng', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-ee.mp3' },
   { letter: 'ia', sound: 'ee-ah', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-ia.mp3' },
+  { letter: 'oi', sound: 'oy', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-oi.mp3' }, // TODO-VERIFY: "oy" gloss
   { letter: 'oo', sound: 'ong', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-oo.mp3' },
   { letter: 'ua', sound: 'oo-ah', audio: '/assets/audio/vowels/double-vowels/hmong-double-vowels-ua.mp3' },
 ]

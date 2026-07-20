@@ -24,12 +24,12 @@ export const nounClassifiers = {
       title: 'Common classifiers',
       intro: 'Read each classifier aloud with the kind of noun it pairs with.',
       items: [
-        { hmong: 'Tus', english: 'for people and animals', note: '"Tus dev" = the dog; "tus me nyuam" = the child.' },
-        { hmong: 'Lub', english: 'for round / 3-D objects', note: '"Lub tsev" = the house; "lub tais" = the bowl.' },
-        { hmong: 'Daim', english: 'for flat objects', note: '"Daim ntawv" = the paper / sheet.' },
-        { hmong: 'Txoj', english: 'for long, winding things', note: '"Txoj kev" = the road — also used for abstract things like "txoj sia" (life).' },
-        { hmong: 'Rab', english: 'for tools / weapons', note: '"Rab riam" = the knife.' },
-        { hmong: 'Phau', english: 'for books', note: '"Phau ntawv" = the book (a bound stack of paper).' },
+        { hmong: 'Tus', audio: 'grammar/classifiers/hmong-classifiers-tus.mp3', english: 'for people and animals', note: '"Tus dev" = the dog; "tus me nyuam" = the child.' },
+        { hmong: 'Lub', audio: 'grammar/classifiers/hmong-classifiers-lub.mp3', english: 'for round / 3-D objects', note: '"Lub tsev" = the house; "lub tais" = the bowl.' },
+        { hmong: 'Daim', audio: 'grammar/classifiers/hmong-classifiers-daim.mp3', english: 'for flat objects', note: '"Daim ntawv" = the paper / sheet.' },
+        { hmong: 'Txoj', audio: 'grammar/classifiers/hmong-classifiers-txoj.mp3', english: 'for long, winding things', note: '"Txoj kev" = the road — also used for abstract things like "txoj sia" (life).' },
+        { hmong: 'Rab', audio: 'grammar/classifiers/hmong-classifiers-rab.mp3', english: 'for tools / weapons', note: '"Rab riam" = the knife.' },
+        { hmong: 'Phau', audio: 'grammar/classifiers/hmong-classifiers-phau.mp3', english: 'for books', note: '"Phau ntawv" = the book (a bound stack of paper).' },
       ],
     },
     {

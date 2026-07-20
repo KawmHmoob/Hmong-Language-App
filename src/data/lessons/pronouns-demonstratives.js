@@ -23,11 +23,11 @@ export const pronounsDemonstratives = {
       title: 'Common demonstratives',
       intro: 'Read each pointing word aloud.',
       items: [
-        { hmong: 'No', english: 'this', note: '"Lub tsev no" = this house — the demonstrative follows the noun.' },
-        { hmong: 'Ntawd', english: 'that', note: 'That one / over there — away from the speaker.' },
-        { hmong: 'Ko', english: 'that (near listener)', note: 'Specifically near the person you are talking to.' }, // TODO-VERIFY: "ko" vs "ntawd" distance nuance
-        { hmong: 'Ntawm no', english: 'here', note: 'Literally "at this (place)."' },
-        { hmong: 'Ntawm ntawd', english: 'there', note: 'Literally "at that (place)."' },
+        { hmong: 'No', audio: 'grammar/common-demonstratives/hmong-demonstratives-no.mp3', english: 'this', note: '"Lub tsev no" = this house — the demonstrative follows the noun.' },
+        { hmong: 'Ntawd', audio: 'grammar/common-demonstratives/hmong-demonstratives-ntawd.mp3', english: 'that', note: 'That one / over there — away from the speaker.' },
+        { hmong: 'Ko', audio: 'grammar/common-demonstratives/hmong-demonstratives-ko.mp3', english: 'that (near listener)', note: 'Specifically near the person you are talking to.' }, // TODO-VERIFY: "ko" vs "ntawd" distance nuance
+        { hmong: 'Ntawm no', audio: 'grammar/common-demonstratives/hmong-demonstratives-ntawm-no.mp3', english: 'here', note: 'Literally "at this (place)."' },
+        { hmong: 'Ntawm ntawd', audio: 'grammar/common-demonstratives/hmong-demonstratives-ntawm-ntawd.mp3', english: 'there', note: 'Literally "at that (place)."' },
       ],
     },
     // quick-check removed — the lesson now hands off to the word bank (notes/37)

@@ -26,6 +26,8 @@ import WordDetail from './pages/WordDetail.jsx'
 import LoginForm from './pages/LoginForm.jsx'
 import RegisterForm from './pages/RegisterForm.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
+import Leaderboard from './pages/Leaderboard.jsx'
+import BattlePass from './pages/BattlePass.jsx'
 
 // Legacy URL support. /alphabet/:tab kept its tab names, so it maps 1:1.
 // /course/:tab is messier: 'grammar' has a home in Reference, but 'everyday'
@@ -83,6 +85,11 @@ export default function App() {
                   <Route path="/search" element={<Search />} />
                   <Route path="/quiz" element={<QuizMenu />} />
                   <Route path="/quiz/:topicId" element={<QuizEngine />} />
+                  {/* Season layer. Both live under Home rather than becoming a
+                      sixth nav section — the five-section IA is load-bearing
+                      (notes/30). No /leaderboard/:userId by design (notes/57). */}
+                  <Route path="/leaderboard" element={<Leaderboard />} />
+                  <Route path="/pass" element={<BattlePass />} />
                   <Route path="/login" element={<LoginForm />} />
                   <Route path="/register" element={<RegisterForm />} />
                   <Route path="/account" element={<ProfilePage />} />
