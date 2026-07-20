@@ -16,8 +16,10 @@ export const hmongWordStructure = {
       title: 'Consonant + Vowel + Tone = Word',
       body: [
         'Hmong writing is remarkably regular. Almost every syllable is built from exactly three pieces, always in the same order: a consonant, then a vowel, then a tone.',
-        'Take "nplooj" (leaf). It looks long, but it is only three pieces: "npl" is ONE consonant, "oo" is ONE vowel, and "j" is the tone. Not six letters — three parts.',
-        'The tone is written as the final letter, and that letter is never pronounced as a sound. In "pob", you do not say a "b" at the end. The "b" tells you the pitch is high.',
+        'Take "nplooj" (leaf). It looks long, but it is only three pieces:',
+        '> Nplooj — Npl (consonant) + oo (vowel) + j (tone)',
+        'Not six letters — three parts. "Npl" is ONE consonant, "oo" is ONE vowel, and "j" is the tone.',
+        'The tone is written as the final letter, and that letter is never pronounced as a sound. In "pob", you do not say a "b" at the end — the "b" tells you the pitch is high.',
         'This is why Hmong looks harder to read than it is. Once you can spot the three pieces, you can pronounce a word you have never seen before — and that is the whole goal of the next three units.',
         'One exception worth knowing: the mid tone has no letter at all. A syllable that ends in a vowel, like "po", is still a complete word — it just carries the mid tone.',
       ],

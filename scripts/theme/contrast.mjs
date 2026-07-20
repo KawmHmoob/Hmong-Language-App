@@ -32,6 +32,23 @@ const PAIRS = [
   ['danger-50', 'danger-900', 'wrong chip / option'],
   ['success-700', 'cream-50', 'solid success badge'],
   ['cream-50', 'stone-800', 'neutral option (baseline)'],
+  // Ocean. The dark end exists to carry light text, so that's what's checked —
+  // a scale nobody has verified text against is a scale that will eventually
+  // get used for a button and fail silently in one theme.
+  ['ocean-600', 'cream-50', 'ocean button (light text on deep)'],
+  ['ocean-700', 'cream-50', 'ocean button, darkest step'],
+  ['ocean-50', 'stone-900', 'ocean tint surface, ink text'],
+  // The header band. Every one of these sits on ocean-200 in Navbar.jsx.
+  ['ocean-200', 'stone-800', 'header: nav text'],
+  ['ocean-200', 'stone-900', 'header: logo wordmark'],
+  ['stone-800', 'ocean-200', 'header: ACTIVE nav pill (inverted)'],
+  // The badges carry their OWN bg-cream-200, so their text never touches the
+  // header band — an earlier version of this list paired clay-700 against
+  // ocean-200 and reported a 2.74:1 failure for a combination that is never
+  // rendered. Model the pair the component actually produces, not the one the
+  // surrounding element suggests.
+  ['cream-200', 'stone-900', 'header: xp / streak badge text'],
+  ['clay-600', 'cream-50', 'header: level badge'],
 ]
 
 let worst = 99

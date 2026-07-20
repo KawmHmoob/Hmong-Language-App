@@ -14,7 +14,8 @@ export const howMuch = {
       kind: 'intro',
       title: 'Asking "how much / how many"',
       body: [
-        '"Pes tsawg" is the Hmong phrase for "how much" or "how many". Paired with "yog" it asks the price of something — "yog pes tsawg?" ("how much is it?").',
+        '"Pes tsawg" is the Hmong phrase for "how much" or "how many". Paired with "yog" it asks the price of something:',
+        '> Yog pes tsawg? — How much is it?',
         'One question word covers both prices and counts — context does the rest. Notice where it sits: Hmong question words usually come at the end of the sentence, so listen for "pes tsawg?" as the closing beat of the question.',
       ],
     },
@@ -24,10 +25,10 @@ export const howMuch = {
       title: 'Asking the price',
       intro: 'Read each question aloud.',
       items: [
-        { hmong: 'Yog pes tsawg?', english: 'How much is it?', note: 'The everyday way to ask a price at the market.' },
-        { hmong: 'Muaj pes tsawg?', english: 'How many are there?', note: '"Muaj" = to have / there is, so literally "there are how many?"' },
-        { hmong: 'Koj xav tau pes tsawg?', english: 'How many do you want?', note: '"Xav tau" = to want (literally "think-get").' }, // TODO-VERIFY: gloss of "xav tau" as literally "think-get"
-        { hmong: 'Nqi pes tsawg?', english: 'What is the price?', note: '"Nqi" = price / cost.' },
+        { hmong: 'Yog pes tsawg?', audio: 'vocabulary/money/hmong-how-much/how-much-yog-pestsawg.mp3', english: 'How much is it?', note: 'The everyday way to ask a price at the market.' },
+        { hmong: 'Muaj pes tsawg?', audio: 'vocabulary/money/hmong-how-much/how-much-muaj-pestsawg.mp3', english: 'How many are there?', note: '"Muaj" = to have / there is, so literally "there are how many?"' },
+        { hmong: 'Koj xav tau pes tsawg?', audio: 'vocabulary/money/hmong-how-much/how-much-koj-xav-tau-pestsawg.mp3', english: 'How many do you want?', note: '"Xav tau" = to want (literally "think-get").' }, // TODO-VERIFY: gloss of "xav tau" as literally "think-get"
+        { hmong: 'Nqi pes tsawg?', audio: 'vocabulary/money/hmong-how-much/how-much-nqi-pestsawg.mp3', english: 'What is the price?', note: '"Nqi" = price / cost.' },
       ],
     },
     {

@@ -86,6 +86,84 @@ Run it after touching any token. Three themes is more color combinations than
 anyone can hold in their head, and "looks fine on my monitor" is how the original
 bug shipped.
 
+## The `ocean` scale
+A deeper companion to `seafoam` — same blue-green family, more saturation and
+less lightness, so the two read as one palette rather than two unrelated blues.
+
+It runs to **700** where seafoam stops at 500, and that's the whole point of
+adding it: no seafoam step is dark enough to carry `cream-50` text in the light
+theme. `ocean-600` / `ocean-700` are.
+
+### Direction is not fixed across themes
+```
+light:  ocean-700 = 30 71 85     (darkest)
+dark:   ocean-700 = 172 209 223  (lightest)
+```
+
+The high steps **invert**, exactly like `stone` and the feedback scales: a
+token's *job* is fixed, its lightness is not. `ocean-700` always means "the step
+that carries `cream-50` text" — which is dark on a light surface and light on a
+dark one.
+
+### Defining all three blocks is mandatory, not thorough
+The mapping in `tailwind.config.js` was added before the CSS variables existed,
+so `bg-ocean-500` resolved to `rgb(var(--c-ocean-500))` with nothing behind it —
+an invalid color, silently rendering as nothing. **A Tailwind color entry is a
+promise the variable exists; the build does not check it.**
+
+And a variable defined only in `:root` is worse than missing: neon would inherit
+the light theme's pale blue-grey onto a near-black surface. That's the emerald
+bug in this note, rebuilt in a new palette.
+
+Verified rather than eyeballed — `contrast.mjs` now covers three ocean pairs,
+worst case **6.66:1** (light `ocean-600` under `cream-50`), everything else AAA.
+
+### Applied to the header
+`Navbar` moved from `bg-seafoam-200/85` to `bg-ocean-200/85` (border likewise
+`seafoam-400` → `ocean-400`, and the active nav pill's `text-seafoam-200` →
+`text-ocean-200`).
+
+The page body is `bg-seafoam-300`, so a `seafoam-200` header was **lighter than
+the page it sat on** — it read as a gap rather than a bar. `ocean-200` is a step
+deeper than the body in all three themes, which is what makes it register as a
+header at all.
+
+### Adding the header to the contrast guard found two real bugs
+Neither was caused by the ocean change; both were pre-existing and invisible.
+
+**1. The XP and streak badges failed AA in dark — 2.70:1.**
+`bg-cream-200 text-clay-700` looks fine in light. But `cream` inverts and `clay`
+does not, so in dark both land near each other:
+
+```
+cream-200 dark = 58 51 44      clay-700 dark = 178 94 61   → 2.70:1
+```
+
+Fixed by moving the text to `stone-900`, which inverts with the surface — now
+12.96 / 10.76 / 12.10. **A pair where one token inverts and the other doesn't is
+only ever verified in the theme you looked at.**
+
+**2. `.btn-primary` was 4.46:1 in dark — every primary button in the app.**
+`bg-clay-600 text-cream-50` relies on `cream-50` being light, but it inverts to
+near-black in dark, flipping the button to dark-text-on-terracotta. Fixed at the
+token, not the component:
+
+```css
+--c-clay-600: 206 114 78;   /* was 200 106 69 — 4.46:1 → 4.89:1 */
+```
+
+One line, every button. Fixing this in `LevelBadge` would have left the same
+failure in every other button on the page.
+
+### A modeling error worth remembering
+The first version of the guard paired `clay-700` against **`ocean-200`** and
+reported a 2.74:1 failure — for a combination that is never rendered. The badges
+carry their own `bg-cream-200`; their text never touches the header band.
+
+**Model the pair the component actually produces, not the one the surrounding
+element suggests.** A guard that describes the wrong thing will fail on
+correct code and pass on broken code.
+
 ## What was left alone
 `.btn-danger` still uses literal `bg-red-600 text-white`. That's deliberate and
 already commented in `index.css`: it's a solid destructive button whose contrast

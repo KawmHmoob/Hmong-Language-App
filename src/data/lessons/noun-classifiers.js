@@ -15,7 +15,9 @@ export const nounClassifiers = {
       title: 'How noun classifiers work',
       body: [
         'Hmong uses classifiers (measure words) before nouns when counting or pointing something out. The right classifier depends on the kind of thing — people, animals, long objects, flat objects, and so on.',
-        'The pattern is number (or possessor) + classifier + noun: "ib tug dev" — one [animal-classifier] dog. Choosing the right classifier takes practice, but "tus" and "lub" cover a large share of everyday nouns, so start there.',
+        'The pattern is number (or possessor) + classifier + noun:',
+        '> Ib tug dev. — One [animal-classifier] dog.',
+        'Choosing the right classifier takes practice, but "tus" and "lub" cover a large share of everyday nouns, so start there.',
       ],
     },
     {

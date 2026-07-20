@@ -37,7 +37,11 @@ export default function Footer() {
             </p>
           </Link>
           <p className="mt-4 text-sm text-stone-700/80 max-w-xs">
-            A gentle place to learn Hmong — alphabet, vocabulary, lessons, and quizzes at your pace.
+            The Ultimate Platform to learn and understand Hmong effectively, and accurately. 
+           
+          </p>
+          <p>
+            Built with love, by Devv.
           </p>
         </div>
 
@@ -77,7 +81,7 @@ export default function Footer() {
 
       <div className="border-t border-seafoam-400/40">
         <div className="mx-auto max-w-5xl px-6 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-stone-700/80">
-          <p>© {year} Kawm Hmoob · made with care</p>
+          <p>© {year} KawmHmoob · made with care | Devan Lee & DevvDevvDevv Development </p>
           <p>Ua tsaug rau koj txoj kev kawm.</p>
         </div>
       </div>

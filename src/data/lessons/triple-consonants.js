@@ -13,9 +13,10 @@ export const tripleConsonants = {
       kind: 'intro',
       title: 'Triple Consonants in the Hmong Language',
       body: [
-        'Triple consonants in the Hmong language are combinations of 3 letters used to represent a single consonant sound.',
-        'They build on the single and double consonants you have already seen, often layering a pre-nasal or an aspiration onto a simpler cluster.',
-        'The fourteen combinations below each spell ONE sound, not three. For example the "npl" in "nplooj" (leaf) is a single consonant that begins with a hum through the nose — say it as one crisp sound, not n-p-l.',
+        'Triple consonants are combinations of three letters used to represent a single consonant sound. They build on the single and double consonants you have already seen, often layering a pre-nasal or an aspiration onto a simpler cluster.',
+        'The fourteen combinations below each spell ONE sound, not three:',
+        '> Nplooj — npl (one consonant) + oo (vowel) + j (tone)',
+        'That "npl" begins with a hum through the nose — say it as one crisp sound, not n-p-l.',
       ],
     },
     {

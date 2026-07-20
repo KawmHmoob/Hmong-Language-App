@@ -68,12 +68,16 @@ export const timeExplained = {
       // the pieces of the thing it's explaining, not everything time-adjacent.
       intro: 'The words every spoken time is built from. Read each aloud.',
       items: [
-        { hmong: 'Teev', english: "o'clock / hour", note: 'Pairs with a number: "ib teev" = one o\'clock — or one hour, when counting duration.' }, // TODO-VERIFY: hour vs o'clock usage
-        { hmong: 'Feeb', english: 'minute', note: 'Required after "thiab" when stating an exact time.' },
-        { hmong: 'Lub Teevsij', english: 'clock / watch', note: '"Lub" is the classifier for round, solid objects.' },
-        { hmong: 'Sawv ntxov', english: 'morning — a.m.', note: 'Literally "rise early." Goes at the END of the time.' },
-        { hmong: 'Tsaus ntuj', english: 'evening / night — p.m.', note: 'Literally "the sky darkens." Also goes at the end.' },
-        // { hmong: 'Tav su', english: 'noon / midday', note: 'The hinge between sawv ntxov and tsaus ntuj.' }, // TODO-VERIFY: literal sense of "tav su"
+        { hmong: 'Teev', audio: 'vocabulary/timeframes/hmong-time-teev.mp3', english: "o'clock / hour", note: 'Pairs with a number: "ib teev" = one o\'clock — or one hour, when counting duration.' }, // TODO-VERIFY: hour vs o'clock usage
+        { hmong: 'Feeb', audio: 'vocabulary/timeframes/hmong-time-feeb.mp3', english: 'minute', note: 'Required after "thiab" when stating an exact time.' },
+        // "Teev sij", not "Lub Teevsij" — the recording is of the bare word.
+        // The vocabulary entry (id: time-teevsij) is spelled the same way; the
+        // classifier is worth knowing ("lub teev sij" = the clock) but isn't
+        // part of what was recorded, so it stays in the note instead.
+        { hmong: 'Teev sij', audio: 'vocabulary/timeframes/hmong-time-teev-sij.mp3', english: 'clock / watch', note: 'Takes "lub" as its classifier: "lub teev sij" = the clock.' },
+        { hmong: 'Sawv ntxov', audio: 'vocabulary/timeframes/hmong-time-sawv-ntxov.mp3', english: 'morning — a.m.', note: 'Literally "rise early." Goes at the END of the time.' },
+        { hmong: 'Tsaus ntuj', audio: 'vocabulary/timeframes/hmong-time-tsaus-ntuj.mp3', english: 'evening / night — p.m.', note: 'Literally "the sky darkens." Also goes at the end.' },
+        // { hmong: 'Tav su', audio: 'vocabulary/timeframes/hmong-time-tavsu.mp3', english: 'noon / midday', note: 'The hinge between sawv ntxov and tsaus ntuj.' }, // TODO-VERIFY: literal sense of "tav su"
       ],
     },
     {

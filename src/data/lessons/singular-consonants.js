@@ -13,15 +13,14 @@ export const singularConsonants = {
       kind: 'intro',
       title: 'How single Hmong consonants work',
       body: [
-        'Hmong is written with the Romanized Popular Alphabet (RPA), where every sound is spelled with ordinary Roman letters. This lesson covers the "mother letters" (cov tsiaj ntawv niam): the consonants written with a single letter. ',
+        'Hmong is written with the Romanized Popular Alphabet (RPA), where every sound is spelled with ordinary Roman letters. This lesson covers the "mother letters" (cov tsiaj ntawv niam) — the 17 consonants written with a single letter, and the building blocks every other consonant lesson builds on.',
 
-        'There is a total of 17 single consonants in Hmong',
-
-        'These are the building blocks. In this lesson, we will focus on all of the singular consonants.',
-
-        'Two things surprise English speakers. First, a few letters do not sound like English: "c" is a "j" sound, "x" is "s", and "z" is the soft "s" in "measure". ',
-
-        'Second, Hmong consonants only ever start a syllable — they are never pronounced at the end. A trailing letter like the "b" in "pob" is a tone marker, not a consonant sound.'
+        '## Two surprises for English speakers',
+        'First, a few letters do not sound like English at all:',
+        '> c — a "j" sound',
+        '> x — an "s" sound',
+        '> z — the soft "s" in "measure"',
+        'Second, Hmong consonants only ever START a syllable — they are never pronounced at the end. A trailing letter like the "b" in "pob" is a TONE marker, not a consonant sound. You will meet that properly in the Tones lesson.',
       ],
     },
     {

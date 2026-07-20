@@ -25,6 +25,14 @@ const LESSONS = {
   'yog-to-be.js': 'yog-to-be',
   'sib-reciprocals.js': 'reciprocals',
   'greetings-farewells.js': 'greetings',
+  // Never listed — the two time lessons had recordings sitting in
+  // vocabulary/timeframes/ since the batch-3 wire, but nobody added them here,
+  // so their `examples` items stayed silent while the word bank next to them
+  // played fine. Same class of gap as notes/56, just for audio instead of data.
+  'time.js': 'timeframes',
+  'time-explained.js': 'timeframes',
+  'numbers.js': 'numbers',
+  'how-much.js': 'money',
   // Listed BEFORE the recordings exist. Once the matching folder is added to
   // FOLDERS in match.mjs, these wire with no edit here — the loop below skips
   // any category that has no index yet instead of crashing.

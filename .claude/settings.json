@@ -29,7 +29,19 @@
       "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\next.mjs\")",
       "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\peek.mjs\")",
       "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\sents.mjs\")",
-      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\provenance.mjs\")"
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\provenance.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\clay.mjs\")",
+      "PowerShell(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\checkformat.mjs\")",
+      "Bash(node scripts/audio/wire-lessons.mjs)",
+      "Bash(node scripts/audio/verify.mjs)",
+      "Bash(node scripts/content/ids.mjs)",
+      "Bash(node scripts/audio/orphans.mjs)",
+      "Bash(node scripts/audio/wire2.mjs)",
+      "Bash(node scripts/content/gap.mjs)",
+      "Bash(node scripts/theme/contrast.mjs)",
+      "Bash(node scripts/content/levels.mjs)",
+      "Bash(ffmpeg -version)",
+      "Bash(node scripts/audio/tone-selftest.mjs)"
     ],
     "additionalDirectories": [
       "\\tmp"

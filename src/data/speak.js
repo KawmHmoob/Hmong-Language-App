@@ -19,7 +19,33 @@
 // lands, fill in `audio` — the Speak UI upgrades itself (Listen + A/B
 // compare appear automatically).
 
+import { tones } from './reference.js'
+
+// ── Tones — the first fully-scoreable Speak group ───────────────────────────
+// Derived from reference.js so the audio paths can never drift from the tone
+// table. Every entry has a real recording (t.audio), so this group is where
+// record→score actually works end to end. See notes/62.
+//
+// `hmong` is the tone's demonstration word from `example2` (e.g. "Cim Siab") —
+// NOT "po…", per the recordings. ⚠️ VERIFY each `hmong` string against what the
+// clip actually says; Claude can't hear audio, so this is best-effort from the
+// data and you may need to trim "Cim " or adjust a word.
+const toneSpeakGroup = {
+  id: 'speak-tones',
+  title: 'The Eight Tones',
+  description:
+    'Tone carries meaning in Hmong. Hear each one, say it back, and watch your pitch line up against the native curve.',
+  phrases: tones.map((t) => ({
+    id: `speak-tone-${t.marker || 'mid'}`,
+    hmong: t.example2, // demonstration word for this tone — verify vs recording
+    english: `${t.name} tone`,
+    audio: t.audio,
+    tip: t.description,
+  })),
+}
+
 export const speakGroups = [
+  toneSpeakGroup,
   {
     id: 'speak-greetings',
     title: 'Greetings',

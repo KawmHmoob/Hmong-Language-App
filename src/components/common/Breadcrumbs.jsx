@@ -18,7 +18,7 @@ export default function Breadcrumbs({ items }) {
         <Link
           to={parent.to}
           aria-label={`Back to ${parent.label}`}
-          className="inline-flex items-center gap-1 text-sm font-medium text-stone-700 hover:text-clay-700 transition-colors shrink-0"
+          className="inline-flex items-center gap-1 text-md font-medium text-stone-700 hover:text-clay-700 transition-colors shrink-0"
         >
           <ArrowLeftIcon size={16} />
           Back
@@ -27,7 +27,7 @@ export default function Breadcrumbs({ items }) {
 
       {parent && <span className="text-stone-300" aria-hidden="true">|</span>}
 
-      <nav className="text-sm text-stone-700 min-w-0" aria-label="Breadcrumb">
+      <nav className="text-md text-stone-700 min-w-0" aria-label="Breadcrumb">
         <ol className="flex flex-wrap gap-1 items-center">
           {items.map((item, i) => {
             const last = i === items.length - 1

@@ -14,7 +14,10 @@ export const greetingsFarewells = {
       title: 'Saying hello and goodbye',
       body: [
         'Greetings are the first thing you will use in any conversation. Hmong has a handful of common phrases for hello, goodbye, and checking in on someone.',
-        '"Nyob zoo" — literally "live well / be well" — works at any time of day; there are no separate words for good morning or good evening. Greetings are often followed straight away by a warm question like "Koj puas nyob zoo?" (How are you?). When greeting elders, greet them first — it is a sign of respect.',
+        '> Nyob zoo. — Hello. (literally "live well / be well")',
+        'It works at any time of day — there are no separate words for good morning or good evening. Greetings are often followed straight away by a warm question:',
+        '> Koj puas nyob zoo? — How are you?',
+        'When greeting elders, greet them first — it is a sign of respect.',
       ],
     },
     {

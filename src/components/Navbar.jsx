@@ -22,8 +22,12 @@ export default function Navbar() {
   const { user } = useAuth()
   const { theme, cycle } = useTheme()
 
+  // Ocean, not seafoam: the page body is seafoam-300, so a seafoam-200 header
+  // sat LIGHTER than the page and read as a gap rather than a bar. ocean-200 is
+  // a step deeper than the body in every theme, which is what makes it register
+  // as a header. See notes/55.
   return (
-    <header className="sticky top-0 z-20 bg-seafoam-200/85 backdrop-blur-md border-b border-seafoam-400/40">
+    <header className="sticky top-0 z-20 bg-ocean-200/85 backdrop-blur-md border-b border-ocean-400/40">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-4">
         <Link to="/" className="group flex items-center gap-2.5 min-w-0">
           <img
@@ -136,7 +140,7 @@ function IconLink({ to, title, children }) {
       className={({ isActive }) =>
         `px-2.5 sm:px-3 py-2 rounded-lg text-sm transition-colors ${
           isActive
-            ? 'bg-stone-800 text-seafoam-200'
+            ? 'bg-stone-800 text-ocean-200'
             : 'text-stone-800 hover:bg-stone-900/10'
         }`
       }

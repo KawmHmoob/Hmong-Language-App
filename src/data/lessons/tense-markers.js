@@ -17,7 +17,9 @@ export const tenseMarkers = {
       body: [
         'English changes the verb itself to move through time: eat, ate, eating, will eat. Hmong never does this. "Noj" is always "noj" — what changes is the small marker word placed around it.',
         'That means there is nothing to memorize verb-by-verb. Learn five little words once, and every verb you know is instantly available in past, present, and future.',
-        'Two of them sit BEFORE the verb ("yuav noj" — will eat), and one sits at the very END of the sentence ("noj lawm" — already ate). Position is part of the meaning.',
+        'Two of them sit BEFORE the verb, and one sits at the very END of the sentence — position is part of the meaning:',
+        '> Kuv yuav noj. — I will eat. (marker before the verb)',
+        '> Kuv noj lawm. — I already ate. (marker after the verb)',
       ],
     },
     {

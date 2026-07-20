@@ -13,8 +13,9 @@ export const pronounsDemonstratives = {
       kind: 'intro',
       title: 'How demonstratives work',
       body: [
-        'Demonstratives are the pointing words: this, that, these, those. In Hmong they usually follow the noun (and its classifier) rather than coming before it.',
-        'So "this house" is "lub tsev no" — literally "house this." Hmong also cares about where the thing is relative to the listener: "no" (near me), "ko" (near you), "ntawd" (over there / that one).', // TODO-VERIFY: exact nuance split between "ko" and "ntawd"
+        'Demonstratives are the pointing words: this, that, these, those. In Hmong they usually follow the noun (and its classifier) rather than coming before it:',
+        '> Lub tsev no. — This house. (literally "house this")',
+        'Hmong also cares about where the thing is relative to the listener — "no" (near me), "ko" (near you), "ntawd" (over there / that one).', // TODO-VERIFY: exact nuance split between "ko" and "ntawd"
       ],
     },
     {

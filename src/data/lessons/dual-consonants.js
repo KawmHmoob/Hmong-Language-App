@@ -15,22 +15,18 @@ export const dualConsonants = {
       kind: 'intro',
       title: 'Double Consonants in the Hmong Language',
       body: [
-        'Double consonants in the Hmong language are combinations of 2 letters used to represent a consonant sound in the Hmong Language',
-        'Unlike singular consonants, double consonants are often pronounced with greater emphasis depending on how its used, or phrased',
-        'Bi consonants are made up of one Major Consonant and one sound indicator, or two Major Consonants.',
-        'There are a total of 23 unique double consonants.',
+        'Double consonants are combinations of two letters that spell a single consonant sound — the same idea as the single consonants, just built from a pair of letters instead of one.',
+        'Most are made of a base consonant plus an aspiration or nasal marker ("h", "l", or "n" doing the extra work), so they often carry a bit more force in the mouth than the single letter alone would.',
+        'There are 22 of them in the set below.',
       ],
     },
     {
       id: 'foundations-double-consonants-examples',
       kind: 'examples',
       title: 'Double Consonants Examples',
-      intro: 'Double Consonants Examples',
+      intro: 'One sound each, spelled with two letters. Tap to hear.',
       items: [
         { hmong: 'Ch', hmongExample: 'Chiaj', audio: '/assets/audio/consonants/double-consonants/double-consonant-ch.mp3', englishSound: "Clear C consonant with a puff of air."},
-     
-        
-        
         { hmong: 'Dh', hmongExample: 'Dhia', audio: '/assets/audio/consonants/double-consonants/double-consonant-dh.mp3', englishSound: '' },
         { hmong: 'Dl', hmongExample: 'Dlaim', audio: '/assets/audio/consonants/double-consonants/double-consonant-dl.mp3', englishSound: '' },
         { hmong: 'Hl', hmongExample: 'Hlub', audio: '/assets/audio/consonants/double-consonants/double-consonant-hl.mp3', englishSound: '' },

@@ -2238,12 +2238,16 @@ export const categories = [
     words: [
       {
         id: 'time-ib-tag-hmo',
-        hmongRPA: 'ib tag hmo',
+        // 'hmos', not 'hmo' — aligned to the recording, and to this file's own
+        // pattern: 'ib hmos' / 'hnub hmos' already take the -s, and 'hmo ntuj'
+        // drops it before a following word. This entry was the outlier. The ID
+        // is unchanged, since ids are progress keys.
+        hmongRPA: 'ib tag hmos',
         english: 'midnight',
         category: 'timeframes',
         tags: ['noun', 'time', 'time-of-day'],
-        audioFile: null,
-        exampleSentence: { hmong: 'Ib tag hmo.', english: 'Midnight.' },
+        audioFile: 'vocabulary/timeframes/hmong-time-ib-tag-hmos.mp3',
+        exampleSentence: { hmong: 'Ib tag hmos.', english: 'Midnight.' },
         // note: 'ib tag hmo' = lit. "one-half night" = midnight. Contrast with 'ib hmos' below — similar look, different meaning.
       },
       {
@@ -2379,12 +2383,14 @@ export const categories = [
       },
       {
         id: 'time-naghmo',
-        hmongRPA: 'nag hmo',
+        // 'hmos', not 'hmo' — see 'ib tag hmos' above. Matches the recording
+        // and this file's own -s pattern. ID unchanged (progress key).
+        hmongRPA: 'nag hmos',
         english: 'yesterday',
         category: 'timeframes',
         tags: ['noun', 'time', 'relative'],
-        audioFile: null,
-        exampleSentence: { hmong: 'Nag hmo kuv mus.', english: 'I went yesterday.' },
+        audioFile: 'vocabulary/timeframes/hmong-time-nag-hmos.mp3',
+        exampleSentence: { hmong: 'Nag hmos kuv mus.', english: 'I went yesterday.' },
         // note: source 'Naghmo'; standard spacing 'nag hmo'. Lit. "last night" but used for "yesterday."
       },
       // ---- Relative days: FUTURE ----

@@ -104,12 +104,14 @@ export default function Words() {
       {/* Other ways to drill */}
       <h3 className="font-display text-2xl text-stone-900 mb-4">Drill another way</h3>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-10">
+
         <DrillTile
-          to="/quiz/tone-drill"
-          icon={MusicNoteIcon}
-          title="Tone drill"
-          blurb="Hear the difference the last letter makes."
+          to="/vocabulary"
+          icon={GridIcon}
+          title="Browse words"
+          blurb="Flashcards by category, at your own pace."
         />
+
         <DrillTile
           to="/quiz"
           icon={ZapIcon}
@@ -117,11 +119,12 @@ export default function Words() {
           blurb="Multiple choice drills, by topic."
         />
         <DrillTile
-          to="/vocabulary"
-          icon={GridIcon}
-          title="Browse words"
-          blurb="Flashcards by category, at your own pace."
+          to="/quiz/tone-drill"
+          icon={MusicNoteIcon}
+          title="Tone drill"
+          blurb="Hear the difference the last letter makes."
         />
+
         <DrillTile
           to="/notebook"
           icon={NotebookIcon}

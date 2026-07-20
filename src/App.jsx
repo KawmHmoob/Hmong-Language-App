@@ -28,6 +28,7 @@ import RegisterForm from './pages/RegisterForm.jsx'
 import ProfilePage from './pages/ProfilePage.jsx'
 import Leaderboard from './pages/Leaderboard.jsx'
 import BattlePass from './pages/BattlePass.jsx'
+import ToneEval from './pages/ToneEval.jsx'
 
 
 // Legacy URL support. /alphabet/:tab kept its tab names, so it maps 1:1.
@@ -95,6 +96,8 @@ export default function App() {
                   <Route path="/register" element={<RegisterForm />} />
                   <Route path="/account" element={<ProfilePage />} />
                   <Route path="/settings" element={<Settings />} />
+                  {/* Dev-only tone-scorer harness — renders a notice in prod. */}
+                  <Route path="/tone-eval" element={<ToneEval />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
               </Routes>

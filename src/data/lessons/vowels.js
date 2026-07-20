@@ -18,13 +18,10 @@ export const SingleVowels = {
             kind: "intro",
             title: "Singular Vowels in the Hmong Language | Cov Tab",
             body: [
-
-                "There are a total of 5 main singular vowels in the Hmong language",
-                "Hmong vowels are nessecary to understand in order to pronounce Hmong words correctly",
-                "Vowels build off of constonants - for example: 'Nplooj' = ",
-                "'Npl' (consonant) + 'oo' (vowel) + 'j' (tone)"
-
-
+                "Hmong has 5 main single vowels — the second piece of every syllable, sitting between the consonant and the tone. Getting them right matters: a vowel is what carries the tone's pitch, so a mispronounced vowel makes the tone hard to hear too.",
+                "They build directly off consonants, filling the middle slot of the formula from the word-structure lesson:",
+                "> Nplooj — Npl (consonant) + oo (vowel) + j (tone)",
+                "Six letters are used to write these five sounds (a, e, i, o, u, and the schwa w) — the grid below plays each one on its own so you can hear the difference before you see it in a full word.",
             ]
 
         },

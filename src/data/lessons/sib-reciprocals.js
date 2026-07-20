@@ -13,21 +13,20 @@ export const sibReciprocals = {
       kind: 'intro',
       title: 'How "sib" works',
       body: [
-        '"Sib" is a small word placed before a verb to make the action reciprocal — something two or more people do to each other.',
-        'For example, a verb meaning "to hit" becomes "to hit each other" when "sib" is added in front of it.',
-        'Because the action flows both ways, the subject is naturally two or more people: "Nkawd sib hlub" — the two of them love each other. You have already met "sib" in "sib ntsib dua" (see you again — literally "meet each other again").',
-        'Usually, when using "sib" in a sentence, its context is formulated with two or more people, although there are some instances in which its used by itself without any plural nouns',
+        '"Sib" is a small word placed before a verb to make the action reciprocal — something two or more people do TO each other. A verb meaning "to hit" becomes "to hit each other" the moment "sib" goes in front of it.',
+        'Because the action flows both ways, the subject is naturally two or more people:',
+        '> Nkawd sib hlub. — The two of them love each other.',
+        'You have already met "sib" in one very common phrase:',
+        '> Sib ntsib dua. — Goodbye / see you again.',
+        'Literally, that is "(we) meet each other again" — the reciprocal sense is baked into the farewell itself.',
 
-        'Examples:',
-        'Hmong: Sib Ntsib Dua',
-        'English: Goodbye / See you again',
-        "But the literal English transition would be, '(we) meet again' . ",
-        'A typical example of using "sib" would be like:',
-        "Hmong: 'Wb sib ntaus / lawv sib ntaus",
-        "English: 'We fight each other' / 'They're fighting each other'. ",
+        '## Reading a "sib" sentence',
+        'Here it is doing real work in a full sentence:',
+        '> Wb sib ntaus. / Lawv sib ntaus. — We fight each other. / They are fighting each other.',
+        'Most of the time "sib" appears with a plural subject like "wb" or "lawv" — the mutual action needs at least two people to flow between. A few uses drop the plural noun and lean on context instead, but that is the exception, not the pattern to learn from.',
 
-
-        'Now, "Sib" would theoretically work with almost every verb in the Hmong language that would require 2, or more people - the practice ones in the next part are just the examples of some of the most common, however, not every verb would be used with "Sib" correctly in a way that would make sense, the use of "Sib" is all context based.',
+        '## How far it reaches',
+        '"Sib" can theoretically combine with almost any verb that could involve two or more people — the five in this lesson are simply the most common. Not every combination will sound natural to a fluent ear, though: whether a given "sib + verb" pair actually makes sense is context-dependent, the same way not every English verb takes "each other" comfortably ("we breakfast each other" does not work, even though "we help each other" does).',
       ],
     },
     {

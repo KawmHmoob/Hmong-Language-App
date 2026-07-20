@@ -17,9 +17,9 @@ export const DoubleVowels = {
       kind: 'intro',
       title: 'Double Vowels in the Hmong Language | Cov Txooj',
       body: [
-        'Double vowels are written with two letters but make ONE vowel sound. "ai" is not "a" then "i" — it is its own single vowel, the way "eye" is one sound in English.',
-        'This is the piece that trips up new readers: seeing two letters and saying them separately. Read them as one unit.',
-        'They sit in the same slot as a single vowel: consonant + vowel + tone. "Nplooj" = "Npl" (consonant) + "oo" (double vowel) + "j" (tone).',
+        'Double vowels are written with two letters but make ONE vowel sound. "Ai" is not "a" then "i" — it is its own single vowel, the way "eye" is one sound in English. This is the piece that trips up new readers: seeing two letters and saying them separately. Read them as one unit.',
+        'They sit in the same slot as a single vowel — the middle of consonant + vowel + tone:',
+        '> Nplooj — Npl (consonant) + oo (double vowel) + j (tone)',
         'Several of these end in a nasal sound — "aa", "ee", and "oo" carry an "n"/"ng" quality rather than a long version of the single vowel.', // TODO-VERIFY: nasal description for aa / ee / oo
       ],
     },

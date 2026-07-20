@@ -15,7 +15,10 @@ export const actionVerbs = {
       title: 'How Hmong action verbs work',
       body: [
         'Action verbs name the things people do — eat, go, see, work. Hmong verbs do not change form for tense or person; the same word is used regardless of who does it or when.',
-        'To place an action in time, Hmong adds small marker words instead of changing the verb: "yuav" before a verb points to the future, and "lawm" at the end of a sentence shows the action is already done. You will meet these markers properly in a later lesson — for now, focus on learning the verbs themselves.',
+        'To place an action in time, Hmong adds small marker words instead of changing the verb:',
+        '> Kuv yuav noj. — I will eat. ("yuav" points to the future)',
+        '> Kuv noj lawm. — I have eaten. ("lawm" at the end shows it is done)',
+        'You will meet these markers properly in the Tense Markers lesson — for now, focus on learning the verbs themselves.',
       ],
     },
     {

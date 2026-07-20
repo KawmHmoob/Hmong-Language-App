@@ -226,6 +226,40 @@ Note this is a blind spot in `orphans.mjs`: it matches on **filename**, so a
 duplicate folder looks "referenced" because its twin is. It cannot currently
 tell you a whole folder is redundant.
 
+## Batch 4 — the two time lessons were never in the list (239 verified)
+
+`time.js` and `time-explained.js` both map to `timeframes`, and the category's
+audio had been wired since batch 3 — but neither lesson file was ever added to
+`LESSONS` in `wire-lessons.mjs`. So the word bank played fine while the exact
+same words sat silent one click away, inside the lesson that teaches them.
+**Same shape as the `greetings` gap in notes/56 — a set exists and is wired
+somewhere, but nothing walks the full list to confirm every consumer got it.**
+Both are now in `LESSONS`; `time-explained.js` wired 6/6.
+
+### "Lub Teevsij" vs the recording
+`time-explained.js` listed the clock word with its classifier — "Lub Teevsij"
+— because that reads as a natural noun. But the recording
+(`hmong-time-teev-sij.mp3`) is of the **bare** word, and the vocabulary entry
+(`time-teevsij`) is spelled `teev sij`, no classifier. `norm()` matches on
+letters, not meaning, so "lubteevsij" never matched "teevsij" — correctly:
+playing a recording that doesn't contain "lub" under a label that shows "Lub"
+would be wrong, not just unmatched.
+
+Fixed by aligning the lesson's displayed Hmong to what was actually recorded,
+and moving the classifier into the note instead: *"Takes 'lub' as its
+classifier: 'lub teev sij' = the clock."* Same principle as the folder-typo
+fixes — when data and a recording disagree, change the side that's wrong, not
+the matcher.
+
+### Still silent, on purpose
+```
+Tav su tag, Yav tsaus ntuj, Nag hmo   (time.js)
+```
+These are the same three-way spelling disagreements documented in notes/56 and
+notes/58 — the lesson and the word bank use different segmentations, and no
+recording exists for either lesson-side form. Untouched here; still needs a
+native speaker.
+
 ## What's still missing
 Three words have no recording and are honestly left `null` rather than pointed
 at an approximation:

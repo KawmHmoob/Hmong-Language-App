@@ -15,9 +15,10 @@ export const quadrupleConsonants = {
       kind: 'intro',
       title: 'Quadruple Consonants in the Hmong Language',
       body: [
-        'Quadruple consonants in the Hmong language are combinations of 4 letters used to represent a single consonant sound.',
-        'These are the longest consonant clusters in Hmong RPA, typically stacking a pre-nasal, a base consonant, and an aspiration together.',
-        'White Hmong has just three of them — nplh, ntsh, and ntxh — so this is the shortest letter lesson in the course. Each is still ONE sound: "nplhaib" (ring) starts with a single burst, not four separate letters.',
+        'Quadruple consonants are combinations of four letters used to represent a single consonant sound — the longest clusters in Hmong RPA, typically stacking a pre-nasal, a base consonant, and an aspiration together.',
+        'White Hmong has just three of them, so this is the shortest letter lesson in the course:',
+        '> nplh, ntsh, ntxh',
+        'Each is still ONE sound. "Nplhaib" (ring) starts with a single burst, not four separate letters.',
       ],
     },
     {

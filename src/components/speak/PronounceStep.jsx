@@ -1,25 +1,46 @@
 import { useEffect, useRef, useState } from 'react'
 import { usePronunciation } from '../../hooks/usePronunciation.js'
 import LevelMeter from './LevelMeter.jsx'
+import ToneCurve from './ToneCurve.jsx'
+import { scoreTake } from '../../lib/pronounceScore.js'
 import { VolumeIcon, PlayIcon, SwapIcon, RefreshIcon, CheckIcon } from '../icons/index.jsx'
 
 // The Speak practice loop for one phrase:
-//   Listen (native MP3) → Record → Hear your take → A/B compare → self-rate.
+//   Listen (native MP3) → Record → see your pitch vs the native curve → A/B.
 //
-// Scoring is deliberately NOT here yet — self-rating ships first, the DSP
-// tone score arrives later (notes/18, notes/19). `onDone` fires when the
-// learner says their take sounds close; the parent records progress.
+// Tone scoring runs when a reference CONTOUR exists (getContour); otherwise it
+// falls back to the learner's own curve + self-rating. The score is shown as
+// FEEDBACK, not a gate — no pass threshold is enforced here, deliberately,
+// until it's calibrated against real takes (notes/19, guide Part 7).
 //
-// Reference audio may be missing (audio: '') — the loop still works, the
-// learner just compares against their own ear/memory.
+// `onDone` fires when the learner moves on; the parent records progress.
 
 export default function PronounceStep({ phrase, done, onDone }) {
   const { status, clip, analyser, start, stop, supported } = usePronunciation()
   const [playing, setPlaying] = useState(null) // 'ref' | 'take' | 'ab' | null
+  const [result, setResult] = useState(null) // { score, ref, user } | null
+  const [scoring, setScoring] = useState(false)
   const playersRef = useRef([])
 
   const hasReference = Boolean(phrase.audio)
   const recording = status === 'recording'
+
+  // Score each new take. clip is replaced (new object) on every recording, so
+  // this fires once per take. Guarded against a stale take resolving after the
+  // learner has already re-recorded.
+  useEffect(() => {
+    if (!clip?.blob) return
+    let live = true
+    setScoring(true)
+    setResult(null)
+    scoreTake(clip.blob, phrase.audio)
+      .then((r) => live && setResult(r))
+      .catch(() => live && setResult(null))
+      .finally(() => live && setScoring(false))
+    return () => {
+      live = false
+    }
+  }, [clip, phrase.audio])
 
   // Stop any comparison playback when leaving or re-recording.
   const stopPlayback = () => {
@@ -137,9 +158,29 @@ export default function PronounceStep({ phrase, done, onDone }) {
         )}
       </div>
 
-      {/* Step 3 — compare + self-rate */}
+      {/* Step 3 — score + curve + compare */}
       {clip && !recording && (
         <div className="mt-8 pt-6 border-t border-cream-200 space-y-5">
+          {scoring && (
+            <p className="text-sm text-stone-600">Analyzing your tone…</p>
+          )}
+
+          {result && !scoring && (
+            <>
+              {result.score != null && <ScoreBadge score={result.score} />}
+              {(result.ref?.length > 0 || result.user?.length > 0) && (
+                <ToneCurve refCurve={result.ref} user={result.user} />
+              )}
+              {result.score == null && (
+                <p className="text-sm text-stone-600">
+                  {result.reason === 'no-reference'
+                    ? 'No native curve to compare against yet — here’s your own pitch. Trust your ear with the tone tip for now.'
+                    : 'That was too short or too quiet to read — try saying it a little louder.'}
+                </p>
+              )}
+            </>
+          )}
+
           <div className="flex flex-wrap justify-center gap-3">
             <button
               type="button"
@@ -171,14 +212,35 @@ export default function PronounceStep({ phrase, done, onDone }) {
             </button>
             <button type="button" onClick={onDone} className="btn-primary gap-2">
               <CheckIcon size={16} />
-              {done ? 'Practiced — mark again' : 'Sounds close'}
+              {done ? 'Practiced — mark again' : 'Next'}
             </button>
           </div>
-          <p className="text-xs text-stone-600">
-            Automatic tone scoring is on the way — for now, trust your ear.
-          </p>
         </div>
       )}
+    </div>
+  )
+}
+
+// Score readout. Colored by band but NOT gated — 80% is a target shown to the
+// learner, not a wall enforced here, until it's calibrated (guide Part 7).
+function ScoreBadge({ score }) {
+  const band =
+    score >= 80
+      ? 'bg-success-50 text-success-900'
+      : score >= 55
+      ? 'bg-cream-200 text-stone-800'
+      : 'bg-danger-50 text-danger-900'
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <span
+        className={`inline-flex items-baseline gap-1 rounded-full px-4 py-1.5 font-display ${band}`}
+      >
+        <span className="text-2xl">{score}</span>
+        <span className="text-sm">/ 100</span>
+      </span>
+      <span className="text-xs text-stone-600">
+        {score >= 80 ? 'Great tone match' : 'Watch where the lines diverge'}
+      </span>
     </div>
   )
 }

@@ -95,7 +95,11 @@
     --c-cream-600: 155 137 112;
 
     --c-clay-500: 217 131 92;
-    --c-clay-600: 200 106 69;
+    /* 206 114 78, was 200 106 69. `.btn-primary` is `bg-clay-600 text-cream-50`
+       and cream-50 INVERTS to near-black in dark — so the button flips to dark
+       text on mid-terracotta and landed at 4.46:1, just under AA. Nudged until
+       it clears: now 4.89:1. One token, every primary button in the app. */
+    --c-clay-600: 206 114 78;
     --c-clay-700: 178 94 61;
 
     --c-blush-50: 45 32 30;
@@ -187,6 +191,21 @@
     --c-seafoam-300: 11 10 20;
     --c-seafoam-400: 46 42 78;
     --c-seafoam-500: 64 224 208;
+
+    /* Ocean in neon: neon's seafoam-500 is ELECTRIC TEAL, so ocean goes deep
+       indigo-teal — the water under it rather than a duller teal, which would
+       just look like a failed match. Brightens toward 700 like the dark theme.
+       Defining this block is not optional: without it, neon inherits the LIGHT
+       theme's ocean and puts pale blue-grey on a near-black surface — the same
+       class of bug as the emerald chips in notes/55. */
+    --c-ocean-50: 16 26 46;
+    --c-ocean-100: 20 34 58;
+    --c-ocean-200: 26 46 78;
+    --c-ocean-300: 34 64 106;
+    --c-ocean-400: 46 92 146;
+    --c-ocean-500: 62 130 190;
+    --c-ocean-600: 96 172 224;
+    --c-ocean-700: 142 206 244;
 
     --c-stone-50: 28 26 46;
     --c-stone-100: 40 37 62;

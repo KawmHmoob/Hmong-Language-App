@@ -13,8 +13,11 @@ export const possessivePronouns = {
       kind: 'intro',
       title: 'How possessives work',
       body: [
-        'Hmong does not have separate possessive words like English "my" or "your". The plain pronoun is used, and possession is shown by word order (and sometimes a linking word).',
-        'The everyday pattern is pronoun + classifier + noun: "kuv lub tsev" = my house, "koj tus dev" = your dog. The classifier matches the noun being owned, not the owner — so it is "lub" for the house no matter whose house it is.',
+        'Hmong does not have separate possessive words like English "my" or "your". The plain pronoun is used, and possession is shown by word order instead.',
+        'The everyday pattern is pronoun + classifier + noun:',
+        '> Kuv lub tsev. — My house.',
+        '> Koj tus dev. — Your dog.',
+        'The classifier matches the noun being owned, not the owner — so it is "lub" for the house no matter whose house it is.',
       ],
     },
     {
