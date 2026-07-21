@@ -59,6 +59,22 @@ alter table public.profiles add column if not exists email              text;
 alter table public.profiles add column if not exists dialect_preference text;
 alter table public.profiles add column if not exists joined_at          timestamptz;
 
+-- ONBOARDING / SPEAKER METADATA. All nullable, all optional — every one of
+-- these can legitimately be "prefer not to say", and `ethnicity` is a SPECIAL
+-- CATEGORY of personal data (GDPR Art. 9), so it must never be required. These
+-- double as speaker labels for the voice corpus (future-implementations/03 §9);
+-- collection is only lawful because the onboarding UI discloses that purpose.
+-- No CHECK constraints on purpose: unlike dialect, a new option here should not
+-- be able to fail a signup — the app writes these post-signup, not in the trigger.
+alter table public.profiles add column if not exists age_range          text;
+alter table public.profiles add column if not exists gender             text;
+alter table public.profiles add column if not exists ethnicity          text;
+alter table public.profiles add column if not exists hmong_relationship text;
+alter table public.profiles add column if not exists region             text;
+-- Set when onboarding is completed OR skipped, so a returning user isn't sent
+-- back through it. Null = never saw it.
+alter table public.profiles add column if not exists onboarded_at       timestamptz;
+
 -- Backfill before tightening — a NOT NULL on a column holding nulls fails.
 update public.profiles set dialect_preference = 'white' where dialect_preference is null;
 update public.profiles set joined_at = now()             where joined_at is null;

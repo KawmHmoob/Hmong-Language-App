@@ -30,6 +30,13 @@ function rowToUser(row) {
     email: row.email,
     dialectPreference: row.dialect_preference,
     joinedAt: row.joined_at,
+    // Onboarding / speaker metadata (all optional).
+    ageRange: row.age_range,
+    gender: row.gender,
+    ethnicity: row.ethnicity,
+    hmongRelationship: row.hmong_relationship,
+    region: row.region,
+    onboardedAt: row.onboarded_at,
     isGuest: false,
   }
 }
@@ -196,6 +203,12 @@ export function AuthProvider({ children }) {
     if (patch.displayName !== undefined) dbPatch.display_name = patch.displayName
     if (patch.email !== undefined) dbPatch.email = patch.email
     if (patch.dialectPreference !== undefined) dbPatch.dialect_preference = patch.dialectPreference
+    if (patch.ageRange !== undefined) dbPatch.age_range = patch.ageRange
+    if (patch.gender !== undefined) dbPatch.gender = patch.gender
+    if (patch.ethnicity !== undefined) dbPatch.ethnicity = patch.ethnicity
+    if (patch.hmongRelationship !== undefined) dbPatch.hmong_relationship = patch.hmongRelationship
+    if (patch.region !== undefined) dbPatch.region = patch.region
+    if (patch.onboardedAt !== undefined) dbPatch.onboarded_at = patch.onboardedAt
 
     const { data, error } = await supabase
       .from('profiles')

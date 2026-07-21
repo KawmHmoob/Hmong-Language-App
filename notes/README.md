@@ -85,6 +85,7 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [08-notebook.md](08-notebook.md) | Saved words + free-form notes |
 | [04-account-system.md](04-account-system.md) | Guest / authed user, login, register, profile |
 | [68-supabase-schema.md](68-supabase-schema.md) | **Auth** — the two-table schema, RLS policies (+ the leaderboard trap), the signup trigger, and the confirmation-path bug it caught |
+| [69-onboarding-demographics.md](69-onboarding-demographics.md) | **Auth** — new-user onboarding collecting optional speaker demographics for the corpus; why everything is optional; the Layout onboarding gate; ethnicity as a special category |
 | [67-authcontext-necessities.md](67-authcontext-necessities.md) | **Auth** — the guest-fallback data-integrity bug, orphaned-signup risk (+ the trigger SQL that fixes it), the broken no-Supabase stub, and the unconsumed `loading` flag |
 | [36-account-gating.md](36-account-gating.md) | **The guest → account wall** — positional limits, and the adopt-on-empty migration that keeps signup from eating your progress |
 | [14-paywall-and-supabase.md](14-paywall-and-supabase.md) | Paywall scaffold + path to real Supabase + Stripe |

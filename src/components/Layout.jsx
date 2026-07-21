@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react'
-import { Outlet, useLocation } from 'react-router-dom'
+import { Outlet, useLocation, Navigate } from 'react-router-dom'
 import Navbar from './Navbar.jsx'
 import Footer from './Footer.jsx'
 import GuestBanner from './account/GuestBanner.jsx'
 import PrimaryNav from './PrimaryNav.jsx'
 import SkeletonCard from './common/SkeletonCard.jsx'
 import WarningRibbon from './common/WarningRibbon.jsx'
+import { useAuth } from '../context/AuthContext.jsx'
 
 export default function Layout() {
   const location = useLocation()
+  const { user, loading: authLoading } = useAuth()
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -16,6 +18,20 @@ export default function Layout() {
     const t = setTimeout(() => setLoading(false), 100)
     return () => clearTimeout(t)
   }, [location.pathname])
+
+  // Onboarding gate: an authed user who has never completed (or skipped)
+  // onboarding is routed there once. Covers the email-confirmation path, where
+  // RegisterForm can't navigate directly because there's no session yet — the
+  // user lands here only after confirming and logging in.
+  //
+  // Waits for auth to finish loading, or a signed-in user would flash as guest
+  // and skip the gate. `/logout` isn't a route here, so no loop risk; the
+  // Onboarding page itself is excluded.
+  const needsOnboarding =
+    !authLoading && !user.isGuest && !user.onboardedAt && location.pathname !== '/onboarding'
+  if (needsOnboarding) {
+    return <Navigate to="/onboarding" replace />
+  }
 
   return (
     <div className="min-h-screen bg-seafoam-300">

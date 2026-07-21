@@ -57,8 +57,12 @@ export default function RegisterForm() {
       // confirmPassword is UI-only — never send it.
       const { confirmPassword, ...payload } = form
       const result = await register(payload)
+      // New account with a live session → straight into onboarding. (Email
+      // confirmation ON returns pendingConfirmation instead; those users land
+      // on onboarding after they confirm and log in — see the guard in App/
+      // Layout that redirects un-onboarded users.)
       if (result?.pendingConfirmation) setPendingEmail(result.email)
-      else navigate('/account')
+      else navigate('/onboarding')
     } catch (err) {
       setError(err?.message || 'Registration failed.')
     } finally {
