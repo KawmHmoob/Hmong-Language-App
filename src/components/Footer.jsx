@@ -17,6 +17,7 @@ const resources = [
   { to: '/search', label: 'Search' },
   { to: '/settings', label: 'Settings' },
   { to: '/account', label: 'Account' },
+  { to: '/contact', label: 'Contact' },
 ]
 
 export default function Footer() {

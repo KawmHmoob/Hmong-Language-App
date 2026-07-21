@@ -31,6 +31,7 @@ import BattlePass from './pages/BattlePass.jsx'
 import ToneEval from './pages/ToneEval.jsx'
 import SentenceBuilder from './pages/SentenceBuilder.jsx'
 import Onboarding from './pages/Onboarding.jsx'
+import Contact from './pages/Contact.jsx'
 
 
 // Legacy URL support. /alphabet/:tab kept its tab names, so it maps 1:1.
@@ -101,6 +102,7 @@ export default function App() {
                   <Route path="/onboarding" element={<Onboarding />} />
                   <Route path="/account" element={<ProfilePage />} />
                   <Route path="/settings" element={<Settings />} />
+                  <Route path="/contact" element={<Contact />} />
                   {/* Dev-only tone-scorer harness — renders a notice in prod. */}
                   <Route path="/tone-eval" element={<ToneEval />} />
                   <Route path="*" element={<NotFound />} />

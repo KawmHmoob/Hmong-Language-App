@@ -43,6 +43,16 @@ export function StarIcon(props) {
   )
 }
 
+// Envelope — contact / email.
+export function MailIcon(props) {
+  return (
+    <svg {...base(props)}>
+      <rect x="3" y="5" width="18" height="14" rx="2" fill="currentColor" fillOpacity="0.1" />
+      <path d="m3 7 9 6 9-6" />
+    </svg>
+  )
+}
+
 // Open book — the Learn section. Distinct from NotebookIcon (which is a bound
 // pad you write in); this one is a spread you read from.
 export function BookIcon(props) {
