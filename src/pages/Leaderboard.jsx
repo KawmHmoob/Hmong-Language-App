@@ -18,9 +18,16 @@ export default function Leaderboard() {
   const { user } = useAuth()
   const [board, setBoard] = useState('season')
 
+  // NEVER derive a display name from the email. It used to be
+  // `user.email.split('@')[0]`, which leaks the local part of a private address
+  // onto a public board — and for most people that IS their real name. The
+  // profile already carries a chosen, public-by-design handle; use it.
+  //
+  // Guests have no username, so they show as "You" — they aren't on a real
+  // board anyway until accounts and a backend exist (notes/57).
   const you = useMemo(
     () => ({
-      name: user?.email?.split('@')[0] || 'You',
+      name: user?.isGuest ? 'You' : user?.username || user?.displayName || 'You',
       seasonPoints: seasonPoints || 0,
       weekPoints: weekEarned?.points || 0,
       clips: clipsContributed || 0,

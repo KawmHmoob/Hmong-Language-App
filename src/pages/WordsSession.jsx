@@ -5,6 +5,7 @@ import { useProgress } from '../hooks/useProgress.js'
 import { selectSession } from '../context/ProgressContext.jsx'
 import Flashcard from '../components/vocabulary/Flashcard.jsx'
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
+import { ArrowLeftIcon, ArrowRightIcon } from '../components/icons/index.jsx'
 
 // Today's session over the SRS queue: every due review, then a capped
 // handful of new words (see notes/35 — uncapped, day one was 391 cards).
@@ -81,9 +82,30 @@ export default function WordsSession() {
 
       <Flashcard word={word} key={word.id} onAdvance={advance} />
 
-      <div className="mt-4 text-center">
-        <button onClick={advance} className="btn-ghost text-sm">
-          Skip →
+      {/* Back + Skip. The session previously only went FORWARD — misjudge a
+          card and there was no way to return to it, which made every tap feel
+          irreversible. Marking still auto-advances; these are the manual
+          overrides. Matched to the deck controls in VocabList. See notes/66. */}
+      <div className="flex justify-between items-center mt-5 gap-3">
+        <button
+          onClick={() => setIdx((i) => Math.max(0, i - 1))}
+          disabled={idx === 0}
+          aria-label="Previous word"
+          className="inline-flex items-center justify-center h-12 w-12 shrink-0 rounded-full bg-cream-200 text-stone-800 hover:bg-cream-300 active:scale-95 transition disabled:opacity-40 disabled:pointer-events-none"
+        >
+          <ArrowLeftIcon size={20} />
+        </button>
+
+        <span className="text-xs text-stone-600">
+          Mark the card to advance, or skip it
+        </span>
+
+        <button
+          onClick={advance}
+          aria-label="Skip this word"
+          className="inline-flex items-center justify-center h-12 w-12 shrink-0 rounded-full bg-cream-200 text-stone-800 hover:bg-cream-300 active:scale-95 transition"
+        >
+          <ArrowRightIcon size={20} />
         </button>
       </div>
     </div>

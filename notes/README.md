@@ -34,6 +34,9 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [61-tone-scorer.md](61-tone-scorer.md) | **Speak** — the tone scorer: YIN F0 → semitone normalization → DTW → score, the pitch-overlay chart, why it's not a gate, and the synthetic self-test |
 | [62-speak-tones-wired.md](62-speak-tones-wired.md) | **Speak** — the Eight Tones group, the first end-to-end record→score; derived from `reference.js`; the reserved-`ref`-prop bug; what to verify by ear |
 | [63-record-points-quiz-mobile.md](63-record-points-quiz-mobile.md) | **Speak + Words** — points awarded on record (not Next); quiz mobile tap targets/padding; the study button made obvious in three places |
+| [64-speak-family-parity.md](64-speak-family-parity.md) | **Speak + Words** — consonant/vowel families now record+score like phrases (same `PronounceStep`); the Sentence Builder placeholder and why nothing in it is draggable |
+| [65-reference-links-quiz-pruning.md](65-reference-links-quiz-pruning.md) | **Reference + Words + Speak** — every Reference "Learn this" link was 404ing after the unit move; consonant/vowel quizzes retired in favor of Speak drills; Speak nav matched to the quiz; text arrows → icons + the icon-import guard |
+| [66-flashcard-status-and-nav.md](66-flashcard-status-and-nav.md) | **Words** — New/Learning/Known badge on both card faces (and the aria-label trap); round deck nav; the SRS session had no way back |
 | [23-words-section.md](23-words-section.md) | **Words** — vocab hub, derived daily goal, SRS session (supersedes `/review`) |
 | [35-srs-session-and-quiz-menu.md](35-srs-session-and-quiz-menu.md) | **Words** — the 391-card bug: "never seen" ≠ "due"; `DAILY_NEW_LIMIT`; grouped quiz menu |
 | [33-unit-pages.md](33-unit-pages.md) | **Learn** — hub + per-unit pages, shared `LessonCard` |
@@ -81,6 +84,8 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [02-vocabulary.md](02-vocabulary.md) | Categories, list, flashcards, word detail 🕰 *(pages moved to `pages/`)* |
 | [08-notebook.md](08-notebook.md) | Saved words + free-form notes |
 | [04-account-system.md](04-account-system.md) | Guest / authed user, login, register, profile |
+| [68-supabase-schema.md](68-supabase-schema.md) | **Auth** — the two-table schema, RLS policies (+ the leaderboard trap), the signup trigger, and the confirmation-path bug it caught |
+| [67-authcontext-necessities.md](67-authcontext-necessities.md) | **Auth** — the guest-fallback data-integrity bug, orphaned-signup risk (+ the trigger SQL that fixes it), the broken no-Supabase stub, and the unconsumed `loading` flag |
 | [36-account-gating.md](36-account-gating.md) | **The guest → account wall** — positional limits, and the adopt-on-empty migration that keeps signup from eating your progress |
 | [14-paywall-and-supabase.md](14-paywall-and-supabase.md) | Paywall scaffold + path to real Supabase + Stripe |
 | [15-paywall-walkthrough.md](15-paywall-walkthrough.md) | Line-by-line walkthrough of the paywall code |

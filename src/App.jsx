@@ -29,6 +29,7 @@ import ProfilePage from './pages/ProfilePage.jsx'
 import Leaderboard from './pages/Leaderboard.jsx'
 import BattlePass from './pages/BattlePass.jsx'
 import ToneEval from './pages/ToneEval.jsx'
+import SentenceBuilder from './pages/SentenceBuilder.jsx'
 
 
 // Legacy URL support. /alphabet/:tab kept its tab names, so it maps 1:1.
@@ -66,6 +67,8 @@ export default function App() {
                   <Route path="/speak/:phraseId" element={<SpeakPhrase />} />
                   <Route path="/words" element={<Words />} />
                   <Route path="/words/session" element={<WordsSession />} />
+                  {/* Placeholder — roadmap Phase 2, no exercise data yet. */}
+                  <Route path="/words/sentences" element={<SentenceBuilder />} />
                   {/* Reference (was /alphabet; absorbed the old /course grammar tables) */}
                   <Route path="/reference" element={<Navigate to="/reference/consonants" replace />} />
                   <Route path="/reference/:tab" element={<Reference />} />

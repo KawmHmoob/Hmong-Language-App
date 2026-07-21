@@ -16,6 +16,10 @@ which is a short backlog *list*. This folder holds full design docs.
 - [02-gamification-and-incentives.md](02-gamification-and-incentives.md) — Points,
   leaderboards, and rewards-instead-of-payroll — and the contradiction between
   rewarding high scores and needing bad-pronunciation data.
+- [04-product-roadmap.md](04-product-roadmap.md) — **The author's Phase 1→4 vision**
+  (tone graphing, dialect toggle, content depth + slow/normal dual audio,
+  sentence builder + disguised annotation, AI chatbot, tutor marketplace) with
+  what's already half-built underneath each.
 - [03-corpus-strategy.md](03-corpus-strategy.md) — **The layer above both:** why
   the labeled corpus (not the audio) is the asset, why learner *errors* are the
   scarce part, the label-integrity failure modes, consent as a hard gate — plus

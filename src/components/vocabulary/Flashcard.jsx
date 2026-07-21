@@ -2,6 +2,30 @@
 import { useProgress } from '../../hooks/useProgress.js'
 import AudioButton from '../common/AudioButton.jsx'
 
+// Status badge shown ON the card, so a learner can tell at a glance whether
+// they've already marked this word. Without it the only signal was which
+// button looked active — and that's below the card, easy to miss, and invisible
+// while you're reading the word itself. See notes/66.
+//
+// `new` is the default for any word with no vocabProgress entry, so an
+// unstudied card says so rather than showing nothing.
+const STATUS = {
+  new: { label: 'New', cls: 'bg-cream-200 text-stone-700' },
+  learning: { label: 'Learning', cls: 'bg-clay-600 text-cream-50' },
+  known: { label: 'Known', cls: 'bg-success-700 text-cream-50' },
+}
+
+function StatusBadge({ status }) {
+  const s = STATUS[status] || STATUS.new
+  return (
+    <span
+      className={`absolute top-3 left-3 rounded-full px-2.5 py-1 text-[11px] font-bold uppercase tracking-wider ${s.cls}`}
+    >
+      {s.label}
+    </span>
+  )
+}
+
 // onAdvance: optional. If provided, called ~250ms after marking so the
 // review flow can auto-advance to the next card.
 export default function Flashcard({ word, onAdvance }) {
@@ -17,16 +41,25 @@ export default function Flashcard({ word, onAdvance }) {
   return (
     <div>
       {/* 3D flip. Both faces are always rendered; the .is-flipped class turns
-          the card over. Keyboard-accessible: it's a button, Enter/Space flip. */}
+          the card over. Keyboard-accessible: it's a button, Enter/Space flip.
+          The status badge sits inside this button, but an explicit aria-label
+          overrides inner text — so the status is repeated in the label below,
+          or screen-reader users lose it entirely. */}
       <div className="flip-scene">
         <button
           type="button"
           onClick={() => setFlipped((f) => !f)}
-          aria-label={flipped ? `${word.english}. Tap to see the Hmong.` : `${word.hmongRPA}. Tap to reveal the meaning.`}
+          aria-label={
+            (flipped
+              ? `${word.english}. Tap to see the Hmong.`
+              : `${word.hmongRPA}. Tap to reveal the meaning.`) +
+            ` Status: ${(STATUS[status] || STATUS.new).label}.`
+          }
           className={`flip-card w-full min-h-[280px] cursor-pointer text-left ${flipped ? 'is-flipped' : ''}`}
         >
           {/* FRONT — Hmong */}
-          <div className="flip-face surface p-12 min-h-[280px] flex flex-col items-center justify-center">
+          <div className="flip-face surface relative p-12 min-h-[280px] flex flex-col items-center justify-center">
+            <StatusBadge status={status} />
             <div className="flex items-center gap-3 mb-3">
               {/* stopPropagation so tapping the speaker doesn't flip the card */}
               <span onClick={(e) => e.stopPropagation()}>
@@ -37,8 +70,10 @@ export default function Flashcard({ word, onAdvance }) {
             <p className="text-sm text-stone-500 italic">Tap to flip</p>
           </div>
 
-          {/* BACK — English + example */}
+          {/* BACK — English + example. Badge repeated: either face can be the
+              one you're looking at, so the status has to be on both. */}
           <div className="flip-face flip-face-back surface p-12 min-h-[280px] flex flex-col items-center justify-center">
+            <StatusBadge status={status} />
             <h3 className="font-display text-3xl text-stone-900 mb-2">{word.english}</h3>
             {word.exampleSentence && (
               <div className="text-center text-sm text-stone-600 mt-4 max-w-md">

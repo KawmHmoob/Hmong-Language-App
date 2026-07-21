@@ -6,11 +6,11 @@ import { TrophyIcon, TiersIcon } from './icons/index.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
 import { useTheme } from '../hooks/useTheme.js'
 
-// Served statically from public/assets â€” referenced by URL, not imported.
+// Served statically from public/assets — referenced by URL, not imported.
 const KawmHmoobLogo = '/assets/KawmHmoobSvg1svgexport.svg'
 
 // Slim identity/status header. Primary navigation (Speak / Words / More)
-// lives in PrimaryNav.jsx â€” bottom tab bar on mobile, left rail on desktop.
+// lives in PrimaryNav.jsx — bottom tab bar on mobile, left rail on desktop.
 
 const THEME_META = {
   light: { label: 'Light', next: 'dark' },
@@ -43,7 +43,7 @@ export default function Navbar() {
         <div className="flex items-center gap-1 sm:gap-2">
           {/* Status cluster. The header is width-critical on phones, so the two
               LIFETIME numbers (xp, streak) yield to the season level, which is
-              the one that's also a link. Nothing is dropped â€” both still show
+              the one that's also a link. Nothing is dropped — both still show
               on Home. */}
           <LevelBadge />
           <XPBadge className="hidden sm:inline-flex" />
@@ -56,7 +56,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={cycle}
-            title={`Theme: ${THEME_META[theme].label} â€” switch to ${THEME_META[THEME_META[theme].next].label}`}
+            title={`Theme: ${THEME_META[theme].label} — switch to ${THEME_META[THEME_META[theme].next].label}`}
             aria-label={`Theme: ${THEME_META[theme].label}. Switch to ${THEME_META[THEME_META[theme].next].label} theme`}
             className="px-2.5 sm:px-3 py-2 rounded-lg text-stone-800 hover:bg-stone-900/10 transition-colors"
           >

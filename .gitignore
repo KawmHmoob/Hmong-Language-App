@@ -3,3 +3,10 @@ dist
 .DS_Store
 *.local
 .vite
+
+# Secrets — never commit.
+# `*.local` above catches .env.local, but NOT a plain .env, which is exactly
+# where a service-role key would sit and do the most damage if it leaked.
+.env
+.env.*
+!.env.example

@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext.jsx'
 import { useProgress } from '../hooks/useProgress.js'
 import { categories } from '../data/vocabulary.js'
 import ProgressBar from '../components/progress/ProgressBar.jsx'
+import DialectSelect from '../components/common/DialectSelect.jsx'
 
 export default function ProfilePage() {
   const navigate = useNavigate()
@@ -44,7 +45,7 @@ export default function ProfilePage() {
       <div className="surface p-8">
         <h2 className="font-display text-4xl text-stone-900">{user.displayName}</h2>
         <p className="text-stone-600 mt-1">
-          @{user.username} Â· joined {user.joinedAt?.slice(0, 10)}
+          @{user.username} · joined {user.joinedAt?.slice(0, 10)}
         </p>
       </div>
 
@@ -57,14 +58,11 @@ export default function ProfilePage() {
 
       <div className="surface p-6">
         <h3 className="font-display text-xl text-stone-900 mb-3">Dialect Preference</h3>
-        <select
+        <DialectSelect
+          id="profile-dialect"
           value={user.dialectPreference}
-          onChange={(e) => updateProfile({ dialectPreference: e.target.value })}
-          className="rounded border border-cream-300 bg-cream-50 px-3 py-2 text-sm focus:outline-none focus:border-clay-500"
-        >
-          <option value="white">White Hmong (Hmoob Dawb)</option>
-          <option value="green">Green Hmong (Moob Leeg)</option>
-        </select>
+          onChange={(v) => updateProfile({ dialectPreference: v })}
+        />
       </div>
 
       <div className="surface p-6">

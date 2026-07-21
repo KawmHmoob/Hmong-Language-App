@@ -41,7 +41,15 @@
       "Bash(node scripts/theme/contrast.mjs)",
       "Bash(node scripts/content/levels.mjs)",
       "Bash(ffmpeg -version)",
-      "Bash(node scripts/audio/tone-selftest.mjs)"
+      "Bash(node scripts/audio/tone-selftest.mjs)",
+      "Bash(grep -v \"//\")",
+      "Bash(grep -vE \"^\\\\S+:[0-9]+:\\\\s*\\(//|\\\\*\\)\")",
+      "Bash(node scripts/content/icons.mjs)",
+      "Bash(echo \"exit=$?\")",
+      "Bash(grep -vE \":\\\\s*\\(//|\\\\*|/\\\\*\\)\")",
+      "Bash(grep -vE \"^\\\\S+:[0-9]+:\\\\s*//\")",
+      "Bash(node -e 'const fs=require\\(\"fs\"\\);for\\(const f of [\".env\",\".env.local\"]\\){try{const t=fs.readFileSync\\(f,\"utf8\"\\);console.log\\(f+\": \"+t.split\\(\"\\\\n\"\\).filter\\(l=>l.includes\\(\"VITE_SUPABASE\"\\)\\).map\\(l=>l.split\\(\"=\"\\)[0]+\"=\"+\\(l.split\\(\"=\"\\)[1]?.trim\\(\\)?\"<set>\":\"<EMPTY>\"\\)\\).join\\(\", \"\\)\\)}catch{console.log\\(f+\": missing\"\\)}}')",
+      "Bash(node \"C:\\\\Users\\\\DEVANC~1\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-Devan-Chuyen-Lee-Documents-KawmHmoob\\\\131c8833-9b61-4271-b2ad-f92de6e04ee7\\\\scratchpad\\\\demoji.mjs\")"
     ],
     "additionalDirectories": [
       "\\tmp"

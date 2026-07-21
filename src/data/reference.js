@@ -208,7 +208,7 @@ export const grammar = [
   {
     title: 'Pronouns',
     note: 'Hmong marks singular, dual (exactly two), and plural.',
-    lesson: { unitId: 'foundations', lessonId: 'foundations-pronouns' },
+    lesson: { unitId: 'grammar', lessonId: 'foundations-pronouns' },
     items: [
       { hmong: 'Kuv', english: 'I' },
       { hmong: 'Koj', english: 'You (singular)' },
@@ -224,7 +224,7 @@ export const grammar = [
   {
     title: 'Common Verbs',
     note: 'Verbs never conjugate — tense comes from the markers below.',
-    lesson: { unitId: 'foundations', lessonId: 'foundations-action-verbs' },
+    lesson: { unitId: 'grammar', lessonId: 'foundations-action-verbs' },
     items: [
       { hmong: 'Mus', english: 'To go' },
       { hmong: 'Los', english: 'To come' },
@@ -239,7 +239,7 @@ export const grammar = [
   {
     title: 'Tense Markers',
     note: 'Small words placed around the verb to place it in time.',
-    lesson: { unitId: 'foundations', lessonId: 'foundations-tense-markers' },
+    lesson: { unitId: 'grammar', lessonId: 'foundations-tense-markers' },
     items: [
       { hmong: 'tab tom', english: 'Currently (-ing)' },
       { hmong: 'yuav', english: 'Will (future)' },
@@ -265,7 +265,7 @@ export const grammar = [
   {
     title: 'Noun Classifiers',
     note: 'Pattern: number + classifier + noun — "ib tug dev" (one dog).',
-    lesson: { unitId: 'foundations', lessonId: 'foundations-noun-classifiers' },
+    lesson: { unitId: 'grammar', lessonId: 'foundations-noun-classifiers' },
     items: [
       { hmong: 'Tus', english: 'People and animals' },
       { hmong: 'Lub', english: 'Round / 3-D objects' },

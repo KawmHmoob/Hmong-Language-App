@@ -158,7 +158,7 @@ function StepHeader({ lesson, index }) {
             to={`/reference/${lesson.reference}`}
             className="text-sm font-medium text-clay-700 hover:text-clay-600 transition-colors whitespace-nowrap"
           >
-            Cheat sheet →
+            Cheat sheet <ArrowRightIcon size={14} />
           </Link>
         )}
       </div>

@@ -1,20 +1,28 @@
+import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
-import AudioButton from '../components/common/AudioButton.jsx'
-import { LockIcon, MicIcon } from '../components/icons/index.jsx'
-import { getWordFamily, PASS_SCORE } from '../data/wordFamilies.js'
+import PronounceStep from '../components/speak/PronounceStep.jsx'
+import { getWordFamily } from '../data/wordFamilies.js'
+import { useProgress } from '../hooks/useProgress.js'
+import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from '../components/icons/index.jsx'
 
-// Word-family practice — BAREBONES PLACEHOLDER.
+// Word-family practice — now the SAME loop as phrase practice.
 //
-// Shows the drill's shape: the family, its pattern, and each word broken into
-// consonant + vowel + tone. Recording/comparison/scoring are NOT built — the
-// record control is deliberately disabled rather than faked, so nobody (us
-// included) mistakes this for working. See notes/46.
+// Was a static list with a disabled mic. The consonant and vowel families are
+// derived from reference.js and carry real recordings, so there was no reason
+// they couldn't record + score like SpeakPhrase does. This screen now steps
+// through the family one letter at a time and hands each to PronounceStep,
+// so both Speak surfaces behave identically. See notes/64.
+//
+// Progress + points use the WORD id as the key, matching how phrase practice
+// uses the phrase id.
 
 export default function SpeakFamily() {
   const { familyId } = useParams()
   const navigate = useNavigate()
   const family = getWordFamily(familyId)
+  const { completedSteps, markStepComplete, awardPoints } = useProgress()
+  const [index, setIndex] = useState(0)
 
   if (!family) {
     return (
@@ -27,6 +35,33 @@ export default function SpeakFamily() {
     )
   }
 
+  const words = family.words
+  const word = words[index]
+  const done = completedSteps.includes(word.id)
+  const practiced = words.filter((w) => completedSteps.includes(w.id)).length
+
+  // PronounceStep speaks `phrase` shape. A bare consonant has no vowel/tone, so
+  // it falls back to the family's pattern as the tip.
+  const phrase = {
+    id: word.id,
+    hmong: word.hmong,
+    english: word.english,
+    audio: word.audio,
+    tip: word.vowel
+      ? `${word.consonant} + ${word.vowel} + ${word.tone || '(no tone)'}`
+      : family.pattern,
+  }
+
+  // Points fire on RECORD, not on advancing — same rule as SpeakPhrase
+  // (notes/63). Uncapped, every take counts.
+  const handleTake = () => awardPoints('speak-attempt')
+
+  const handleDone = () => {
+    if (!done) markStepComplete(word.id)
+    if (index < words.length - 1) setIndex(index + 1)
+    else navigate('/speak')
+  }
+
   return (
     <div>
       <Breadcrumbs
@@ -37,77 +72,76 @@ export default function SpeakFamily() {
         ]}
       />
 
-      <div className="mb-8">
+      <div className="mb-6">
         <p className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-stone-600 mb-2">
           <span className="h-2 w-2 rounded-full bg-clay-600" aria-hidden="true" />
           Word family
         </p>
-        <h2 className="font-display text-4xl text-stone-900 mb-2">{family.title}</h2>
+        <h2 className="font-display text-3xl sm:text-4xl text-stone-900 mb-2">
+          {family.title}
+        </h2>
         <p className="text-stone-700 max-w-2xl leading-relaxed">{family.description}</p>
-        <p className="mt-3 inline-block text-sm font-medium text-clay-700 bg-cream-100 border border-cream-200 rounded-full px-3 py-1">
-          {family.pattern}
-        </p>
       </div>
 
-      {/* Honest "not built yet" banner — this screen shows shape, not function. */}
-      <div className="surface p-4 mb-6 flex items-start gap-3">
-        <span className="text-stone-500 mt-0.5 shrink-0">
-          <LockIcon size={18} />
+      {/* Position + progress through the family. */}
+      <div className="flex flex-wrap justify-between items-center gap-2 mb-4 max-w-2xl mx-auto text-sm">
+        <span className="text-stone-700">
+          {index + 1} of {words.length}
         </span>
-        <p className="text-sm text-stone-700 leading-relaxed">
-          <span className="font-semibold text-stone-900">Coming soon:</span> you’ll
-          hear a native recording, record yourself, and get a score. Beat{' '}
-          <span className="font-semibold">{PASS_SCORE}%</span> to move to the next
-          word. Right now this is a preview of the words you’ll drill.
-        </p>
+        <span className="inline-flex items-center gap-1.5 text-stone-600">
+          <CheckIcon size={14} /> {practiced} practiced
+        </span>
+      </div>
+      <div className="max-w-2xl mx-auto h-1.5 rounded-full bg-cream-200 overflow-hidden mb-6">
+        <div
+          className="h-full bg-clay-600 transition-all duration-300"
+          style={{ width: `${((index + 1) / words.length) * 100}%` }}
+        />
       </div>
 
-      <ol className="space-y-3">
-        {family.words.map((w, i) => (
-          <li key={w.id} className="surface p-5">
-            <div className="flex items-center justify-between gap-4">
-              <div className="flex items-center gap-4 min-w-0">
-                <span className="shrink-0 inline-flex items-center justify-center h-8 w-8 rounded-full bg-cream-200 text-stone-700 text-sm font-semibold">
-                  {i + 1}
-                </span>
-                <div className="min-w-0">
-                  <p className="font-display text-3xl text-clay-700 leading-none">
-                    {w.hmong}
-                  </p>
-                  {w.english && (
-                    <p className="text-sm text-stone-600 mt-1">{w.english}</p>
-                  )}
-                  {/* consonant + vowel + tone — the Foundations formula. Only
-                      for whole syllables; a bare consonant has no breakdown. */}
-                  {w.vowel && (
-                    <p className="text-xs text-stone-500 mt-1.5">
-                      {w.consonant} + {w.vowel} + {w.tone || '(no tone)'}
-                    </p>
-                  )}
-                </div>
-              </div>
+      <div className="surface-elevated p-5 sm:p-10 max-w-2xl mx-auto">
+        {/* key resets recording + score state when moving between letters */}
+        <PronounceStep
+          key={word.id}
+          phrase={phrase}
+          done={done}
+          onDone={handleDone}
+          onTake={handleTake}
+        />
+      </div>
 
-              <div className="flex items-center gap-2 shrink-0">
-                <AudioButton audioSrc={w.audio} wordId={w.id} size="lg" />
-                <button
-                  type="button"
-                  disabled
-                  title="Recording isn’t built yet"
-                  className="inline-flex items-center justify-center h-10 w-10 rounded-full bg-cream-200 text-stone-400 cursor-not-allowed"
-                >
-                  <MicIcon size={18} />
-                  <span className="sr-only">Record (not available yet)</span>
-                </button>
-              </div>
-            </div>
-          </li>
-        ))}
-      </ol>
+      {/* Prev / next — same btn-secondary treatment as the quiz and
+          SpeakPhrase, so all three navigations look and tap alike. */}
+      <div className="mt-6 max-w-2xl mx-auto flex justify-between items-center gap-3">
+        {index > 0 ? (
+          <button
+            onClick={() => setIndex(index - 1)}
+            className="btn-secondary gap-1.5 min-w-0"
+          >
+            <ArrowLeftIcon size={15} />
+            <span className="truncate">{words[index - 1].hmong}</span>
+          </button>
+        ) : (
+          <Link to="/speak" className="btn-secondary gap-1.5">
+            <ArrowLeftIcon size={15} />
+            Speak
+          </Link>
+        )}
 
-      <div className="mt-8">
-        <Link to="/speak" className="btn-ghost">
-          Back to Speak
-        </Link>
+        {index < words.length - 1 ? (
+          <button
+            onClick={() => setIndex(index + 1)}
+            className="btn-secondary gap-1.5 min-w-0"
+          >
+            <span className="truncate">{words[index + 1].hmong}</span>
+            <ArrowRightIcon size={15} />
+          </button>
+        ) : (
+          <Link to="/speak" className="btn-secondary gap-1.5">
+            Finish
+            <ArrowRightIcon size={15} />
+          </Link>
+        )}
       </div>
     </div>
   )

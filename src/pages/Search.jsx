@@ -103,7 +103,7 @@ export default function Search() {
         Object.entries(grouped).map(([kind, items]) => (
           <section key={kind} className="mb-6">
             <h3 className="text-xs uppercase tracking-wider text-clay-600 mb-2">
-              {KIND_LABEL[kind] || kind} Â· {items.length}
+              {KIND_LABEL[kind] || kind} · {items.length}
             </h3>
             <ul className="space-y-1.5">
               {items.map((r, i) => (

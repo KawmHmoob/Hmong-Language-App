@@ -5,7 +5,7 @@ import { useProgress } from '../hooks/useProgress.js'
 import AudioButton from '../components/common/AudioButton.jsx'
 import Breadcrumbs from '../components/common/Breadcrumbs.jsx'
 import Flashcard from '../components/vocabulary/Flashcard.jsx'
-import { CategoryIcon } from '../components/icons/index.jsx'
+import { CategoryIcon, ArrowLeftIcon, ArrowRightIcon, RefreshIcon } from '../components/icons/index.jsx'
 
 export default function VocabList() {
   const { categoryId } = useParams()
@@ -52,7 +52,7 @@ export default function VocabList() {
           <div className="flex flex-wrap items-center gap-2">
             {/* Quiz reachable from BOTH list and study mode — always in the header */}
             <Link to={`/quiz/vocab-${cat.id}`} className="btn-primary text-sm gap-1.5">
-              Take the quiz →
+              Take the quiz <ArrowRightIcon size={14} />
             </Link>
             <div className="flex gap-1 rounded bg-cream-100 border border-cream-200 p-1">
               <button
@@ -112,34 +112,55 @@ export default function VocabList() {
       {!empty && mode === 'flashcard' && word && (
         <div>
           <Flashcard word={word} />
+
+          {/* Deck progress — position in the deck at a glance, not just a
+              fraction you have to read. */}
+          <div className="mt-5 h-1.5 rounded-full bg-cream-200 overflow-hidden">
+            <div
+              className="h-full bg-clay-600 transition-all duration-300"
+              style={{ width: `${((cardIdx + 1) / cat.words.length) * 100}%` }}
+            />
+          </div>
+
+          {/* Prev / next as large round targets flanking the counter. Was two
+              small ghost buttons — hard to hit on a phone, and the forward
+              action didn't look primary. See notes/66. */}
           <div className="flex justify-between items-center mt-4 gap-3">
             <button
               onClick={() => setCardIdx((i) => Math.max(0, i - 1))}
               disabled={cardIdx === 0}
-              className="btn-ghost disabled:opacity-50"
+              aria-label="Previous card"
+              className="inline-flex items-center justify-center h-12 w-12 shrink-0 rounded-full bg-cream-200 text-stone-800 hover:bg-cream-300 active:scale-95 transition disabled:opacity-40 disabled:pointer-events-none"
             >
-              ← Prev
+              <ArrowLeftIcon size={20} />
             </button>
-            <span className="text-sm text-stone-700 self-center whitespace-nowrap">
+
+            <span className="text-sm font-medium text-stone-700 whitespace-nowrap">
               {cardIdx + 1} / {cat.words.length}
             </span>
+
             {/* End of the deck: "Next" would dead-end, so offer the two things
                 a learner actually wants next — go again, or prove it. */}
             {cardIdx === cat.words.length - 1 ? (
               <div className="flex gap-2">
-                <button onClick={() => setCardIdx(0)} className="btn-ghost">
-                  ↺ Restart
+                <button
+                  onClick={() => setCardIdx(0)}
+                  aria-label="Restart deck"
+                  className="inline-flex items-center justify-center h-12 w-12 shrink-0 rounded-full bg-cream-200 text-stone-800 hover:bg-cream-300 active:scale-95 transition"
+                >
+                  <RefreshIcon size={20} />
                 </button>
-                <Link to={`/quiz/vocab-${cat.id}`} className="btn-primary">
-                  Take the quiz →
+                <Link to={`/quiz/vocab-${cat.id}`} className="btn-primary gap-1.5">
+                  Take the quiz <ArrowRightIcon size={16} />
                 </Link>
               </div>
             ) : (
               <button
                 onClick={() => setCardIdx((i) => Math.min(cat.words.length - 1, i + 1))}
-                className="btn-ghost"
+                aria-label="Next card"
+                className="inline-flex items-center justify-center h-12 w-12 shrink-0 rounded-full bg-clay-600 text-cream-50 hover:bg-clay-700 active:scale-95 transition"
               >
-                Next →
+                <ArrowRightIcon size={20} />
               </button>
             )}
           </div>

@@ -23,33 +23,41 @@ export const vocabQuizzes = categories.map((cat) => ({
 export const quizzes = [
   ...vocabQuizzes,
 
-  {
-    id: 'alphabet-consonants',
-    title: 'Consonants',
-    description: 'Match Hmong consonants to their sounds.',
-    questionCount: 10,
-    questionTypes: ['multiple-choice'],
-    category: 'Alphabet',
-  },
-  {
-    id: 'alphabet-double-consonants',
-    title: "Double Consonants",
-    description: "Match Hmong consonant to their sounds",
-    questionCount: 10,
-    questionTypes: ['multiple-choice'],
-    category: 'Alphabet'
-  },
-
-  {
-    id: 'alphabet-vowels',
-    title: 'Vowels',
-    description: 'Recognize Hmong vowels by sound.',
-    questionCount: 10,
-    // MATCHING DISABLED — multiple-choice only for now.
-    // questionTypes: ['multiple-choice', 'matching'],
-    questionTypes: ['multiple-choice'],
-    category: 'Alphabet',
-  },
+  // COMMENTED OUT — the consonant and vowel quizzes are superseded by the
+  // Speak drills, which test the same letters by SAYING them rather than by
+  // picking a sound description off a list. A letter's sound is a production
+  // skill; multiple choice can't test it (same reasoning as notes/50, notes/60).
+  //
+  // Tone Markers stays: identifying which marker carries which tone is genuinely
+  // recognition, so multiple choice fits it.
+  //
+  // Commented, NOT deleted — restore if the drills don't cover this. Note the
+  // ids are progress keys: anyone who took these keeps their scores in
+  // `quizScores`, they just won't see the quiz listed. See notes/65.
+  // {
+  //   id: 'alphabet-consonants',
+  //   title: 'Consonants',
+  //   description: 'Match Hmong consonants to their sounds.',
+  //   questionCount: 10,
+  //   questionTypes: ['multiple-choice'],
+  //   category: 'Alphabet',
+  // },
+  // {
+  //   id: 'alphabet-double-consonants',
+  //   title: "Double Consonants",
+  //   description: "Match Hmong consonant to their sounds",
+  //   questionCount: 10,
+  //   questionTypes: ['multiple-choice'],
+  //   category: 'Alphabet'
+  // },
+  // {
+  //   id: 'alphabet-vowels',
+  //   title: 'Vowels',
+  //   description: 'Recognize Hmong vowels by sound.',
+  //   questionCount: 10,
+  //   questionTypes: ['multiple-choice'],
+  //   category: 'Alphabet',
+  // },
   {
     id: 'alphabet-tones',
     title: 'Tone Markers',

@@ -5,6 +5,7 @@ How-to guides for tasks that aren't obvious from reading the code, especially an
 ## Index
 
 - [supabase-first-time-setup.md](supabase-first-time-setup.md) — First-time Supabase walkthrough: account, project, keys, RLS, mental model
+- [supabase-schema.sql](supabase-schema.sql) — **Paste-and-run SQL**: tables, RLS policies, and the signup trigger (see notes/68 for why)
 - [supabase-integration.md](supabase-integration.md) — Wire AuthContext + ProgressContext to Supabase (do this after first-time setup)
 - [audio-files.md](audio-files.md) — Add real pronunciation audio
 - [pronunciation-apis.md](pronunciation-apis.md) — APIs & services for the record/compare pronunciation feature (what's free, what to host)

@@ -3,6 +3,7 @@ import { useProgress } from '../../hooks/useProgress.js'
 import { selectSession } from '../../context/ProgressContext.jsx'
 import { categories } from '../../data/vocabulary.js'
 import { quizzes } from '../../data/quizzes.js'
+import { ArrowRightIcon } from '../icons/index.jsx'
 
 export default function TodayCard() {
   const { vocabSchedule, quizScores, streakData } = useProgress()
@@ -51,8 +52,8 @@ export default function TodayCard() {
         {suggestions.map((s) => (
           <li key={s.to} className="flex items-center justify-between gap-4 py-3 first:pt-0 last:pb-0">
             <span className="text-stone-700">{s.label}</span>
-            <Link to={s.to} className="text-sm text-clay-700 font-medium hover:text-clay-800 whitespace-nowrap">
-              {s.cta} →
+            <Link to={s.to} className="inline-flex items-center gap-1.5 text-sm text-clay-700 font-medium hover:text-clay-800 whitespace-nowrap">
+              {s.cta} <ArrowRightIcon size={14} />
             </Link>
           </li>
         ))}

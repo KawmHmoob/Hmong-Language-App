@@ -127,7 +127,7 @@ export default function BattlePass() {
         </ol>
       </div>
       <p className="text-sm text-stone-600 mt-1 mb-10">
-        Scroll sideways to see all {MAX_LEVEL} tiers →
+        Scroll sideways to see all {MAX_LEVEL} tiers
       </p>
 
       {/* How points are earned */}

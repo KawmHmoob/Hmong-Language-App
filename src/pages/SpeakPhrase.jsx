@@ -6,6 +6,7 @@ import PaywallGate from '../components/common/PaywallGate.jsx'
 import AccountGate from '../components/common/AccountGate.jsx'
 import PronounceStep from '../components/speak/PronounceStep.jsx'
 import { isPhraseGuestAllowed, GUEST_PHRASE_LIMIT } from '../lib/access.js'
+import { ArrowLeftIcon, ArrowRightIcon } from '../components/icons/index.jsx'
 
 // One phrase's practice screen. PronounceStep does the record/compare loop;
 // this page owns routing, the paywall, progress, and prev/next flow.
@@ -72,21 +73,27 @@ export default function SpeakPhrase() {
           />
         </div>
 
-        <div className="mt-6 max-w-2xl mx-auto flex justify-between items-center text-sm">
+        {/* Real buttons, matching the quiz's btn-secondary nav — underlined
+            text links read as footnotes, not as "move to the next thing", and
+            were small tap targets on mobile. See notes/65. */}
+        <div className="mt-6 max-w-2xl mx-auto flex justify-between items-center gap-3">
           {prev ? (
-            <Link to={`/speak/${prev.id}`} className="text-stone-700 underline">
-              ← {prev.hmong}
+            <Link to={`/speak/${prev.id}`} className="btn-secondary gap-1.5 min-w-0">
+              <ArrowLeftIcon size={15} />
+              <span className="truncate">{prev.hmong}</span>
             </Link>
           ) : (
             <span />
           )}
           {next ? (
-            <Link to={`/speak/${next.id}`} className="text-stone-700 underline">
-              {next.hmong} →
+            <Link to={`/speak/${next.id}`} className="btn-secondary gap-1.5 min-w-0">
+              <span className="truncate">{next.hmong}</span>
+              <ArrowRightIcon size={15} />
             </Link>
           ) : (
-            <Link to="/speak" className="text-stone-700 underline">
-              Back to Speak →
+            <Link to="/speak" className="btn-secondary gap-1.5">
+              Finish
+              <ArrowRightIcon size={15} />
             </Link>
           )}
         </div>

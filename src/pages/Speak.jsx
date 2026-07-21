@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { LockIcon, CheckIcon } from '../components/icons/index.jsx'
+import { LockIcon, CheckIcon, ArrowRightIcon } from '../components/icons/index.jsx'
 import { speakGroups, allPhrases, speakStepId } from '../data/speak.js'
 import { useProgress } from '../hooks/useProgress.js'
 import { useAuth } from '../context/AuthContext.jsx'
@@ -7,6 +7,7 @@ import { useSubscription } from '../context/SubscriptionContext.jsx'
 import { isPhraseGuestAllowed, GUEST_PHRASE_LIMIT } from '../lib/access.js'
 import { wordFamilies } from '../data/wordFamilies.js'
 import { pickOfTheDay } from '../lib/daily.js'
+import BetaRibbon from '../components/common/BetaRibbon.jsx'
 
 // Speak hub — one of the app's two front doors. Lists every pronounceable
 // phrase grouped by topic, with per-phrase practice state and Pro locks.
@@ -28,6 +29,17 @@ export default function Speak() {
 
   return (
     <div>
+      {/* Beta notice — tone scoring works, but the pass threshold is NOT yet
+          calibrated against real takes (notes/61), and most phrase groups have
+          no native recording. Say so plainly rather than letting a learner
+          assume a low score means they said it wrong. */}
+      <BetaRibbon>
+        Tone scoring is experimental. Your pitch is compared against a native
+        recording, but the scoring is still being tuned — treat the curve as
+        the real feedback and the number as a rough guide. Only groups with a
+        native recording can be scored.
+      </BetaRibbon>
+
       {/* Section hero */}
       <div className="mb-10">
         <p className="flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-stone-600 mb-2">
@@ -76,7 +88,7 @@ export default function Speak() {
               <CheckIcon size={12} /> Done
             </span>
           ) : (
-            <span className="shrink-0 text-sm font-medium text-clay-700">Practice →</span>
+            <span className="shrink-0 inline-flex items-center gap-1.5 text-sm font-medium text-clay-700">Practice <ArrowRightIcon size={14} /></span>
           )}
         </Link>
       )}

@@ -176,7 +176,7 @@ export default function Home() {
         </p>
         <h2 className="font-display text-5xl sm:text-6xl text-stone-900 mb-4">Nyob zoo.</h2>
         <p className="text-lg text-stone-700 max-w-xl leading-relaxed">
-          Learn to read, speak, and understand Hmong — one tone at a time.
+          Learn to read, speak, and understand Hmong.
         </p>
       </section>
 
@@ -196,8 +196,8 @@ export default function Home() {
             </p>
             <p className="text-stone-600 mt-2">{phrase.english}</p>
           </div>
-          <span className="text-sm font-medium text-clay-700">
-            Practice saying it →
+          <span className="inline-flex items-center gap-1.5 text-sm font-medium text-clay-700">
+            Practice saying it <ArrowRightIcon size={14} />
           </span>
         </Link>
 

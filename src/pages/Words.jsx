@@ -4,7 +4,7 @@ import { useProgress } from '../hooks/useProgress.js'
 import { selectSession, DAILY_NEW_LIMIT } from '../context/ProgressContext.jsx'
 import {
   FlameIcon, StarIcon, InboxIcon, CheckCircleIcon,
-  MusicNoteIcon, ZapIcon, GridIcon, NotebookIcon, CategoryIcon,
+  MusicNoteIcon, ZapIcon, GridIcon, NotebookIcon, CategoryIcon, ArrowRightIcon,
 } from '../components/icons/index.jsx'
 
 // Words hub — the app's second front door. Pulls today's SRS queue, streak,
@@ -95,7 +95,7 @@ export default function Words() {
           </div>
           {!caughtUp && (
             <Link to="/words/session" className="btn-primary text-base px-6 py-3">
-              Start session →
+              Start session <ArrowRightIcon size={16} />
             </Link>
           )}
         </div>
@@ -130,6 +130,15 @@ export default function Words() {
           icon={NotebookIcon}
           title="Notebook"
           blurb="The words you saved for later."
+        />
+
+        {/* Placeholder route — the tile says so, so nobody taps it expecting
+            an exercise. Roadmap Phase 2 (future-implementations/04). */}
+        <DrillTile
+          to="/words/sentences"
+          icon={GridIcon}
+          title="Sentence builder"
+          blurb="Coming soon — assemble and label sentence parts."
         />
       </div>
 

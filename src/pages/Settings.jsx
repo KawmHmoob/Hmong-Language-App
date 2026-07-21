@@ -1,6 +1,7 @@
 ﻿import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
+import DialectSelect from '../components/common/DialectSelect.jsx'
 
 export default function Settings() {
   const { user, updateProfile } = useAuth()
@@ -13,14 +14,11 @@ export default function Settings() {
 
       <div className="space-y-4 max-w-xl">
         <Field label="Dialect" hint="Choose which Hmong dialect to study.">
-          <select
+          <DialectSelect
+            id="settings-dialect"
             value={user.dialectPreference}
-            onChange={(e) => updateProfile({ dialectPreference: e.target.value })}
-            className="w-full rounded border border-cream-300 bg-cream-50 px-3 py-2 text-sm focus:outline-none focus:border-clay-500"
-          >
-            <option value="white">White Hmong (Hmoob Dawb)</option>
-            <option value="green">Green Hmong (Moob Leeg)</option>
-          </select>
+            onChange={(v) => updateProfile({ dialectPreference: v })}
+          />
         </Field>
 
         <Toggle

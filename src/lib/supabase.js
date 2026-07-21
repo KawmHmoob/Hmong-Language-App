@@ -25,6 +25,29 @@ function stubResult(message) {
   })
 }
 
+// A THENABLE query builder: every method returns `this`, so any chain length
+// works, and `await` resolves via `then`.
+//
+// The previous stub returned a Promise from select()/insert()/etc. and put
+// eq()/single() on the object returned by from(). That broke the moment anyone
+// chained — `from('profiles').select('*').eq('id', uid)` called `.eq` on a
+// Promise and threw "eq is not a function". So the "runs without Supabase
+// configured" promise in this file's header didn't actually hold. See notes/67.
+function stubQuery(label) {
+  const q = {
+    then: (resolve, reject) => stubResult(label).then(resolve, reject),
+    catch: (fn) => stubResult(label).catch(fn),
+    finally: (fn) => stubResult(label).finally(fn),
+  }
+  for (const m of [
+    'select', 'insert', 'update', 'upsert', 'delete',
+    'eq', 'neq', 'in', 'order', 'limit', 'single', 'maybeSingle', 'match',
+  ]) {
+    q[m] = () => q
+  }
+  return q
+}
+
 const stubClient = {
   auth: {
     getSession: () => stubResult('auth.getSession'),
@@ -33,15 +56,7 @@ const stubClient = {
     signOut: () => stubResult('auth.signOut'),
     onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
   },
-  from: (table) => ({
-    select: () => stubResult(`from(${table}).select`),
-    insert: () => stubResult(`from(${table}).insert`),
-    update: () => stubResult(`from(${table}).update`),
-    upsert: () => stubResult(`from(${table}).upsert`),
-    delete: () => stubResult(`from(${table}).delete`),
-    eq: function () { return this },
-    single: function () { return this },
-  }),
+  from: (table) => stubQuery(`from(${table})`),
 }
 
 export const supabase = isSupabaseConfigured()
