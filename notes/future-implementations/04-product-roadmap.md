@@ -67,6 +67,42 @@ so either technically works — but the two references may differ in *pitch
 range*, not just duration, since deliberate speech tends to exaggerate contours.
 Worth checking against real takes before assuming they're interchangeable.
 
+## Phase 1c — Native Hmong scripts (additive, content-heavy)
+
+**Add Pahawh Hmong and Nyiakeng Puachue Hmong as writing styles** — alongside
+the RPA romanization the app uses today. A learner could read the same lesson in
+the script they want to learn.
+
+### What these are
+The app currently writes Hmong in **RPA** (Romanized Popular Alphabet) — Latin
+letters, e.g. "nyob zoo". These two are *indigenous* Hmong scripts:
+
+- **Pahawh Hmong** — a semi-syllabary created by Shong Lue Yang in 1959.
+  Unicode block U+16B00–U+16B8F.
+- **Nyiakeng Puachue Hmong** (Ntawv Nyiakeng Puachue Hmoob) — an alphabet
+  created ~1980s by Rev. Chervang Kong Vang. Unicode block U+1E100–U+1E14F.
+
+### What it takes
+- **Unicode support exists**, which is the good news — both have real code
+  blocks and Noto fonts (Noto Sans Pahawh Hmong, Noto Serif Nyiakeng Puachue
+  Hmong). The **font is the real constraint**: these glyphs aren't in system
+  fonts, so the app would embed the font files (like any custom webfont) or text
+  renders as tofu (□□□).
+- **A script toggle**, structurally identical to the dialect toggle (Phase 1) —
+  a user preference that switches how Hmong is *displayed*. The dialect plumbing
+  is a working template for it.
+- **The content cost is large.** Every Hmong string would need a parallel
+  encoding in each script. RPA → Pahawh is not a mechanical transliteration a
+  script can do reliably (Pahawh encodes syllables and tone differently), so
+  this needs **someone who reads and writes these scripts** — the same
+  native-expert dependency as everything else, intensified.
+- Sensible first step: render the **alphabet/reference tables** in all three
+  scripts side by side (small, bounded content), before attempting whole
+  lessons. That alone would be novel — few apps show Hmong's own scripts at all.
+
+This is preservation as much as pedagogy: these scripts are part of what's
+under-documented about Hmong, which is the whole reason this project exists.
+
 ## Phase 2 — Structural Mechanics (next)
 
 **Drag-and-Drop Sentence Builder** — visual breakdown of classifiers, nouns, and
@@ -124,12 +160,70 @@ corrections.
 **Immersive Media Integration** — clickable transcriptions for videos, stories,
 and audio files.
 
+### Practice Conversations (a contributor's detailed vision)
+> Verbatim-in-spirit from a native/heritage speaker — worth preserving because
+> it names the exact learner failure the whole app is aimed at.
+
+The idea: once lessons reach full sentences, add **practice conversations**
+where the learner speaks a Hmong sentence to the software and it **responds**,
+turning study into dialogue. Three levels of ambition, each a real product on
+its own:
+
+**Level 1 — Scripted conversations (buildable now, no new tech).**
+Branching dialogues written by hand: the learner is prompted to say a line, then
+the bot replies with the next scripted line. On each turn the learner sees:
+- the **Hmong** they're trying to say, with **phonetics broken down**,
+- **subtitles in their own language** — English, but the vision explicitly
+  includes **French, Lao, Thai**, etc. (Hmong diaspora languages),
+- and **the bot's reply**, so they learn from what it says back, not only from
+  producing their own line.
+
+This needs only: dialogue data, the multi-language subtitle fields (Phase 1b's
+additive-field pattern), and the pronunciation scorer that already exists for
+the learner's turn. No AI, no ASR. **This is the highest-value near-term item in
+Phase 3 and should be built first.**
+
+**Level 2 — The bot listens and *corrects your Hmong*.**
+The learner speaks; the software recognizes the words, notices when a sentence
+has gone ungrammatical, and **coaches the correction** — tells them the right
+way to say it, shows the corrected sentence transcribed so they can read along,
+and asks them to try again.
+
+> The insight behind it, in the contributor's words: *the hang-up a lot of
+> non-fluent Hmong speakers face is that we start substituting words and
+> misplace adjectives and nouns, so it's not fluent or correct anymore.*
+
+That is a precise description of L2 Hmong error, and it connects directly to work
+already in the repo:
+- **Word order / classifier / adjective placement** is exactly what the Phase 2
+  **Sentence Builder** teaches and what the disguised annotation would label.
+  The correction engine and the sentence builder are the same grammar model seen
+  from two directions — one validates dragged tiles, the other validates spoken
+  words.
+
+**⚠️ Level 2 depends on tech that does not exist off the shelf for Hmong.**
+Correcting *words and grammar* (not just tone) requires **Hmong speech-to-text**
+— and, as established earlier, the major ASR providers (AWS, Google, Azure) do
+**not** support Hmong. So this cannot be bought; it has to be *built*, from a
+labeled Hmong speech corpus. Which is precisely the corpus this app is designed
+to collect (notes/03). **The flywheel closes exactly here:** the recordings
+gathered by the tone scorer become the training data for the ASR that powers
+conversational correction. Level 2 is not a feature you add — it's the payoff of
+the data strategy, years of collection away, and the single strongest reason the
+consent-clean corpus matters.
+
+Sequencing this honestly: Level 1 ships on scripted data and the current scorer.
+Level 2 waits on the corpus reaching ASR-viable scale. Don't let Level 2's
+difficulty delay Level 1 — the scripted version is genuinely useful on its own.
+
 ### Notes on Phase 3
 - A Hmong-generating chatbot is a **content-accuracy risk of a different kind**
   than everything before it. Every other surface in this app is hand-authored
   and TODO-VERIFY'd; a model generating Hmong will confidently produce wrong
   tones and invented words, and learners can't tell. If this ships, it likely
   needs constraining to reviewed phrase inventories rather than free generation.
+  (The scripted conversations above sidestep this entirely — that's a feature,
+  not a limitation.)
 - **Clickable transcriptions** are the natural payoff of the audio work already
   done — every recording is already mapped to its word/phrase, which is exactly
   the alignment data a transcript player needs.

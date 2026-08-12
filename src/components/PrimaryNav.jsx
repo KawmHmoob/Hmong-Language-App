@@ -36,15 +36,6 @@ const sections = [
     pill: 'bg-seafoam-500/15',
   },
   {
-    id: 'reference',
-    to: '/reference',
-    label: 'Reference',
-    icon: AlphabetIcon,
-    match: (p) => p.startsWith('/reference') || p.startsWith('/alphabet') || p.startsWith('/course'),
-    ind: 'bg-cream-600',
-    pill: 'bg-cream-600/20',
-  },
-  {
     id: 'speak',
     to: '/speak',
     label: 'Speak',
@@ -62,6 +53,15 @@ const sections = [
       ['/words', '/vocabulary', '/quiz', '/notebook'].some((r) => p.startsWith(r)),
     ind: 'bg-blush-500',
     pill: 'bg-blush-500/15',
+  },
+    {
+    id: 'reference',
+    to: '/reference',
+    label: 'Reference',
+    icon: AlphabetIcon,
+    match: (p) => p.startsWith('/reference') || p.startsWith('/alphabet') || p.startsWith('/course'),
+    ind: 'bg-cream-600',
+    pill: 'bg-cream-600/20',
   },
 ]
 
