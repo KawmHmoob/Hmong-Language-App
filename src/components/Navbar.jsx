@@ -9,6 +9,8 @@ import { useTheme } from '../hooks/useTheme.js'
 // Served statically from public/assets — referenced by URL, not imported.
 const KawmHmoobLogo = '/assets/KawmHmoobSvg1svgexport.svg'
 
+const KawmHmoobIcon= '/assets/transIcon.png'
+
 // Slim identity/status header. Primary navigation (Speak / Words / More)
 // lives in PrimaryNav.jsx — bottom tab bar on mobile, left rail on desktop.
 
@@ -30,6 +32,11 @@ export default function Navbar() {
     <header className="sticky top-0 z-20 bg-ocean-200/85 backdrop-blur-md border-b border-ocean-400/40">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 py-3 sm:py-4 flex items-center justify-between gap-2 sm:gap-4">
         <Link to="/" className="group flex items-center gap-2.5 min-w-0">
+          <img
+            src={KawmHmoobIcon}
+            alt="Kawm Hmoob"
+            className="h-8 sm:h-14 w-auto flex-shrink-0"
+          />
           <img
             src={KawmHmoobLogo}
             alt="Kawm Hmoob"
