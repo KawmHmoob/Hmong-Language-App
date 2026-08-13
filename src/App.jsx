@@ -32,6 +32,8 @@ import ToneEval from './pages/ToneEval.jsx'
 import SentenceBuilder from './pages/SentenceBuilder.jsx'
 import Onboarding from './pages/Onboarding.jsx'
 import Contact from './pages/Contact.jsx'
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx'
+import Terms from './pages/Terms.jsx'
 
 
 // Legacy URL support. /alphabet/:tab kept its tab names, so it maps 1:1.
@@ -103,6 +105,8 @@ export default function App() {
                   <Route path="/account" element={<ProfilePage />} />
                   <Route path="/settings" element={<Settings />} />
                   <Route path="/contact" element={<Contact />} />
+                  <Route path="/privacy" element={<PrivacyPolicy />} />
+                  <Route path="/terms" element={<Terms />} />
                   {/* Dev-only tone-scorer harness — renders a notice in prod. */}
                   <Route path="/tone-eval" element={<ToneEval />} />
                   <Route path="*" element={<NotFound />} />
