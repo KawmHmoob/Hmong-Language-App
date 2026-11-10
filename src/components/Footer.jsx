@@ -87,6 +87,7 @@ export default function Footer() {
         <div className="mx-auto max-w-5xl px-6 sm:px-8 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-stone-700/80">
           <p>© {year} KawmHmoob · made with care | Devan Lee & DevvDevvDevv Development </p>
           <div className="flex items-center gap-3">
+            <NavLink to="/app" className="hover:text-clay-700 transition">Mobile app</NavLink>
             <NavLink to="/privacy" className="hover:text-clay-700 transition">Privacy</NavLink>
             <NavLink to="/terms" className="hover:text-clay-700 transition">Terms</NavLink>
             <NavLink to="/contact" className="hover:text-clay-700 transition">Contact</NavLink>

@@ -298,3 +298,12 @@ export function CategoryIcon({ category, size = 20, className = '' }) {
     </span>
   )
 }
+
+export function PhoneIcon(props) {
+  return (
+    <svg {...base(props)}>
+      <rect x="6" y="2" width="12" height="20" rx="2.5" fill="currentColor" fillOpacity="0.15" />
+      <line x1="11" y1="18" x2="13" y2="18" />
+    </svg>
+  )
+}

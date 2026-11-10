@@ -38,6 +38,9 @@ const PAIRS = [
   ['ocean-600', 'cream-50', 'ocean button (light text on deep)'],
   ['ocean-700', 'cream-50', 'ocean button, darkest step'],
   ['ocean-50', 'stone-900', 'ocean tint surface, ink text'],
+  // AppPromo banner (notes/71). Tested at full opacity — the /70 alpha only
+  // blends it toward the seafoam page, which is lighter still.
+  ['ocean-300', 'stone-900', 'app promo banner text'],
   // The header band. Every one of these sits on ocean-200 in Navbar.jsx.
   ['ocean-200', 'stone-800', 'header: nav text'],
   ['ocean-200', 'stone-900', 'header: logo wordmark'],

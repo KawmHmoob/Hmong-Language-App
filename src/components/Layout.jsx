@@ -6,6 +6,7 @@ import GuestBanner from './account/GuestBanner.jsx'
 import PrimaryNav from './PrimaryNav.jsx'
 import SkeletonCard from './common/SkeletonCard.jsx'
 import WarningRibbon from './common/WarningRibbon.jsx'
+import AppPromo from './common/AppPromo.jsx'
 import { useAuth } from '../context/AuthContext.jsx'
 
 export default function Layout() {
@@ -40,6 +41,7 @@ export default function Layout() {
       {/* Desktop: rail + content side by side. Mobile: the rail hides itself
           and PrimaryNav's fixed bottom tab bar takes over (hence pb-24). */}
       <WarningRibbon/>
+      <AppPromo />
       
       <div className="mx-auto max-w-6xl flex gap-6">
         <PrimaryNav />
