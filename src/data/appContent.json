@@ -1,0 +1,96 @@
+{
+  "generatedAt": "2026-11-10",
+  "source": {
+    "repo": "KawmHmoob-rn",
+    "commit": "5bd7e72"
+  },
+  "stats": {
+    "units": 5,
+    "lessons": 30,
+    "words": 475,
+    "categories": 42,
+    "phrases": 14,
+    "quizzes": 46,
+    "recordings": 315
+  },
+  "units": [
+    {
+      "title": "Foundations",
+      "lessons": 8
+    },
+    {
+      "title": "Grammar",
+      "lessons": 10
+    },
+    {
+      "title": "Conversational",
+      "lessons": 5
+    },
+    {
+      "title": "Numbers & Time",
+      "lessons": 4
+    },
+    {
+      "title": "Readings",
+      "lessons": 3
+    }
+  ],
+  "tones": [
+    {
+      "marker": "b",
+      "name": "High",
+      "example": "pob (ball)",
+      "example2": "Cim Siab",
+      "audio": "/assets/audio/tones/hmong-tone-b.mp3"
+    },
+    {
+      "marker": "j",
+      "name": "High-falling",
+      "example": "poj (female)",
+      "example2": "Cim Ntuj",
+      "audio": "/assets/audio/tones/hmong-tone-j.mp3"
+    },
+    {
+      "marker": "v",
+      "name": "Rising",
+      "example": "pov (throw)",
+      "example2": "Cim Kuv",
+      "audio": "/assets/audio/tones/hmong-tone-v.mp3"
+    },
+    {
+      "marker": "",
+      "name": "Mid",
+      "example": "po (spleen)",
+      "example2": "Cim Ua",
+      "audio": "/assets/audio/tones/hmong-tone-none.mp3"
+    },
+    {
+      "marker": "s",
+      "name": "Low",
+      "example": "pos (thorn)",
+      "example2": "Cim Mus",
+      "audio": "/assets/audio/tones/hmong-tone-s.mp3"
+    },
+    {
+      "marker": "g",
+      "name": "Mid-Falling with Air",
+      "example": "pog (grandma)",
+      "example2": "Cim Neeg",
+      "audio": "/assets/audio/tones/hmong-tone-g.mp3"
+    },
+    {
+      "marker": "m",
+      "name": "Low-Falling",
+      "example": "pom (see)",
+      "example2": "Cim Niam",
+      "audio": "/assets/audio/tones/hmong-tone-m.mp3"
+    },
+    {
+      "marker": "d",
+      "name": "Low-Rising",
+      "example": "pod (?)",
+      "example2": "Cim Tod",
+      "audio": "/assets/audio/tones/hmong-tone-d.mp3"
+    }
+  ]
+}

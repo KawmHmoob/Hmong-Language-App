@@ -1,135 +1,161 @@
 import LegalLayout, { Section } from '../components/common/LegalLayout.jsx'
 
-// PRIVACY POLICY — a starting-point document that reflects what the app
-// ACTUALLY does today, not generic boilerplate. Two facts drive it:
-//   1. Voice recordings are processed IN THE BROWSER and are NOT uploaded or
-//      stored anywhere (notes/61). That's a genuine, statable privacy strength.
-//   2. Optional demographics (incl. ethnicity, a special category) are
-//      collected in onboarding for personalization + a future opt-in dataset
-//      (notes/69, notes/03 §6).
+// PRIVACY POLICY — covers the Kawm Hmoob MOBILE APP and this showcase website.
+// Written to match what the code actually does (checked against KawmHmoob-rn,
+// Nov 2026), not generic boilerplate:
+//   - Accounts + progress: Supabase (profiles, progress tables).
+//   - Optional onboarding: age range (incl. "Under 18"), gender, dialect,
+//     relationship to Hmong, ethnicity (special category), region.
+//   - Microphone: Android permission is DECLARED by the expo-audio plugin, but
+//     no app code records today. Say so plainly; update this if that changes.
+//   - Purchases: RevenueCat SDK is wired with a TEST key only — nothing is sold
+//     yet. Worded as "if paid features are offered".
+//   - Website: no accounts, no analytics; localStorage holds the theme only.
 //
-// ⚠️ NOT LEGAL ADVICE. Have a qualified person review before the voice corpus
-// goes live or the app charges money.
+// Google Play needs two URLs from this page: the policy itself (/privacy) and
+// the account-deletion instructions (/privacy#delete-account). Don't rename
+// that id. See notes/72.
+//
+// ⚠️ NOT LEGAL ADVICE. Have a qualified person review it, especially before
+// selling subscriptions or collecting voice recordings.
 
 const CONTACT = 'techkage@proton.me'
-const UPDATED = 'July 21, 2026'
+const UPDATED = 'November 9, 2026'
+
+const mail = (subject) => `mailto:${CONTACT}?subject=${encodeURIComponent(subject)}`
+const link = 'text-clay-700 underline'
 
 export default function PrivacyPolicy() {
   return (
     <LegalLayout title="Privacy Policy" updated={UPDATED}>
       <Section heading="The short version">
         <ul className="list-disc pl-5 space-y-1.5">
-          <li>Your voice recordings are analyzed <strong>on your device</strong> and are <strong>not uploaded or stored</strong> by us today.</li>
-          <li>We collect the minimum to run the app: an account, your learning progress, and a few <strong>optional</strong> questions you can always skip.</li>
-          <li>We don’t sell your data.</li>
-          <li>You can see, correct, or delete your data by contacting us.</li>
+          <li>We collect what the app needs to work: an account and your learning progress.</li>
+          <li>A few profile questions are asked at sign-up. <strong>All of them are optional.</strong></li>
+          <li>The app does <strong>not</strong> record your voice today.</li>
+          <li>We don’t sell your data, and we don’t use advertising or tracking tools.</li>
+          <li>You can delete your account and its data at any time — <a href="#delete-account" className={link}>here’s how</a>.</li>
         </ul>
       </Section>
 
       <Section heading="Who we are">
         <p>
-          Kawm Hmoob (“we”, “us”) is a Hmong language-learning app run by an
-          individual developer. For anything in this policy, contact{' '}
-          <a href={`mailto:${CONTACT}`} className="text-clay-700 underline">{CONTACT}</a>.
+          Kawm Hmoob (“we”, “us”) is a Hmong language-learning app for Android,
+          plus this website, made by an individual developer. This policy covers
+          both. For anything in it, email{' '}
+          <a href={`mailto:${CONTACT}`} className={link}>{CONTACT}</a>.
         </p>
       </Section>
 
-      <Section heading="What we collect">
-        <p><strong>Account information.</strong> When you create an account, we store your email, a username, and a display name. Authentication is handled by Supabase.</p>
-        <p><strong>Learning progress.</strong> Lessons completed, quiz scores, words studied, streaks, and points — so your progress is saved and syncs across devices. If you use the app as a guest, this is kept only in your browser’s local storage on that device.</p>
+      <Section heading="What the app collects">
+        <p><strong>Account information.</strong> If you create an account: your email address, a username, and a display name. Sign-in is handled by Supabase, our database and authentication provider.</p>
+        <p><strong>Learning progress.</strong> Lessons completed, quiz results, words studied, streaks, and points, so your progress is saved and restored when you sign in. If you use the app without an account, this stays on your device only.</p>
         <p>
-          <strong>Optional profile details.</strong> During onboarding we ask about your age range, gender, dialect, relationship to the Hmong language, ethnicity, and region.{' '}
-          <strong>Every one of these is optional</strong> — you can answer “prefer not to say” or skip them entirely, and change them later in Settings.
+          <strong>Optional profile questions.</strong> At sign-up we ask your age range, gender,
+          preferred dialect, your relationship to the Hmong language, ethnicity, and the region
+          your family is from. <strong>Every question can be skipped or answered “prefer not to
+          say”</strong>, and you can change your answers later.
         </p>
-        <p><strong>Basic technical data.</strong> Standard information your browser sends (such as device and browser type) and data our hosting provider processes to deliver and secure the app.</p>
+        <p><strong>Purchases.</strong> The app is free today. If paid features are offered later, payments will be processed by <strong>Google Play</strong> — we never see your card details — and your subscription status will be managed by <strong>RevenueCat</strong>, which receives a purchase record and an app user identifier, not your payment information.</p>
       </Section>
 
-      <Section heading="Your voice recordings">
+      <Section heading="Microphone">
         <p>
-          When you use the Speak feature, your microphone recording is analyzed{' '}
-          <strong>entirely within your browser</strong> to compare your pitch to a
-          native speaker’s. <strong>The recording is not sent to our servers and
-          is not stored.</strong> It exists only in your device’s memory during
-          practice and is discarded when you record again or leave the page.
-        </p>
-        <p>
-          We are building toward an <strong>opt-in</strong> community voice dataset
-          to improve Hmong pronunciation tools, which are badly under-resourced.
-          <strong> If that launches, it will be a separate, explicit choice</strong>
-          {' '}— nothing is collected for it without asking you first, and you would
-          be told exactly what is stored and why before any recording is saved.
+          On Android, the app’s audio component declares the microphone permission,
+          so it may be listed on the Play Store. <strong>The app does not currently
+          record your voice</strong>, and it won’t ask for microphone access to play
+          lessons. If a recording feature is added, you will be asked for permission
+          first and told exactly how recordings are used. Any future community voice
+          dataset would be a separate, explicit opt-in.
         </p>
       </Section>
 
       <Section heading="Sensitive information (ethnicity)">
         <p>
-          Ethnicity is treated by many privacy laws (including the EU’s GDPR) as a{' '}
-          <strong>special category</strong> of personal data with extra protection.
-          We ask for it only because it helps make a future Hmong voice dataset
-          representative — and it is <strong>always optional</strong>, never
-          required to use the app, and never shown publicly. If you’d rather not
-          share it, choose “prefer not to say.”
+          Many privacy laws, including the EU’s GDPR, treat ethnicity as a{' '}
+          <strong>special category</strong> of personal data. We ask only because it
+          helps us understand who the app serves and make future Hmong language
+          resources more representative. It is <strong>always optional</strong>,
+          never required to use the app, and never shown to other users.
         </p>
       </Section>
 
-      <Section heading="How we use your information">
+      <Section heading="How we use it">
         <ul className="list-disc pl-5 space-y-1.5">
-          <li>To run the app and save your progress.</li>
-          <li>To personalize your learning (e.g. your chosen dialect).</li>
-          <li>To understand, in aggregate, how the app is used so it can improve.</li>
-          <li>With your separate opt-in, to help build an open Hmong pronunciation dataset.</li>
+          <li>To run the app, keep you signed in, and save your progress.</li>
+          <li>If you appear on a leaderboard, to show your username and points there — never your email.</li>
+          <li>To personalize learning, such as your preferred dialect.</li>
+          <li>To understand, in aggregate, who uses the app so it can improve.</li>
         </ul>
-        <p>We do <strong>not</strong> sell your personal information.</p>
+        <p>We do <strong>not</strong> sell your personal information or share it for advertising.</p>
       </Section>
 
-      <Section heading="Where your data is stored">
+      <Section heading="Who processes your data">
+        <ul className="list-disc pl-5 space-y-1.5">
+          <li><strong>Supabase</strong> — account and progress storage.</li>
+          <li><strong>Google Play</strong> — app distribution and, if offered, payments.</li>
+          <li><strong>RevenueCat</strong> — subscription status, if paid features are offered.</li>
+          <li><strong>Vercel</strong> — hosts this website.</li>
+        </ul>
         <p>
-          Account and progress data are stored using <strong>Supabase</strong>, our
-          database and authentication provider, which may process data on servers
-          located in the United States or elsewhere. Access is restricted so that,
-          in normal operation, you can only read and change your own data.
+          These providers may store data on servers in the United States or other
+          countries. Access to account data is restricted so that, in normal
+          operation, you can only read and change your own.
         </p>
       </Section>
 
-      <Section heading="Cookies and local storage">
+      <Section heading="This website">
         <p>
-          We use your browser’s local storage to keep you signed in and to hold
-          guest progress and preferences. We don’t use third-party advertising or
-          tracking cookies.
+          This site has no accounts and no analytics. It stores one thing in your
+          browser: your light/dark theme choice. Like any website, its host
+          (Vercel) processes standard request information, such as IP address and
+          browser type, to deliver and secure the site.
         </p>
       </Section>
 
-      <Section heading="Your rights and choices">
+      <Section id="delete-account" heading="Deleting your account">
         <p>
-          You can <strong>access, correct, or delete</strong> your account and its
-          data at any time — update it in Settings, or email us to request a copy
-          or deletion. Depending on where you live, you may have additional rights
-          under laws such as the GDPR or the CCPA; we’ll honor those requests.
+          You can ask us to delete your Kawm Hmoob account and all data tied to it
+          — profile, profile answers, and progress — at any time:
         </p>
-        <p>To make a request, email <a href={`mailto:${CONTACT}`} className="text-clay-700 underline">{CONTACT}</a>.</p>
+        <ol className="list-decimal pl-5 space-y-1.5">
+          <li>
+            Email{' '}
+            <a href={mail('Delete my Kawm Hmoob account')} className={link}>{CONTACT}</a>{' '}
+            from the address you signed up with, with the subject “Delete my Kawm Hmoob account”.
+          </li>
+          <li>Include your username if you remember it.</li>
+          <li>We’ll confirm, then delete your account and its data within 30 days.</li>
+        </ol>
+        <p>
+          Records we’re legally required to keep (for example, purchase records
+          held by Google Play) are kept by those providers under their own policies.
+        </p>
+      </Section>
+
+      <Section heading="Your other rights">
+        <p>
+          You can also ask for a copy of your data or have it corrected. Depending
+          on where you live, laws such as the GDPR or CCPA may give you further
+          rights, and we’ll honor them. Email{' '}
+          <a href={`mailto:${CONTACT}`} className={link}>{CONTACT}</a>.
+        </p>
       </Section>
 
       <Section heading="Children">
         <p>
-          Kawm Hmoob is intended for a general audience. We don’t knowingly collect
-          personal information from children under 13 (or the minimum age in your
-          country) without appropriate consent. If you believe a child has provided
-          us information, contact us and we’ll remove it.
+          Kawm Hmoob is made for a general audience and is not directed at
+          children under 13. We don’t knowingly collect personal information from
+          children under 13 (or the minimum age in your country). If you believe a
+          child has given us information, contact us and we’ll delete it.
         </p>
       </Section>
 
       <Section heading="Changes to this policy">
         <p>
-          As the app grows — especially when the voice dataset or paid features
-          launch — this policy will be updated, and the “last updated” date above
-          will change. Significant changes will be highlighted in the app.
-        </p>
-      </Section>
-
-      <Section heading="Contact">
-        <p>
-          Questions about privacy? Email{' '}
-          <a href={`mailto:${CONTACT}`} className="text-clay-700 underline">{CONTACT}</a>.
+          We’ll update this policy as the app changes — for example, if recording
+          or paid features are added — and change the date at the top. Significant
+          changes will also be announced in the app.
         </p>
       </Section>
     </LegalLayout>

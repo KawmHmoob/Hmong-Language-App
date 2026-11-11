@@ -1,64 +1,46 @@
-// Real Supabase client when env vars are present; stub otherwise.
+// Supabase client for the showcase site. Two jobs: password reset (notes/73)
+// and the admin sign-in (notes/74). The site has no public accounts. It talks
+// to the SAME Supabase project as the mobile app (that's where the users are).
 //
-// The stub returns the same { data, error } shape so calling code is written
-// once and works in either mode. This lets contributors who haven't filled in
-// .env.local still run the app — every Supabase call just errors gracefully.
-//
-// See:
-//   - instructions/supabase-first-time-setup.md (account + project + RLS)
-//   - instructions/supabase-integration.md (code migration)
-//   - notes/14-paywall-and-supabase.md (subscription layer)
+// Loaded lazily: only the /reset-password and /admin pages import this file (via
+// React.lazy in App.jsx), so supabase-js never ships in the landing page bundle.
 
 import { createClient } from '@supabase/supabase-js'
 
 const url = import.meta.env.VITE_SUPABASE_URL
 const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY
 
-export function isSupabaseConfigured() {
-  return Boolean(url && anonKey)
-}
+// The reset email's link lands on /reset-password/update with the result in
+// the URL fragment: either a session (#access_token=…&type=recovery) or an
+// error (#error_code=otp_expired&…). supabase-js reads that fragment and then
+// ERASES it from the address bar. So we snapshot it first — this line runs at
+// import, before createClient below — to still be able to explain a bad link.
+export const initialUrlHash = typeof window === 'undefined' ? '' : window.location.hash
 
-function stubResult(message) {
-  return Promise.resolve({
-    data: null,
-    error: { message: `Supabase not configured: ${message}` },
-  })
-}
+export const supabase =
+  url && anonKey
+    ? createClient(url, anonKey, {
+        auth: {
+          // IMPLICIT, not PKCE. With PKCE the link only works in the same browser
+          // that requested it (the secret "code verifier" lives in that browser's
+          // storage). People request on a laptop and tap the email on a phone all
+          // the time. Implicit puts the token in the # fragment — which is never
+          // sent to any server — so the link works on any device.
+          flowType: 'implicit',
+          detectSessionInUrl: true,
+          // Sessions live in MEMORY only — nothing lingers in localStorage. A
+          // recovery session only needs to last until the password is set; an
+          // admin session ends when the tab is closed or reloaded (deliberate:
+          // sign in each visit).
+          persistSession: false,
+          // Access tokens expire after ~1 hour. Refreshing keeps a long admin
+          // visit working; harmless for the short-lived reset flow.
+          autoRefreshToken: true,
+        },
+      })
+    : null
 
-// A THENABLE query builder: every method returns `this`, so any chain length
-// works, and `await` resolves via `then`.
-//
-// The previous stub returned a Promise from select()/insert()/etc. and put
-// eq()/single() on the object returned by from(). That broke the moment anyone
-// chained — `from('profiles').select('*').eq('id', uid)` called `.eq` on a
-// Promise and threw "eq is not a function". So the "runs without Supabase
-// configured" promise in this file's header didn't actually hold. See notes/67.
-function stubQuery(label) {
-  const q = {
-    then: (resolve, reject) => stubResult(label).then(resolve, reject),
-    catch: (fn) => stubResult(label).catch(fn),
-    finally: (fn) => stubResult(label).finally(fn),
-  }
-  for (const m of [
-    'select', 'insert', 'update', 'upsert', 'delete',
-    'eq', 'neq', 'in', 'order', 'limit', 'single', 'maybeSingle', 'match',
-  ]) {
-    q[m] = () => q
-  }
-  return q
-}
-
-const stubClient = {
-  auth: {
-    getSession: () => stubResult('auth.getSession'),
-    signInWithPassword: () => stubResult('auth.signInWithPassword'),
-    signUp: () => stubResult('auth.signUp'),
-    signOut: () => stubResult('auth.signOut'),
-    onAuthStateChange: () => ({ data: { subscription: { unsubscribe: () => {} } } }),
-  },
-  from: (table) => stubQuery(`from(${table})`),
-}
-
-export const supabase = isSupabaseConfigured()
-  ? createClient(url, anonKey)
-  : stubClient
+// Where the email link should send people. Built from the current origin so it
+// works on localhost, Vercel previews, and kawmhmoob.com alike — each origin
+// must ALSO be on Supabase's Redirect URLs allowlist (notes/73).
+export const RESET_REDIRECT_PATH = '/reset-password/update'

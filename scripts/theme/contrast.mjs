@@ -38,9 +38,6 @@ const PAIRS = [
   ['ocean-600', 'cream-50', 'ocean button (light text on deep)'],
   ['ocean-700', 'cream-50', 'ocean button, darkest step'],
   ['ocean-50', 'stone-900', 'ocean tint surface, ink text'],
-  // AppPromo banner (notes/71). Tested at full opacity — the /70 alpha only
-  // blends it toward the seafoam page, which is lighter still.
-  ['ocean-300', 'stone-900', 'app promo banner text'],
   // The header band. Every one of these sits on ocean-200 in Navbar.jsx.
   ['ocean-200', 'stone-800', 'header: nav text'],
   ['ocean-200', 'stone-900', 'header: logo wordmark'],
@@ -52,6 +49,26 @@ const PAIRS = [
   // surrounding element suggests.
   ['cream-200', 'stone-900', 'header: xp / streak badge text'],
   ['clay-600', 'cream-50', 'header: level badge'],
+  // Showcase site (notes/72). Page bands alternate seafoam-300 / seafoam-200;
+  // cards are cream-50; the phone placeholder is cream-100; footer is ocean-200.
+  ['seafoam-300', 'stone-900', 'showcase: hero headline'],
+  ['seafoam-300', 'stone-700', 'showcase: body text on page'],
+  ['seafoam-300', 'stone-600', 'showcase: small print on page'],
+  ['seafoam-300', 'clay-700', 'showcase: section eyebrow'],
+  ['seafoam-200', 'stone-900', 'showcase: alt band heading'],
+  ['seafoam-200', 'stone-700', 'showcase: alt band body'],
+  ['seafoam-200', 'clay-700', 'showcase: alt band eyebrow'],
+  ['cream-50', 'clay-700', 'showcase: stat numbers, tone markers'],
+  ['cream-50', 'stone-700', 'showcase: card body'],
+  ['cream-50', 'stone-600', 'showcase: card small label'],
+  ['cream-100', 'stone-800', 'showcase: screenshot placeholder title'],
+  ['cream-100', 'stone-600', 'showcase: screenshot placeholder note'],
+  ['ocean-200', 'stone-700', 'showcase: footer links'],
+  // Password reset forms (notes/73).
+  ['cream-50', 'danger-700', 'reset: field error text'],
+  ['cream-50', 'stone-600', 'reset: input placeholder'],
+  // Admin dashboard fact boxes (notes/74).
+  ['cream-100', 'stone-900', 'admin: fact value'],
 ]
 
 let worst = 99

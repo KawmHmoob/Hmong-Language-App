@@ -1,6 +1,6 @@
 // The mobile app's public status — ONE place to flip when it ships.
 //
-// Every "get the app" surface (AppPromo banner, /app page) reads from here, so
+// Every "get the app" surface (PlayButton, footer, FAQ copy) reads from here, so
 // shipping is a data edit, not a hunt through components. While a store URL is
 // null, the UI says "coming soon" instead of rendering a dead download button.
 // See notes/71.

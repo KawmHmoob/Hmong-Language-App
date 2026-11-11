@@ -8,6 +8,13 @@ This folder is the audit trail for everything in the app. Each note explains **w
 - **After making a change**, update the note (or write a new one). The notes only stay useful if they stay current.
 - **For one-off how-tos that aren't tied to a feature** (deployment, audio file naming, Supabase setup), look in [`../instructions/`](../instructions/) instead.
 
+> ### 🗄 The web app is archived — read notes/72 first
+> As of Nov 2026, `main` is a **showcase site** for the Android app. The full
+> learning web app that notes **00–71** describe is frozen on the git tag
+> **`webapp-v1`** (branch `archive/webapp-v1`). Those notes are still accurate
+> *for that tag*, and the mobile app (`../KawmHmoob-rn`) ported most of it.
+> Start with [72-showcase-rebuild.md](72-showcase-rebuild.md).
+
 > ### ⚠️ Read this before trusting an old note
 > The app was restructured in notes **21–35** (two front doors → five sections;
 > Course dissolved; Reference created). **Notes 01–17 predate that** and describe
@@ -85,6 +92,9 @@ This folder is the audit trail for everything in the app. Each note explains **w
 | [08-notebook.md](08-notebook.md) | Saved words + free-form notes |
 | [04-account-system.md](04-account-system.md) | Guest / authed user, login, register, profile |
 | [68-supabase-schema.md](68-supabase-schema.md) | **Auth** — the two-table schema, RLS policies (+ the leaderboard trap), the signup trigger, and the confirmation-path bug it caught |
+| [74-admin-archive.md](74-admin-archive.md) | **Showcase** — unlisted `/admin`: sign in, open the archived web app; security lives in Supabase RLS (`admins`, `admin_settings`) + Vercel Deployment Protection, not the React code; setup SQL; extending it safely |
+| [73-password-reset.md](73-password-reset.md) | **Showcase** — password reset for app users: request + update pages, implicit flow (works cross-device), fragment snapshot for expired links, no account enumeration, lazy-loaded supabase-js, and the Supabase/Vercel setup it needs |
+| [72-showcase-rebuild.md](72-showcase-rebuild.md) | **Showcase** — web app archived to `webapp-v1`; main rebuilt as an Android showcase; numbers synced from RN; tone player; legal pages for the app + the Play account-deletion URL; dark `clay-700` contrast fix; how the app could return under `/app` |
 | [71-mobile-app-promo.md](71-mobile-app-promo.md) | **Mobile transition** — app promo banner + `/app` page; live on Google Play; derived `storeNames` copy; tone scoring stays web-only; RN data is now the source of truth; the one-switch `mobileApp.js` |
 | [70-spa-deep-link-404.md](70-spa-deep-link-404.md) | **Deploy** — direct URLs / refreshes 404 on an SPA; the `_redirects` + `vercel.json` fallback, why the 200 status matters, and per-host variants |
 | [69-onboarding-demographics.md](69-onboarding-demographics.md) | **Auth** — new-user onboarding collecting optional speaker demographics for the corpus; why everything is optional; the Layout onboarding gate; ethnicity as a special category |

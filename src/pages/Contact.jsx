@@ -31,9 +31,9 @@ export default function Contact() {
           <MailIcon size={26} />
         </span>
 
-        <h2 className="font-display text-4xl sm:text-5xl text-stone-900 mb-3">
+        <h1 className="font-display text-4xl sm:text-5xl text-stone-900 mb-3">
           Get in touch
-        </h2>
+        </h1>
         <p className="text-stone-700 leading-relaxed mb-8">
           Questions, bugs, a word that sounds wrong, or just want to say hello —
           I read every message. Kawm Hmoob is built by one person, so a reply may

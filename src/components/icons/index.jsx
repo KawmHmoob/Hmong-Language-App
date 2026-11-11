@@ -307,3 +307,38 @@ export function PhoneIcon(props) {
     </svg>
   )
 }
+
+// Theme toggle glyphs (moved here from the retired Navbar).
+export function SunIcon(props) {
+  return (
+    <svg {...base(props)}>
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  )
+}
+
+export function MoonIcon(props) {
+  return (
+    <svg {...base(props)}>
+      <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+    </svg>
+  )
+}
+
+export function SparkIcon(props) {
+  return (
+    <svg {...base(props)}>
+      <path d="M12 2l1.9 5.7L20 9.6l-5.4 3.2L15.8 19 12 15.4 8.2 19l1.2-6.2L4 9.6l6.1-1.9L12 2z" />
+    </svg>
+  )
+}
+
+export function PauseIcon(props) {
+  return (
+    <svg {...base(props)}>
+      <line x1="9" y1="5" x2="9" y2="19" />
+      <line x1="15" y1="5" x2="15" y2="19" />
+    </svg>
+  )
+}

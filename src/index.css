@@ -100,7 +100,7 @@
        text on mid-terracotta and landed at 4.46:1, just under AA. Nudged until
        it clears: now 4.89:1. One token, every primary button in the app. */
     --c-clay-600: 206 114 78;
-    --c-clay-700: 178 94 61;
+    --c-clay-700: 214 126 90; /* was 178 94 61 — failed AA as small text on dark surfaces (3.6:1). See notes/72. */
 
     --c-blush-50: 45 32 30;
     --c-blush-100: 58 39 36;

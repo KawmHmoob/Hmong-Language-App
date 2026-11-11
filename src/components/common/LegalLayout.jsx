@@ -24,9 +24,11 @@ export default function LegalLayout({ title, updated, children }) {
 }
 
 // A titled section — keeps both documents visually uniform.
-export function Section({ heading, children }) {
+// `id` makes a section linkable (/privacy#delete-account) — Google Play asks
+// for a direct URL to the account-deletion instructions.
+export function Section({ id, heading, children }) {
   return (
-    <section>
+    <section id={id} className={id ? 'scroll-mt-24' : undefined}>
       <h2 className="font-display text-2xl text-stone-900 mb-2">{heading}</h2>
       <div className="space-y-3">{children}</div>
     </section>
